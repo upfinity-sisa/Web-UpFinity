@@ -1,0 +1,76 @@
+#main-desktop {
+    height: 100vh;
+    width: 100%;
+    background-image: url("../Assets/Elements/bg_inicio_desktop.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    overflow: hidden;
+}
+
+#bg_pontos_desktop {
+    position: absolute;
+    width: 9.8vw;
+    top: 8%;
+    left: -3%;
+}
+
+#container_inicial_desktop {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#inicial-desktop-right {
+    display: flex;
+    align-items: center;
+    width: 55vw;
+}
+
+#img_inicio_desktop {
+    width: 70vw;
+    height: auto;
+    transform: translate(-20%, 7%);
+}
+
+#inicial-desktop-left {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#subcontainer-inicial-desktop-left {
+    height: 100%;
+    width: 73%;
+    /* background: #155c9e; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#subcontainer-inicial-info-desktop {
+    padding-top: 8vw;
+    width: 100%;
+    /* background: #000; */
+}
+
+#subcontainer-info-txt-desktop {
+    height: auto;
+}
+
+#p-inicial-info-txt {
+    margin-top: 10%;
+    font-weight: 400;
+    font-size: 3.2vw;
+}
+
+.color-txt-inicial {
+    color: #00c4cc;
+}
+
+#p-inicial-info-descricao-desktop {
+    color: #ececec;
+    font-size: 1.1vw;
+}
