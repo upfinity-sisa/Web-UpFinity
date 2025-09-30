@@ -23,6 +23,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
     rel="stylesheet">
+
+  <!-- JavaScript -->
+  <script src="./script.js" defer></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
   <title>UpFinity</title>
 </head>
 
@@ -35,11 +42,29 @@
       Conteúdo Tablet
     </div>
     <div class="d-none d-lg-block" id="desktopContent">
+      <header id="header-desktop">
+        <div class="container-header-desktop"><img src="./Assets/Logo/UpFinity.png" id="header-logo-desktop"></div>
+        <div class="container-header-desktop">
+          <nav id="header-nav-desktop">
+            <ul id="header-nav-ul-desktop">
+              <li class="header-nav-li-desktop">Início</li>
+              <li class="header-nav-li-desktop">Benefícios</li>
+              <li class="header-nav-li-desktop">Diferenciais</li>
+              <li class="header-nav-li-desktop">Fluxo</li>
+            </ul>
+          </nav>
+        </div>
+        <div class="container-header-desktop">
+          <a id="a-btn-desktop" href=""><button id="btn-desktop">Cadastre-se</button></a>
+        </div>
+      </header>
       <main id="main-desktop">
-        <img src="./Assets/Elements/pontos.png" id="bg_pontos_desktop">
         <div id="container_inicial_desktop">
           <div class="container-inicial-desktop" id="inicial-desktop-left">
             <div id="subcontainer-inicial-desktop-left">
+              <img src="./Assets/Elements/pontos.png" id="bg_pontos_desktop">
+            </div>
+            <div id="subcontainer-inicial-desktop-right">
               <div id="subcontainer-inicial-info-desktop">
                 <div id="subcontainer-info-txt-desktop">
                   <p id="p-inicial-info-txt">Conectados<br>
@@ -48,6 +73,18 @@
                 </div>
                 <p id="p-inicial-info-descricao-desktop">Monitoramento proativo e integrado para ATMs, capaz de prever
                   falhas, reduzir indisponibilidade e aumentar a eficiência operacional.</p>
+                <div id="container-left-desktop-btncadastro">
+                  <a id="a-cadastro-desktop" href="#">
+                    <button id="btn-cadastro-desktop">
+                      <img id="icon-cadastro-desktop" src="./Assets/Elements/Icons/cadastro_icon.png">Faça o seu
+                      Cadastro
+                    </button>
+                  </a>
+                </div>
+                <div id="container-left-desktop-parceiros">
+                  <span id="span-parceiros-desktop" class="color-txt-inicial">Parceiros de confiança</span>
+                  <img src="./Assets/Elements/img1-parceiro.png" id="img1-parceiros-desktop">
+                </div>
               </div>
             </div>
           </div>
@@ -55,10 +92,174 @@
             <img src="./Assets/Elements/img_inicio.png" id="img_inicio_desktop">
           </div>
         </div>
+        <div id="container_oque_fazemos_desktop">
+          <span data-aos="fade-up" class="color-txt-inicial span-title-desktop">O que fazemos</span>
+          <h1 data-aos="fade-up" class="h1-title-desktop">Para o maior progresso no <br>seu negócio</h1>
+          <div id="container-oque-fazemos-desktop">
+            <div id="subcontainer-oque-fazemos-desktop">
+              <div class="container-oque-fazemos-cards-desktop">
+                <div data-aos="fade-right" class="card-oque-fazemos-desktop">
+                  <div class="container-oque-fazemos-img">
+                    <img src="./Assets/Elements/Icons/card_monitoramento.png" class="cards-icons-desktop">
+                  </div>
+                  <div class="container-oque-fazemos-cards-txt">
+                    <span class="span-card-desktop">Monitoramento de Hardware</span>
+                    <p class="p-desc-cards-desktop">Acompanhamento em tempo real de CPU, memória, discos e periféricos
+                      dos ATMs.</p>
+                  </div>
+                </div>
+                <div data-aos="fade-right" class="card-oque-fazemos-desktop">
+                  <div class="container-oque-fazemos-img">
+                    <img src="./Assets/Elements/Icons/card_manutencao.png" class="cards-icons-desktop">
+                  </div>
+                  <div class="container-oque-fazemos-cards-txt">
+                    <span class="span-card-desktop">Manutenção Preditiva</span>
+                    <p class="p-desc-cards-desktop">Uso de dados e inteligência artificial para prever falhas, reduzir
+                      custos e aumentar a disponibilidade.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="container-oque-fazemos-cards-desktop">
+                <div data-aos="fade-down" class="card-oque-fazemos-desktop">
+                  <div class="container-oque-fazemos-img">
+                    <img src="./Assets/Elements/Icons/card_rede.png" class="cards-icons-desktop">
+                  </div>
+                  <div class="container-oque-fazemos-cards-txt">
+                    <span class="span-card-desktop">Monitoramento de Rede</span>
+                    <p class="p-desc-cards-desktop">Supervisão de conectividade, latência e segurança de tráfego para
+                      garantir disponibilidade contínua.</p>
+                  </div>
+                </div>
+                <div data-aos="fade-up" class="card-oque-fazemos-desktop">
+                  <div class="container-oque-fazemos-img">
+                    <img src="./Assets/Elements/Icons/card_governanca.png" class="cards-icons-desktop">
+                  </div>
+                  <div class="container-oque-fazemos-cards-txt">
+                    <span class="span-card-desktop">Governança e Relatórios</span>
+                    <p class="p-desc-cards-desktop">Dashboards em tempo real e relatórios executivos para apoiar
+                      decisões estratégicas e cumprir SLAs e normas regulatórias.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="container-oque-fazemos-cards-desktop">
+                <div data-aos="fade-left" class="card-oque-fazemos-desktop">
+                  <div class="container-oque-fazemos-img">
+                    <img src="./Assets/Elements/Icons/card_alerta.png" class="cards-icons-desktop">
+                  </div>
+                  <div class="container-oque-fazemos-cards-txt">
+                    <span class="span-card-desktop">Alertas Personalizados</span>
+                    <p class="p-desc-cards-desktop">Notificações configuradas para serem enviadas quando determinadas
+                      condições predefinidas são atingidas.</p>
+                  </div>
+                </div>
+                <div data-aos="fade-left" class="card-oque-fazemos-desktop">
+                  <div class="container-oque-fazemos-img">
+                    <img src="./Assets/Elements/Icons/card_uptime.png" class="cards-icons-desktop">
+                  </div>
+                  <div class="container-oque-fazemos-cards-txt">
+                    <span class="span-card-desktop">Uptime elevado</span>
+                    <p class="p-desc-cards-desktop">Alto nível de disponibilidade do sistema e servidor, indicando que
+                      ele esteve funcionando e acessível, com pouquíssimas interrupções.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="container_diferencial-desktop">
+          <h1 data-aos="fade-up" id="diferencial-h1-desktop">Nossos Diferenciais</h1>
+          <div id="container-diferencial-desktop">
+            <div data-aos="fade-up-right" class="subcontainer-diferencial" id="subcontainer-diferencial-left">
+              <img src="./Assets/Elements/img_diferencial.png" id="img_diferencial-desktop">
+            </div>
+            <div data-aos="fade-up-left" class="subcontainer-diferencial" id="subcontainer-diferencial-right">
+              <div id="container-diferencial-info">
+                <h2 id="h2-diferencial-desktop">Gerencie seus ATMs <br>com agilidade</h2>
+                <p id="p-diferencial-desktop">Com nosso sistema de mapas, você visualiza a localização de todos os seus
+                  caixas eletrônicos, otimizando rotas e evitando deslocamentos desnecessários. Tenha o controle total
+                  da sua rede de ATMs na palma da sua mão.</p>
+                <div id="container-diferencial-metricas">
+                  <div class="subcontainer-diferencial-metricas">
+                    <span class="span-diferencial-metricas color-txt-inicial">100 %</span>
+                    <span class="span-diferencial">de visão em tempo real</span>
+                  </div>
+                  <div class="subcontainer-diferencial-metricas">
+                    <span class="span-diferencial-metricas color-txt-inicial">35 %</span>
+                    <span class="span-diferencial">de otimização de viagens de manutenção</span>
+                  </div>
+                </div>
+                <a data-aos="fade-left" id="a-otimize-desktop" href="#">
+                  <button id="btn-otimize-desktop">
+                    <img id="icon-otimize-desktop" src="./Assets/Elements/Icons/cadastro_icon.png">Otimize seus ATM's
+                    agora
+                  </button></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="container_fluxo_desktop">
+          <span data-aos="fade-up" class="color-txt-inicial span-title-desktop">Fluxo de Processo</span>
+          <h1 data-aos="fade-up" class="h1-title-desktop">Cada etapa um avanço</h1>
+          <div id="container-fluxo-desktop">
+            <div id="subcontainer-fluxo-desktop">
+              <div id="container-fluxo-top-desktop">
+                <div data-aos="fade-up" class="card-fluxo-desktop">
+                  <div class="card-title-fluxo-desktop">
+                    <img src="./Assets/Elements/Icons/fluxo1.png" class="icon-card-fluxo-desktop">
+                    <span class="span-card-fluxo-desktop">ATM</span>
+                  </div>
+                  <p class="p-card-fluxo-desktop">O ATM segue em funcionamento atendendo seus clientes.</p>
+                </div>
+                <div data-aos="fade-up" class="card-fluxo-desktop">
+                  <div class="card-title-fluxo-desktop">
+                    <img src="./Assets/Elements/Icons/fluxo2.png" class="icon-card-fluxo-desktop">
+                    <span class="span-card-fluxo-desktop ps-2">Monitoramento</span>
+                  </div>
+                  <p class="p-card-fluxo-desktop">Enquanto o ATM está em funcionamento, nosso sistema de
+                    monitoramento
+                    capta o uso do hardware.</p>
+                </div>
+                <div data-aos="fade-up" class="card-fluxo-desktop">
+                  <div class="card-title-fluxo-desktop" id="card-title-fluxo3-desktop">
+                    <img src="./Assets/Elements/Icons/fluxo3.png" class="icon-card-fluxo-desktop">
+                    <span class="span-card-fluxo-desktop ps-2" id="span-card-fluxo3-desktop">Alertas</span>
+                  </div>
+                  <p class="p-card-fluxo-desktop" id="p-card-fluxo3-desktop">Quando um pico de uso acontece dentro do
+                    ATM um alerta é enviado,
+                    dependendo dos parâmetros pode variar entre alerta ou alerta critico.</p>
+                </div>
+              </div>
+              <div id="container-fluxo-bottom-desktop">
+                <div data-aos="fade-up" class="card-fluxo-desktop" id="card-fluxo4-desktop">
+                  <div class="card-title-fluxo-desktop">
+                    <img src="./Assets/Elements/Icons/fluxo4.png" class="icon-card-fluxo-desktop">
+                    <span class="span-card-fluxo-desktop ps-2">Manutenção</span>
+                  </div>
+                  <p id="p-card-fluxo4-desktop">Testes são o alicerce para transformar ideias em soluções
+                    confiáveis,
+                    garantindo a qualidade e requisitos esperados para o projeto</p>
+                </div>
+                <div data-aos="fade-up" class="card-fluxo-desktop">
+                  <div class="card-title-fluxo-desktop">
+                    <img src="./Assets/Elements/Icons/fluxo5.png" class="icon-card-fluxo-desktop">
+                    <span class="span-card-fluxo-desktop ps-2">Técnico</span>
+                  </div>
+                  <p id="p-card-fluxo5-desktop">Após o alerta um técnico é enviado ao local do ATM, acelerando seu
+                    processo de retirada e transporte.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </main>
     </div>
   </main>
-
+  <script>
+    AOS.init({
+      duration: 800,
+      once: false,
+    });
+  </script>
 </body>
 
 </html>

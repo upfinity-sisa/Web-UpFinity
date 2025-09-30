@@ -1,22 +1,101 @@
-#main-desktop {
-    height: 100vh;
+/* HEADER */
+
+#header-desktop {
+    height: 0;
+    z-index: 999;
     width: 100%;
+    display: flex;
+    justify-content: space-around;
+    background: #1a1a1a;
+    box-shadow: 0 6.5px 8px rgba(0, 0, 0, 0.551);
+    position: fixed;
+    overflow: hidden;
+    transition: height 0.15s ease-in;
+}
+
+.scrolled {
+    height: 10vh;
+}
+
+.container-header-desktop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-header-desktop:nth-child(1), .container-header-desktop:nth-child(3) {
+    width: 20%;
+}
+
+.container-header-desktop:nth-child(2) {
+    width: 50%;
+}
+
+#header-logo-desktop {
+    width: 10vw;
+}
+
+#header-nav-desktop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+}
+
+#header-nav-ul-desktop {
+    margin: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+}
+
+.header-nav-li-desktop {
+    cursor: pointer;
+    font-size: 1vw;
+}
+
+#a-btn-desktop {
+    all: unset;
+    width: 8vw;
+    height: 3vw;
+    border-radius: 15px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+#btn-desktop {
+    all: unset;
+    color: #000;
+    font-size: 1.15vw;
+}
+
+/* FIM HEADER */
+
+
+
+
+
+body {
+    overflow-x: hidden;
+}
+
+#main-desktop {
+
+    width: 100%;
+}
+
+#container_inicial_desktop {
+    overflow: hidden;
     background-image: url("../Assets/Elements/bg_inicio_desktop.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    overflow: hidden;
-}
-
-#bg_pontos_desktop {
-    position: absolute;
-    width: 9.8vw;
-    top: 8%;
-    left: -3%;
-}
-
-#container_inicial_desktop {
-    height: 100%;
+    height: 100vh;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -42,16 +121,25 @@
 }
 
 #subcontainer-inicial-desktop-left {
+    width: 25%;
+}
+
+#bg_pontos_desktop {
+    width: 9.8vw;
+    margin-top: 4vw;
+    transform: translate(-35%, 7%);
+}
+
+#subcontainer-inicial-desktop-right {
     height: 100%;
-    width: 73%;
-    /* background: #155c9e; */
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 #subcontainer-inicial-info-desktop {
-    padding-top: 8vw;
+    padding-top: 6vw;
     width: 100%;
     /* background: #000; */
 }
@@ -73,4 +161,328 @@
 #p-inicial-info-descricao-desktop {
     color: #ececec;
     font-size: 1.1vw;
+}
+
+#container-left-desktop-parceiros {
+    margin-top: 3%;
+    display: flex;
+    flex-direction: column;
+}
+
+#img1-parceiros-desktop {
+    width: 5vw;
+    height: auto;
+}
+
+#span-parceiros-desktop {
+    font-size: 1.3vw;
+}
+
+#container-left-desktop-btncadastro {
+    height: 10%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+}
+
+#a-cadastro-desktop, #a-otimize-desktop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    width: 16vw;
+    padding: 0 1vw;
+    background: #d5d5d5;
+    color: #000;
+    height: 3vw;
+    border-radius: 2vw;
+}
+
+#a-otimize-desktop {
+    width: 18vw;
+}
+
+#icon-cadastro-desktop, #icon-otimize-desktop {
+    width: 1.5vw;
+    margin-right: .6vw;
+}
+
+#btn-cadastro-desktop, #btn-otimize-desktop {
+    all: unset;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-size: 1.1vw;
+}
+
+#container_oque_fazemos_desktop {
+    width: 100vw;
+}
+
+.span-title-desktop {
+    display: block;
+    text-align: center;
+    width: 100%;
+    padding-top: 1.5vw;
+    font-size: 1.4vw;
+}
+
+.h1-title-desktop {
+    color: #000;
+    text-align: center;
+    font-weight: 400;
+}
+
+#container-oque-fazemos-desktop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 75vh;
+}
+
+#subcontainer-oque-fazemos-desktop {
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.container-oque-fazemos-cards-desktop {
+    height: 100%;
+    width: 30%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.card-oque-fazemos-desktop {
+    height: 45%;
+    width: 100%;
+    background: #f4f4f4;
+    border-radius: 10px;
+}
+
+.container-oque-fazemos-img {
+    height: 45%;
+    display: flex;
+    align-items: center;
+}
+
+.cards-icons-desktop {
+    width: 4vw;
+    margin-left: 2vw;
+}
+
+.container-oque-fazemos-cards-txt {
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    color: #000;
+    padding-left: 1.4vw;
+}
+
+.span-card-desktop {
+    font-weight: 500;
+    font-size: 1.2vw;
+}
+
+.p-desc-cards-desktop {
+    font-weight: 400;
+    font-size: 1vw;
+    width: 75%;
+}
+
+.subcontainer-diferencial {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+#container_diferencial-desktop {
+    height: 100vh;
+    background: #1a1a1a;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#diferencial-h1-desktop {
+    text-align: center;
+    padding-top: 2%;
+    font-size: 2.5vw;
+    font-weight: 400;
+}
+
+#container-diferencial-desktop {
+    height: 80%;
+    display: flex;
+}
+
+#img_diferencial-desktop {
+    width: 30vw;
+}
+
+#subcontainer-diferencial-right {
+    justify-content: start;
+}
+
+#container-diferencial-info {
+    height: 68%;
+    width: 70%;
+}
+
+#h2-diferencial-desktop {
+    font-weight: 350;
+    font-size: 2.45vw;
+}
+
+#p-diferencial-desktop {
+    margin-top: 3%;
+    font-size: 1vw;
+}
+
+#container-diferencial-metricas {
+    height: 25%;
+    display: flex;
+}
+
+.subcontainer-diferencial-metricas, #container-diferencial-btn {
+    display: flex;
+    flex-direction: column;
+}
+
+.span-diferencial-metricas {
+    font-size: 2.5vw;
+}
+
+.span-diferencial {
+    white-space: nowrap;
+    font-size: 1vw;
+}
+
+#container-fluxo-desktop {
+    height: 85%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#subcontainer-fluxo-desktop {
+    height: 100%;
+    width: 90%;
+}
+
+#container-fluxo-top-desktop, #container-fluxo-bottom-desktop {
+    display: flex;
+    justify-content: space-around;
+    height: 50%;
+    margin-top: 5vw;
+}
+
+#container-fluxo-bottom-desktop {
+    margin: 0;
+}
+
+.card-fluxo-desktop {
+    width: 28%;
+    height: 15vw;
+    position: relative;
+    background: url("../Assets/Elements/linha1.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.card-title-fluxo-desktop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 27%;
+    width: 40%;
+    position: absolute;
+    left: 24%;
+    top: -13.5%;
+}
+
+#card-title-fluxo3-desktop {
+    left: 16.5%;
+}
+
+.icon-card-fluxo-desktop {
+    width: 4vw;
+}
+
+.span-card-fluxo-desktop {
+    color: #000;
+    font-size: 1.8vw;
+}
+
+#span-card-fluxo3-desktop {
+    padding: 0;
+    white-space: nowrap;
+}
+
+.p-card-fluxo-desktop, #p-card-fluxo5-desktop, #p-card-fluxo4-desktop {
+    color: #000;
+    width: 60%;
+    margin-top: 6vw;
+    margin-left: 2vw;
+    font-size: 1.2vw;
+}
+
+.p-card-fluxo-desktop:nth-child(2) {
+    margin-top: 4.2vw;
+}
+
+.card-fluxo-desktop:nth-child(3) {
+    background: url("../Assets/Elements/linha2.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 20vw;
+    width: 24%;
+}
+
+#container-fluxo-bottom-desktop .card-fluxo-desktop:nth-child(2) {
+    background: url("../Assets/Elements/linha3.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+#container-fluxo-bottom-desktop .card-fluxo-desktop:nth-child(1) {
+    background: url("../Assets/Elements/linha4.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+#container-fluxo-bottom-desktop .card-fluxo-desktop:nth-child(1) .card-title-fluxo-desktop {
+    left: 12%;
+    top: -13.5%;
+}
+
+#p-card-fluxo5-desktop, #p-card-fluxo4-desktop {
+    margin-top: 3vw;
+    margin-left: 8.2vw;
+}
+
+#p-card-fluxo4-desktop {
+    margin-left: 12.5vw;
+}
+
+#p-card-fluxo3-desktop {
+    width: 80%;
+    margin-top: 3vw;
+}
+
+#card-fluxo4-desktop {
+    width: 34%;
 }
