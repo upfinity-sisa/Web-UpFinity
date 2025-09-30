@@ -13,6 +13,10 @@
     transition: height 0.15s ease-in;
 }
 
+.espaco-header-desktop {
+    padding-top: 10.5vh !important;
+}
+
 .scrolled {
     height: 10vh;
 }
@@ -85,7 +89,6 @@ body {
 }
 
 #main-desktop {
-
     width: 100%;
 }
 
@@ -220,6 +223,7 @@ body {
 
 #container_oque_fazemos_desktop {
     width: 100vw;
+    height: 125vh;
 }
 
 .span-title-desktop {
@@ -241,7 +245,7 @@ body {
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 75vh;
+    height: 80%;
 }
 
 #subcontainer-oque-fazemos-desktop {
