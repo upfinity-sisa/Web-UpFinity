@@ -1,7 +1,7 @@
 /* HEADER */
 
 #header-desktop {
-    height: 0;
+    height: 10vh;
     z-index: 999;
     width: 100%;
     display: flex;
@@ -10,7 +10,7 @@
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.445);
     position: fixed;
     overflow: hidden;
-    transition: height 0.15s ease-in;
+    transition: opacity 0.25s ease-in;
 }
 
 .espaco-header-desktop {
@@ -79,6 +79,192 @@
 }
 
 /* FIM HEADER */
+
+/* FOOTER */
+
+#footer_desktop {
+    background: #000;
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#container-footer-desktop {
+    width: 75%;
+    height: 82%;
+    margin-top: 3vw;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.subcontainer-footer-desktop:nth-child(1) {
+    height: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1.2px solid #fff;
+}
+
+.subcontainer-footer-desktop:nth-child(2) {
+    height: 25%;
+    margin-top: 2%;
+}
+
+.box-subcontainer-footer-desktop {
+    width: 33.15%;
+    background: #000;
+    height: 100%;
+}
+
+.box-subcontainer-footer-desktop {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+}
+
+#logo-footer-desktop {
+    width: 7.2vw;
+}
+
+#p-footer-desktop {
+    margin-top: 2%;
+    font-size: 0.9vw;
+    width: 90%;
+}
+
+#nav-footer-desktop {
+    height: 50%;
+}
+
+#ul-footer-desktop {
+    list-style: none;
+    margin: 0;
+    margin-top: 5%;
+    padding: 0;
+    font-size: 1vw;
+    font-weight: 300;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.li-footer-desktop {
+    cursor: pointer;
+}
+
+#span-footer-nav-desktop {
+    font-size: 1.2vw;
+}
+
+.box-subcontainer-footer-desktop:nth-child(3) {
+    justify-content: start;
+}
+
+#container-footer-cadastro-desktop {
+    height: 40%;
+    width: 85%;
+}
+
+#label-footer-cadastro-desktop {
+    font-size: 1.1vw;
+    font-weight: 300;
+    margin-top: 3%;
+}
+
+#input-razao-social-footer-desktop {
+    width: 100%;
+    height: 45%;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 20px;
+    margin-top: 3%;
+}
+
+#ipt-razao-social-footer-desktop {
+    border: none;
+    outline: none;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    padding-left: 0.5vw;
+    margin: 0;
+    width: 58%;
+    font-size: 0.9vw;
+}
+
+#btn-input-footer-desktop, #a-btn-input-footer-desktop {
+    all: unset;
+}
+
+#a-btn-input-footer-desktop {
+    color: #fff;
+    background: #252525;
+    border-radius: 20px;
+    height: 80%;
+    width: 32%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8vw;
+    cursor: pointer;
+}
+
+#btn-input-footer-desktop {
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+#form-footer-cadastro-desktop {
+    height: 100%;
+    width: 100%;
+}
+
+.subcontainer-footer-desktop:nth-child(2) {
+    display: flex;
+}
+
+.box-subcontainer-info-footer-desktop:nth-child(1) {
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sub-box-info-footer-desktop {
+    width: 32.1%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.box-subcontainer-info-footer-desktop:nth-child(2) {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+.span1-box-footer-desktop {
+    font-size: 1vw;
+}
+
+.span2-box-footer-desktop {
+    font-size: .8vw;
+}
+
+.img-social-footer-desktop {
+    width: 3vw;
+}
+
 
 
 
@@ -189,7 +375,7 @@ body {
 
 }
 
-#a-cadastro-desktop, #a-otimize-desktop {
+#a-cadastro-desktop, .a-otimize-desktop {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -202,16 +388,16 @@ body {
     border-radius: 2vw;
 }
 
-#a-otimize-desktop {
+.a-otimize-desktop {
     width: 18vw;
 }
 
-#icon-cadastro-desktop, #icon-otimize-desktop {
+#icon-cadastro-desktop, .icon-otimize-desktop {
     width: 1.5vw;
     margin-right: .6vw;
 }
 
-#btn-cadastro-desktop, #btn-otimize-desktop {
+#btn-cadastro-desktop, .btn-otimize-desktop {
     all: unset;
     white-space: nowrap;
     display: flex;
@@ -469,7 +655,7 @@ body {
 }
 
 #container-fluxo-bottom-desktop .card-fluxo-desktop:nth-child(1) .card-title-fluxo-desktop {
-    left: 12%;
+    left: 23%;
     top: -13.5%;
 }
 
@@ -489,4 +675,106 @@ body {
 
 #card-fluxo4-desktop {
     width: 34%;
+}
+
+#container_conecte_desktop {
+    height: 65vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.subcontainer_conecte_desktop {
+    height: 90%;
+    width: 35%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#container-info-conecte-desktop, #container-info-mantenha-desktop {
+    height: 55%;
+    width: 100%;
+}
+
+#h2-conecte-desktop, #h2-mantenha-desktop {
+    width: 100%;
+    color: #000;
+    font-weight: 400;
+    font-size: 2.45vw;
+}
+
+#p-conecte-desktop, #p-mantenha-desktop {
+    margin-top: 5%;
+    width: 85%;
+    font-size: 1vw;
+    color: #000;
+}
+
+#img_conecte_desktop {
+    width: 35vw;
+}
+
+#container_mantenha_desktop {
+    height: 65vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.subcontainer_mantenha_desktop {
+    height: 90%;
+    width: 35%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#img_mantenha_desktop {
+    width: 32vw;
+}
+
+#container_mantenha_desktop .subcontainer_mantenha_desktop:nth-child(2) {
+    margin-left: 3%;
+}
+
+#container_monitore_desktop,
+#subcontainer_monitore_desktop,
+#container_monitore_info_desktop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#container_monitore_desktop {
+    margin-top: 3%;
+    width: 100%;
+    height: 15vw;
+}
+
+#subcontainer_monitore_desktop {
+    width: 70%;
+    height: 10vw;
+    background: url("../Assets/Elements/img_monitore_tempo_real.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    border-radius: 20px;
+    flex-direction: column;
+}
+
+#container_monitore_info_desktop {
+    height: 40%;
+    width: 60%;
+    flex-direction: column;
+}
+
+#span_monitore_info_desktop {
+    font-weight: 400;
+    font-size: 2vw;
+}
+
+#a-comece-desktop {
+    width: 12vw;
+    height: 2.5vw;
 }
