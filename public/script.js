@@ -2,12 +2,12 @@ const header_desktop = document.getElementById('header-desktop');
 
 window.addEventListener('scroll', () => {
     if (window.scrollY > 0) {
-        header_desktop.style.opacity = "1"
         header_desktop.style.background = "#1a1a1a"
+        header_desktop.style.boxShadow = " 0 8px 20px rgba(0, 0, 0, 0.445);"
 
     } else {
-        header_desktop.style.opacity = "0.4"
-        header_desktop.style.background = "rgba(0, 0, 0, 0.445)"
+        header_desktop.style.background = "Transparent"
+        header_desktop.style.boxShadow = "none"
     }
 });
 
