@@ -14,9 +14,8 @@
     crossorigin="anonymous"></script>
 
   <!-- CSS -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./css/style_desktop.css">
-  <link rel="stylesheet" href="style.css">
 
   <!--Fonts-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,7 +54,8 @@
           </nav>
         </div>
         <div class="container-header-desktop">
-          <a id="a-btn-desktop" href=""><button id="btn-desktop">Cadastre-se</button></a>
+          <a id="a-btn-desktop" href="#"><button
+              id="btn-desktop">Login</button></a>
         </div>
       </header>
       <main id="main-desktop">
@@ -71,10 +71,10 @@
                     hoje, <br>amanhã<br>
                     e <span class="color-txt-inicial">sempre</span>.</p>
                 </div>
-                <p id="p-inicial-info-descricao-desktop">Monitoramento proativo e integrado para ATMs, capaz de prever
+                <p id="p-inicial-info-descricao-desktop">Monitoramento proativo e integrado para ATM's, capaz de prever
                   falhas, reduzir indisponibilidade e aumentar a eficiência operacional.</p>
                 <div id="container-left-desktop-btncadastro">
-                  <a id="a-cadastro-desktop" href="#">
+                  <a id="a-cadastro-desktop" href="./Pages/cadastro/cadastro.html">
                     <button id="btn-cadastro-desktop">
                       <img id="icon-cadastro-desktop" src="./Assets/Elements/Icons/cadastro_icon.png">Faça o seu
                       Cadastro
@@ -189,7 +189,7 @@
                     <span class="span-diferencial">de otimização de viagens de manutenção</span>
                   </div>
                 </div>
-                <a data-aos="fade-left" class="a-otimize-desktop" href="#">
+                <a data-aos="fade-left" class="a-otimize-desktop" href="./Pages/escolhaCadastro/escolhaCadastro.html">
                   <button class="btn-otimize-desktop">
                     <img class="icon-otimize-desktop" src="./Assets/Elements/Icons/cadastro_icon.png">Otimize seus ATM's
                     agora
@@ -294,7 +294,7 @@
             <div id="container_monitore_info_desktop">
               <span id="span_monitore_info_desktop">Monitore seus ATMs em tempo real</span>
             </div>
-            <a class="a-otimize-desktop" id="a-comece-desktop" href="#">
+            <a class="a-otimize-desktop" id="a-comece-desktop" href="./Pages/escolhaCadastro/escolhaCadastro.html">
               <button class="btn-otimize-desktop">
                 <img class="icon-otimize-desktop" src="./Assets/Elements/Icons/cadastro_icon.png">Comece agora
               </button></a>
@@ -322,40 +322,52 @@
               </div>
               <div class="box-subcontainer-footer-desktop">
                 <div id="container-footer-cadastro-desktop">
-                  <form id="form-footer-cadastro-desktop">
-                    <label id="label-footer-cadastro-desktop" for="ipt-razao-social-footer-desktop">Cadastro</label>
-                    <div id="input-razao-social-footer-desktop">
-                      <input id="ipt-razao-social-footer-desktop" maxlength="40" placeholder="Insira a razão social"
-                        type="text" required>
-                      <a id="a-btn-input-footer-desktop"><button type="submit"
-                          id="btn-input-footer-desktop">Continuar</button></a>
+                  <form id="form-footer-cadastro-empresa-desktop" class="form-footer-cadastro-desktop">
+                    <label id="label-footer-cadastro-desktop" for="ipt-empresa-footer-desktop">Cadastro de
+                      empresa (administrador)</label>
+                    <div class="container-input-footer-desktop">
+                      <input id="ipt-empresa-footer-desktop" class="ipt-style-footer-desktop" maxlength="40"
+                        placeholder="Insira a razão social" type="text" required>
+                      <a class="a-btn-input-footer-desktop"><button type="submit"
+                          class="btn-input-footer-desktop">Continuar</button></a>
+                    </div>
+                  </form>
+                  <form id="form-footer-cadastro-analista-desktop" class="form-footer-cadastro-desktop">
+                    <label id="label-footer-cadastro-desktop" for="ipt-analista-footer-desktop">Cadastro de
+                      analista</label>
+                    <div class="container-input-footer-desktop">
+                      <input id="ipt-analista-footer-desktop" class="ipt-style-footer-desktop" maxlength="40"
+                        placeholder="Insira seu email" type="email" required>
+                      <a class="a-btn-input-footer-desktop"><button type="submit"
+                          class="btn-input-footer-desktop">Continuar</button></a>
+                    </div>
                   </form>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="subcontainer-footer-desktop">
-            <div class="box-subcontainer-info-footer-desktop">
-              <div class="sub-box-info-footer-desktop">
-                <span class="span1-box-footer-desktop">Copyright by</span>
-                <span class="span2-box-footer-desktop">UpFinity</span>
+            <div class="subcontainer-footer-desktop">
+              <div class="box-subcontainer-info-footer-desktop">
+                <div class="sub-box-info-footer-desktop">
+                  <span class="span1-box-footer-desktop">Copyright by</span>
+                  <span class="span2-box-footer-desktop">UpFinity</span>
 
-              </div>
-              <div class="sub-box-info-footer-desktop">
-                <span class="span1-box-footer-desktop">Contate-nos</span>
-                <span class="span2-box-footer-desktop">+4002-8922</span>
+                </div>
+                <div class="sub-box-info-footer-desktop">
+                  <span class="span1-box-footer-desktop">Contate-nos</span>
+                  <span class="span2-box-footer-desktop">+4002-8922</span>
 
-              </div>
-              <div class="sub-box-info-footer-desktop">
-                <span class="span1-box-footer-desktop">Endereço</span>
-                <span class="span2-box-footer-desktop">Faculdade São Paulo Tech School</span>
+                </div>
+                <div class="sub-box-info-footer-desktop">
+                  <span class="span1-box-footer-desktop">Endereço</span>
+                  <span class="span2-box-footer-desktop">Faculdade São Paulo Tech School</span>
 
+                </div>
               </div>
-            </div>
-            <div class="box-subcontainer-info-footer-desktop">
-              <img class="img-social-footer-desktop img-fluid" src="./Assets/Elements/Icons/img1_footer.png">
-              <img class="img-social-footer-desktop img-fluid" src="./Assets/Elements/Icons/img2_footer.png">
-              <img class="img-social-footer-desktop img-fluid" src="./Assets/Elements/Icons/img3_footer.png">
+              <div class="box-subcontainer-info-footer-desktop">
+                <img class="img-social-footer-desktop img-fluid" src="./Assets/Elements/Icons/img1_footer.png">
+                <img class="img-social-footer-desktop img-fluid" src="./Assets/Elements/Icons/img2_footer.png">
+                <img class="img-social-footer-desktop img-fluid" src="./Assets/Elements/Icons/img3_footer.png">
+              </div>
             </div>
           </div>
         </footer>
