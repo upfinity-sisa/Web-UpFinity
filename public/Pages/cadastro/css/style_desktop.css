@@ -57,12 +57,6 @@
     text-align: center;
 }
 
-#span-desktop {
-    color: #000;
-    margin-left: 2vw;
-    font-size: 1.2vw;
-}
-
 #subox-desktop-info {
     display: flex;
     align-items: center;
@@ -71,60 +65,228 @@
     height: 100%;
 }
 
-#container-radio-desktop {
-    display: flex;
-    align-items: start;
-    justify-content: space-around;
-    flex-direction: column;
-    height: 20%;
+#container-forms-desktop {
+    width: 90%;
+    height: 80%;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
-.subcontainer-radio-desktop {
-    width: 45%;
-    height: 100%;
+#form-cadastro-empresa-desktop, #-cadastro-usuformario-desktop {
+    height: 90%;
+    width: 100%;
+    color: #000;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+#form-cadastro-usuario-desktop {
+    height: 70vh;
+}
+
+#container-forms-desktop::-webkit-scrollbar {
+    width: 3.5px;
+}
+
+#container-forms-desktop::-webkit-scrollbar-thumb {
+    background: #c7c5c5;
+    border-radius: 10px;
+}
+
+#container-forms-desktop::-webkit-scrollbar-track {
+    background: #d7d7d79c;
+}
+
+#container-etapa-desktop {
+    height: 15%;
+}
+
+#container-etapa-desktop {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.label-radio-desktop {
-    margin-left: 0.4vw;
-    color: #000;
-    font-size: 1vw;
-}
-
-#container-forms-desktop {
-    width: 90%;
-    height: 72%;
-    overflow-x: hidden;
-    overflow-y: auto;
-}
-
-#container-radio-options-desktop {
+.box-etapa-desktop {
+    width: 30%;
+    height: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
+    flex-direction: column;
 }
 
-#form-cadastro-desktop {
-    height: 70vh;
-    width: 100%;
-    /* background: #d69090; */
+#linha-desktop {
+    width: 18%;
+    background: #04979c;
+    height: 0.1vw;
+}
+
+.img_etapa_desktop {
+    width: 2vw;
+}
+
+.span_etapa_desktop {
+    font-size: 1vw;
+    font-weight: 400;
     color: #000;
+    white-space: nowrap;
+}
+
+.container-ipt-desktop {
+    height: 12%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+    margin-top: 3%;
+}
+
+.label-ipt-desktop {
+    float: left;
+    color: #000;
+    font-size: 0.9vw;
+}
+
+.ipt_style_desktop {
+    all: unset;
+    width: 100%;
+    background: #f2f4f8;
+    text-align: start;
+    height: 60%;
+    border-bottom: #dcdfe2 1.5px solid;
+    padding-left: 1vw;
+    color: #000;
+    font-size: 0.85vw;
+}
+
+.btn_style-form-desktop {
+    all: unset;
+    margin-top: 3%;
+    height: 7%;
+    color: #fff;
+    width: 100%;
+    background: #00c4cc;
+    cursor: pointer;
+    transition: 0.2s ease;
     text-align: center;
 }
 
-/* Scroll bonito */
-#container-forms-desktop::-webkit-scrollbar {
-    width: 5px;
+.btn_style-form-desktop:hover {
+    background: #00a9ae;
 }
 
-#container-forms-desktop::-webkit-scrollbar-thumb {
-    background: #04979c;
-    border-radius: 10px;
-    border: 0.2px solid #000;
+.spn-obrigatorio {
+    color: #ff0000;
 }
 
-#container-forms-desktop::-webkit-scrollbar-track {
-    background: #f0f0f0;
+
+#container-possui-conta-desktop {
+    width: 100%;
+    height: 8%;
+    display: flex;
+    align-items: flex-end;
+    margin-top: 3%;
+    border-top: #dcdfe2 1px solid;
+}
+
+#a-possui-conta-desktop {
+    all: unset;
+    color: #173279;
+    text-align: start;
+    font-size: 0.85vw;
+    cursor: pointer;
+
+}
+
+#a-possui-conta-desktop:hover {
+    text-decoration: underline;
+}
+
+#container-voltar-form-desktop {
+    height: 5%;
+}
+
+#voltar_form_desktop {
+    width: 1vw;
+}
+
+#span-voltar-form-desktop {
+    color: #000;
+    font-weight: 400;
+    padding-left: 0.4vw;
+    font-size: 1vw;
+}
+
+#a-voltar-form-desktop {
+    height: 100%;
+    width: 11%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    cursor: pointer;
+}
+
+#a-voltar-form-desktop:hover #span-voltar-form-desktop {
+    text-decoration: underline;
+}
+
+#alerta_erros_desktop {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.638);
+    /* transparente para ver o blur */
+    backdrop-filter: blur(2px);
+}
+
+#box_container_erro_desktop {
+    height: 25%;
+    width: 40%;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: #00c4cc 2px solid;
+    border-radius: 15px;
+}
+
+#container-erro-desktop {
+    overflow: hidden;
+    height: 65%;
+    width: 95%;
+    background: #000;
+}
+
+#h2-erro-desktop {
+    font-size: 1.8vw;
+    font-weight: bold;
+    color: #f01008;
+}
+
+#btnFecharErro-desktop {
+    all: unset;
+    width: 8vw;
+    color: #fff;
+    height: 2.1vw;
+    border: #00c4cc 1px solid;
+    text-align: center;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+#btnFecharErro-desktop:hover {
+    background: #00c4cc;
+    color: #000;
 }

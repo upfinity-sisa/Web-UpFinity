@@ -40,6 +40,15 @@
         Conteúdo Tablet
     </div>
     <div class="d-none d-lg-block" id="desktopContent">
+        <div id="alerta_erros_desktop" class="d-none">
+            <div id="box_container_erro_desktop">
+                <div id="container-erro-desktop">
+                    <h2 id="h2-erro-desktop">Alerta identificado!</h2>
+                    <span id="span-erro-desktop"></span>
+                </div>
+                <button id="btnFecharErro-desktop">Fechar</button>
+            </div>
+        </div>
         <main id="mainDesktop">
             <div class="container-main-desktop">
                 <div id="subcontainer-desktop-head">
@@ -51,27 +60,90 @@
                     <div id="box-desktop-info">
                         <h1 id="h1-desktop">Cadastre-se</h1>
                         <div id="subox-desktop-info">
-                            <div id="container-radio-desktop">
-                                <span id="span-desktop">Selecione qual tipo de cadastro deseja realizar</span>
-                                <div id="container-radio-options-desktop">
-                                    <div class="subcontainer-radio-desktop">
-                                        <input id="radio-empresa-desktop" class="style-radio" type="radio" checked
-                                            name="tipo-cadastro">
-                                        <label class="label-radio-desktop" for="radio-empresa-desktop">Cadastrar empresa
-                                            e
-                                            administrador</label>
-                                    </div>
-                                    <div class="subcontainer-radio-desktop">
-                                        <input id="radio-analista-desktop" class="style-radio" type="radio"
-                                            name="tipo-cadastro">
-                                        <label class="label-radio-desktop" for="radio-analista-desktop">Cadastro de
-                                            analista</label>
-                                    </div>
+                            <div id="container-etapa-desktop">
+                                <div class="box-etapa-desktop">
+                                    <img id="etapa1_desktop" class="img_etapa_desktop"
+                                        src="../../Assets/Elements/Icons/etapa1_enable.png">
+                                    <span class="span_etapa_desktop">Cadastre sua empresa</span>
+                                </div>
+                                <div id="linha-desktop"></div>
+                                <div class="box-etapa-desktop">
+                                    <img id="etapa2_desktop" class="img_etapa_desktop"
+                                        src="../../Assets/Elements/Icons/etapa2_disable.png">
+                                    <span class="span_etapa_desktop">Cadastre seu usuário</span>
                                 </div>
                             </div>
                             <div id="container-forms-desktop">
-                                <form id="form-cadastro-desktop">
-                                    *formulário dinâmico aqui*
+                                <form id="form-cadastro-empresa-desktop">
+                                    <div class="container-ipt-desktop">
+                                        <label class="label-ipt-desktop" for="ipt_razao_social_desktop">Razão
+                                            Social<span class="spn-obrigatorio">*</span></label>
+                                        <input id="ipt_razao_social_desktop" class="ipt_style_desktop" type="text"
+                                            placeholder="Ex: UpFinity" required>
+                                    </div>
+                                    <div class="container-ipt-desktop">
+                                        <label class="label-ipt-desktop" for="ipt_nome_ficticio_desktop">Nome
+                                            Fictício</label>
+                                        <input id="ipt_nome_ficticio_desktop" class="ipt_style_desktop" type="text"
+                                            placeholder="Ex: Up">
+                                    </div>
+                                    <div class="container-ipt-desktop">
+                                        <label class="label-ipt-desktop" for="ipt_cnpj_desktop">CNPJ<span
+                                                class="spn-obrigatorio">*</span></label>
+                                        <input id="ipt_cnpj_desktop" class="ipt_style_desktop ipt_cnpj" type="text"
+                                            placeholder="Ex: xx.xxx.xxx/xxxx-xx" required
+                                            pattern="^\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}$">
+                                    </div>
+                                    <button class="btn_style-form-desktop" id="btnContinuar_desktop"
+                                        type="submit">Continuar</button>
+                                    <div id="container-possui-conta-desktop">
+                                        <a id="a-possui-conta-desktop" href="#"><span id="possui-conta-desktop">Já
+                                                possui uma conta?</span></a>
+                                    </div>
+                                </form>
+                                <form id="form-cadastro-usuario-desktop" class="d-none">
+                                    <div id="container-voltar-form-desktop">
+                                        <a id="a-voltar-form-desktop">
+                                            <img id="voltar_form_desktop"
+                                                src="../../Assets/Elements/Icons/voltar_form_cadastro.png">
+                                            <span id="span-voltar-form-desktop">Voltar</span>
+                                        </a>
+                                    </div>
+                                    <div class="container-ipt-desktop">
+                                        <label class="label-ipt-desktop" for="ipt_nome_desktop">Nome<span
+                                                class="spn-obrigatorio">*</span></label>
+                                        <input id="ipt_nome_desktop" class="ipt_style_desktop" type="text"
+                                            placeholder="Ex: Seu Nome" required>
+                                    </div>
+                                    <div class="container-ipt-desktop">
+                                        <label class="label-ipt-desktop" for="ipt_email_desktop">Email<span
+                                                class="spn-obrigatorio">*</span></label>
+                                        <input id="ipt_email_desktop" class="ipt_style_desktop" type="email"
+                                            placeholder="Ex: seuemail@email.com" required>
+                                    </div>
+                                    <div class="container-ipt-desktop">
+                                        <label class="label-ipt-desktop" for="ipt_cpf_desktop">CPF<span
+                                                class="spn-obrigatorio">*</span></label>
+                                        <input id="ipt_cpf_desktop" class="ipt_style_desktop ipt_cpf" type="text"
+                                            placeholder="Ex: xxx.xxx.xxx-xx" required
+                                            pattern="^\d{3}\.\d{3}\.\d{3}-\d{2}$">
+                                    </div>
+                                    <div class="container-ipt-desktop">
+                                        <label class="label-ipt-desktop" for="ipt_senha_desktop">Senha<span
+                                                class="spn-obrigatorio">*</span></label>
+                                        <input id="ipt_senha_desktop" class="ipt_style_desktop" type="password"
+                                            placeholder="Ex: ********" required>
+                                    </div>
+                                    <div class="container-ipt-desktop">
+                                        <label class="label-ipt-desktop" for="ipt_conf_senha_desktop">Confirme sua
+                                            senha<span class="spn-obrigatorio">*</span></label>
+                                        <input id="ipt_conf_senha_desktop" class="ipt_style_desktop" type="password"
+                                            placeholder="Ex: ********" required>
+                                    </div>
+
+                                    <button class="btn_style-form-desktop" id="btnCadastro_desktop"
+                                        type="submit">Concluir
+                                        cadastro</button>
                                 </form>
                             </div>
                         </div>

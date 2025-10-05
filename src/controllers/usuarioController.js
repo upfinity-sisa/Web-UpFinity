@@ -1,5 +1,3 @@
-
-
 function autenticar(req, res) {
   var email = req.body.emailServer;
   var senha = req.body.senhaServer;
