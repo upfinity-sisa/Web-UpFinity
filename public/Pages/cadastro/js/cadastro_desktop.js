@@ -129,7 +129,7 @@ function validarEmail(email) {
     return regex.test(email);
 }
 
-btnCadastro_desktop.addEventListener("click", function () {
+btnCadastro_desktop.addEventListener("click", function (event) {
     event.preventDefault();
 
     const ipt_nome_desktop = document.getElementById('ipt_nome_desktop').value

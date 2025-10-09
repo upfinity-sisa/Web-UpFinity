@@ -53,7 +53,7 @@
         <main id="mainDesktop">
             <div class="container-main-desktop">
                 <div id="subcontainer-desktop-head">
-                    <a href="../../index.html"><img id="img-voltar-desktop"
+                    <a id="a_voltar_desktop" onclick="window.history.back()"><img id="img-voltar-desktop"
                             src="../../Assets/Elements/Icons/voltar.png"></a>
                     <img id="img-logo-desktop" src="../../Assets/Logo/UpFinity_dark.png">
                 </div>
@@ -64,18 +64,16 @@
                             <div id="container-forms-desktop">
                                 <form id="form-login-empresa-desktop">
                                     <div class="container-ipt-desktop">
-                                        <label class="label-ipt-desktop" for="ipt_email_desktop">E-mail<span
-                                                class="spn-obrigatorio">*</span></label>
+                                        <label class="label-ipt-desktop" for="ipt_email_desktop">E-mail</label>
                                         <input id="ipt_email_desktop" class="ipt_style_desktop" type="email"
                                             placeholder="Ex: seuemail@email.com" required>
                                     </div>
                                     <div class="container-ipt-desktop">
-                                        <label class="label-ipt-desktop" for="ipt_razao_social_desktop">Senha<span
-                                                class="spn-obrigatorio">*</span></label>
-                                        <input id="ipt_razao_social_desktop" class="ipt_style_desktop" type="password"
+                                        <label class="label-ipt-desktop" for="ipt_senha_desktop">Senha</label>
+                                        <input id="ipt_senha_desktop" class="ipt_style_desktop" type="password"
                                             placeholder="Ex: ********" required>
                                     </div>
-                                    <button class="btn_style-form-desktop" id="btnEntrar_desktop"
+                                    <button class="btn_style-form-desktop" id="btnEntrar_desktop" onclick="Entrar()"
                                         type="submit">Entrar</button>
                                     <div id="container_acess_desktop">
                                         <div id="container_lembrar_desktop">
