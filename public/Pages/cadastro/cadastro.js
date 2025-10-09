@@ -1,60 +1,5 @@
-const btnContinuar_desktop = document.getElementById('btnContinuar_desktop')
-let razaoSocial;
-let nomeFicticio;
-let cnpj;
-
-const form_cadastro_usuario_desktop = document.getElementById('form-cadastro-usuario-desktop')
-const form_cadastro_empresa_desktop = document.getElementById('form-cadastro-empresa-desktop')
-
 const ipts_cnpj = document.querySelectorAll('.ipt_cnpj')
-const ipts_cpf_desktop = document.querySelectorAll('.ipt_cpf')
-
-const alerta_erros_desktop = document.getElementById('alerta_erros_desktop')
-const span_erro_desktop = document.getElementById('span-erro-desktop')
-const btnFecharErro = document.getElementById('btnFecharErro-desktop')
-
-const etapa1_desktop = document.getElementById('etapa1_desktop')
-const etapa2_desktop = document.getElementById('etapa2_desktop')
-
-const a_voltar_form_desktop = document.getElementById('a-voltar-form-desktop')
-
-btnContinuar_desktop.addEventListener('click', function (event) {
-    event.preventDefault()
-    const ipt_razao_social_desktop = document.getElementById('ipt_razao_social_desktop').value
-    const ipt_nome_ficticio_desktop = document.getElementById('ipt_nome_ficticio_desktop').value
-    const ipt_cnpj_desktop = document.getElementById('ipt_cnpj_desktop').value
-
-    if (ipt_razao_social_desktop.trim() === '' || ipt_cnpj_desktop.trim() === '') {
-        alerta_erros_desktop.classList.remove('d-none')
-        span_erro_desktop.innerText = 'Preencha todos os campos obrigatórios'
-        return
-    }
-
-    if (ipt_nome_ficticio_desktop !== '' && ipt_nome_ficticio_desktop.trim() === '') {
-        alerta_erros_desktop.classList.remove('d-none')
-        span_erro_desktop.innerText = 'O nome fictício não pode conter apenas espaços em branco'
-        ipt_nome_ficticio_desktop.focus()
-        return
-    }
-
-    if (ipt_cnpj_desktop.length !== 18) {
-        alerta_erros_desktop.classList.remove('d-none')
-        span_erro_desktop.innerText = 'O CNPJ deve estar completo no formato 00.000.000/0000-00'
-        ipt_cnpj_desktop.focus()
-        return
-    }
-
-    razaoSocial = ipt_razao_social_desktop
-    nomeFicticio = ipt_nome_ficticio_desktop
-    cnpj = ipt_cnpj_desktop
-
-    form_cadastro_usuario_desktop.classList.remove('d-none')
-    form_cadastro_empresa_desktop.classList.add('d-none')
-
-
-    etapa1_desktop.src = "../../Assets/Elements/Icons/etapa1_disable.png"
-    etapa2_desktop.src = "../../Assets/Elements/Icons/etapa2_enable.png"
-})
+const ipts_cpf = document.querySelectorAll('.ipt_cpf')
 
 
 ipts_cnpj.forEach(input => {
@@ -80,7 +25,7 @@ ipts_cnpj.forEach(input => {
     })
 })
 
-ipts_cpf_desktop.forEach(input => {
+ipts_cpf.forEach(input => {
     input.addEventListener("input", function () {
         let valor = this.value.replace(/\D/g, "")
 
@@ -99,19 +44,3 @@ ipts_cpf_desktop.forEach(input => {
         this.value = valor
     })
 })
-
-a_voltar_form_desktop.addEventListener('click', function () {
-
-    form_cadastro_usuario_desktop.classList.add('d-none')
-    form_cadastro_empresa_desktop.classList.remove('d-none')
-
-
-    etapa1_desktop.src = "../../Assets/Elements/Icons/etapa1_enable.png"
-    etapa2_desktop.src = "../../Assets/Elements/Icons/etapa2_disable.png"
-})
-
-btnFecharErro.addEventListener('click', function () {
-    alerta_erros_desktop.classList.add('d-none')
-})
-
-

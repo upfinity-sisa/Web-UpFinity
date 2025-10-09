@@ -25,6 +25,7 @@
 
     <!-- JavaScript -->
     <script src="./cadastro.js" defer></script>
+    <script src="./js/cadastro_desktop.js" defer></script>
 
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
@@ -49,6 +50,28 @@
                 <button id="btnFecharErro-desktop">Fechar</button>
             </div>
         </div>
+        <div class="d-none" id="valida_cadastro_desktop">
+            <div id="container_valida_desktop">
+                <div id="container_valida_title_desktop">
+                    <h1 id="h1_valida_desktop">Por favor aguarde</h1>
+                    <span id="span_valida_desktop">Estamos validando seu cadastro</span>
+                </div>
+                <div id="container_valida_loading_desktop">
+                    <div id="container_progresso_desktop">
+                        <svg id="svg_carregamento_desktop" viewBox="0 0 100 100">
+                            <circle class="bg" cx="50" cy="50" r="40"></circle>
+                            <circle class="fg" id="circulo_progresso_desktop" cx="50" cy="50" r="40"></circle>
+                        </svg>
+                        <div id="porcentagem_progresso_desktop">0%</div>
+                        <div class="mt-2" id="container_info_progresso_desktop">Validando sua empresa</div>
+                    </div>
+                </div>
+                <div id="container_valida_continuar_desktop">
+                    <button class="d-none" id="btn_valida_desktop">Continuar para o login</button>
+                </div>
+            </div>
+        </div>
+
         <main id="mainDesktop">
             <div class="container-main-desktop">
                 <div id="subcontainer-desktop-head">
