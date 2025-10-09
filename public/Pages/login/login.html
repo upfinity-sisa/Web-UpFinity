@@ -1,11 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- BoootStrap -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="./css/style_desktop.css">
+
+    <!--Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <!-- JavaScript -->
+    <script src="./login.js" defer></script>
+    <script src="./js/login_desktop.js" defer></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+    <title>UpFinity</title>
 </head>
+
 <body>
-    login
+    <div class="d-block d-md-none" id="mobileContent">
+        Conteúdo Mobile
+    </div>
+    <div class="d-none d-md-block d-lg-none" id="tabletContent">
+        Conteúdo Tablet
+    </div>
+    <div class="d-none d-lg-block" id="desktopContent">
+        <div id="alerta_erros_desktop" class="d-none">
+            <div id="box_container_erro_desktop">
+                <div id="container-erro-desktop">
+                    <h2 id="h2-erro-desktop">Alerta identificado!</h2>
+                    <span id="span-erro-desktop"></span>
+                </div>
+                <button id="btnFecharErro-desktop">Fechar</button>
+            </div>
+        </div>
+        <main id="mainDesktop">
+            <div class="container-main-desktop">
+                <div id="subcontainer-desktop-head">
+                    <a href="../../index.html"><img id="img-voltar-desktop"
+                            src="../../Assets/Elements/Icons/voltar.png"></a>
+                    <img id="img-logo-desktop" src="../../Assets/Logo/UpFinity_dark.png">
+                </div>
+                <div id="subcontainer-desktop-info">
+                    <div id="box-desktop-info">
+                        <h1 id="h1-desktop">Login</h1>
+                        <div id="subox-desktop-info">
+                            <div id="container-forms-desktop">
+                                <form id="form-login-empresa-desktop">
+                                    <div class="container-ipt-desktop">
+                                        <label class="label-ipt-desktop" for="ipt_email_desktop">E-mail<span
+                                                class="spn-obrigatorio">*</span></label>
+                                        <input id="ipt_email_desktop" class="ipt_style_desktop" type="email"
+                                            placeholder="Ex: seuemail@email.com" required>
+                                    </div>
+                                    <div class="container-ipt-desktop">
+                                        <label class="label-ipt-desktop" for="ipt_razao_social_desktop">Senha<span
+                                                class="spn-obrigatorio">*</span></label>
+                                        <input id="ipt_razao_social_desktop" class="ipt_style_desktop" type="password"
+                                            placeholder="Ex: ********" required>
+                                    </div>
+                                    <button class="btn_style-form-desktop" id="btnEntrar_desktop"
+                                        type="submit">Entrar</button>
+                                    <div id="container_acess_desktop">
+                                        <div id="container_lembrar_desktop">
+                                            <input type="checkbox" id="ipt_lembrar_desktop">
+                                            <label class="label-ipt-desktop ps-1" for="lembrar_desktop">Lembrar de
+                                                mim</label>
+                                        </div>
+                                        <a href="#" id="a_esqueceu_senha_desktop"><span
+                                                id="span_esqueceu_senha_desktop">Esqueceu a senha?</span></a>
+                                    </div>
+                                    <div id="container_possui_desktop">
+                                        <a href="../cadastro/cadastro.html" id="a_possui_desktop"><span
+                                                id="span_possui_desktop">Não possui uma conta? Faça seu
+                                                cadastro</span></a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-main-desktop"></div>
+        </main>
+    </div>
 </body>
+
 </html>

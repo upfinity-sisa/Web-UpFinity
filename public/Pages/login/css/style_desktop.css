@@ -1,0 +1,271 @@
+#alerta_erros_desktop {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.638);
+    backdrop-filter: blur(2px);
+}
+
+
+#box_container_erro_desktop {
+    height: 25%;
+    width: 40%;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: #00c4cc 2px solid;
+    border-radius: 15px;
+}
+
+#container-erro-desktop {
+    overflow: hidden;
+    height: 65%;
+    width: 95%;
+    background: #000;
+}
+
+#h2-erro-desktop {
+    font-size: 1.8vw;
+    font-weight: bold;
+    color: #f01008;
+}
+
+#btnFecharErro-desktop {
+    all: unset;
+    width: 8vw;
+    color: #fff;
+    height: 2.1vw;
+    border: #00c4cc 1px solid;
+    text-align: center;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+#btnFecharErro-desktop:hover {
+    background: #00c4cc;
+    color: #000;
+}
+
+#mainDesktop {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+}
+
+.container-main-desktop {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.container-main-desktop:nth-child(2) {
+    background: url("../../../Assets/Elements/img_cadastro_desktop.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+
+#subcontainer-desktop-head {
+    height: 10%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#img-voltar-desktop {
+    width: 1.8vw;
+    margin-left: 2.5vw;
+}
+
+#img-logo-desktop {
+    width: 6vw;
+    margin-right: 2.5vw;
+}
+
+#subcontainer-desktop-info {
+    height: 90%;
+    width: 100%;
+}
+
+#box-desktop-info {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+#h1-desktop {
+    color: #000;
+    font-size: 3.4vw;
+    font-weight: 300;
+    text-align: center;
+}
+
+#subox-desktop-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+}
+
+
+#container-forms-desktop {
+    width: 90%;
+    height: 80%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#form-login-empresa-desktop {
+    height: 90%;
+    width: 100%;
+    color: #000;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+.container-ipt-desktop {
+    height: 12%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+    margin-top: 3%;
+}
+
+.label-ipt-desktop {
+    float: left;
+    color: #000;
+    font-size: 0.9vw;
+}
+
+.spn-obrigatorio {
+    color: #ff0000;
+}
+
+.ipt_style_desktop {
+    all: unset;
+    width: 100%;
+    background: #f2f4f8;
+    text-align: start;
+    height: 60%;
+    border-bottom: #dcdfe2 1.5px solid;
+    padding-left: 1vw;
+    color: #000;
+    font-size: 0.85vw;
+}
+
+
+.btn_style-form-desktop {
+    all: unset;
+    margin-top: 3%;
+    height: 7%;
+    color: #fff;
+    width: 100%;
+    background: #00c4cc;
+    cursor: pointer;
+    transition: 0.2s ease;
+    text-align: center;
+}
+
+.btn_style-form-desktop:hover {
+    background: #00a9ae;
+}
+
+#container_acess_desktop {
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#container_lembrar_desktop {
+    width: 30%;
+}
+
+#container_lembrar_desktop {
+    display: flex;
+    align-items: center;
+}
+
+#ipt_lembrar_desktop {
+    appearance: none;
+    width: 1vw;
+    height: 1vw;
+    border: 1px solid #000;
+    background-color: #fff;
+    cursor: pointer;
+    position: relative;
+}
+
+#ipt_lembrar_desktop:checked {
+    background-color: #00c4cc;
+    border-color: #000;
+}
+
+#ipt_lembrar_desktop:checked::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 25%;
+    height: 50%;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+#a_esqueceu_senha_desktop {
+    all: unset
+}
+
+#span_esqueceu_senha_desktop:hover {
+    text-decoration: underline;
+}
+
+#span_esqueceu_senha_desktop {
+    color: #173279;
+    text-align: start;
+    font-size: 0.85vw;
+    cursor: pointer;
+}
+
+#container_possui_desktop {
+    height: 8%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    border-top: #dcdfe2 1px solid;
+}
+
+#a_possui_desktop {
+    all: unset;
+
+}
+
+#span_possui_desktop {
+    font-size: 0.85vw;
+    cursor: pointer;
+    color: #173279;
+}
+
+#span_possui_desktop:hover {
+    text-decoration: underline;
+}
