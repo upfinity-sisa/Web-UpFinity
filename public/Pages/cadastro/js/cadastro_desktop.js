@@ -167,3 +167,69 @@ btnCadastro_desktop.addEventListener("click", function (event) {
 btn_valida_desktop.addEventListener('click', function () {
     window.location = '.././login/login.html';
 })
+
+function cadastrar() {
+    var razaoSocial = ipt_razao_social_desktop.value;
+    var nomeFicticio = ipt_nome_ficticio_desktop.value;
+    var cnpj = ipt_cnpj_desktop.value;
+    var nome = ipt_nome_desktop.value;
+    var email = ipt_email_desktop.value;
+    var cpf = ipt_cpf_desktop.value;
+    var senha = ipt_senha_desktop.value;
+
+
+    fetch("/usuarios/cadastrarEmpresa", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        razaoSocialSever: razaoSocial,
+        nomeFicticioSever: nomeFicticio,
+        cnpjSever: cnpj
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          
+        fetch("/usuarios/cadastrarUsuario", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: nome,
+        emailServer: email,
+        cpfSever: cpf,
+        senhaServer: senha
+      }),
+    })
+
+          
+
+
+
+          setTimeout(() => {
+            window.location = "login.html";
+          }, "2000");
+
+          limparFormulario();
+          finalizarAguardar();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+
+    return false;
+  }
+
