@@ -21,7 +21,7 @@ const a_voltar_form_desktop = document.getElementById('a-voltar-form-desktop')
 btnContinuar_desktop.addEventListener('click', function (event) {
     event.preventDefault()
     const ipt_razao_social_desktop = document.getElementById('ipt_razao_social_desktop').value
-    const ipt_nome_ficticio_desktop = document.getElementById('ipt_nome_ficticio_desktop').value
+    const ipt_nome_fantasia_desktop = document.getElementById('ipt_nome_fantasia_desktop').value
     const ipt_cnpj_desktop = document.getElementById('ipt_cnpj_desktop').value
 
     if (ipt_razao_social_desktop.trim() === '' || ipt_cnpj_desktop.trim() === '') {
@@ -30,7 +30,7 @@ btnContinuar_desktop.addEventListener('click', function (event) {
         return
     }
 
-    if (ipt_nome_ficticio_desktop !== '' && ipt_nome_ficticio_desktop.trim() === '') {
+    if (ipt_nome_fantasia_desktop !== '' && ipt_nome_fantasia_desktop.trim() === '') {
         alerta_erros_desktop.classList.remove('d-none')
         span_erro_desktop.innerText = 'O nome fictício não pode conter apenas espaços em branco.'
         return
@@ -41,10 +41,6 @@ btnContinuar_desktop.addEventListener('click', function (event) {
         span_erro_desktop.innerText = 'O CNPJ deve estar completo no formato 00.000.000/0000-00.'
         return
     }
-
-    razaoSocial = ipt_razao_social_desktop
-    nomeFicticio = ipt_nome_ficticio_desktop
-    cnpj = ipt_cnpj_desktop
 
     form_cadastro_usuario_desktop.classList.remove('d-none')
     form_cadastro_empresa_desktop.classList.add('d-none')
@@ -158,9 +154,6 @@ btnCadastro_desktop.addEventListener("click", function (event) {
         span_erro_desktop.innerText = 'As senhas não coincidem, verifique novamente.'
         return
     }
-
-    valida_cadastro_desktop.classList.remove('d-none')
-    executarProgresso();
 })
 
 
@@ -170,66 +163,89 @@ btn_valida_desktop.addEventListener('click', function () {
 
 function cadastrar() {
     var razaoSocial = ipt_razao_social_desktop.value;
-    var nomeFicticio = ipt_nome_ficticio_desktop.value;
+    var nomeFantasia = ipt_nome_fantasia_desktop.value;
     var cnpj = ipt_cnpj_desktop.value;
     var nome = ipt_nome_desktop.value;
     var email = ipt_email_desktop.value;
     var cpf = ipt_cpf_desktop.value;
     var senha = ipt_senha_desktop.value;
+    var confirmarsenha = ipt_conf_senha_desktop.value;
 
+    if (nome.trim() == '' || email.trim() == '' || cpf.trim() == '' || senha.trim() == '') {
+        alerta_erros_desktop.classList.remove('d-none')
+        span_erro_desktop.innerText = 'Preencha todos os campos obrigatórios.'
+        return
+    }
 
-    fetch("/usuarios/cadastrarEmpresa", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
-        razaoSocialSever: razaoSocial,
-        nomeFicticioSever: nomeFicticio,
-        cnpjSever: cnpj
-      }),
+    if (!validarEmail(email)) {
+        alerta_erros_desktop.classList.remove('d-none')
+        span_erro_desktop.innerText = 'Email inválido, preencha novamente.'
+        return
+    }
+    if (cpf.length !== 14) {
+        alerta_erros_desktop.classList.remove('d-none')
+        span_erro_desktop.innerText = 'Preencha o cpf corretamente.'
+        return
+    }
+    if (senha != confirmarsenha) {
+        alerta_erros_desktop.classList.remove('d-none')
+        span_erro_desktop.innerText = 'As senhas não coincidem, verifique novamente.'
+        return
+    }
+
+    fetch("/empresa/cadastrarEmpresa", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            razaoSocialServer: razaoSocial,
+            nomeFantasiaServer: nomeFantasia,
+            cnpjServer: cnpj
+        }),
     })
-      .then(function (resposta) {
-        console.log("resposta: ", resposta);
+        .then(function (resposta) {
+            console.log("resposta: ", resposta);
 
-        if (resposta.ok) {
-          
-        fetch("/usuarios/cadastrarUsuario", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
-        nomeServer: nome,
-        emailServer: email,
-        cpfSever: cpf,
-        senhaServer: senha
-      }),
-    })
+            if (resposta.ok) {
+                alert('cadastro empresa ok')
+                fetch("/usuarios/cadastrarUsuario", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        nomeServer: nome,
+                        emailServer: email,
+                        cpfSever: cpf,
+                        senhaServer: senha,
+                        cnpjServer: cnpj
+                    }),
+                })
+                    .then(function (resposta) {
+                        console.log("resposta: ", resposta);
 
-          
+                        if (resposta.ok) {
+                            alert('cadastro usuario ok')
 
-
-
-          setTimeout(() => {
-            window.location = "login.html";
-          }, "2000");
-
-          limparFormulario();
-          finalizarAguardar();
-        } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
-        }
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-        finalizarAguardar();
-      });
+                            valida_cadastro_desktop.classList.remove('d-none')
+                            executarProgresso();
+                        } else {
+                            throw "Houve um erro ao tentar realizar o cadastro usuario!";
+                        }
+                    })
+                    .catch(function (resposta) {
+                        console.log(`#ERRO: ${resposta}`);
+                        finalizarAguardar();
+                    });
+            } else {
+                throw "Houve um erro ao tentar realizar o cadastro usuario!";
+            }
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
 
     return false;
-  }
-
+}
