@@ -16,20 +16,19 @@ function autenticar(req, res) {
         console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
 
         if (resultadoAutenticar.length == 1) {
+            console.log("resultado controller");
+
             console.log(resultadoAutenticar);
+            
 
                 res.json({
                   idUsuario: resultadoAutenticar[0].idUsuario,
                   email: resultadoAutenticar[0].email,
                   nome: resultadoAutenticar[0].nome,
-                  senha: resultadoAutenticar[0].senha,
-                  confirmarsenha: resultadoAutenticar.confirmarsenha,
-                  cpf: resultadoAutenticar[0].cpf,
-                  idEmpresa: resultadoAutenticar[0].idEmpresa,
-                  razaosocial: resultadoAutenticar[0].razaosocial,
-                  nomefantasia: resultadoAutenticar[0].nomefantasia,
-                  cnpj: resultadoAutenticar[0].cnpj
+                  CPF: resultadoAutenticar[0].CPF,
+                  fkEmpresa: resultadoAutenticar[0].fkEmpresa
                 });
+                console.log(resultadoAutenticar[0]);
         } else if (resultadoAutenticar.length == 0) {
           res.status(403).send("Email e/ou senha inválido(s)");
         } else {
@@ -48,12 +47,15 @@ function autenticar(req, res) {
 }   
 
 function cadastrarUsuario(req, res) {
+
+  console.log("requisição recebida no controller")
   
   var nome = req.body.nomeServer;
   var email = req.body.emailServer;
   var senha = req.body.senhaServer;
-  var cpf = req.body.cpfSever;
-  var fkEmpresa = req.body.fkEmpresa;
+  var cpf = req.body.cpfServer;
+  var fkEmpresa = req.body.fkEmpresaServer;
+  var cnpj = req.body.cnpjServer;
   
   if (nome == undefined) {
     res.status(400).send("Seu nome está undefined!");
@@ -61,19 +63,15 @@ function cadastrarUsuario(req, res) {
     res.status(400).send("Seu email está undefined!");
   } else if (senha == undefined) {
     res.status(400).send("Sua senha está undefined!");
-  } else if (fkEmpresa == undefined) {
-    res.status(400).send("Sua empresa a vincular está undefined!");
-  } else if (senha == confirmarsenha) {
-    res.status(400).send("Sua confirmação está diferente da senha");
   } else if (cpf == undefined) {
-    res.status(400).send("Seu CPF está undefined!");
+    res.status(400).send("Seu CPF está undefined!")
   } else {
 
   
     
     // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
     usuarioModel
-      .cadastrarUsuario(nome, email, senha, cpf, cnpj)
+      .cadastrarUsuario(nome, email, senha, cnpj, cpf, fkEmpresa)
       .then(function (resultado) {
         res.json(resultado);
       })

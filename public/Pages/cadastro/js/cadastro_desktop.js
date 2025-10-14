@@ -160,6 +160,9 @@ btnCadastro_desktop.addEventListener("click", function (event) {
 btn_valida_desktop.addEventListener('click', function () {
     window.location = '.././login/login.html';
 })
+    
+        
+
 
 function cadastrar() {
     var razaoSocial = ipt_razao_social_desktop.value;
@@ -217,7 +220,7 @@ function cadastrar() {
                     body: JSON.stringify({
                         nomeServer: nome,
                         emailServer: email,
-                        cpfSever: cpf,
+                        cpfServer: cpf,
                         senhaServer: senha,
                         cnpjServer: cnpj
                     }),

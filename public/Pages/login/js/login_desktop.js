@@ -25,49 +25,51 @@ function Entrar() {
         return
     }
 
-    // fetch("/usuarios/autenticar", {
-    //     method: "POST",
-    //     headers: {
-    //         "Content-Type": "application/json"
-    //     },
-    //     body: JSON.stringify({
-    //         emailServer: emailVar,
-    //         senhaServer: senhaVar
-    //     })
-    // }).then(function (resposta) {
-    //     console.log("ESTOU NO THEN DO entrar()!")
+    fetch("/usuarios/autenticar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            emailServer: emailVar,
+            senhaServer: senhaVar
+        })
+    }).then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!")
 
-    //     if (resposta.ok) {
-    //         console.log(resposta);
+        
 
-    //         resposta.json().then(json => {
-    //             console.log(json);
-    //             console.log(JSON.stringify(json));
-    //             sessionStorage.EMAIL_USUARIO = json.email;
-    //             sessionStorage.NOME_USUARIO = json.nome;
-    //             sessionStorage.ID_USUARIO = json.id;
+        if (resposta.ok) {
+            console.log(resposta);
 
-    //             window.location = "../../Pages/Inicial/inicial.html";
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+                sessionStorage.EMAIL_USUARIO = json.email;
+                sessionStorage.NOME_USUARIO = json.nome;
+                sessionStorage.ID_USUARIO = json.id;
+                sessionStorage.FK_EMPRESA = json.fkEmpresa;
+                sessionStorage.CPF_USUARIO = json.CPF;
+
+                 window.location = "../../Pages/visaoGeral/visaoGeral.html";
 
 
-    //         });
+            });
 
-    //     } else {
-    //         containerAlerta.style.display = 'flex'
-    //         mensagem.innerHTML = 'Login inválido!'
-    //         email.value = ''
-    //         senha.value = ''
-    //         console.log("Houve um erro ao tentar realizar o login!");
+        } else {
+            alerta_erros_desktop.classList.remove('d-none')
+            span_erro_desktop.innerText = 'Login inválido, tente novamente.'
+            console.log("Houve um erro ao tentar realizar o login!");
 
-    //         resposta.text().then(texto => {
-    //             console.error(texto);
+            resposta.text().then(texto => {
+                console.error(texto);
 
-    //         });
-    //     }
+            });
+        }
 
-    // }).catch(function (erro) {
-    //     console.log(erro);
-    // })
+    }).catch(function (erro) {
+        console.log(erro);
+    })
 
-    // return false;
+    return false;
 }
