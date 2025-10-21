@@ -1,0 +1,753 @@
+@font-face {
+    font-family: poppins leve;
+    src: url(assets/poppins/Poppins-Light.ttf);
+}
+
+@font-face {
+    font-family: poppins medio;
+    src: url(assets/poppins/Poppins-Medium.ttf);
+}
+
+@font-face {
+    font-family: poppins bold;
+    src: url(assets/poppins/Poppins-Bold.ttf);
+}
+
+body {
+    margin: 0;
+}
+
+div {
+    margin: 0;
+    padding: 0;
+}
+
+.corpo {
+    display: flex;
+    background-color: #F7F7F7;
+    height: 100vh;
+    width: 100vw;
+}
+
+#esquerda {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #232023;
+    height: 100%;
+    width: 15%;
+}
+
+#esquerda img {
+    height: 140px;
+}
+
+#centro {
+    height: 100%;
+    width: 85%;
+}
+
+#navegacao {
+    width: 85%;
+    font-family: poppins leve;
+    color: white;
+    font-size: 10px;
+}
+
+#navegacao h1 {
+    margin-left: 8px;
+}
+
+.linha {
+    background-color: #999999;
+    width: 100%;
+    height: 2px;
+}
+
+#navegacaoSair {
+    width: 85%;
+    height: 100%;
+    text-align: center;
+    font-family: poppins leve;
+    color: white;
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#btSair {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#btSair img {
+    height: 29px;
+}
+
+#esquerda-cima {
+    width: 100%;
+    height: 39%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#esquerda-centro {
+    width: 100%;
+    height: 53%;
+    display: flex;
+    justify-content: center;
+}
+
+#esquerda-baixo {
+    width: 100%;
+    height: 8%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#centro-cima {
+    height: 12%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+#titulo {
+    margin: 0;
+    font-family: poppins medio;
+    font-size: 50px;
+    margin-left: 2%;
+    color: #268184;
+}
+
+#centro-esquerda {
+    width: 70%;
+    height: 96%;
+}
+
+#centro-direita {
+    width: 22%;
+    height: 96%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#comboATMs {
+    height: 45px;
+    width: 105px;
+    background-color: #00c7cd;
+    border: 2px solid #2db2b7;
+    border-radius: 25px;
+    font-family: poppins medio;
+    color: white;
+    font-size: 21px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#centro-baixo {
+    height: 88%;
+    width: 100%;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+}
+
+#box-kpis {
+    height: 25%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.kpi {
+    height: 180px;
+    width: 265px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: rgba(50, 50, 50, 0.1) 0px 10px 50px;
+}
+
+#box-graficos {
+    height: 75%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#caixagraflinha {
+    height: 570px;
+    width: 630px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: rgba(50, 50, 50, 0.1) 0px 10px 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#caixagraftorta {
+    height: 570px;
+    width: 470px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: rgba(50, 50, 50, 0.1) 0px 10px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#lado-titulo {
+    display: flex;
+    height: 100%;
+    width: 56.8%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-left: 2.6%;
+}
+
+.apexcharts-menu {
+  font-family: 'Arial', sans-serif !important;
+  font-size: 16px !important;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.apexcharts-title-text {
+  text-anchor: middle !important;
+}
+
+
+#torta_cima {
+    width: 100%;
+    height: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#torta_cima h1, p {
+    margin: 0;
+    font-family: poppins bold;
+    text-align: center;
+    font-size: 21px;
+    color: #3c4041;
+    max-width: 75%;
+}
+
+#torta_baixo {
+    width: 100%;
+    height: 75%;
+}
+
+.kpi-cima {
+    width: 100%;
+    height: 35%;
+    display: flex;
+    align-items: center;
+    margin-left: 5%;
+    margin-top: 2%;
+    gap: 4%;
+}
+
+.kpi-baixo {
+    width: 100%;
+    height: 65%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+}
+
+.kpi-cima img {
+    height: 85%;
+}
+
+.kpi-cima h1 {
+    font-family: poppins medio;
+    font-size: 23px;
+    color: #3c4041;
+}
+
+.kpi-baixo h1, h2 {
+    margin: 0;
+    font-family: poppins bold;
+}
+
+.kpi-baixo h1 {
+    font-size: 43px;
+    color: #445257;
+}
+
+.kpi-baixo h2 {
+    font-size: 20px;
+    color: #e63946;
+}
+
+#caixaalertas {
+    margin-bottom: 2%;
+    height: 780px;
+    width: 340px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: rgba(50, 50, 50, 0.1) 0px 10px 50px;
+}
+
+#caixalerta-cima {
+    width: 100%;
+    height: 17%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2%;
+}
+
+#caixalerta-cima h1 {
+    max-width: 90%;
+    font-size: 30px;
+    margin: 0;
+    text-align: center;
+    font-family: poppins bold;
+    color: #3c4041;
+}
+
+#caixalerta-cima .linha {
+    width: 90%;
+}
+
+#caixalerta-baixo {
+    width: 100%;
+    height: 81%;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.box_alerta {
+    width: 300px;
+    min-height: 120px;
+    background-color: #ffffff;
+    border: 2px solid #2db2b7;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+}
+
+.box_alerta h1, h2, h3, h4 {
+    margin: 0;
+    font-family: poppins bold;
+}
+
+.gravidade-alerta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: flex-start;
+    margin-left: 8px;
+    gap: 5px;
+}
+
+.gravidade-alerta img {
+    width: 40px;
+}
+
+.componente-alerta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: flex-start;
+    margin-left: 8px;
+    gap: 10px;
+}
+
+.box_alerta h1 {
+    font-size: 25px;
+    color: #e63946;
+}
+
+.box_alerta h2 {
+    color: #445257;
+    font-size: 21px;
+}
+
+.box_alerta h3 {
+    width: 95%;
+    text-align: end;
+    color: #999999;
+    font-size: 15px;
+}
+
+.box_alerta h4 {
+    color: #797a7b;
+    font-size: 17px;
+}
+
+#navegacao h1:hover {
+    cursor: pointer;
+    margin-left: 15px;
+}
+
+#meio-cima {
+    height: 12%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 30%;
+}
+
+#vg_titulo {
+    margin: 0;
+    font-family: poppins medio;
+    font-size: 50px;
+    color: #268184;
+    margin-left: 5%;
+}
+
+#centros {
+    display: flex;
+    max-height: 85%;
+    flex-wrap: wrap;
+    gap: 50px;
+    overflow-y: scroll;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.visao_maquina {
+    width: 320px;
+    height: 125px;
+    background-color: white;
+    border-radius: 25px;
+    box-shadow: rgba(50, 50, 50, 0.1) 0px 10px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 15px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cc1a1a;
+  border-radius: 5px;
+}
+
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #01c6cc #F7F7F7;
+}
+
+#legenda {
+    min-width: 150px;
+    height: 55px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 30px;
+}
+
+#legenda h1 {
+    font-family: poppins medio;
+    font-size: 23px;
+    color: #353535;
+}
+
+#legenda img {
+    width: 25px;
+}
+
+.visao_maquina h1 {
+    font-family: poppins medio;
+    font-size: 28px;
+    color: #353535;
+}
+
+.img_atm {
+    height: 58px;
+}
+
+.img_circulo {
+    height: 30px;
+}
+
+.img_wifi, .img_sem_wifi {
+    margin-right: 10px;
+}
+
+.dentro_vm {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 10px;
+}
+
+#meio-baixo {
+    height: 88%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 5%;
+}
+
+.caixas_gestao {
+    margin-top: 1%;
+    width: 38%;
+    height: 90%;
+    background-color: white;
+    border-radius: 25px;
+    box-shadow: rgba(50, 50, 50, 0.1) 0px 10px 50px;
+}
+
+.caixa_gestao_cima {
+    height: 14%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10%;
+}
+
+.caixa_gestao_cima h1 {
+    margin: 0;
+    font-family: poppins bold;
+    font-size: 35px;
+    color: #5c5f60;
+}
+
+.linha_caixa_gestao {
+    background-color: #2db2b7;
+    width: 90%;
+    height: 3px;
+}
+
+#caixa_cadastro_baixo {
+    height: 88%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8%;
+}
+
+#inputs h1 {
+    margin: 0;
+    font-family: poppins bold;
+    color: #797a7b;
+    font-size: 26px;
+}
+
+#inputs input {
+    font-family: poppins bold;
+    font-size: 26px;
+    width: 80%;
+    height: 11%;
+    border-radius: 15px;
+    border: 2px solid #999999;
+    color: #5c5f60;
+}
+
+#inputs select {
+    text-align: center;
+    font-family: poppins bold;
+    font-size: 26px;
+    width: 80%;
+    height: 12%;
+    border-radius: 15px;
+    border: 2px solid #999999;
+    color: #999999;
+    background-color: white;
+}
+
+#caixa_cadastro_baixo button {
+    text-align: center;
+    font-family: poppins bold;
+    font-size: 26px;
+    width: 80%;
+    height: 10%;
+    border-radius: 15px;
+    border: none;
+    background-color: #00c5cc;
+    color: white;
+}
+
+#inputs select:hover {
+    cursor: pointer;
+}
+
+#caixa_cadastro_baixo button:hover {
+    cursor: pointer;
+    color: #257277;
+    border: 2px solid #47d3dd;
+}
+
+#inputs {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    height: 70%;
+    width: 100%;
+    margin-top: 2%;
+}
+
+#caixa_gestao_baixo {
+    height: 88%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+#caixa_pesquisa {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 1%;
+}
+
+#simbolo_buscar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#simbolo_buscar h1 {
+    margin: 0;
+    font-family: poppins bold;
+    color: #797a7b;
+    font-size: 26px;
+}
+
+#simbolo_buscar img {
+    width: 35px;
+}
+
+#caixa_pesquisa input {
+    font-family: poppins bold;
+    font-size: 26px;
+    width: 58%;
+    height: 45px;
+    border-radius: 15px;
+    border: 2px solid #999999;
+    color: #5c5f60;
+}
+
+#simbolo_buscar, #simbolo_buscar h1:hover {
+    cursor: pointer;
+    color: #5c5f60;
+}
+
+#baixo_gestao {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 85%;
+    gap: 20px;
+    overflow-y: scroll;
+}
+
+.caixa_usuario {
+    width: 80%;
+    min-height: 300px;
+    border: 3px solid #2db2b7;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.titulos h1 {
+    margin: 0;
+    font-family: poppins medio;
+    font-size: 25px;
+    color: #797a7b;
+}
+
+.informacoes {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+.infos h1 {
+    margin: 0;
+    font-family: poppins bold;
+    font-size: 26px;
+    color: #445257;
+}
+
+.titulos {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.infos {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.botoes {
+    display: flex;
+    width: 90%;
+    justify-content: space-around;
+}
+
+.botoes button {
+    height: 50px;
+    width: 45%;
+    background-color: white;
+    font-size: 25px;
+    font-family: poppins bold;
+}
+
+.btn_promover {
+    border: 4px solid #00bf35;
+    border-radius: 10px;
+    color: #00bf35;
+}
+
+.btn_promover:hover {
+    cursor: pointer;
+    color: #028928;
+}
+
+.btn_remover {
+    border: 4px solid #ff1313;
+    border-radius: 10px;
+    color: #ff1313;
+}
+
+.btn_remover:hover {
+    cursor: pointer;
+    color: #c60808;
+}
