@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-</title <html lang="en">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -7,7 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <link rel="icon" href="assets/logoUPFINITY.png">
     <title>Dashboard - Upfinity</title>
-    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="./css/dashboard.css">
 </head>
 
 <body>
@@ -15,17 +15,17 @@
 
         <div id="esquerda">
             <div id="esquerda-cima">
-                <img src="assets/logoUPFINITY.png" alt="logo-upfinity">
+                <img src="../../Assets/assets_dashboard/logoUPFINITY.png" id="logo-upfinity" alt="logo-upfinity">
             </div>
             <div id="esquerda-centro">
                 <div id="navegacao">
-                    <h1 onclick="window.location = 'visaoGeral.html'">VISÃO GERAL</h1>
+                    <h1 onclick="window.location = '../visaoGeral/visaoGeral.html'">VISÃO GERAL</h1>
                     <div class="linha"></div>
-                    <h1>DASHBOARDS</h1>
+                    <h1 onclick="window.location = '../dashboard/dashboard.html'">DASHBOARDS</h1>
                     <div class="linha"></div>
-                    <h1 onclick="window.location = 'gestaoUsuarios.html'">GESTÃO DE USUÁRIOS</h1>
+                    <h1 onclick="window.location = '../gestaoUsuarios/gestaoUsuarios.html'">GESTÃO DE USUÁRIOS</h1>
                     <div class="linha"></div>
-                    <h1>MAPA</h1>
+                    <h1>GESTÃO DE ATMS</h1>
                     <div class="linha"></div>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                     <div class="linha"></div>
                     <div id="btSair">
                         <h1>SAIR</h1>
-                        <img src="assets/SAIRICON.png" alt="logoSaída">
+                        <img src="../../Assets/assets_dashboard/SAIRICON.png" alt="logoSaída">
                     </div>
                 </div>
             </div>
@@ -57,7 +57,7 @@
                     <div id="box-kpis">
                         <div class="kpi">
                             <div class="kpi-cima">
-                                <img src="assets/simboloCPU.png" alt="imagem CPU">
+                                <img src="../../Assets/assets_dashboard/simboloCPU.png" alt="imagem CPU">
                                 <h1>CPU</h1>
                             </div>
                             <div class="kpi-baixo">
@@ -67,7 +67,7 @@
                         </div>
                         <div class="kpi">
                             <div class="kpi-cima">
-                                <img src="assets/simboloRAM.png" alt="imagem CPU">
+                                <img src="../../Assets/assets_dashboard/simboloRAM.png" alt="imagem CPU">
                                 <h1>RAM</h1>
                             </div>
                             <div class="kpi-baixo">
@@ -77,7 +77,7 @@
                         </div>
                         <div class="kpi">
                             <div class="kpi-cima">
-                                <img src="assets/simboloDISCO.png" alt="imagem CPU">
+                                <img src="../../Assets/assets_dashboard/simboloDISCO.png" alt="imagem CPU">
                                 <h1>DISCO</h1>
                             </div>
                             <div class="kpi-baixo">
@@ -87,12 +87,12 @@
                         </div>
                         <div class="kpi">
                             <div class="kpi-cima">
-                                <img src="assets/simboloREDE.png" alt="imagem CPU">
+                                <img src="../../Assets/assets_dashboard/simboloREDE.png" alt="imagem CPU">
                                 <h1>REDE</h1>
                             </div>
                             <div class="kpi-baixo">
-                                <h1>90ms</h1>
-                                <H2 style="color: #00bf35;">NORMAL</H2>
+                                <h1>90MB</h1>
+                                <H2 style="color: #a2a2a2;">ENVIO DE PACOTES</H2>
                             </div>
                         </div>
                     </div>
@@ -116,7 +116,8 @@
                             <div class="box_alerta">
                                 <h3>25/06/25, 15:45:30</h3>
                                 <div class="gravidade-alerta">
-                                    <img src="assets/alertaVermelho.png" alt="simbolo de alerta grave">
+                                    <img src="../../Assets/assets_dashboard/alertaVermelho.png"
+                                        alt="simbolo de alerta grave">
                                     <h1>GRAVE</h1>
                                 </div>
                                 <div class="componente-alerta">
@@ -127,7 +128,8 @@
                             <div class="box_alerta">
                                 <h3>25/06/25, 15:45:30</h3>
                                 <div class="gravidade-alerta">
-                                    <img src="assets/alertaAmarelo.png" alt="simbolo de alerta moderado">
+                                    <img src="../../Assets/assets_dashboard/alertaAmarelo.png"
+                                        alt="simbolo de alerta moderado">
                                     <h1 style="color: #f4a261;">MODERADO</h1>
                                 </div>
                                 <div class="componente-alerta">
@@ -138,7 +140,8 @@
                             <div class="box_alerta">
                                 <h3>25/06/25, 15:45:30</h3>
                                 <div class="gravidade-alerta">
-                                    <img src="assets/alertaAmarelo.png" alt="simbolo de alerta moderado">
+                                    <img src="../../Assets/assets_dashboard/alertaAmarelo.png"
+                                        alt="simbolo de alerta moderado">
                                     <h1 style="color: #f4a261;">MODERADO</h1>
                                 </div>
                                 <div class="componente-alerta">
@@ -149,7 +152,8 @@
                             <div class="box_alerta">
                                 <h3>25/06/25, 15:45:30</h3>
                                 <div class="gravidade-alerta">
-                                    <img src="assets/alertaVermelho.png" alt="simbolo de alerta grave">
+                                    <img src="../../Assets/assets_dashboard/alertaVermelho.png"
+                                        alt="simbolo de alerta grave">
                                     <h1>GRAVE</h1>
                                 </div>
                                 <div class="componente-alerta">
@@ -160,7 +164,8 @@
                             <div class="box_alerta">
                                 <h3>25/06/25, 15:45:30</h3>
                                 <div class="gravidade-alerta">
-                                    <img src="assets/alertaVermelho.png" alt="simbolo de alerta grave">
+                                    <img src="../../Assets/assets_dashboard/alertaVermelho.png"
+                                        alt="simbolo de alerta grave">
                                     <h1>GRAVE</h1>
                                 </div>
                                 <div class="componente-alerta">
@@ -171,7 +176,8 @@
                             <div class="box_alerta">
                                 <h3>25/06/25, 15:45:30</h3>
                                 <div class="gravidade-alerta">
-                                    <img src="assets/alertaAmarelo.png" alt="simbolo de alerta moderado">
+                                    <img src="../../Assets/assets_dashboard/alertaAmarelo.png"
+                                        alt="simbolo de alerta moderado">
                                     <h1 style="color: #f4a261;">MODERADO</h1>
                                 </div>
                                 <div class="componente-alerta">

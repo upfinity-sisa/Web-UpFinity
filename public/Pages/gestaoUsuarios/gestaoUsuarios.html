@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="assets/logoUPFINITY.png">
-    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="/public/Pages/dashboard/css/dashboard.css">
     <title>Gestão de Usuários - Upfinity</title>
+    <script src="./gestaoUsuarios.js" defer></script>
 </head>
+
 <body>
     <section class="corpo">
 
         <div id="esquerda">
             <div id="esquerda-cima">
-                <img src="assets/logoUPFINITY.png" alt="logo-upfinity">
+                <img src="../../Assets/assets_dashboard/logoUPFINITY.png" id="logo-upfinity" alt="logo-upfinity">
             </div>
             <div id="esquerda-centro">
                 <div id="navegacao">
-                    <h1 onclick="window.location = 'visaoGeral.html'">VISÃO GERAL</h1>
+                    <h1 onclick="window.location = '../visaoGeral/visaoGeral.html'">VISÃO GERAL</h1>
                     <div class="linha"></div>
-                    <h1 onclick="window.location = 'dashboard.html'">DASHBOARDS</h1>
+                    <h1 onclick="window.location = '../dashboard/dashboard.html'">DASHBOARDS</h1>
                     <div class="linha"></div>
-                    <h1>GESTÃO DE USUÁRIOS</h1>
+                    <h1 onclick="window.location = '../gestaoUsuarios/gestaoUsuarios.html'">GESTÃO DE USUÁRIOS</h1>
                     <div class="linha"></div>
-                    <h1>MAPA</h1>
+                    <h1>GESTÃO DE ATMS</h1>
                     <div class="linha"></div>
                 </div>
             </div>
@@ -31,7 +34,7 @@
                     <div class="linha"></div>
                     <div id="btSair">
                         <h1>SAIR</h1>
-                        <img src="assets/SAIRICON.png" alt="logoSaída">
+                        <img src="../../Assets/assets_dashboard/SAIRICON.png" alt="logoSaída">
                     </div>
                 </div>
             </div>
@@ -52,13 +55,13 @@
                             <h1>Nome:</h1>
                             <input type="text" id="nome_txt">
                             <h1>Email:</h1>
-                            <input type="text" id="email_txt">
+                            <input type="email" id="email_txt">
                             <h1>CPF:</h1>
-                            <input type="text" id="cpf_txt">
-                            <h1>Permissionamento</h1>
+                            <input type="text" class="ipt_cpf" id="cpf_txt">
+                            <h1>Permissionamento:</h1>
                             <select name="permissionamento" id="combo_permissao">
                                 <option value="adm">ADMINISTRADOR</option>
-                                <option value="user_comum">USUÁRIO COMUM</option>
+                                <option value="user_comum">ANALISTA</option>
                             </select>
                         </div>
                         <button>Cadastrar</button>
@@ -73,7 +76,7 @@
                         <div id="caixa_pesquisa">
                             <div id="simbolo_buscar">
                                 <h1>BUSCAR</h1>
-                                <img src="assets/simbolo_lupa.png" alt="imagem de lupa">
+                                <img src="../../Assets/assets_dashboard/simbolo_lupa.png" alt="imagem de lupa">
                             </div>
                             <input type="text">
                         </div>
@@ -114,7 +117,8 @@
                                     </div>
                                 </div>
                                 <div class="botoes">
-                                    <button style="color: #999999; border-color: #797a7b; background-color: #f6f6f6;" class="btn_promover">Promover</button>
+                                    <button style="color: #999999; border-color: #797a7b; background-color: #f6f6f6;"
+                                        class="btn_promover">Promover</button>
                                     <button class="btn_remover">Remover</button>
                                 </div>
                             </div>
@@ -166,4 +170,5 @@
 
     </section>
 </body>
+
 </html>

@@ -1,16 +1,16 @@
 @font-face {
     font-family: poppins leve;
-    src: url(assets/poppins/Poppins-Light.ttf);
+    src: url("../../../Assets/assets_dashboard/poppins/Poppins-Light.ttf");
 }
 
 @font-face {
     font-family: poppins medio;
-    src: url(assets/poppins/Poppins-Medium.ttf);
+    src: url("../../../Assets/assets_dashboard/poppins/Poppins-Medium.ttf");
 }
 
 @font-face {
     font-family: poppins bold;
-    src: url(assets/poppins/Poppins-Bold.ttf);
+    src: url("../../../Assets/assets_dashboard/poppins/Poppins-Bold.ttf");
 }
 
 body {
@@ -40,7 +40,7 @@ div {
 }
 
 #esquerda img {
-    height: 140px;
+    height: 8vw;
 }
 
 #centro {
@@ -57,12 +57,14 @@ div {
 
 #navegacao h1 {
     margin-left: 8px;
+    font-size: 1vw;
+    transition: 0.2s ease;
 }
 
 .linha {
     background-color: #999999;
     width: 100%;
-    height: 2px;
+    height: 0.1vw;
 }
 
 #navegacaoSair {
@@ -85,8 +87,12 @@ div {
     gap: 10px;
 }
 
+#btSair h1 {
+    font-size: 1vw;
+}
+
 #btSair img {
-    height: 29px;
+    height: 1.5vw;
 }
 
 #esquerda-cima {
@@ -122,14 +128,19 @@ div {
 #titulo {
     margin: 0;
     font-family: poppins medio;
-    font-size: 50px;
+    font-size: 2.45vw;
     margin-left: 2%;
+    white-space: nowrap;
     color: #268184;
 }
 
 #centro-esquerda {
     width: 70%;
     height: 96%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 #centro-direita {
@@ -141,16 +152,17 @@ div {
 }
 
 #comboATMs {
-    height: 45px;
-    width: 105px;
+    height: 45%;
+    width: 12%;
     background-color: #00c7cd;
     border: 2px solid #2db2b7;
     border-radius: 25px;
     font-family: poppins medio;
     color: white;
-    font-size: 21px;
+    font-size: 1.2vw;
     font-weight: bold;
     text-align: center;
+    margin-left: 3%;
 }
 
 #centro-baixo {
@@ -163,15 +175,15 @@ div {
 
 #box-kpis {
     height: 25%;
-    width: 100%;
+    width: 95%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
 }
 
 .kpi {
-    height: 180px;
-    width: 265px;
+    height: 85%;
+    width: 22%;
     background-color: white;
     border-radius: 20px;
     box-shadow: rgba(50, 50, 50, 0.1) 0px 10px 50px;
@@ -179,29 +191,36 @@ div {
 
 #box-graficos {
     height: 75%;
-    width: 100%;
+    width: 95%;
+    border-radius: 20px;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    background-color: #fff;
+    box-shadow: rgba(50, 50, 50, 0.1) 0px 10px 50px;
+    padding: 0.5vw 0;
 }
 
 #caixagraflinha {
-    height: 570px;
-    width: 630px;
-    background-color: white;
-    border-radius: 20px;
-    box-shadow: rgba(50, 50, 50, 0.1) 0px 10px 50px;
+    min-height: auto !important;
+    height: 90%;
+    width: 42%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+#torta_baixo {
+    width: 100%;
+    height: 75%;
+}
+
 #caixagraftorta {
-    height: 570px;
-    width: 470px;
-    background-color: white;
+    height: 90%;
+    width: 42%;
+    /* background-color: white;
     border-radius: 20px;
-    box-shadow: rgba(50, 50, 50, 0.1) 0px 10px 50px;
+    box-shadow: rgba(50, 50, 50, 0.1) 0px 10px 50px; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -219,16 +238,16 @@ div {
 }
 
 .apexcharts-menu {
-  font-family: 'Arial', sans-serif !important;
-  font-size: 16px !important;
-  font-weight: bold;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    font-family: 'Arial', sans-serif !important;
+    font-size: 16px !important;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .apexcharts-title-text {
-  text-anchor: middle !important;
+    text-anchor: middle !important;
 }
 
 
@@ -241,19 +260,15 @@ div {
     align-items: center;
 }
 
-#torta_cima h1, p {
+#torta_cima h1 {
     margin: 0;
     font-family: poppins bold;
     text-align: center;
-    font-size: 21px;
+    font-size: 1.2vw;
     color: #3c4041;
     max-width: 75%;
 }
 
-#torta_baixo {
-    width: 100%;
-    height: 75%;
-}
 
 .kpi-cima {
     width: 100%;
@@ -276,12 +291,12 @@ div {
 }
 
 .kpi-cima img {
-    height: 85%;
+    height: 3vw;
 }
 
 .kpi-cima h1 {
     font-family: poppins medio;
-    font-size: 23px;
+    font-size: 1.2vw;
     color: #3c4041;
 }
 
@@ -291,19 +306,19 @@ div {
 }
 
 .kpi-baixo h1 {
-    font-size: 43px;
+    font-size: 2vw;
     color: #445257;
 }
 
 .kpi-baixo h2 {
-    font-size: 20px;
+    font-size: 1vw;
     color: #e63946;
 }
 
 #caixaalertas {
     margin-bottom: 2%;
-    height: 780px;
-    width: 340px;
+    height: 100%;
+    width: 98%;
     background-color: white;
     border-radius: 20px;
     box-shadow: rgba(50, 50, 50, 0.1) 0px 10px 50px;
@@ -321,7 +336,7 @@ div {
 
 #caixalerta-cima h1 {
     max-width: 90%;
-    font-size: 30px;
+    font-size: 1.2vw;
     margin: 0;
     text-align: center;
     font-family: poppins bold;
@@ -335,7 +350,8 @@ div {
 #caixalerta-baixo {
     width: 100%;
     height: 81%;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -343,15 +359,16 @@ div {
 }
 
 .box_alerta {
-    width: 300px;
-    min-height: 120px;
+    width: 90%;
+    height: 25%;
     background-color: #ffffff;
     border: 2px solid #2db2b7;
-    border-radius: 25px;
+    border-radius: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
+    padding: 0.2vw;
 }
 
 .box_alerta h1, h2, h3, h4 {
@@ -369,7 +386,7 @@ div {
 }
 
 .gravidade-alerta img {
-    width: 40px;
+    width: 2vw;
 }
 
 .componente-alerta {
@@ -382,25 +399,26 @@ div {
 }
 
 .box_alerta h1 {
-    font-size: 25px;
+    font-size: 1.2vw;
     color: #e63946;
 }
 
 .box_alerta h2 {
     color: #445257;
-    font-size: 21px;
+    font-size: 1vw;
 }
 
 .box_alerta h3 {
     width: 95%;
     text-align: end;
     color: #999999;
-    font-size: 15px;
+    font-size: 0.8vw;
+    padding: 1% 3% 0 0;
 }
 
 .box_alerta h4 {
     color: #797a7b;
-    font-size: 17px;
+    font-size: 1vw;
 }
 
 #navegacao h1:hover {
@@ -419,13 +437,15 @@ div {
 #vg_titulo {
     margin: 0;
     font-family: poppins medio;
-    font-size: 50px;
+    font-size: 2.45vw;
     color: #268184;
     margin-left: 5%;
+    white-space: nowrap;
 }
 
 #centros {
     display: flex;
+    justify-content: center;
     max-height: 85%;
     flex-wrap: wrap;
     gap: 50px;
@@ -435,8 +455,8 @@ div {
 }
 
 .visao_maquina {
-    width: 320px;
-    height: 125px;
+    width: 18vw;
+    height: 7vw;
     background-color: white;
     border-radius: 25px;
     box-shadow: rgba(50, 50, 50, 0.1) 0px 10px 50px;
@@ -447,18 +467,18 @@ div {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cc1a1a;
-  border-radius: 5px;
+    background: #cc1a1a;
+    border-radius: 5px;
 }
 
 * {
-  scrollbar-width: auto;
-  scrollbar-color: #01c6cc #F7F7F7;
+    scrollbar-width: auto;
+    scrollbar-color: #01c6cc #F7F7F7;
 }
 
 #legenda {
-    min-width: 150px;
-    height: 55px;
+    width: 40%;
+    height: 60%;
     background-color: white;
     display: flex;
     align-items: center;
@@ -470,7 +490,7 @@ div {
 
 #legenda h1 {
     font-family: poppins medio;
-    font-size: 23px;
+    font-size: 1.2vw;
     color: #353535;
 }
 
@@ -480,16 +500,16 @@ div {
 
 .visao_maquina h1 {
     font-family: poppins medio;
-    font-size: 28px;
+    font-size: 1.2vw;
     color: #353535;
 }
 
 .img_atm {
-    height: 58px;
+    height: 3vw;
 }
 
 .img_circulo {
-    height: 30px;
+    height: 1.2vw;
 }
 
 .img_wifi, .img_sem_wifi {
@@ -534,7 +554,7 @@ div {
 .caixa_gestao_cima h1 {
     margin: 0;
     font-family: poppins bold;
-    font-size: 35px;
+    font-size: 1.5vw;
     color: #5c5f60;
 }
 
@@ -558,14 +578,17 @@ div {
     margin: 0;
     font-family: poppins bold;
     color: #797a7b;
-    font-size: 26px;
+    font-size: 1vw;
+    float: left;
+    width: 78%;
 }
 
 #inputs input {
     font-family: poppins bold;
-    font-size: 26px;
+    font-size: 0.8vw;
     width: 80%;
-    height: 11%;
+    height: 10%;
+    padding-left: 0.4vw;
     border-radius: 15px;
     border: 2px solid #999999;
     color: #5c5f60;
@@ -574,7 +597,7 @@ div {
 #inputs select {
     text-align: center;
     font-family: poppins bold;
-    font-size: 26px;
+    font-size: 1vw;
     width: 80%;
     height: 12%;
     border-radius: 15px;
@@ -586,13 +609,14 @@ div {
 #caixa_cadastro_baixo button {
     text-align: center;
     font-family: poppins bold;
-    font-size: 26px;
+    font-size: 1vw;
     width: 80%;
     height: 10%;
     border-radius: 15px;
     border: none;
     background-color: #00c5cc;
-    color: white;
+    color: #fff;
+    transition: 0.3s ease;
 }
 
 #inputs select:hover {
@@ -601,8 +625,9 @@ div {
 
 #caixa_cadastro_baixo button:hover {
     cursor: pointer;
-    color: #257277;
-    border: 2px solid #47d3dd;
+    color: #00c5cc;
+    background-color: #fff;
+    border: 2px solid #00c5cc;
 }
 
 #inputs {
@@ -640,18 +665,20 @@ div {
     margin: 0;
     font-family: poppins bold;
     color: #797a7b;
-    font-size: 26px;
+    font-size: 1vw;
 }
 
 #simbolo_buscar img {
-    width: 35px;
+    width: 1.15vw;
+    padding-left: 0.2vw;
 }
 
 #caixa_pesquisa input {
     font-family: poppins bold;
-    font-size: 26px;
+    font-size: 1vw;
+    padding-left: 0.2vw;
     width: 58%;
-    height: 45px;
+    height: 2vw;
     border-radius: 15px;
     border: 2px solid #999999;
     color: #5c5f60;
@@ -674,7 +701,8 @@ div {
 
 .caixa_usuario {
     width: 80%;
-    min-height: 300px;
+    height: 60%;
+    padding: 1vw 0;
     border: 3px solid #2db2b7;
     border-radius: 25px;
     display: flex;
@@ -687,7 +715,7 @@ div {
 .titulos h1 {
     margin: 0;
     font-family: poppins medio;
-    font-size: 25px;
+    font-size: 1vw;
     color: #797a7b;
 }
 
@@ -700,7 +728,7 @@ div {
 .infos h1 {
     margin: 0;
     font-family: poppins bold;
-    font-size: 26px;
+    font-size: 1vw;
     color: #445257;
 }
 
@@ -723,31 +751,45 @@ div {
 }
 
 .botoes button {
-    height: 50px;
+    height: 100%;
     width: 45%;
     background-color: white;
-    font-size: 25px;
+    font-size: 1.2vw;
     font-family: poppins bold;
+    cursor: pointer;
 }
 
 .btn_promover {
-    border: 4px solid #00bf35;
+    border: 3px solid #00bf35;
     border-radius: 10px;
     color: #00bf35;
+    transition: 0.3s ease;
 }
 
 .btn_promover:hover {
-    cursor: pointer;
-    color: #028928;
+    color: #fff;
+    background: #00bf35;
 }
 
 .btn_remover {
-    border: 4px solid #ff1313;
+    border: 3px solid #ff1313;
     border-radius: 10px;
     color: #ff1313;
+    cursor: pointer;
+    transition: 0.3s ease;
 }
 
 .btn_remover:hover {
-    cursor: pointer;
-    color: #c60808;
+    background: #ff1313;
+    color: #fff;
+}
+
+.apexcharts-menu-icon {
+    width: 2vw !important;
+    height: 2vw !important;
+}
+
+.apexcharts-menu-icon svg {
+    width: 2vw;
+    height: 2vw;
 }

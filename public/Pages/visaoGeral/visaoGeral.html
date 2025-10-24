@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="assets/logoUPFINITY.png">
-    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="/public/Pages/dashboard/css/dashboard.css">
     <title>Visão Geral - Upfinity</title>
 </head>
 
@@ -14,17 +14,17 @@
 
         <div id="esquerda">
             <div id="esquerda-cima">
-                <img src="assets/logoUPFINITY.png" alt="logo-upfinity">
+                <img src="../../Assets/assets_dashboard/logoUPFINITY.png" id="logo-upfinity" alt="logo-upfinity">
             </div>
             <div id="esquerda-centro">
                 <div id="navegacao">
-                    <h1>VISÃO GERAL</h1>
+                    <h1 onclick="window.location = '../visaoGeral/visaoGeral.html'">VISÃO GERAL</h1>
                     <div class="linha"></div>
-                    <h1 onclick="window.location = 'dashboard.html'">DASHBOARDS</h1>
+                    <h1 onclick="window.location = '../dashboard/dashboard.html'">DASHBOARDS</h1>
                     <div class="linha"></div>
-                    <h1 onclick="window.location = 'gestaoUsuarios.html'">GESTÃO DE USUÁRIOS</h1>
+                    <h1 onclick="window.location = '../gestaoUsuarios/gestaoUsuarios.html'">GESTÃO DE USUÁRIOS</h1>
                     <div class="linha"></div>
-                    <h1>MAPA</h1>
+                    <h1>GESTÃO DE ATMS</h1>
                     <div class="linha"></div>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                     <div class="linha"></div>
                     <div id="btSair">
                         <h1>SAIR</h1>
-                        <img src="assets/SAIRICON.png" alt="logoSaída">
+                        <img src="../../Assets/assets_dashboard/SAIRICON.png" alt="logoSaída">
                     </div>
                 </div>
             </div>
@@ -43,11 +43,11 @@
             <div id="meio-cima">
                 <h1 id="vg_titulo">VISÃO GERAL - ATMs</h1>
                 <div id="legenda">
-                    <img src="assets/bolinha_verde.png" alt="bolinha_verde">
+                    <img src="../../Assets/assets_dashboard/bolinha_verde.png" alt="bolinha_verde">
                     <h1>Normal</h1>
-                    <img src="assets/bolinha_amarela.png" alt="bolinha_verde">
+                    <img src="../../Assets/assets_dashboard/bolinha_amarela.png" alt="bolinha_verde">
                     <h1>Moderado</h1>
-                    <img src="assets/bolinha_vermelha.png" alt="bolinha_verde">
+                    <img src="../../Assets/assets_dashboard/bolinha_vermelha.png" alt="bolinha_verde">
                     <h1>Crítico</h1>
                 </div>
             </div>
