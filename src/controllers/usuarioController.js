@@ -26,7 +26,8 @@ function autenticar(req, res) {
                   email: resultadoAutenticar[0].email,
                   nome: resultadoAutenticar[0].nome,
                   CPF: resultadoAutenticar[0].CPF,
-                  fkEmpresa: resultadoAutenticar[0].fkEmpresa
+                  fkEmpresa: resultadoAutenticar[0].fkEmpresa,
+                  fkTipoUsuario: resultadoAutenticar[0].fkTipoUsuario
                 });
                 console.log(resultadoAutenticar[0]);
         } else if (resultadoAutenticar.length == 0) {

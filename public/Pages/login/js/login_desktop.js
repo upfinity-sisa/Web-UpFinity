@@ -47,9 +47,11 @@ function Entrar() {
                 console.log(JSON.stringify(json));
                 sessionStorage.EMAIL_USUARIO = json.email;
                 sessionStorage.NOME_USUARIO = json.nome;
-                sessionStorage.ID_USUARIO = json.id;
+                sessionStorage.ID_USUARIO = json.idUsuario;
                 sessionStorage.FK_EMPRESA = json.fkEmpresa;
                 sessionStorage.CPF_USUARIO = json.CPF;
+                sessionStorage.FK_TIPOUSUARIO = json.fkTipoUsuario;
+                
 
                 window.location = "../../Pages/visaoGeral/visaoGeral.html";
 

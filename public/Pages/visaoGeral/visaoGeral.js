@@ -24,4 +24,14 @@ for (let i = 1; i <= 15; i++) {
             <img ${linha_wifi}>
         </div>
     `
+
+}
+
+function validarRedirecionamento(endpoint) {
+    if (sessionStorage.FK_TIPOUSUARIO == 3) {
+        alert("Você não tem permissão de entrar nessa página")
+        return;
+    } 
+
+    window.location = `${endpoint}`
 }
