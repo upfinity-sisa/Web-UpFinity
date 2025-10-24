@@ -37,7 +37,7 @@ function Entrar() {
     }).then(function (resposta) {
         console.log("ESTOU NO THEN DO entrar()!")
 
-        
+
 
         if (resposta.ok) {
             console.log(resposta);
@@ -51,7 +51,7 @@ function Entrar() {
                 sessionStorage.FK_EMPRESA = json.fkEmpresa;
                 sessionStorage.CPF_USUARIO = json.CPF;
 
-                 window.location = "../../Pages/visaoGeral/visaoGeral.html";
+                window.location = "../../Pages/visaoGeral/visaoGeral.html";
 
 
             });

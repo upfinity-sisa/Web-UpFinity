@@ -89,7 +89,14 @@ div {
 
 #btSair h1 {
     font-size: 1vw;
+    cursor: pointer;
+    transition: 0.2s ease;
 }
+
+#btSair h1:hover {
+    color: #ff0000;
+}
+
 
 #btSair img {
     height: 1.5vw;

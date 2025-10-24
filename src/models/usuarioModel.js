@@ -40,7 +40,7 @@ function cadastrarUsuario(nome, email, senha, cnpj, cpf, fkEmpresa) {
       var fkEmpresa = resultado[0].idEmpresa;
 
       var instrucaoSql = `
-        INSERT INTO Usuario (nome, email, senha, cpf ,fkEmpresa, fkTipoUsuario) VALUES ('${nome}','${email}', '${senha}', '${cpf}', '${fkEmpresa}', 1);
+        INSERT INTO Usuario (nome, email, senha, cpf ,fkEmpresa, fkTipoUsuario) VALUES ('${nome}','${email}', '${senha}', '${cpf}', '${fkEmpresa}', 2);
     `;
       console.log("Executando a instrução SQL: \n" + instrucaoSql);
 

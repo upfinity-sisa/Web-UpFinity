@@ -362,15 +362,13 @@
     fill: none;
 }
 
-#porcentagem_progresso_desktop {
+#check_progresso_desktop {
     position: absolute;
     inset: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #00c4cc;
-    font-weight: bold;
-    font-size: 1.2vw;
 }
 
 #btn_valida_desktop {
@@ -395,4 +393,8 @@
     text-align: center;
     height: 30%;
     font-size: 1vw;
+}
+
+#check_img_desktop {
+    width: 4.3vw;
 }

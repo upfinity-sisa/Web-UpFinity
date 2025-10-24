@@ -1,17 +1,15 @@
-// function validarSessao() {
-//   var email = sessionStorage.EMAIL_USUARIO;
-//   var nome = sessionStorage.NOME_USUARIO;
+function validarSessao() {
+    var email = sessionStorage.EMAIL_USUARIO;
+    var nome = sessionStorage.NOME_USUARIO;
 
-//   var b_usuario = document.getElementById("b_usuario");
+    if (email == null || nome == null) {
+        window.location = "../../Pages/Login/login.html";
+    }
+}
 
-//   if (email != null && nome != null) {
-//     b_usuario.innerHTML = nome;
-//   } else {
-//     window.location = "../login.html";
-//   }
-// }
+const btSair = document.getElementById('btSair');
 
-// function limparSessao() {
-//   sessionStorage.clear();
-//   window.location = "../login.html";
-// }
+btSair.addEventListener("click", function () {
+    sessionStorage.clear();
+    window.location = "../../../index.html";
+})

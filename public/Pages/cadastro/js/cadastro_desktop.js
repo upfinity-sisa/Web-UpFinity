@@ -70,7 +70,7 @@ btnFecharErro_desktop.addEventListener('click', function () {
 const btnCadastro_desktop = document.getElementById("btnCadastro_desktop");
 const valida_cadastro_desktop = document.getElementById("valida_cadastro_desktop");
 const circulo_progresso_desktop = document.getElementById("circulo_progresso_desktop");
-const porcentagem_progresso = document.getElementById("porcentagem_progresso_desktop");
+const check_img_desktop = document.getElementById('check_img_desktop')
 const container_info_progresso_desktop = document.getElementById("container_info_progresso_desktop");
 const btn_valida_desktop = document.getElementById("btn_valida_desktop");
 
@@ -84,7 +84,6 @@ function carregamentoProgresso(percent) {
     if (percent >= 0 && percent <= 100) {
         const offset = circunferencia * (1 - percent / 100);
         circulo_progresso_desktop.style.strokeDashoffset = offset;
-        porcentagem_progresso.textContent = `${percent}%`;
     }
 }
 
@@ -106,8 +105,8 @@ function executarProgresso() {
     if (progresso >= 100) {
         clearInterval(controle_aguarde);
         circulo_progresso_desktop.style.stroke = '#1ede0d';
-        porcentagem_progresso.style.color = "#1ede0d";
         container_info_progresso_desktop.innerText = 'Empresa validada com sucesso!';
+        check_img_desktop.src = "../../Assets/Elements/Icons/check_progresso.png"
         btn_valida_desktop.classList.remove('d-none');
         return;
     }
@@ -160,8 +159,8 @@ btnCadastro_desktop.addEventListener("click", function (event) {
 btn_valida_desktop.addEventListener('click', function () {
     window.location = '.././login/login.html';
 })
-    
-        
+
+
 
 
 function cadastrar() {

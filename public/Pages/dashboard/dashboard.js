@@ -7,19 +7,15 @@ function vwParaPx(vwValue) {
 var options = {
     series: [{
         name: "CPU",
-        data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+        data: [10, 41, 35, 51, 49, 62, 69, 91, 76]
     },
     {
         name: "RAM",
-        data: [252, 188, 22, 193, 121, 183, 130, 108, 178]
+        data: [24, 53, 74, 89, 75, 20, 40, 13, 30]
     },
     {
         name: "Disco",
-        data: [2, 39, 167, 65, 68, 30, 67, 255, 238]
-    },
-    {
-        name: "Rede",
-        data: [118, 54, 187, 261, 151, 193, 42, 224, 159]
+        data: [20, 39, 20, 65, 40, 30, 67, 50, 60]
     }],
     legend: {
         position: 'top',
@@ -46,7 +42,7 @@ var options = {
                 zoomout: false,
                 pan: false,
                 reset: false
-            },        
+            },
             offsetX: 0,
             offsetY: 0,
         },
@@ -74,7 +70,7 @@ var options = {
             opacity: 0.5
         }
     },
-    colors: ['#353535', '#6ce5e8', '#41b8d5', '#1b5979'],
+    colors: ['#FF0000', '#00FF00', '#0adedeff'],
     yaxis: {
         labels: {
             style: {
@@ -119,7 +115,7 @@ var options = {
                 zoomout: false,
                 pan: false,
                 reset: false
-            },        
+            },
             offsetX: 0,
             offsetY: 0,
         },
@@ -127,9 +123,9 @@ var options = {
     dataLabels: {
         enabled: true,
         style: {
-            fontSize: `${vwParaPx(0.8)}px`,
+            fontSize: `${vwParaPx(1)}px`,
             fontFamily: 'poppins leve',
-            colors: ['#000']
+            colors: ['#fff']
         }
     },
     responsive: [{
@@ -167,8 +163,7 @@ var options = {
     legend: {
         position: 'top',
         fontSize: `${vwParaPx(1)}px`,
-        fontFamily: 'poppins medio',
-        fontWeight: 'bold',
+        fontFamily: 'poppins leve',
         color: "#000"
     },
     plotOptions: {
