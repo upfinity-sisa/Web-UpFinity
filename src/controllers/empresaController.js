@@ -22,6 +22,34 @@ function cadastrarEmpresa(req, res) {
     });
 }
 
+
+function verificarPlano(req, res) {
+
+  var idEmpresa = req.params.fkEmpresa;
+
+  empresaModel
+    .verificarPlano(idEmpresa)
+    .then(function (resultado) {
+      if (resultado.length == 1) {
+        console.log(resultado);
+        res.json({
+          fkPlano: resultado[0].fkPlano,
+          statusPagamento: resultado[0].statusPagamento
+        });
+        console.log(resultado[0]);
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log(
+        "\nHouve um erro ao verificar plano da empresa! Erro: ",
+        erro.sqlMessage,
+      );
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+
 module.exports = {
   cadastrarEmpresa,
+  verificarPlano
 };

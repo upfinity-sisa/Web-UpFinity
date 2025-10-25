@@ -210,7 +210,6 @@ function cadastrar() {
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
-                alert('cadastro empresa ok')
                 fetch("/usuarios/cadastrarUsuario", {
                     method: "POST",
                     headers: {
@@ -228,8 +227,6 @@ function cadastrar() {
                         console.log("resposta: ", resposta);
 
                         if (resposta.ok) {
-                            alert('cadastro usuario ok')
-
                             valida_cadastro_desktop.classList.remove('d-none')
                             executarProgresso();
                         } else {
