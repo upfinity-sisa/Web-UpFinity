@@ -1,0 +1,14 @@
+var express = require("express");
+var router = express.Router();
+
+var gestaoController = require("../controllers/gestaoController");
+
+router.post("/cadastrarFuncionario", function (req, res) {
+  gestaoController.cadastrarFuncionario(req, res);
+});
+
+router.post("/validarFuncionario", function (req, res) {
+  gestaoController.validarFuncionario(req, res);
+});
+
+module.exports = router;
