@@ -38,9 +38,27 @@ function exibirFuncionariosPorBusca(req, res) {
     });
 }
 
+function promoverFuncionario(req, res) {
+	var idFuncionario = req.body.idUsuario
+
+	gestaoModel.promoverFuncionario(idFuncionario).then((resultado) => {
+		res.status(201).json(resultado);
+	});
+}
+
+function removerFuncionario(req, res) {
+	var idFuncionario = req.body.idUsuario
+
+	gestaoModel.removerFuncionario(idFuncionario).then((resultado) => {
+		res.status(201).json(resultado);
+	});
+}
+
 module.exports = {
   cadastrarFuncionario,
   validarFuncionario,
   exibirFuncionarios,
   exibirFuncionariosPorBusca,
+  promoverFuncionario,
+  removerFuncionario,
 };

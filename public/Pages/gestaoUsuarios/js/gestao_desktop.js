@@ -68,7 +68,7 @@ function exibirCaixasFuncionarios(resposta2) {
 
     for (let i = 0; i<resposta2.length; i++) {
 
-        var stringButton = `<button class="btn_promover">Promover</button>`
+        var stringButton = `<button onclick="promoverFuncionario(${resposta2[i].idUsuario})" class="btn_promover">Promover</button>`
         
         if (resposta2[i].fkTipoUsuario == 2) {
         stringButton = `<button style="color: #999999; border-color: #797a7b; background-color: #f6f6f6;" class="btn_promover">Promover</button>`
@@ -94,7 +94,7 @@ function exibirCaixasFuncionarios(resposta2) {
             </div>
             <div class="botoes">
                 ${stringButton}
-                <button class="btn_remover">Remover</button>
+                <button onclick="removerFuncionario(${resposta2[i].idUsuario})" class="btn_remover">Remover</button>
             </div>
         </div>
         `
@@ -148,6 +148,46 @@ function buscarFuncionarios() {
                 baixo_gestao.innerHTML = ""
                 exibirCaixasFuncionarios(resposta2)
             })
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+}
+
+function promoverFuncionario(idFuncionario) {
+    
+    fetch("/gestao/promoverFuncionario", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            idUsuario: idFuncionario,
+        }),
+    })
+        .then(function (resposta) {
+            exibirFuncionarios()
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+}
+
+function removerFuncionario(idFuncionario) {
+    
+    fetch("/gestao/removerFuncionario", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            idUsuario: idFuncionario,
+        }),
+    })
+        .then(function (resposta) {
+            exibirFuncionarios()
         })
         .catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);

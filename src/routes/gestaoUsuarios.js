@@ -19,4 +19,13 @@ router.get("/exibirFuncionariosPorBusca/:fkEmpresa/:nome", function (req, res) {
     gestaoController.exibirFuncionariosPorBusca(req, res);
 })
 
+router.post("/promoverFuncionario", function (req, res) {
+  gestaoController.promoverFuncionario(req, res);
+});
+
+router.post("/removerFuncionario", function (req, res) {
+  gestaoController.removerFuncionario(req, res);
+});
+
+
 module.exports = router;
