@@ -64,6 +64,44 @@ function cadastrarFuncionario() {
 
 }
 
+function exibirCaixasFuncionarios(resposta2) {
+
+    for (let i = 0; i<resposta2.length; i++) {
+
+        var stringButton = `<button class="btn_promover">Promover</button>`
+        
+        if (resposta2[i].fkTipoUsuario == 2) {
+        stringButton = `<button style="color: #999999; border-color: #797a7b; background-color: #f6f6f6;" class="btn_promover">Promover</button>`
+        }
+        console.log("Proxima fk")
+        console.log(resposta2[i].fkTipoUsuario)
+
+        baixo_gestao.innerHTML += `
+        <div class="caixa_usuario">
+            <div class="informacoes">
+                <div class="titulos">
+                    <h1>Nome:</h1>
+                    <h1>Email:</h1>
+                    <h1>CPF:</h1>
+                    <h1>Nível:</h1>
+                </div>
+                <div class="infos">
+                    <h1>${resposta2[i].nome}</h1>
+                    <h1>${resposta2[i].email}</h1>
+                    <h1>${resposta2[i].CPF}</h1>
+                    <h1>${resposta2[i].descricao}</h1>
+                </div>
+            </div>
+            <div class="botoes">
+                ${stringButton}
+                <button class="btn_remover">Remover</button>
+            </div>
+        </div>
+        `
+    }
+
+}
+
 function exibirFuncionarios() {
 
     var fkEmpresa = sessionStorage.ID_USUARIO
@@ -73,43 +111,9 @@ function exibirFuncionarios() {
     })
         .then(function (resposta) {
             resposta.json().then((resposta2) => {
-                console.log("Essa vai ser a resposta 2:")
                 console.log(resposta2)
-
-                for (let i = 0; i<resposta2.length; i++) {
-
-                    var stringButton = `<button class="btn_promover">Promover</button>`
-                    
-                    if (resposta2[i].fkTipoUsuario == 2) {
-                    stringButton = `<button style="color: #999999; border-color: #797a7b; background-color: #f6f6f6;" class="btn_promover">Promover</button>`
-                    }
-                    console.log("Proxima fk")
-                    console.log(resposta2[i].fkTipoUsuario)
-
-                    baixo_gestao.innerHTML += `
-                    <div class="caixa_usuario">
-                        <div class="informacoes">
-                            <div class="titulos">
-                                <h1>Nome:</h1>
-                                <h1>Email:</h1>
-                                <h1>CPF:</h1>
-                                <h1>Nível:</h1>
-                            </div>
-                            <div class="infos">
-                                <h1>${resposta2[i].nome}</h1>
-                                <h1>${resposta2[i].email}</h1>
-                                <h1>${resposta2[i].CPF}</h1>
-                                <h1>${resposta2[i].descricao}</h1>
-                            </div>
-                        </div>
-                        <div class="botoes">
-                            ${stringButton}
-                            <button class="btn_remover">Remover</button>
-                        </div>
-                    </div>
-                    `
-                }
-
+                baixo_gestao.innerHTML = ""
+                exibirCaixasFuncionarios(resposta2)
             })
         })
         .catch(function (resposta) {
@@ -117,5 +121,36 @@ function exibirFuncionarios() {
         });
     
 }
-
 exibirFuncionarios()
+
+function buscarFuncionarios() {
+
+    var fkEmpresa = sessionStorage.ID_USUARIO
+    var nome = busca_nome.value
+
+    if (nome == "") {
+        exibirFuncionarios()
+        return
+    }
+    
+    fetch(`/gestao/exibirFuncionariosPorBusca/${fkEmpresa}/${nome}`, {
+        method: "GET",
+    })
+        .then(function (resposta) {
+            resposta.json().then((resposta2) => {
+                console.log(resposta2)
+                
+                busca_nome.value = ""
+                if (resposta2.length == 0) {
+                    alert("Nenhum usuário com esse nome foi encontrado")
+                    return
+                }
+                baixo_gestao.innerHTML = ""
+                exibirCaixasFuncionarios(resposta2)
+            })
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+}

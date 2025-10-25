@@ -29,8 +29,18 @@ function exibirFuncionarios(req, res) {
     });
 }
 
+function exibirFuncionariosPorBusca(req, res) {
+    var fkEmpresa = req.params.fkEmpresa;
+    var nome = req.params.nome;
+
+    gestaoModel.exibirFuncionariosPorBusca(fkEmpresa, nome).then((resultado) => {
+        res.status(201).json(resultado);
+    });
+}
+
 module.exports = {
   cadastrarFuncionario,
   validarFuncionario,
   exibirFuncionarios,
+  exibirFuncionariosPorBusca,
 };

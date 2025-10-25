@@ -29,8 +29,22 @@ function exibirFuncionarios(fkEmpresa) {
     return database.executar(instrucaoSql);
 }
 
+function exibirFuncionariosPorBusca(fkEmpresa, nome) {
+    var instrucaoSql = `
+
+    select Usuario.*, TipoUsuario.descricao from Usuario join 
+		TipoUsuario on 
+        TipoUsuario.idTipoUsuario = Usuario.fkTipoUsuario
+		where Usuario.fkEmpresa = ${fkEmpresa}
+        and Usuario.nome like '%${nome}%' order by idUsuario;
+
+    `
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
   cadastrarFuncionario,
   validarFuncionario,
   exibirFuncionarios,
+  exibirFuncionariosPorBusca,
 };

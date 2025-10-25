@@ -15,4 +15,8 @@ router.get("/exibirFuncionarios/:fkEmpresa", function (req, res) {
     gestaoController.exibirFuncionarios(req, res);
 })
 
+router.get("/exibirFuncionariosPorBusca/:fkEmpresa/:nome", function (req, res) {
+    gestaoController.exibirFuncionariosPorBusca(req, res);
+})
+
 module.exports = router;
