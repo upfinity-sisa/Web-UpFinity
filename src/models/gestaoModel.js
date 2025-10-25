@@ -17,7 +17,20 @@ function validarFuncionario(email, cpf) {
     return database.executar(instrucaoSql);
 }
 
+function exibirFuncionarios(fkEmpresa) {
+    var instrucaoSql = `
+
+    select Usuario.*, TipoUsuario.descricao from Usuario join 
+		TipoUsuario on 
+        TipoUsuario.idTipoUsuario = Usuario.fkTipoUsuario
+		where Usuario.fkEmpresa = ${fkEmpresa} order by idUsuario;
+
+    `
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
   cadastrarFuncionario,
   validarFuncionario,
+  exibirFuncionarios,
 };

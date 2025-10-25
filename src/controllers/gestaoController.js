@@ -21,7 +21,16 @@ function validarFuncionario(req, res) {
 	});
 }
 
+function exibirFuncionarios(req, res) {
+    var fkEmpresa = req.params.fkEmpresa;
+
+    gestaoModel.exibirFuncionarios(fkEmpresa).then((resultado) => {
+        res.status(201).json(resultado);
+    });
+}
+
 module.exports = {
   cadastrarFuncionario,
   validarFuncionario,
+  exibirFuncionarios,
 };
