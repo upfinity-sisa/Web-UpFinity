@@ -1,3 +1,18 @@
+@font-face {
+    font-family: poppins leve;
+    src: url("../../../Assets/assets_dashboard/poppins/Poppins-Light.ttf");
+}
+
+@font-face {
+    font-family: poppins medio;
+    src: url("../../../Assets/assets_dashboard/poppins/Poppins-Medium.ttf");
+}
+
+@font-face {
+    font-family: poppins bold;
+    src: url("../../../Assets/assets_dashboard/poppins/Poppins-Bold.ttf");
+}
+
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
@@ -17,36 +32,42 @@ body {
 
 .caixas_gestao {
     background-color: white;
-    border-radius: 20px;
+    border-radius: 10px;
     box-shadow: rgba(50, 50, 50, 0.1) 0px 10px 50px;
     padding: 2rem;
+    text-align: center;
+}
+
+.caixas_gestao h1 {
+    font-weight: bold;
 }
 
 .caixa_gestao_cima {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10%;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .caixa_gestao_cima h1 {
-    margin: 0;
     font-family: poppins bold;
     font-size: 1.5vw;
     color: #5c5f60;
+    margin-bottom: 0.5rem;
 }
 
 .linha_caixa_gestao {
     background-color: #2db2b7;
-    width: 90%;
-    height: 3px;
+    width: 100%;
+    height: 2px;
 }
 
 #inputs {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 1rem;
+    text-align: center;
 }
 
 #inputs h1 {
@@ -54,16 +75,19 @@ body {
     font-family: poppins bold;
     color: #797a7b;
     font-size: 1vw;
-    width: 78%;
+    width: 100%;
+    font-weight: bold;
+    text-align: left;
 }
 
 #inputs input {
     font-family: poppins bold;
     font-size: 0.8vw;
     width: 100%;
-    height: 10%;
+    height: 35px;
+    text-align: center;
     padding-left: 0.4vw;
-    border-radius: 15px;
+    border-radius: 8px;
     border: 2px solid #999999;
     color: #5c5f60;
 }
@@ -77,13 +101,19 @@ button {
     cursor: pointer;
 }
 
+.senhatext {
+    font-weight: bold;
+}
+
+
+
 #caixa_cadastro_baixo button {
     text-align: center;
     font-family: poppins bold;
-    font-size: 1vw;
-    width: 80%;
-    height: 10%;
-    border-radius: 15px;
+    font-size: 1.3vw;
+    width: 100%;
+    height: 3vw;
+    border-radius: 6px;
     border: none;
     background-color: #00c5cc;
     color: #fff;
