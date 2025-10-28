@@ -76,6 +76,8 @@ function exibirCaixasFuncionarios(resposta2) {
         console.log("Proxima fk")
         console.log(resposta2[i].fkTipoUsuario)
 
+        var cpf_tratado = (resposta2[i].CPF).replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4")
+
         baixo_gestao.innerHTML += `
         <div class="caixa_usuario">
             <div class="informacoes">
@@ -88,7 +90,7 @@ function exibirCaixasFuncionarios(resposta2) {
                 <div class="infos">
                     <h1>${resposta2[i].nome}</h1>
                     <h1>${resposta2[i].email}</h1>
-                    <h1>${resposta2[i].CPF}</h1>
+                    <h1>${cpf_tratado}</h1>
                     <h1>${resposta2[i].descricao}</h1>
                 </div>
             </div>
