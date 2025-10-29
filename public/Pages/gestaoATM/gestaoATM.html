@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../dashboard/css/dashboard.css">
+    <link rel="icon" href="../../Assets/assets_dashboard/logoUPFINITY.png">
+    <title>Gestão de ATMs - UpFinity</title>
+</head>
+
+<body>
+    <section class="corpo">
+
+        <div id="esquerda">
+            <div id="esquerda-cima">
+                <img src="../../Assets/assets_dashboard/logoUPFINITY.png" id="logo-upfinity" alt="logo-upfinity">
+            </div>
+            <div id="esquerda-centro">
+                <div id="navegacao">
+                    <h1 onclick="window.location = '../visaoGeral/visaoGeral.html'">VISÃO GERAL</h1>
+                    <div class="linha"></div>
+                    <h1 onclick="window.location = '../dashboard/dashboard.html'">DASHBOARDS</h1>
+                    <div class="linha"></div>
+                    <h1 onclick="window.location = '../gestaoUsuarios/gestaoUsuarios.html'">GESTÃO DE USUÁRIOS</h1>
+                    <div class="linha"></div>
+                    <h1>GESTÃO DE ATMS</h1>
+                    <div class="linha"></div>
+                </div>
+            </div>
+            <div id="esquerda-baixo">
+                <div id="navegacaoSair">
+                    <div class="linha"></div>
+                    <div id="btSair">
+                        <h1>SAIR</h1>
+                        <img src="../../Assets/assets_dashboard/SAIRICON.png" alt="logoSaída">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="centro">
+            <div id="meio-cima">
+                <h1 id="vg_titulo">GESTÃO DE USUÁRIOS</h1>
+            </div>
+            <div id="meio-baixo">
+                <div class="caixas_gestao">
+                    <div class="caixa_gestao_cima">
+                        <h1>Cadastrar Funcionários</h1>
+                        <div class="linha_caixa_gestao"></div>
+                    </div>
+                    <div id="caixa_cadastro_baixo">
+                        <div id="inputs">
+                            <h1>Nome:</h1>
+                            <input type="text" id="nome_txt">
+                            <h1>Email:</h1>
+                            <input type="email" id="email_txt">
+                            <h1>CPF:</h1>
+                            <input type="text" class="ipt_cpf" id="cpf_txt">
+                            <h1>Permissionamento:</h1>
+                            <select name="permissionamento" id="combo_permissao">
+                                <option value="2">ADMINISTRADOR</option>
+                                <option value="3">ANALISTA</option>
+                            </select>
+                        </div>
+                        <button onclick="validarFuncionario()">Cadastrar</button>
+                    </div>
+                </div>
+                <div class="caixas_gestao">
+                    <div class="caixa_gestao_cima">
+                        <h1>Gerenciar Funcionários</h1>
+                        <div class="linha_caixa_gestao"></div>
+                    </div>
+                    <div id="caixa_gestao_baixo">
+                        <div id="caixa_pesquisa">
+                            <div id="simbolo_buscar">
+                                <h1 onclick="buscarFuncionarios()">BUSCAR</h1>
+                                <img src="../../Assets/assets_dashboard/simbolo_lupa.png" alt="imagem de lupa">
+                            </div>
+                            <input type="text" id="busca_nome">
+                        </div>
+                        <div id="baixo_gestao">
+
+                            <div class="caixa_gestao">
+                                <div class="infos_atms">
+                                    <div class="informacoes informacoes-extensao-atms">
+                                        <div class="titulos">
+                                            <h1>Numeração:</h1>
+                                            <h1>Status:</h1>                             
+                                        </div>
+                                        <div class="infos">
+                                            <h1>ATM 1</h1>
+                                            <h1>Ativo</h1>
+                                        </div>
+                                    </div>
+                                    <div class="combo_status">
+                                        <h1>Definir novo Status</h1>
+                                        <select>
+                                            <option>ATIVO</option>
+                                            <option>INATIVO</option>
+                                            <option>EM MANUTENÇÃO</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="botoes">
+                                    <button class="btn_promover">Alterar</button>
+                                    <button class="btn_remover">Remover</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</body>
+
+</html>
