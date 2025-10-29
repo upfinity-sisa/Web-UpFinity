@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- BoootStrap -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="./css/style_desktop.css">
+
+    <!--Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <!-- JavaScript -->
+    <script src="./planos.js" defer></script>
+    <script src="./js/planos_desktop.js" defer></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+    <!-- Biblioteca que gera QR -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+
+    <title>UpFinity</title>
+</head>
+
+<body>
+    <div class="d-block d-md-none" id="mobileContent">
+        Conteúdo Mobile
+    </div>
+    <div class="d-none d-md-block d-lg-none" id="tabletContent">
+        Conteúdo Tablet
+    </div>
+    <div class="d-none d-lg-block" id="desktopContent">
+         <div id="alerta_erros_desktop" class="d-none">
+            <div id="box_container_erro_desktop">
+                <div id="container-erro-desktop">
+                    <h2 id="h2-erro-desktop">Alerta identificado!</h2>
+                    <span id="span-erro-desktop"></span>
+                </div>
+                <button id="btnFecharErro-desktop">Fechar</button>
+            </div>
+        </div>
+        <main id="mainDesktop">
+            <div class="d-none" id="container_adquirir_planos_desktop">
+                <div id="box_adquirir_planos_desktop">
+                    <div id="container_fechar_adquirir_planos_desktop">
+                        <a id="a_fechar_adquirir_planos_desktop">
+                            <img id="img_fechar_desktop" src="../../Assets/Elements/Icons/fechar.png">
+                        </a>
+                    </div>
+                    <div id="container_qrCode_adquirir_planos_desktop">
+                        <h2 id="h2_qrCode_desktop">Realize o pagamento via pix scaneando o qr code abaixo<br><span id="spn_qrCode_desktop">(Acesso imediato)</span></h2>
+                        <div id="box_qrCode_desktop">
+                            <canvas id="qrCode_desktop" aria-label="QR code"></canvas>
+                            <div id="container_codigo_qrCode_desktop">
+                                <img id="img_pix_desktop" src="../../Assets/Elements/Icons/pix.png">
+                                <span id="spn_code_desktop"></span>
+                                <span id="spn_expiracao_desktop">Expiração: <span
+                                        id="spn_timer_desktop"></span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="container_btn_adquirir_planos_desktop">
+                        <button id="btn_pagamento_desktop">Pagamento realizado</button>
+                    </div>
+                </div>
+            </div>
+            <div id="subcontainer-desktop-head">
+                <a id="a_voltar_desktop" onclick="window.history.back()"><img id="img-voltar-desktop"
+                        src="../../Assets/Elements/Icons/voltar.png"></a>
+                <img id="img-logo-desktop" src="../../Assets/Logo/UpFinity_dark.png">
+            </div>
+            <div id="container_planos_desktop">
+                <div id="container_box_planos_desktop">
+                    <div class="box_planos">
+                        <div class="container_title_planos_desktop">
+                            <h1 class="h1_box_desktop">Básico</h1>
+                            <span class="spn_preco_desktop">R$4.790,00/mês</span>
+                            <span class="spn_atm_desktop">Até <b>12</b> ATMs</span>
+                        </div>
+                        <div class="container_infos_planos_desktop">
+                            <p class="p_desc_planos_desktop">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                Nisi nobis tenetur nemo sequi! Quis autem animi vel dolore</p>
+                            <button id="adquirir_p1_desktop" class="btn_adquirir_planos_desktop">Adquirir</button>
+                        </div>
+                    </div>
+                    <div class="box_planos">
+                        <div class="container_title_planos_desktop">
+                            <h1 class="h1_box_desktop">Médio</h1>
+                            <span class="spn_preco_desktop">R$10.749,00/mês</span>
+                            <span class="spn_atm_desconto_desktop">(3 ATMs Grátis!)</span>
+                            <span class="spn_atm_desktop">Até <b>30</b> ATMs</span>
+                        </div>
+                        <div class="container_infos_planos_desktop">
+                            <p class="p_desc_planos_desktop">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                Nisi nobis tenetur nemo sequi! Quis autem animi vel dolore</p>
+                            <button id="adquirir_p2_desktop" class="btn_adquirir_planos_desktop">Adquirir</button>
+                        </div>
+                    </div>
+                    <div class="box_planos">
+                        <div class="container_title_planos_desktop">
+                            <h1 class="h1_box_desktop">Avançado</h1>
+                            <span class="spn_preco_desktop">R$20.649,00/mês</span>
+                            <span class="spn_atm_desconto_desktop">(8 ATMs Grátis!)</span>
+                            <span class="spn_atm_desktop">Até <b>50</b> ATMs</span>
+                        </div>
+                        <div class="container_infos_planos_desktop">
+                            <p class="p_desc_planos_desktop">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                Nisi nobis tenetur nemo sequi! Quis autem animi vel dolore</p>
+                            <button id="adquirir_p3_desktop" class="btn_adquirir_planos_desktop">Adquirir</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="container_btn_plano_personalizado_desktop">
+                    <button id="btn_orcamento_desktop">Solicitar orçamento personalizado</button>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

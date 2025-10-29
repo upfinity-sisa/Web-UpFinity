@@ -160,10 +160,9 @@ btn_valida_desktop.addEventListener('click', function () {
     window.location = '.././login/login.html';
 })
 
-
-
-
 function cadastrar() {
+    btnCadastro_desktop.disabled = true;
+
     var razaoSocial = ipt_razao_social_desktop.value;
     var nomeFantasia = ipt_nome_fantasia_desktop.value;
     var cnpj = ipt_cnpj_desktop.value;
@@ -174,47 +173,47 @@ function cadastrar() {
     var confirmarsenha = ipt_conf_senha_desktop.value;
 
     if (nome.trim() == '' || email.trim() == '' || cpf.trim() == '' || senha.trim() == '') {
-        alerta_erros_desktop.classList.remove('d-none')
-        span_erro_desktop.innerText = 'Preencha todos os campos obrigatórios.'
-        return
+        alerta_erros_desktop.classList.remove('d-none');
+        span_erro_desktop.innerText = 'Preencha todos os campos obrigatórios.';
+        btnCadastro_desktop.disabled = false;
+        return;
     }
 
     if (!validarEmail(email)) {
-        alerta_erros_desktop.classList.remove('d-none')
-        span_erro_desktop.innerText = 'Email inválido, preencha novamente.'
-        return
+        alerta_erros_desktop.classList.remove('d-none');
+        span_erro_desktop.innerText = 'Email inválido, preencha novamente.';
+        btnCadastro_desktop.disabled = false;
+        return;
     }
+
     if (cpf.length !== 14) {
-        alerta_erros_desktop.classList.remove('d-none')
-        span_erro_desktop.innerText = 'Preencha o cpf corretamente.'
-        return
+        alerta_erros_desktop.classList.remove('d-none');
+        span_erro_desktop.innerText = 'Preencha o CPF corretamente.';
+        btnCadastro_desktop.disabled = false;
+        return;
     }
+
     if (senha != confirmarsenha) {
-        alerta_erros_desktop.classList.remove('d-none')
-        span_erro_desktop.innerText = 'As senhas não coincidem, verifique novamente.'
-        return
+        alerta_erros_desktop.classList.remove('d-none');
+        span_erro_desktop.innerText = 'As senhas não coincidem, verifique novamente.';
+        btnCadastro_desktop.disabled = false;
+        return;
     }
 
     fetch("/empresa/cadastrarEmpresa", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
             razaoSocialServer: razaoSocial,
             nomeFantasiaServer: nomeFantasia,
             cnpjServer: cnpj
         }),
     })
-        .then(function (resposta) {
-            console.log("resposta: ", resposta);
-
+        .then((resposta) => {
             if (resposta.ok) {
-                fetch("/usuarios/cadastrarUsuario", {
+                return fetch("/usuarios/cadastrarUsuario", {
                     method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
+                    headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
                         nomeServer: nome,
                         emailServer: email,
@@ -222,28 +221,26 @@ function cadastrar() {
                         senhaServer: senha,
                         cnpjServer: cnpj
                     }),
-                })
-                    .then(function (resposta) {
-                        console.log("resposta: ", resposta);
-
-                        if (resposta.ok) {
-                            valida_cadastro_desktop.classList.remove('d-none')
-                            executarProgresso();
-                        } else {
-                            throw "Houve um erro ao tentar realizar o cadastro usuario!";
-                        }
-                    })
-                    .catch(function (resposta) {
-                        console.log(`#ERRO: ${resposta}`);
-                        finalizarAguardar();
-                    });
+                });
             } else {
-                throw "Houve um erro ao tentar realizar o cadastro usuario!";
+                throw "Erro ao cadastrar empresa!";
             }
         })
-        .catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-            finalizarAguardar();
+        .then((resposta) => {
+            if (resposta.ok) {
+                valida_cadastro_desktop.classList.remove('d-none');
+                executarProgresso();
+            } else {
+                throw "Erro ao cadastrar usuário!";
+            }
+        })
+        .catch((erro) => {
+            console.log(`#ERRO: ${erro}`);
+            alerta_erros_desktop.classList.remove('d-none');
+            span_erro_desktop.innerText = 'Erro ao realizar cadastro, verifique os campos.';
+        })
+        .finally(() => {
+            btnCadastro_desktop.disabled = false;
         });
 
     return false;

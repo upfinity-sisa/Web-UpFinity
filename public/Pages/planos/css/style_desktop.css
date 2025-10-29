@@ -1,0 +1,374 @@
+@font-face {
+    font-family: poppins leve;
+    src: url("../../../Assets/assets_dashboard/poppins/Poppins-Light.ttf");
+}
+
+@font-face {
+    font-family: poppins medio;
+    src: url("../../../Assets/assets_dashboard/poppins/Poppins-Medium.ttf");
+}
+
+@font-face {
+    font-family: poppins bold;
+    src: url("../../../Assets/assets_dashboard/poppins/Poppins-Bold.ttf");
+}
+
+body, html {
+    overflow: hidden;
+    font-family: poppins leve !important;
+}
+
+#alerta_erros_desktop {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.638);
+    backdrop-filter: blur(2px);
+    z-index: 999;
+}
+
+
+#box_container_erro_desktop {
+    height: 25%;
+    width: 40%;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: #00c4cc 2px solid;
+    border-radius: 15px;
+}
+
+#container-erro-desktop {
+    overflow: hidden;
+    height: 65%;
+    width: 95%;
+    background: #000;
+}
+
+#h2-erro-desktop {
+    font-size: 1.8vw;
+    font-weight: bold;
+    color: #f01008;
+}
+
+#btnFecharErro-desktop {
+    all: unset;
+    width: 8vw;
+    color: #fff;
+    height: 2.1vw;
+    border: #00c4cc 1px solid;
+    text-align: center;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+#btnFecharErro-desktop:hover {
+    background: #00c4cc;
+    color: #000;
+}
+
+#subcontainer-desktop-head {
+    padding-top: 1%;
+    height: 10%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#a_voltar_desktop {
+    cursor: pointer;
+}
+
+#img-voltar-desktop {
+    width: 1.8vw;
+    margin-left: 2.5vw;
+}
+
+#img-logo-desktop {
+    width: 6vw;
+    margin-right: 2.5vw;
+}
+
+#container_planos_desktop {
+    height: 95vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#container_box_planos_desktop {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#container_btn_plano_personalizado_desktop {
+    height: 15%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.box_planos {
+    width: 25%;
+    height: 75%;
+    border-radius: 8px;
+    border: 2px solid #00c4cc;
+    transition: 0.2s ease-in;
+}
+
+#btn_orcamento_desktop {
+    all: unset;
+    width: 20vw;
+    height: 3vw;
+    text-align: center;
+    color: #000;
+    border-radius: 20px;
+    border: 1px solid #00c4cc;
+    cursor: pointer;
+    transition: 0.1s ease;
+    font-size: 1vw;
+    transition: 0.2s ease-in;
+}
+
+#btn_orcamento_desktop:hover {
+    background: #00c4cc;
+    color: #fff;
+    border: 0.5px solid #000;
+}
+
+#btn_orcamento_desktop:active {
+    transform: scale(0.9);
+}
+
+.container_title_planos_desktop {
+    height: 40%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.h1_box_desktop {
+    color: #00c4cc;
+    font-weight: 500;
+    font-size: 2.45vw;
+    font-family: poppins leve;
+}
+
+.spn_preco_desktop {
+    font-size: 1.75vw;
+    color: #000;
+}
+
+.spn_atm_desktop {
+    color: #000;
+    font-size: 1.4vw;
+}
+
+.container_infos_planos_desktop {
+    height: 60%;
+    background: #00c4cc;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    box-shadow: 0 -1.5px 8px rgba(0, 0, 0, 0.333);
+    transition: 0.2s ease-in;
+}
+
+.container_infos_planos_desktop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.p_desc_planos_desktop {
+    width: 90%;
+    font-size: 1.15vw;
+    text-align: center;
+    color: #000;
+}
+
+.btn_adquirir_planos_desktop {
+    all: unset;
+    width: 40%;
+    height: 15%;
+    margin-top: 3%;
+    text-align: center;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #000000;
+    color: #000;
+    transition: 0.2s ease-in;
+}
+
+.box_planos:hover {
+    background: #000;
+    transform: scale(1.030);
+    border: 2px solid #000;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.333);
+    border-radius: 12px;
+}
+
+.box_planos:hover .spn_preco_desktop, .box_planos:hover .spn_atm_desktop, .box_planos:hover .spn_atm_desconto_desktop {
+    color: #fff;
+
+}
+
+.box_planos:hover .container_infos_planos_desktop {
+    border: 1px solid #000000;
+    border-radius: 12px;
+    background: #fff;
+}
+
+.box_planos:hover .btn_adquirir_planos_desktop {
+    border: 1.2px solid #000000;
+    background: #00c4cc;
+    color: #ffffff;
+    border-radius: 12px;
+    width: 45%;
+}
+
+.btn_adquirir_planos_desktop:active {
+    transform: scale(0.9);
+}
+
+.spn_atm_desconto_desktop {
+    font-size: 0.9vw;
+    color: #000;
+}
+
+.container_title_planos_desktop, .container_infos_planos_desktop {
+    overflow: hidden;
+}
+
+#container_adquirir_planos_desktop {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.638);
+    backdrop-filter: blur(2px);
+    z-index: 999;
+}
+
+#box_adquirir_planos_desktop {
+    height: 80%;
+    width: 50%;
+    background: #000;
+    border-radius: 12px;
+    border: 1.5px solid #00c4cc;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+#container_fechar_adquirir_planos_desktop {
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#container_qrCode_adquirir_planos_desktop {
+    height: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+#container_btn_adquirir_planos_desktop {
+    height: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#a_fechar_adquirir_planos_desktop {
+    all: unset;
+    cursor: pointer;
+}
+
+#img_fechar_desktop {
+    width: 2.15vw;
+    margin-right: 0.9vw;
+}
+
+#h2_qrCode_desktop {
+    text-align: center;
+    font-size: 1.5vw;
+}
+
+#box_qrCode_desktop {
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+#container_codigo_qrCode_desktop {
+    height: 25%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+#spn_code_desktop {
+    text-align: center;
+    font-size: 1vw;
+    font-weight: 300;
+}
+
+#spn_code_desktop:hover {
+    text-decoration: underline;
+}
+
+#img_pix_desktop {
+    width: 1.5vw;
+}
+
+#spn_qrCode_desktop {
+    font-size: 1.2vw;
+    font-weight: 300;
+}
+
+#spn_expiracao_desktop {
+    font-size: 1vw;
+}
+
+#btn_pagamento_desktop {
+    all: unset;
+    cursor: pointer;
+    width: 15vw;
+    height: 2.8vw;
+    color: #fff;
+    text-align: center;
+    border-radius: 20px;
+    border: 1.2px solid #00c4cc;
+    font-size: 1vw;
+    transition: 0.1s ease;
+}
+
+#btn_pagamento_desktop:hover {
+    color: #000;
+    background: #00c4cc;
+}
+
+#btn_pagamento_desktop:active {
+    transform: scale(0.95);
+}
