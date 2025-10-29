@@ -22,6 +22,26 @@ function cadastrarEmpresa(req, res) {
     });
 }
 
+function vincularPlano(req, res) {
+
+  var idEmpresa = req.body.idEmpresaServer;
+  var idPlano = req.body.idPlanoServer;
+
+  empresaModel
+    .vincularPlano(idEmpresa, idPlano)
+    .then(function (resultado) {
+      res.json(resultado);
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log(
+        "\nHouve um erro ao vincular plano! Erro: ",
+        erro.sqlMessage,
+      );
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+
 
 function verificarPlano(req, res) {
 
@@ -51,5 +71,6 @@ function verificarPlano(req, res) {
 
 module.exports = {
   cadastrarEmpresa,
-  verificarPlano
+  verificarPlano,
+  vincularPlano
 };
