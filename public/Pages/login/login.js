@@ -3,3 +3,8 @@ function validarEmail(email) {
     return regex.test(email);
 }
 
+function validacao() {
+    var senhaigual = sessionStorage.getItem(ipt_senha_desktop);
+    
+}
+

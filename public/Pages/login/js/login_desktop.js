@@ -66,7 +66,7 @@ function Entrar() {
 
                             if (idPlano == null || statusPagamento == 0) {
                                 if (jsonUsuario.fkTipoUsuario == 2) {
-                                    alert('vc n possui planos ou pagamento não realizado')
+                                    alert('Você não possui planos ou pagamentos não realizado')
                                 }
                                 else if (jsonUsuario.fkTipoUsuario == 3) {
                                     alerta_erros_desktop.classList.remove('d-none')
