@@ -53,7 +53,16 @@ function cadastrarUsuario(nome, email, senha, cnpj, cpf, fkEmpresa) {
   });
 }
 
+function alterarSenha(idFuncionario, senha) {
+  var instrucaoSql = `
+      UPDATE Usuario SET senha = ${senha} WHERE idUsuario = ${idFuncionario};
+      `
+  
+      return database.executar(instrucaoSql);
+}
+
 module.exports = {
   autenticar,
   cadastrarUsuario,
+  alterarSenha,
 };

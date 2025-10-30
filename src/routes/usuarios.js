@@ -14,4 +14,8 @@ router.post("/autenticar", function (req, res) {
   usuarioController.autenticar(req, res);
 });
 
+router.post("/alterarSenha", function (req, res) {
+  usuarioController.alterarSenha(req,req);
+})
+
 module.exports = router;

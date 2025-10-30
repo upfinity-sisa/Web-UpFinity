@@ -48,6 +48,7 @@ function Entrar() {
                 sessionStorage.FK_EMPRESA = jsonUsuario.fkEmpresa;
                 sessionStorage.CPF_USUARIO = jsonUsuario.CPF;
                 sessionStorage.FK_TIPOUSUARIO = jsonUsuario.fkTipoUsuario;
+                sessionStorage.SENHA = jsonUsuario.senha;
 
                 fetch(`/empresa/verificarPlano/${jsonUsuario.fkEmpresa}`, {
                     method: "GET",
@@ -71,7 +72,7 @@ function Entrar() {
                                 else if (jsonUsuario.fkTipoUsuario == 3) {
                                     alerta_erros_desktop.classList.remove('d-none')
                                     h2_erro_desktop.innerText = "Acesso negado!"
-                                    span_erro_desktop.innerText = 'Sua empresa possui pendências com a plataforme, entre em contato com seu administrador.'
+                                    span_erro_desktop.innerText = 'Sua empresa possui pendências com a plataforma, entre em contato com seu administrador.'
                                 }
                             }
                             else {
