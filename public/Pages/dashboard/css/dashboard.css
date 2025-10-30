@@ -647,6 +647,27 @@ div {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    gap: 7%;
+}
+
+#caixa_cadastro_baixo button {
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.7vw;
+    width: 80%;
+    height: 10%;
+    border-radius: 15px;
+    border: none;
+    background-color: #00c5cc;
+    color: #fff;
+    transition: 0.3s ease;
+}
+
+#caixa_cadastro_baixo button:hover {
+    cursor: pointer;
+    color: #00c5cc;
+    background-color: #fff;
+    border: 2px solid #00c5cc;
 }
 
 #inputs h1 {
@@ -708,6 +729,29 @@ div {
     height: 70%;
     width: 100%;
     margin-top: 2%;
+}
+
+#inputs input {
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.8vw;
+    width: 80%;
+    height: 10%;
+    padding-left: 0.4vw;
+    border-radius: 15px;
+    border: 2px solid #999999;
+    color: #5c5f60;
+}
+
+#inputs select {
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1vw;
+    width: 80%;
+    height: 12%;
+    border-radius: 15px;
+    border: 2px solid #999999;
+    color: #999999;
+    background-color: white;
 }
 
 #caixa_gestao_baixo {
@@ -977,3 +1021,4 @@ div {
     margin: 0;
     /* margin-top: -10%; */
 }
+
