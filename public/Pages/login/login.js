@@ -4,7 +4,11 @@ function validarEmail(email) {
 }
 
 function validacao() {
-    var senhaigual = sessionStorage.getItem(ipt_senha_desktop);
-    
+    var email = document.getElementById("ipt_email_desktop").value;
+
+    if (email == "") {
+        alert("Preencha seu email!")
+        return;
+    }
 }
 
