@@ -118,7 +118,7 @@
                                 </select>
                             </div>
                             <div id="caixagraflinha">
-                        </div>
+                            </div>
                         </div>
                         <div id="caixagraftorta">
                             <div id="torta_cima">
@@ -133,7 +133,7 @@
                         <div id="caixalerta-cima">
                             <div id="titulo_alertas">
                                 <h1>Histórico de Alertas</h1>
-                                <img src="../../Assets/assets_dashboard/iconeInformativo.png">
+                                <img onclick="exibirDialog()" src="../../Assets/assets_dashboard/iconeInformativo.png">
                             </div>
                             <div class="linha"></div>
                         </div>
@@ -216,8 +216,52 @@
             </div>
         </div>
     </section>
+    <dialog id="dialogInfo">
+        <div>
+            <h1 id="titulo_modal">Parâmetros de Alertas</h1>
+            <div class="linha"></div>
+        </div>
+        <div class="baixo_dialog">
+            <table>
+                <tr>
+                    <th>Alerta</th>
+                    <th style="color: #268184;">CPU</th>
+                    <th style="color: #268184;">RAM</th>
+                    <th style="color: #268184;">Disco</th>
+                </tr>
+                <tr>
+                    <td style="color: #e63946;">Crítico</td>
+                    <td>90.64</td>
+                    <td>87.04</td>
+                    <td>87.62</td>
+                </tr>
+                <tr>
+                    <td style="color: #f4a261;">Moderado</td>
+                    <td>86.14</td>
+                    <td>82.04</td>
+                    <td>82.68</td>
+                </tr>
+            </table>
+            <div class="botoes_dialog">
+                <button onclick="fechar()">Fechar Tabela</button>
+                <button>Definir alertas</button>
+            </div>
+        </div>
+    </dialog>
 </body>
 
 </html>
 
 <script src="dashboard.js"></script>
+
+<script>
+    function exibirDialog() {
+        dialogInfo.showModal()
+        dialogInfo.style.display = "flex";
+    }
+
+    function fechar() {
+        dialogInfo.close()
+        dialogInfo.style.display = "none";
+    }
+</script>
