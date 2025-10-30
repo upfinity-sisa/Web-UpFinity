@@ -708,7 +708,7 @@ div {
 
 .caixa_usuario {
     width: 80%;
-    height: 60%;
+    height: 43%;
     padding: 1vw 0;
     border: 3px solid #2db2b7;
     border-radius: 25px;
@@ -799,4 +799,47 @@ div {
 .apexcharts-menu-icon svg {
     width: 2vw;
     height: 2vw;
+}
+
+.caixa_gestao {
+    width: 80%;
+    padding: 2vw 0;
+    border: 3px solid #2db2b7;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.infos_atms {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.informacoes-extensao-atms {
+    gap: 45px;
+}
+
+.combo_status {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.combo_status select {
+    text-align: center;
+    font-family: poppins bold;
+    font-size: 1vw;
+    width: 100%;
+    height: 50px;
+    border-radius: 10   px;
+    border: 2px solid #999999;
+    color: #999999;
+    background-color: white;
 }
