@@ -7,7 +7,11 @@ btnFecharErro_desktop.addEventListener('click', function () {
     alerta_erros_desktop.classList.add('d-none')
 })
 
-function Enviar() {
+const btnEntrar_desktop = document.getElementById('btnEntrar_desktop')
+
+btnEntrar_desktop.addEventListener('click', function (event) {
+    event.preventDefault()
+
     const email = document.getElementById('ipt_email_desktop').value
 
     if (email.trim() == "" || !validarEmail(email)) {
@@ -16,7 +20,7 @@ function Enviar() {
         return;
     }
 
-    fetch(`/usuario/verificarEmail/${email}`, {
+    fetch(`/usuarios/verificarEmail/${email}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -24,22 +28,23 @@ function Enviar() {
     }).then(function (resposta) {
         if (resposta.ok) {
             console.log(resposta);
-
             resposta.json().then(json => {
-               
-            });
+                sessionStorage.EMAIL_USUARIO = json.email;
+                sessionStorage.ID_USUARIO = json.idUsuario;
+                
+            })
+            alert(sessionStorage.getItem("EMAIL_USUARIO"))
+            alert(sessionStorage.getItem("ID_USUARIO"))
+
 
         } else {
             alerta_erros_desktop.classList.remove('d-none')
             span_erro_desktop.innerText = 'Houve um erro ao buscar e-mail do usuário.'
             console.log("Houve um erro ao buscar e-mail do usuário!");
-
-            resposta.text().then(texto => {
-                console.error(texto);
-            });
         }
 
     }).catch(function (erro) {
         console.log(erro);
     })
-}
+
+})
