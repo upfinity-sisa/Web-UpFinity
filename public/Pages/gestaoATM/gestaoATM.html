@@ -41,34 +41,54 @@
 
         <div id="centro">
             <div id="meio-cima">
-                <h1 id="vg_titulo">GESTÃO DE USUÁRIOS</h1>
+                <h1 id="vg_titulo">GESTÃO DE ATMs</h1>
             </div>
             <div id="meio-baixo">
-                <div class="caixas_gestao">
-                    <div class="caixa_gestao_cima">
-                        <h1>Cadastrar Funcionários</h1>
-                        <div class="linha_caixa_gestao"></div>
-                    </div>
-                    <div id="caixa_cadastro_baixo">
-                        <div id="inputs">
-                            <h1>Nome:</h1>
-                            <input type="text" id="nome_txt">
-                            <h1>Email:</h1>
-                            <input type="email" id="email_txt">
-                            <h1>CPF:</h1>
-                            <input type="text" class="ipt_cpf" id="cpf_txt">
-                            <h1>Permissionamento:</h1>
-                            <select name="permissionamento" id="combo_permissao">
-                                <option value="2">ADMINISTRADOR</option>
-                                <option value="3">ANALISTA</option>
-                            </select>
+                <div class="caixas_esquerda">
+                    <div class="caixas_gestao_esquerda">
+                        <div class="caixas_gestao caixa_gestao_esquerda_cima">
+                            <h1>Cadastrar ATM</h1>
+                            <div class="linha_caixa_gestao linha_caixa_cadastrar"></div>
+                            <button class="botao botao_cadastrar_atm">Cadastrar</button>  
                         </div>
-                        <button onclick="validarFuncionario()">Cadastrar</button>
+                        <div class="caixas_gestao caixa_gestao_esquerda_baixo">
+                            <div class="caixa_gestao_cima">
+                                <h1>Definir parâmetros</h1>
+                                <div class="linha_caixa_gestao"></div>
+                            </div>
+                            <div id="caixa_cadastro_baixo">
+                                <div id="inputs">
+                                    <div class="inputs_cima">
+                                        <div class="caixa_input div_input_limite_max">
+                                            <h2>Limite máximo:</h2>
+                                            <input type="text" class="inputs ipt_limite_max">
+                                        </div>
+                                        <div class="caixa_input div_input_nivel_alerta">
+                                            <h2>Nível do alerta:</h2>
+                                            <select name="nivel_alerta" id="combo_nivel_alerta" class="inputs input_nivel_alerta">
+                                                <option value="2">CRÍTICO</option>
+                                                <option value="3">IMPORTANTE</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="inputs_baixo">
+                                        <h2>Componente:</h2>
+                                        <select name="componente" id="combo_componente" class="inputs input_componente">
+                                                <option value="2">CPU</option>
+                                                <option value="3">MEMÓRIA RAM</option>
+                                                <option value="4">DISCO</option>
+                                                <option value="5">REDE</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button onclick="validarFuncionario()" class="botao botao_definir_parametros">Definir</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="caixas_gestao">
                     <div class="caixa_gestao_cima">
-                        <h1>Gerenciar Funcionários</h1>
+                        <h1>ATMs cadastrados</h1>
                         <div class="linha_caixa_gestao"></div>
                     </div>
                     <div id="caixa_gestao_baixo">
@@ -80,7 +100,6 @@
                             <input type="text" id="busca_nome">
                         </div>
                         <div id="baixo_gestao">
-
                             <div class="caixa_gestao">
                                 <div class="infos_atms">
                                     <div class="informacoes informacoes-extensao-atms">
@@ -95,7 +114,7 @@
                                     </div>
                                     <div class="combo_status">
                                         <h1>Definir novo Status</h1>
-                                        <select>
+                                        <select class="inputs">
                                             <option>ATIVO</option>
                                             <option>INATIVO</option>
                                             <option>EM MANUTENÇÃO</option>
