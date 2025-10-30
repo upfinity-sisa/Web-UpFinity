@@ -208,13 +208,49 @@ div {
     padding: 0.5vw 0;
 }
 
+#combo_componentes {
+    text-align: center;
+    width: 80px;
+    height: 26px;
+    border: 3px solid #00c5cc;
+    border-radius: 10px;
+    background-color: white;
+    font-family: poppins medio;
+    color: #232023;
+}
+
+#caixa_global_graflinha {
+    height: 100%;
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
 #caixagraflinha {
     min-height: auto !important;
     height: 90%;
-    width: 42%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+}
+
+#linha_cima {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5vw;
+}
+
+#linha_cima h1 {
+    margin: 0;
+    font-family: poppins bold;
+    text-align: center;
+    font-size: 1.3vw;
+    color: #3c4041;
 }
 
 #torta_baixo {

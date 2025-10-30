@@ -1,3 +1,7 @@
+var dados_cpu = [10, 41, 35, 51, 49, 62, 69, 91, 76]
+var dados_ram = [24, 53, 74, 89, 75, 20, 40, 13, 30]
+var dados_disco = [20, 39, 20, 65, 40, 30, 67, 50, 60]
+
 function vwParaPx(vwValue) {
     const larguraViewport = window.innerWidth;
     const valorEmPx = (larguraViewport / 100) * vwValue;
@@ -7,15 +11,7 @@ function vwParaPx(vwValue) {
 var options = {
     series: [{
         name: "CPU",
-        data: [10, 41, 35, 51, 49, 62, 69, 91, 76]
-    },
-    {
-        name: "RAM",
-        data: [24, 53, 74, 89, 75, 20, 40, 13, 30]
-    },
-    {
-        name: "Disco",
-        data: [20, 39, 20, 65, 40, 30, 67, 50, 60]
+        data: dados_cpu
     }],
     legend: {
         position: 'top',
@@ -26,7 +22,7 @@ var options = {
         }
     },
     chart: {
-        height: "100%",
+        height: "90%",
         width: "100%",
         type: 'line',
         zoom: {
@@ -54,30 +50,35 @@ var options = {
         curve: 'straight',
         width: `${vwParaPx(0.2)}`
     },
-    title: {
-        text: 'Níveis dos componentes',
-        align: 'center',
-        style: {
-            fontSize: `${vwParaPx(1.2)}px`,
-            fontFamily: 'poppins bold',
-            fontWeight: 'bold',
-            color: "#3c4041"
-        }
-    },
     grid: {
         row: {
             colors: ['#f3f3f3', 'transparent'],
             opacity: 0.5
         }
     },
-    colors: ['#FF0000', '#00FF00', '#0adedeff'],
+    colors: ['#6ce5e8'],
     yaxis: {
+        min: 0,
+        max: 100,
         labels: {
             style: {
                 fontSize: `${vwParaPx(0.8)}px`,
                 fontFamily: 'poppins leve'
             }
+        },
+    },
+    annotations: {
+        yaxis: [{
+            y: 90.64,
+            borderColor: '#FF4560',
+            strokeDashArray: 0,
+        },
+        {
+            y: 86.14,
+            borderColor: '#f4a261',
+            strokeDashArray: 0,
         }
+        ]
     },
     xaxis: {
         categories: ['11:49:55', '11:50:00', '11:50:05', '11:50:10', '11:50:15', '11:50:20', '11:50:25', '11:50:30', '11:50:35'],
@@ -90,8 +91,85 @@ var options = {
     }
 };
 
-var chart = new ApexCharts(document.querySelector("#caixagraflinha"), options);
-chart.render();
+var chartLinha = new ApexCharts(document.querySelector("#caixagraflinha"), options);
+chartLinha.render();
+
+function trocarComponente() {
+    if (combo_componentes.value == "cpu") {
+
+        chartLinha.updateSeries([
+            {
+                name: "CPU",
+                data: dados_cpu
+            }
+        ]);
+        chartLinha.updateOptions({
+            colors: ['#6ce5e8'],
+            annotations: {
+                yaxis: [{
+                    y: 90.64,
+                    borderColor: '#FF4560',
+                    strokeDashArray: 0,
+                },
+                {
+                    y: 86.14,
+                    borderColor: '#f4a261',
+                    strokeDashArray: 0,
+                }]
+            }
+        }, true, true, true);
+
+
+    } else if (combo_componentes.value == "ram") {
+
+        chartLinha.updateSeries([
+            {
+                name: "RAM",
+                data: dados_ram
+            }
+        ]);
+        chartLinha.updateOptions({
+            colors: ['#41b8d5'],
+            annotations: {
+                yaxis: [{
+                    y: 87.04,
+                    borderColor: '#FF4560',
+                    strokeDashArray: 0,
+                },
+                {
+                    y: 82.04,
+                    borderColor: '#f4a261',
+                    strokeDashArray: 0,
+                }]
+            }
+        }, true, true, true);
+
+    } else if (combo_componentes.value == "disco") {
+
+        chartLinha.updateSeries([
+            {
+                name: "Disco",
+                data: dados_disco
+            }
+        ]);
+        chartLinha.updateOptions({
+            colors: ['#1b5979'],
+            annotations: {
+                yaxis: [{
+                    y: 87.62,
+                    borderColor: '#FF4560',
+                    strokeDashArray: 0,
+                },
+                {
+                    y: 82.68,
+                    borderColor: '#f4a261',
+                    strokeDashArray: 0,
+                }]
+            }
+        }, true, true, true);
+
+    }
+}
 
 window.addEventListener('resize', function () {
     window.location.reload(true);
