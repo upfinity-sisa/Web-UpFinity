@@ -1,6 +1,6 @@
-var dados_cpu = [10, 41, 35, 51, 49, 62, 69, 91, 76]
-var dados_ram = [24, 53, 74, 89, 75, 20, 40, 13, 30]
-var dados_disco = [20, 39, 20, 65, 40, 30, 67, 50, 60]
+var dados_cpu = [10, 41, 35, 51, 49, 62, 69, 91, 95]
+var dados_ram = [24, 53, 74, 89, 75, 20, 40, 80, 85]
+var dados_disco = [20, 39, 20, 65, 40, 30, 67, 50, 50]
 
 function vwParaPx(vwValue) {
     const larguraViewport = window.innerWidth;
