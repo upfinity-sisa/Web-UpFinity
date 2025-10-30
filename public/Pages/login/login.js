@@ -3,3 +3,12 @@ function validarEmail(email) {
     return regex.test(email);
 }
 
+function validacao() {
+    var email = document.getElementById("ipt_email_desktop").value;
+
+    if (email == "") {
+        alert("Preencha seu email!")
+        return;
+    }
+}
+

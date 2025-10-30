@@ -48,6 +48,7 @@ function Entrar() {
                 sessionStorage.FK_EMPRESA = jsonUsuario.fkEmpresa;
                 sessionStorage.CPF_USUARIO = jsonUsuario.CPF;
                 sessionStorage.FK_TIPOUSUARIO = jsonUsuario.fkTipoUsuario;
+                sessionStorage.SENHA = jsonUsuario.senha;
 
                 fetch(`/empresa/verificarPlano/${jsonUsuario.fkEmpresa}`, {
                     method: "GET",

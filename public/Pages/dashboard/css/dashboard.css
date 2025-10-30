@@ -208,13 +208,49 @@ div {
     padding: 0.5vw 0;
 }
 
+#combo_componentes {
+    text-align: center;
+    width: 80px;
+    height: 26px;
+    border: 3px solid #00c5cc;
+    border-radius: 10px;
+    background-color: white;
+    font-family: poppins medio;
+    color: #232023;
+}
+
+#caixa_global_graflinha {
+    height: 100%;
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
 #caixagraflinha {
     min-height: auto !important;
     height: 90%;
-    width: 42%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+}
+
+#linha_cima {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5vw;
+}
+
+#linha_cima h1 {
+    margin: 0;
+    font-family: poppins bold;
+    text-align: center;
+    font-size: 1.3vw;
+    color: #3c4041;
 }
 
 #torta_baixo {
@@ -708,7 +744,7 @@ div {
 
 .caixa_usuario {
     width: 80%;
-    height: 60%;
+    height: 43%;
     padding: 1vw 0;
     border: 3px solid #2db2b7;
     border-radius: 25px;
@@ -799,4 +835,47 @@ div {
 .apexcharts-menu-icon svg {
     width: 2vw;
     height: 2vw;
+}
+
+.caixa_gestao {
+    width: 80%;
+    padding: 2vw 0;
+    border: 3px solid #2db2b7;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.infos_atms {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.informacoes-extensao-atms {
+    gap: 45px;
+}
+
+.combo_status {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.combo_status select {
+    text-align: center;
+    font-family: poppins bold;
+    font-size: 1vw;
+    width: 100%;
+    height: 50px;
+    border-radius: 10   px;
+    border: 2px solid #999999;
+    color: #999999;
+    background-color: white;
 }

@@ -27,7 +27,8 @@ function autenticar(req, res) {
                   nome: resultadoAutenticar[0].nome,
                   CPF: resultadoAutenticar[0].CPF,
                   fkEmpresa: resultadoAutenticar[0].fkEmpresa,
-                  fkTipoUsuario: resultadoAutenticar[0].fkTipoUsuario
+                  fkTipoUsuario: resultadoAutenticar[0].fkTipoUsuario,
+                  
                 });
                 console.log(resultadoAutenticar[0]);
         } else if (resultadoAutenticar.length == 0) {
@@ -87,7 +88,28 @@ function cadastrarUsuario(req, res) {
   }
 }
 
+function alterarSenha(req, res) {
+  var idFuncionario = req.body.idUsuario;
+  var senha = req.body.senhaServer;
+
+  if (idFuncionario == undefined) {
+    res.status(400).send("O id do Funcionario está undefined!");
+  } else if (senha == undefined) {
+    res.status(400).send("A senha está undefined!")
+  } else {
+    usuarioModel.alterarSenha(idFuncionario, fkEmpresa, senha)
+      .then((resultado) => {
+      res.status(201).json(resultado);
+    }).catch((erro) => {
+      console.log("Erro ao alterar a senha:", erro);
+      res.status(500).json(erro);
+    });
+  }
+  
+}
+
 module.exports = {
   autenticar,
   cadastrarUsuario,
+  alterarSenha,
 };

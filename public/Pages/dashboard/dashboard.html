@@ -82,7 +82,7 @@
                                 <h1>RAM</h1>
                             </div>
                             <div class="kpi-baixo">
-                                <h1>70%</h1>
+                                <h1>85%</h1>
                                 <H2 style="color: #f4a261;">MODERADO</H2>
                             </div>
                         </div>
@@ -108,7 +108,18 @@
                         </div>
                     </div>
                     <div id="box-graficos">
-                        <div id="caixagraflinha"></div>
+                        <div id="caixa_global_graflinha">
+                            <div id="linha_cima">
+                                <h1>Níveis dos componentes</h1>
+                                <select onchange="trocarComponente()" id="combo_componentes">
+                                    <option value="cpu">CPU</option>
+                                    <option value="ram">RAM</option>
+                                    <option value="disco">Disco</option>
+                                </select>
+                            </div>
+                            <div id="caixagraflinha">
+                        </div>
+                        </div>
                         <div id="caixagraftorta">
                             <div id="torta_cima">
                                 <h1>Tempo de UPTIME e DOWNTIME do ATM na última semana</h1>
