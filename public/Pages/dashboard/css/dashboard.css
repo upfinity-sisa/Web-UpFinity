@@ -276,8 +276,8 @@ div {
     width: 56.8%;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    margin-left: 2.6%;
+    justify-content: flex-start;
+    margin-left: 4.5%;
 }
 
 .apexcharts-menu {
@@ -369,12 +369,27 @@ div {
 
 #caixalerta-cima {
     width: 100%;
-    height: 17%;
+    height: 15%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     gap: 2%;
+}
+
+#titulo_alertas {
+    display: flex;
+    gap: 0.5vw;
+    align-items: center ;
+}
+
+#titulo_alertas img {
+    height: 25px;
+}
+
+#titulo_alertas img:hover {
+    scale: 1.05;
+    cursor: pointer;
 }
 
 #caixalerta-cima h1 {
@@ -1022,3 +1037,67 @@ div {
     /* margin-top: -10%; */
 }
 
+dialog {
+    border: 5px solid #00c5cc;
+    width: 700px;
+    height: 420px;
+    display: none;
+    flex-direction: column;
+    border-radius: 25px;
+}
+
+#titulo_modal {
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+    text-align: center;
+    font-size: 1.3vw;
+    color: #3c4041;
+}
+
+table, th, td {
+    padding: 20px;
+    border: 2px solid #32b5c7;
+    border-collapse: collapse;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    font-size: 17px;
+}
+
+table {
+    width: 500px;
+    height: 250px;
+}
+
+.baixo_dialog {
+    height: 90%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.botoes_dialog {
+    gap: 25px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.botoes_dialog button {
+    width: 240px;
+    height: 50px;
+    background-color: white;
+    border: none;
+    color: white;
+    background-color: #00c5cc;
+    border-radius: 8px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+}
+
+.botoes_dialog button:hover {
+    cursor: pointer;
+    scale: 1.02;
+}
