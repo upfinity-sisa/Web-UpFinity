@@ -645,7 +645,8 @@ div {
     width: 90%;
 }
 
-#caixa_cadastro_baixo {
+#caixa_cadastro_baixo,
+#caixa_cadastro_baixo_atm {
     height: 88%;
     width: 100%;
     display: flex;
@@ -655,7 +656,12 @@ div {
     gap: 7%;
 }
 
-#caixa_cadastro_baixo button {
+#caixa_cadastro_baixo_atm {
+    gap: 0;
+}
+
+#caixa_cadastro_baixo button,
+#caixa_cadastro_baixo_atm button {
     text-align: center;
     font-family: "Montserrat", sans-serif;
     font-size: 1.7vw;
@@ -668,6 +674,11 @@ div {
     transition: 0.3s ease;
 }
 
+#caixa_cadastro_baixo_atm button {
+    font-size: 1.2vw;
+}
+
+#caixa_cadastro_baixo button:hover,
 #caixa_cadastro_baixo button:hover {
     cursor: pointer;
     color: #00c5cc;
@@ -675,7 +686,8 @@ div {
     border: 2px solid #00c5cc;
 }
 
-#inputs h1 {
+#inputs h1,
+#inputs_atm h1 {
     margin: 0;
     font-family: "Montserrat", sans-serif;
     color: #797a7b;
@@ -718,15 +730,18 @@ div {
 .botao_cadastrar_atm {
     margin-top: 5%;
     height: 20%;
-    font-size: 1.3vw;
+    font-size: 1.2vw;
+    font-weight: bold;
 }
 
-#inputs select:hover {
+#inputs select:hover,
+#inputs_atm select:hover {
     cursor: pointer;
 }
 
 
-#inputs {
+#inputs,
+#inputs_atm {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -1000,7 +1015,7 @@ div {
 
 .ipt_limite_max {
     margin-top: 3%;
-    height: 28%;
+    height: 26%;
     text-align: center;
 }
 
@@ -1024,7 +1039,7 @@ div {
 .botao_definir_parametros {
     height: 15%;
     margin: 0;
-    /* margin-top: -10%; */
+    font-weight: bold;
 }
 
 dialog {
