@@ -666,12 +666,19 @@ div {
     font-family: "Montserrat", sans-serif;
     font-size: 1.7vw;
     width: 80%;
-    height: 10%;
+    height: 12%;
     border-radius: 15px;
     border: none;
     background-color: #00c5cc;
     color: #fff;
     transition: 0.3s ease;
+}
+
+#caixa_cadastro_baixo_atm button:hover {
+    cursor: pointer;
+    color: #00c5cc;
+    background-color: #fff;
+    border: 2px solid #00c5cc;
 }
 
 #caixa_cadastro_baixo_atm button {
@@ -728,8 +735,8 @@ div {
 }
 
 .botao_cadastrar_atm {
-    margin-top: 5%;
-    height: 20%;
+    margin-top: 6%;
+    height: 22%;
     font-size: 1.2vw;
     font-weight: bold;
 }
@@ -881,12 +888,13 @@ div {
 .botoes {
     display: flex;
     width: 90%;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 25px;
 }
 
 .botoes button {
     height: 100%;
-    width: 45%;
+    width: 42%;
     background-color: white;
     font-size: 1.2vw;
     font-family: "Montserrat", sans-serif;
@@ -949,6 +957,10 @@ div {
 
 .informacoes-extensao-atms {
     gap: 45px;
+}
+
+.informacoes-extensao-atms h1 {
+    font-size: 22px;
 }
 
 .combo_status {
