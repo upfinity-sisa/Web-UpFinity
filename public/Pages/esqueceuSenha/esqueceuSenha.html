@@ -24,11 +24,14 @@
         rel="stylesheet">
 
     <!-- JavaScript -->
-    <script src="./login.js" defer></script>
-    <script src="./js/login_desktop.js" defer></script>
+    <script src="./esqueceuSenha.js" defer></script>
+    <script src="./js/esqueceuSenha_desktop.js" defer></script>
 
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+    <!-- Biblioteca que gera QR -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
 
     <title>UpFinity</title>
 </head>
@@ -59,7 +62,7 @@
                 </div>
                 <div id="subcontainer-desktop-info">
                     <div id="box-desktop-info">
-                        <h1 id="h1-desktop">Login</h1>
+                        <h1 id="h1-desktop">Recuperar conta</h1>
                         <div id="subox-desktop-info">
                             <div id="container-forms-desktop">
                                 <form id="form-login-empresa-desktop">
@@ -68,27 +71,7 @@
                                         <input id="ipt_email_desktop" class="ipt_style_desktop" type="email"
                                             placeholder="Ex: seuemail@email.com" required>
                                     </div>
-                                    <div class="container-ipt-desktop">
-                                        <label class="label-ipt-desktop" for="ipt_senha_desktop">Senha</label>
-                                        <input id="ipt_senha_desktop" class="ipt_style_desktop" type="password"
-                                            placeholder="Ex: ********" required>
-                                    </div>
-                                    <button class="btn_style-form-desktop" id="btnEntrar_desktop" onclick="Entrar()"
-                                        type="button">Entrar</button>
-                                    <div id="container_acess_desktop">
-                                        <div id="container_lembrar_desktop">
-                                            <input type="checkbox" id="ipt_lembrar_desktop">
-                                            <label class="label-ipt-desktop ps-1" for="lembrar_desktop">Lembrar de
-                                                mim</label>
-                                        </div>
-                                        <a href="../../Pages/esqueceuSenha/esqueceuSenha.html" id="a_esqueceu_senha_desktop"><span
-                                                id="span_esqueceu_senha_desktop">Esqueceu a senha?</span></a>
-                                    </div>
-                                    <div id="container_possui_desktop">
-                                        <a href="../cadastro/cadastro.html" id="a_possui_desktop"><span
-                                                id="span_possui_desktop">Não possui uma conta? Faça seu
-                                                cadastro</span></a>
-                                    </div>
+                                    <button class="btn_style-form-desktop" id="btnEntrar_desktop">Enviar código de verificação</button>
                                 </form>
                             </div>
                         </div>

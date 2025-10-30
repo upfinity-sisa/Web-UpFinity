@@ -61,8 +61,17 @@ function alterarSenha(idFuncionario, senha) {
       return database.executar(instrucaoSql);
 }
 
+function verificarEmail(email) {
+  var instrucaoSql = `
+  SELECT idUsuario, email FROM Usuario WHERE email = '${email}';
+  `
+
+  return database.executar(instrucaoSql);
+}
+
 module.exports = {
   autenticar,
   cadastrarUsuario,
   alterarSenha,
+  verificarEmail,
 };

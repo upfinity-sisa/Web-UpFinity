@@ -97,7 +97,7 @@ body, html {
 }
 
 #container_planos_desktop {
-    height: 95vh;
+    height: 45vw;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -190,9 +190,9 @@ body, html {
     flex-direction: column;
 }
 
-.p_desc_planos_desktop {
+.p_desc_planos_desktop, .spn_desc_planos_desktop {
     width: 90%;
-    font-size: 1.15vw;
+    font-size: 1vw;
     text-align: center;
     color: #000;
 }
@@ -208,6 +208,7 @@ body, html {
     border: 1px solid #000000;
     color: #000;
     transition: 0.2s ease-in;
+    font-size: 1vw;
 }
 
 .box_planos:hover {
@@ -235,6 +236,17 @@ body, html {
     color: #ffffff;
     border-radius: 12px;
     width: 45%;
+}
+
+.box_planos:hover .spn_desc_planos_desktop {
+    color: #00c4cc;
+}
+
+.spn_desc_planos_desktop {
+    transition: 0.2s ease-in;
+    font-size: 1.15vw;
+    color: #fff;
+    font-weight: 450;
 }
 
 .btn_adquirir_planos_desktop:active {

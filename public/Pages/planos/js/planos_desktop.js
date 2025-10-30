@@ -108,8 +108,6 @@ const btn_pagamento_desktop = document.getElementById('btn_pagamento_desktop')
 btn_pagamento_desktop.addEventListener('click', function () {
     btn_pagamento_desktop.disabled = true;
 
-    alert(planoEscolhido)
-    alert(fk_empresa)
     fetch("/empresa/vincularPlano", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },

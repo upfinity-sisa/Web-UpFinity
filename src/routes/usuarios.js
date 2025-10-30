@@ -15,7 +15,11 @@ router.post("/autenticar", function (req, res) {
 });
 
 router.post("/alterarSenha", function (req, res) {
-  usuarioController.alterarSenha(req,req);
+  usuarioController.alterarSenha(req,res);
+})
+
+router.get("/verificarEmail/:email", function (req, res) {
+  usuarioController.verificarEmail(req,res);
 })
 
 module.exports = router;
