@@ -1,3 +1,8 @@
+@font-face {
+    font-family: poppins leve;
+    src: url(../../../Assets/assets_dashboard/poppins/Poppins-Light.ttf);
+}
+
 body {
     margin: 0;
 }
