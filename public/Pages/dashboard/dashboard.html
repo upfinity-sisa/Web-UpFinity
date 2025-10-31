@@ -59,6 +59,18 @@
                         <option value="">ATM 1</option>
                         <option value="">ATM 2</option>
                         <option value="">ATM 3</option>
+                        <option value="">ATM 4</option>
+                        <option value="">ATM 5</option>
+                        <option value="">ATM 6</option>
+                        <option value="">ATM 7</option>
+                        <option value="">ATM 8</option>
+                        <option value="">ATM 9</option>
+                        <option value="">ATM 10</option>
+                        <option value="">ATM 11</option>
+                        <option value="">ATM 12</option>
+                        <option value="">ATM 13</option>
+                        <option value="">ATM 14</option>
+                        <option value="">ATM 15</option>
                     </select>
                 </div>
 
@@ -72,8 +84,8 @@
                                 <h1>CPU</h1>
                             </div>
                             <div class="kpi-baixo">
-                                <h1>95%</h1>
-                                <H2 style="color: #e63946;">GRAVE</H2>
+                                <h1>95.13%</h1>
+                                <H2 style="color: #e63946;">CRÍTICO</H2>
                             </div>
                         </div>
                         <div class="kpi">
@@ -82,7 +94,7 @@
                                 <h1>RAM</h1>
                             </div>
                             <div class="kpi-baixo">
-                                <h1>85%</h1>
+                                <h1>85.01%</h1>
                                 <H2 style="color: #f4a261;">MODERADO</H2>
                             </div>
                         </div>
@@ -92,7 +104,7 @@
                                 <h1>DISCO</h1>
                             </div>
                             <div class="kpi-baixo">
-                                <h1>50%</h1>
+                                <h1>50.22%</h1>
                                 <H2 style="color: #00bf35;">NORMAL</H2>
                             </div>
                         </div>
@@ -102,7 +114,7 @@
                                 <h1>REDE</h1>
                             </div>
                             <div class="kpi-baixo">
-                                <h1>90MB</h1>
+                                <h1>Conectado</h1>
                                 <H2 style="color: #a2a2a2;">ENVIO DE PACOTES</H2>
                             </div>
                         </div>
@@ -110,6 +122,7 @@
                     <div id="box-graficos">
                         <div id="caixa_global_graflinha">
                             <div id="linha_cima">
+                                <img onclick="exibirDialog()" id="icone_informativo" src="../../Assets/assets_dashboard/iconeInformativo.png">
                                 <h1>Níveis dos componentes</h1>
                                 <select onchange="trocarComponente()" id="combo_componentes">
                                     <option value="cpu">CPU</option>
@@ -133,25 +146,12 @@
                         <div id="caixalerta-cima">
                             <div id="titulo_alertas">
                                 <h1>Histórico de Alertas</h1>
-                                <img onclick="exibirDialog()" src="../../Assets/assets_dashboard/iconeInformativo.png">
                             </div>
                             <div class="linha"></div>
                         </div>
                         <div id="caixalerta-baixo">
                             <div class="box_alerta">
-                                <h3>25/06/25, 15:45:30</h3>
-                                <div class="gravidade-alerta">
-                                    <img src="../../Assets/assets_dashboard/alertaVermelho.png"
-                                        alt="simbolo de alerta grave">
-                                    <h1>GRAVE</h1>
-                                </div>
-                                <div class="componente-alerta">
-                                    <h4>Componente: </h4>
-                                    <h2>RAM</h2>
-                                </div>
-                            </div>
-                            <div class="box_alerta">
-                                <h3>25/06/25, 15:45:30</h3>
+                                <h3>05/11/25, 11:50:14</h3>
                                 <div class="gravidade-alerta">
                                     <img src="../../Assets/assets_dashboard/alertaAmarelo.png"
                                         alt="simbolo de alerta moderado">
@@ -163,7 +163,56 @@
                                 </div>
                             </div>
                             <div class="box_alerta">
+                                <h3>05/11/25, 11:50:11</h3>
+                                <div class="gravidade-alerta">
+                                    <img src="../../Assets/assets_dashboard/alertaVermelho.png"
+                                        alt="simbolo de alerta grave">
+                                    <h1>CRÍTICO</h1>
+                                </div>
+                                <div class="componente-alerta">
+                                    <h4>Componente: </h4>
+                                    <h2>CPU</h2>
+                                </div>
+                            </div>
+                            
+                            <div class="box_alerta">
                                 <h3>25/06/25, 15:45:30</h3>
+                                <div class="gravidade-alerta">
+                                    <img src="../../Assets/assets_dashboard/alertaVermelho.png"
+                                        alt="simbolo de alerta grave">
+                                    <h1>CRÍTICO</h1>
+                                </div>
+                                <div class="componente-alerta">
+                                    <h4>Componente: </h4>
+                                    <h2>RAM</h2>
+                                </div>
+                            </div>
+                            <div class="box_alerta">
+                                <h3>21/06/25, 15:40:51</h3>
+                                <div class="gravidade-alerta">
+                                    <img src="../../Assets/assets_dashboard/alertaAmarelo.png"
+                                        alt="simbolo de alerta moderado">
+                                    <h1 style="color: #f4a261;">MODERADO</h1>
+                                </div>
+                                <div class="componente-alerta">
+                                    <h4>Componente: </h4>
+                                    <h2>RAM</h2>
+                                </div>
+                            </div>
+                            <div class="box_alerta">
+                                <h3>21/06/25, 15:40:23</h3>
+                                <div class="gravidade-alerta">
+                                    <img src="../../Assets/assets_dashboard/alertaVermelho.png"
+                                        alt="simbolo de alerta grave">
+                                    <h1>CRÍTICO</h1>
+                                </div>
+                                <div class="componente-alerta">
+                                    <h4>Componente: </h4>
+                                    <h2>CPU</h2>
+                                </div>
+                            </div>
+                            <div class="box_alerta">
+                                <h3>19/06/25, 15:43:10</h3>
                                 <div class="gravidade-alerta">
                                     <img src="../../Assets/assets_dashboard/alertaAmarelo.png"
                                         alt="simbolo de alerta moderado">
@@ -175,41 +224,18 @@
                                 </div>
                             </div>
                             <div class="box_alerta">
-                                <h3>25/06/25, 15:45:30</h3>
+                                <h3>19/06/25, 14:43:00</h3>
                                 <div class="gravidade-alerta">
                                     <img src="../../Assets/assets_dashboard/alertaVermelho.png"
                                         alt="simbolo de alerta grave">
-                                    <h1>GRAVE</h1>
+                                    <h1>CRÍTICO</h1>
                                 </div>
                                 <div class="componente-alerta">
                                     <h4>Componente: </h4>
                                     <h2>Disco</h2>
                                 </div>
                             </div>
-                            <div class="box_alerta">
-                                <h3>25/06/25, 15:45:30</h3>
-                                <div class="gravidade-alerta">
-                                    <img src="../../Assets/assets_dashboard/alertaVermelho.png"
-                                        alt="simbolo de alerta grave">
-                                    <h1>GRAVE</h1>
-                                </div>
-                                <div class="componente-alerta">
-                                    <h4>Componente: </h4>
-                                    <h2>CPU</h2>
-                                </div>
-                            </div>
-                            <div class="box_alerta">
-                                <h3>25/06/25, 15:45:30</h3>
-                                <div class="gravidade-alerta">
-                                    <img src="../../Assets/assets_dashboard/alertaAmarelo.png"
-                                        alt="simbolo de alerta moderado">
-                                    <h1 style="color: #f4a261;">MODERADO</h1>
-                                </div>
-                                <div class="componente-alerta">
-                                    <h4>Componente: </h4>
-                                    <h2>Disco</h2>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -244,7 +270,7 @@
             </table>
             <div class="botoes_dialog">
                 <button onclick="fechar()">Fechar Tabela</button>
-                <button>Definir Alertas</button>
+                <button onclick="window.location='../gestaoATM/gestaoATM.html'">Definir Alertas</button>
             </div>
         </div>
     </dialog>

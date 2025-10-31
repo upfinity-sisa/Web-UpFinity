@@ -373,11 +373,12 @@ div {
     align-items: center ;
 }
 
-#titulo_alertas img {
-    height: 25px;
+#icone_informativo {
+    height: 1vw;
+    transition: ease 0.3s;
 }
 
-#titulo_alertas img:hover {
+#icone_informativo:hover {
     scale: 1.05;
     cursor: pointer;
 }
