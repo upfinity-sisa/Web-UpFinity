@@ -1,6 +1,6 @@
 @font-face {
     font-family: poppins leve;
-    src: url(../../../Assets/assets_dashboard/poppins/Poppins-Light.ttf);
+    src: url("../../../Assets/assets_dashboard/poppins/Poppins-Light.ttf");
 }
 
 body {
@@ -125,7 +125,6 @@ div {
 #titulo {
     margin: 0;
     font-family: "Montserrat", sans-serif;
-    font-family: "Montserrat", sans-serif;
     font-size: 2.45vw;
     margin-left: 2%;
     white-space: nowrap;
@@ -155,7 +154,7 @@ div {
     background-color: #00c7cd;
     border: 2px solid #2db2b7;
     border-radius: 25px;
-    font-family:  "Montserrat", sans-serif;
+    font-family: "Montserrat", sans-serif;
     color: white;
     font-size: 1.2vw;
     font-weight: bold;
@@ -240,7 +239,7 @@ div {
     margin: 0;
     font-family: "Montserrat", sans-serif;
     text-align: center;
-    font-size: 1.5vw;
+    font-size: 1.3vw;
     color: #3c4041;
 }
 
@@ -268,7 +267,7 @@ div {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    margin-left: 4.3%;
+    margin-left: 4.5%;
 }
 
 .apexcharts-menu {
@@ -385,7 +384,7 @@ div {
 
 #caixalerta-cima h1 {
     max-width: 90%;
-    font-size: 1.4vw;
+    font-size: 1.2vw;
     margin: 0;
     text-align: center;
     font-family: "Montserrat", sans-serif;
@@ -590,8 +589,26 @@ div {
     box-shadow: rgba(50, 50, 50, 0.1) 0px 10px 50px;
 }
 
+.caixas_gestao_esquerda {
+    height: 74%;
+}
+
+.caixa_gestao_esquerda_cima {
+    height: 40%;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.caixa_gestao_esquerda_baixo {
+    width: 100%;
+    height: 87%;
+    margin-top: 5%;
+}
+
 .caixa_gestao_cima {
-    height: 14%;
+    height: 16%;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -600,11 +617,22 @@ div {
     gap: 10%;
 }
 
-.caixa_gestao_cima h1 {
+.caixa_gestao_cima h1,
+.caixa_gestao_esquerda_cima h1 {
     margin: 0;
     font-family: "Montserrat", sans-serif;
     font-size: 1.5vw;
     color: #5c5f60;
+}
+
+.caixa_gestao_cima h1 {
+    margin-top: 2%;
+}
+
+.caixa_gestao_esquerda_cima h1 {
+    text-align: center;
+    padding-top: 6%;
+    padding-bottom: 3%;
 }
 
 .linha_caixa_gestao {
@@ -613,23 +641,121 @@ div {
     height: 3px;
 }
 
-#caixa_cadastro_baixo {
+.linha_caixa_cadastrar {
+    width: 90%;
+}
+
+#caixa_cadastro_baixo,
+#caixa_cadastro_baixo_atm {
     height: 88%;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    gap: 8%;
+    gap: 7%;
 }
 
-#inputs h1 {
+#caixa_cadastro_baixo_atm {
+    gap: 0;
+}
+
+#caixa_cadastro_baixo button,
+#caixa_cadastro_baixo_atm button {
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.7vw;
+    width: 80%;
+    height: 12%;
+    border-radius: 15px;
+    border: none;
+    background-color: #00c5cc;
+    color: #fff;
+    transition: 0.3s ease;
+}
+
+#caixa_cadastro_baixo_atm button:hover {
+    cursor: pointer;
+    color: #00c5cc;
+    background-color: #fff;
+    border: 2px solid #00c5cc;
+}
+
+#caixa_cadastro_baixo_atm button {
+    font-size: 1.2vw;
+}
+
+#caixa_cadastro_baixo button:hover,
+#caixa_cadastro_baixo button:hover {
+    cursor: pointer;
+    color: #00c5cc;
+    background-color: #fff;
+    border: 2px solid #00c5cc;
+}
+
+#inputs h1,
+#inputs_atm h1 {
     margin: 0;
     font-family: "Montserrat", sans-serif;
     color: #797a7b;
     font-size: 1vw;
     float: left;
     width: 78%;
+}
+
+.inputs {
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1vw;
+    width: 80%;
+    border-radius: 15px;
+    border: 2px solid #999999;
+    color: #999999;
+    background-color: white;
+}
+
+.botao {
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1vw;
+    width: 80%;
+    height: 10%;
+    border-radius: 15px;
+    border: none;
+    background-color: #00c5cc;
+    color: #fff;
+    transition: 0.3s ease;
+}
+
+.botao:hover {
+    cursor: pointer;
+    color: #00c5cc;
+    background-color: #fff;
+    border: 2px solid #00c5cc;
+}
+
+.botao_cadastrar_atm {
+    margin-top: 6%;
+    height: 22%;
+    font-size: 1.2vw;
+    font-weight: bold;
+}
+
+#inputs select:hover,
+#inputs_atm select:hover {
+    cursor: pointer;
+}
+
+
+#inputs,
+#inputs_atm {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    height: 70%;
+    width: 100%;
+    margin-top: 2%;
 }
 
 #inputs input {
@@ -653,40 +779,6 @@ div {
     border: 2px solid #999999;
     color: #999999;
     background-color: white;
-}
-
-#caixa_cadastro_baixo button {
-    text-align: center;
-    font-family: "Montserrat", sans-serif;
-    font-size: 1.7vw;
-    width: 80%;
-    height: 10%;
-    border-radius: 15px;
-    border: none;
-    background-color: #00c5cc;
-    color: #fff;
-    transition: 0.3s ease;
-}
-
-#inputs select:hover {
-    cursor: pointer;
-}
-
-#caixa_cadastro_baixo button:hover {
-    cursor: pointer;
-    color: #00c5cc;
-    background-color: #fff;
-    border: 2px solid #00c5cc;
-}
-
-#inputs {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: column;
-    height: 70%;
-    width: 100%;
-    margin-top: 2%;
 }
 
 #caixa_gestao_baixo {
@@ -796,12 +888,13 @@ div {
 .botoes {
     display: flex;
     width: 90%;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 25px;
 }
 
 .botoes button {
     height: 100%;
-    width: 45%;
+    width: 42%;
     background-color: white;
     font-size: 1.2vw;
     font-family: "Montserrat", sans-serif;
@@ -866,12 +959,23 @@ div {
     gap: 45px;
 }
 
+.informacoes-extensao-atms h1 {
+    font-size: 22px;
+}
+
 .combo_status {
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
+}
+
+.combo_status h1 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.2vw;
+    color: #5c5f60;
+    margin-top: 10%;
 }
 
 .combo_status select {
@@ -884,6 +988,70 @@ div {
     border: 2px solid #999999;
     color: #999999;
     background-color: white;
+}
+
+.caixas_esquerda {
+    margin-top: 1%;
+    width: 38%;
+    height: 90%;
+}
+
+.inputs_cima {
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+    width: 86%;
+    height: 100%;
+}
+
+.inputs_baixo {
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    text-align: center;
+}
+
+.caixa_input {
+    align-items: center;
+    width: 100%;
+    text-align: center;
+}
+
+.div_input_limite_max {
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.ipt_limite_max {
+    margin-top: 3%;
+    height: 26%;
+    text-align: center;
+}
+
+.input_nivel_alerta {
+    margin-top: 3%;
+    padding: 3%;
+}
+
+.input_componente {
+    height: 35%;
+    margin-top: 1%;
+    text-align: center;
+    font-size: 1vw;
+}
+
+.inputs_cima h2,
+.inputs_baixo h2 {
+    color: #5c5f60;
+}
+
+.botao_definir_parametros {
+    height: 15%;
+    margin: 0;
+    font-weight: bold;
 }
 
 dialog {
