@@ -1,5 +1,10 @@
 function validarFuncionario() {
 
+    if (nome_txt.value == "" || cpf_txt.value == "" || email_txt.value == "") {
+        alert("Campos em branco, favor preencher todos os campos")
+        return
+    }
+
     var emailVar = email_txt.value
     var cpfVar = ((cpf_txt.value).replaceAll(".", "")).replaceAll("-", "")
 
