@@ -69,12 +69,12 @@ var options = {
     },
     annotations: {
         yaxis: [{
-            y: 90.64,
+            y: 37.83,
             borderColor: '#FF4560',
             strokeDashArray: 0,
         },
         {
-            y: 86.14,
+            y: 31.23,
             borderColor: '#f4a261',
             strokeDashArray: 0
         }
@@ -107,12 +107,12 @@ function trocarComponente() {
             colors: ['#6ce5e8'],
             annotations: {
                 yaxis: [{
-                    y: 90.64,
+                    y: 37.83,
                     borderColor: '#FF4560',
                     strokeDashArray: 0,
                 },
                 {
-                    y: 86.14,
+                    y: 31.23,
                     borderColor: '#f4a261',
                     strokeDashArray: 0,
                 }]
@@ -132,12 +132,12 @@ function trocarComponente() {
             colors: ['#41b8d5'],
             annotations: {
                 yaxis: [{
-                    y: 87.04,
+                    y: 52.46,
                     borderColor: '#FF4560',
                     strokeDashArray: 0,
                 },
                 {
-                    y: 82.04,
+                    y: 51.33,
                     borderColor: '#f4a261',
                     strokeDashArray: 0,
                 }]
@@ -156,12 +156,12 @@ function trocarComponente() {
             colors: ['#1b5979'],
             annotations: {
                 yaxis: [{
-                    y: 78.55,
+                    y: 59.50,
                     borderColor: '#FF4560',
                     strokeDashArray: 0,
                 },
                 {
-                    y: 77.79,
+                    y: 57.50,
                     borderColor: '#f4a261',
                     strokeDashArray: 0,
                 }]
