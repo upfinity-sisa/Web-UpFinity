@@ -156,12 +156,12 @@ function trocarComponente() {
             colors: ['#1b5979'],
             annotations: {
                 yaxis: [{
-                    y: 87.62,
+                    y: 78.55,
                     borderColor: '#FF4560',
                     strokeDashArray: 0,
                 },
                 {
-                    y: 82.68,
+                    y: 77.79,
                     borderColor: '#f4a261',
                     strokeDashArray: 0,
                 }]
