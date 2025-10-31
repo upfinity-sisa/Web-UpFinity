@@ -31,7 +31,7 @@ btnEntrar_desktop.addEventListener('click', function (event) {
             resposta.json().then(json => {
                 sessionStorage.EMAIL_USUARIO = json.email;
                 sessionStorage.ID_USUARIO = json.idUsuario;
-                
+                console.log(json)
             })
             alert(sessionStorage.getItem("EMAIL_USUARIO"))
             alert(sessionStorage.getItem("ID_USUARIO"))
