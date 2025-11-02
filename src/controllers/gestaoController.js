@@ -23,8 +23,8 @@ function validarFuncionario(req, res) {
 
 function exibirFuncionarios(req, res) {
     var fkEmpresa = req.params.fkEmpresa;
-
-    gestaoModel.exibirFuncionarios(fkEmpresa).then((resultado) => {
+    var idLogado = req.params.idUsuario;
+    gestaoModel.exibirFuncionarios(fkEmpresa, idLogado).then((resultado) => {
         res.status(201).json(resultado);
     });
 }

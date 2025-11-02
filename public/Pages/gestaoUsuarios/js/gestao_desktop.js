@@ -1,7 +1,17 @@
+// const alerta_erros_desktop = document.getElementById('alerta_erros_desktop')
+// const span_erro_desktop = document.getElementById('span-erro-desktop')
+// const h2_erro_desktop = document.getElementById('h2-erro-desktop')
+// const btnFecharErro_desktop = document.getElementById('btnFecharErro-desktop')
+
+// btnFecharErro_desktop.addEventListener('click', function () {
+//     alerta_erros_desktop.classList.add('d-none')
+// })
+
 function validarFuncionario() {
 
     if (nome_txt.value == "" || cpf_txt.value == "" || email_txt.value == "") {
-        alert("Campos em branco, favor preencher todos os campos")
+        alerta_erros_desktop.classList.remove('d-none')
+        span_erro_desktop.innerText = 'Campos em branco, favor preencher todos os campos.'
         return
     }
 
@@ -22,7 +32,8 @@ function validarFuncionario() {
             resposta.json().then((resposta2) => {
                 console.log(resposta2)
                 if (resposta2.length > 0) {
-                    alert("Usuário já cadastrado, favor cadastrar CPF e Email válidos")
+                    alerta_erros_desktop.classList.remove('d-none')
+                    span_erro_desktop.innerText = 'Usuário já cadastrado, favor cadastrar CPF e Email válidos'
                     return
                 }
                 cadastrarFuncionario()
@@ -71,12 +82,12 @@ function cadastrarFuncionario() {
 
 function exibirCaixasFuncionarios(resposta2) {
 
-    for (let i = 0; i<resposta2.length; i++) {
+    for (let i = 0; i < resposta2.length; i++) {
 
         var stringButton = `<button onclick="promoverFuncionario(${resposta2[i].idUsuario})" class="btn_promover">Promover</button>`
-        
+
         if (resposta2[i].fkTipoUsuario == 2) {
-        stringButton = `<button style="color: #999999; border-color: #797a7b; background-color: #f6f6f6;" class="btn_promover">Promover</button>`
+            stringButton = `<button style="color: #999999; border-color: #797a7b; background-color: #f6f6f6;" class="btn_promover">Promover</button>`
         }
         console.log("Proxima fk")
         console.log(resposta2[i].fkTipoUsuario)
@@ -111,9 +122,10 @@ function exibirCaixasFuncionarios(resposta2) {
 
 function exibirFuncionarios() {
 
-    var fkEmpresa = sessionStorage.ID_USUARIO
-    
-    fetch(`/gestao/exibirFuncionarios/${fkEmpresa}`, {
+    var fkEmpresa = sessionStorage.FK_EMPRESA
+    var idUsuario = sessionStorage.ID_USUARIO
+
+    fetch(`/gestao/exibirFuncionarios/${fkEmpresa}/${idUsuario}`, {
         method: "GET",
     })
         .then(function (resposta) {
@@ -126,7 +138,7 @@ function exibirFuncionarios() {
         .catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
         });
-    
+
 }
 exibirFuncionarios()
 
@@ -139,17 +151,18 @@ function buscarFuncionarios() {
         exibirFuncionarios()
         return
     }
-    
+
     fetch(`/gestao/exibirFuncionariosPorBusca/${fkEmpresa}/${nome}`, {
         method: "GET",
     })
         .then(function (resposta) {
             resposta.json().then((resposta2) => {
                 console.log(resposta2)
-                
+
                 busca_nome.value = ""
                 if (resposta2.length == 0) {
-                    alert("Nenhum usuário com esse nome foi encontrado")
+                    alerta_erros_desktop.classList.remove('d-none')
+                    span_erro_desktop.innerText = 'Nenhum usuário com esse nome foi encontrado'
                     return
                 }
                 baixo_gestao.innerHTML = ""
@@ -163,7 +176,7 @@ function buscarFuncionarios() {
 }
 
 function promoverFuncionario(idFuncionario) {
-    
+
     fetch("/gestao/promoverFuncionario", {
         method: "POST",
         headers: {
@@ -183,7 +196,7 @@ function promoverFuncionario(idFuncionario) {
 }
 
 function removerFuncionario(idFuncionario) {
-    
+
     fetch("/gestao/removerFuncionario", {
         method: "POST",
         headers: {

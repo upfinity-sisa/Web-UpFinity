@@ -1,0 +1,54 @@
+#alerta_erros_desktop {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.638);
+    backdrop-filter: blur(2px);
+    z-index: 999;
+}
+
+
+#box_container_erro_desktop {
+    height: 25%;
+    width: 40%;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: #00c4cc 2px solid;
+    border-radius: 15px;
+}
+
+#container-erro-desktop {
+    overflow: hidden;
+    height: 65%;
+    width: 95%;
+    background: #000;
+}
+
+#h2-erro-desktop {
+    font-size: 1.8vw;
+    font-weight: bold;
+    color: #f01008;
+}
+
+#btnFecharErro-desktop {
+    all: unset;
+    width: 8vw;
+    color: #fff;
+    height: 2.1vw;
+    border: #00c4cc 1px solid;
+    text-align: center;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+#btnFecharErro-desktop:hover {
+    background: #00c4cc;
+    color: #000;
+}

@@ -11,7 +11,7 @@ router.post("/validarFuncionario", function (req, res) {
   gestaoController.validarFuncionario(req, res);
 });
 
-router.get("/exibirFuncionarios/:fkEmpresa", function (req, res) {
+router.get("/exibirFuncionarios/:fkEmpresa/:idUsuario", function (req, res) {
     gestaoController.exibirFuncionarios(req, res);
 })
 

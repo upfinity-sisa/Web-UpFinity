@@ -17,14 +17,13 @@ function validarFuncionario(email, cpf) {
     return database.executar(instrucaoSql);
 }
 
-function exibirFuncionarios(fkEmpresa) {
+function exibirFuncionarios(fkEmpresa, idLogado) {
     var instrucaoSql = `
 
     select Usuario.*, TipoUsuario.descricao from Usuario join 
 		TipoUsuario on 
         TipoUsuario.idTipoUsuario = Usuario.fkTipoUsuario
-		where Usuario.fkEmpresa = ${fkEmpresa} order by idUsuario;
-
+		where Usuario.fkEmpresa = ${fkEmpresa} and Usuario.idUsuario != ${idLogado} order by idUsuario;
     `
     return database.executar(instrucaoSql);
 }
