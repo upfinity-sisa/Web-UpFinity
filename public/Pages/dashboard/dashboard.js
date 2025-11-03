@@ -226,7 +226,7 @@ var options = {
         y: {
             formatter: function (val) {
 
-                return val + " (unidades ou seu valor original)";
+                return val + "%";
             },
             title: {
                 formatter: function (seriesName) {
@@ -237,7 +237,7 @@ var options = {
         theme: 'light',
         style: {
             fontSize: `${vwParaPx(0.8)}px`,
-            fontFamily: 'poppins',
+            fontFamily: 'poppins leve',
         }
     },
     legend: {
