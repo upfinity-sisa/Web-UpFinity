@@ -1,3 +1,10 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat", sans-serif;
+}
+
 #alerta_erros_desktop {
     position: fixed;
     height: 100vh;
@@ -35,7 +42,10 @@
     font-weight: bold;
     color: #f01008;
 }
-
+#span-erro-desktop {
+    font-size: 1vw;
+    color: #fff;
+}
 #btnFecharErro-desktop {
     all: unset;
     width: 8vw;

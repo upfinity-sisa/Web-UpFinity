@@ -10,6 +10,10 @@
     z-index: 999;
 }
 
+#span-erro-desktop {
+    font-size: 1vw;
+    color: #fff;
+}
 
 #box_container_erro_desktop {
     height: 25%;
@@ -82,6 +86,7 @@
     align-items: center;
     justify-content: space-between;
 }
+
 #a_voltar_desktop {
     cursor: pointer;
 }

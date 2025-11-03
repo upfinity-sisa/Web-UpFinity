@@ -5,7 +5,7 @@ function validarSessao() {
     if (email == null || nome == null) {
         window.location = "../../Pages/Login/login.html";
     }
-    
+
 }
 
 const btSair = document.getElementById('btSair');

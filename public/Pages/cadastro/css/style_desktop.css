@@ -271,6 +271,11 @@
     background: #000;
 }
 
+#span-erro-desktop {
+    font-size: 1vw;
+    color: #fff;
+}
+
 #h2-erro-desktop {
     font-size: 1.8vw;
     font-weight: bold;

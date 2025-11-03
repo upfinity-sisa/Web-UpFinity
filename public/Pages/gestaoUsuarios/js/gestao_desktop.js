@@ -1,11 +1,11 @@
-// const alerta_erros_desktop = document.getElementById('alerta_erros_desktop')
-// const span_erro_desktop = document.getElementById('span-erro-desktop')
-// const h2_erro_desktop = document.getElementById('h2-erro-desktop')
-// const btnFecharErro_desktop = document.getElementById('btnFecharErro-desktop')
+const alerta_erros_desktop = document.getElementById('alerta_erros_desktop')
+const span_erro_desktop = document.getElementById('span-erro-desktop')
+const h2_erro_desktop = document.getElementById('h2-erro-desktop')
+const btnFecharErro_desktop = document.getElementById('btnFecharErro-desktop')
 
-// btnFecharErro_desktop.addEventListener('click', function () {
-//     alerta_erros_desktop.classList.add('d-none')
-// })
+btnFecharErro_desktop.addEventListener('click', function () {
+    alerta_erros_desktop.classList.add('d-none')
+})
 
 function validarFuncionario() {
 
@@ -33,7 +33,7 @@ function validarFuncionario() {
                 console.log(resposta2)
                 if (resposta2.length > 0) {
                     alerta_erros_desktop.classList.remove('d-none')
-                    span_erro_desktop.innerText = 'Usuário já cadastrado, favor cadastrar CPF e Email válidos'
+                    span_erro_desktop.innerText = 'Usuário já cadastrado, por favor cadastrar CPF e Email válidos'
                     return
                 }
                 cadastrarFuncionario()

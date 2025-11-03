@@ -4,8 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../dashboard/css/dashboard.css">
     <link rel="icon" href="../../Assets/assets_dashboard/logoUPFINITY.png">
+
+    <!-- BoootStrap -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../dashboard/css/dashboard.css">
+    <link rel="stylesheet" href="../../css/style.css">
+
+    <!-- JavaScript -->
+    <script src="../../js/sessao.js" defer></script>
+    <script src="./gestaoATM.js" defer></script>
+
+    <!--Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
     <title>Gestão de ATMs - UpFinity</title>
 </head>
 
@@ -22,9 +44,10 @@
                     <div class="linha"></div>
                     <h1 onclick="window.location = '../dashboard/dashboard.html'">DASHBOARDS</h1>
                     <div class="linha"></div>
-                    <h1 onclick="window.location = '../gestaoUsuarios/gestaoUsuarios.html'">GESTÃO DE USUÁRIOS</h1>
+                    <h1 onclick="window.location = '../gestaoUsuarios/gestaoUsuarios.html'">GESTÃO DE USUÁRIOS
+                    </h1>
                     <div class="linha"></div>
-                    <h1>GESTÃO DE ATMS</h1>
+                    <h1 onclick="window.location = '../gestaoATM/gestaoATM.html'">GESTÃO DE ATMS</h1>
                     <div class="linha"></div>
                 </div>
             </div>
@@ -49,7 +72,7 @@
                         <div class="caixas_gestao caixa_gestao_esquerda_cima">
                             <h1>Cadastrar ATM</h1>
                             <div class="linha_caixa_gestao linha_caixa_cadastrar"></div>
-                            <button class="botao botao_cadastrar_atm">Cadastrar</button>  
+                            <button class="botao botao_cadastrar_atm">Cadastrar</button>
                         </div>
                         <div class="caixas_gestao caixa_gestao_esquerda_baixo">
                             <div class="caixa_gestao_cima">
@@ -61,11 +84,12 @@
                                     <div class="inputs_cima">
                                         <div class="caixa_input div_input_limite_max">
                                             <h2>Limite máximo:</h2>
-                                            <input type="text" class="inputs ipt_limite_max">
+                                            <input type="number" class="inputs ipt_limite_max" min="0">
                                         </div>
                                         <div class="caixa_input div_input_nivel_alerta">
                                             <h2>Nível do alerta:</h2>
-                                            <select name="nivel_alerta" id="combo_nivel_alerta" class="inputs input_nivel_alerta">
+                                            <select name="nivel_alerta" id="combo_nivel_alerta"
+                                                class="inputs input_nivel_alerta">
                                                 <option value="2">CRÍTICO</option>
                                                 <option value="3">IMPORTANTE</option>
                                             </select>
@@ -74,14 +98,15 @@
                                     <div class="inputs_baixo">
                                         <h2>Componente:</h2>
                                         <select name="componente" id="combo_componente" class="inputs input_componente">
-                                                <option value="2">CPU</option>
-                                                <option value="3">MEMÓRIA RAM</option>
-                                                <option value="4">DISCO</option>
-                                                <option value="5">REDE</option>
+                                            <option value="2">CPU</option>
+                                            <option value="3">MEMÓRIA RAM</option>
+                                            <option value="4">DISCO</option>
+                                            <option value="5">REDE</option>
                                         </select>
                                     </div>
                                 </div>
-                                <button onclick="validarFuncionario()" class="botao botao_definir_parametros">Definir</button>
+                                <button onclick="validarFuncionario()"
+                                    class="botao botao_definir_parametros">Definir</button>
                             </div>
                         </div>
                     </div>
@@ -105,7 +130,7 @@
                                     <div class="informacoes informacoes-extensao-atms">
                                         <div class="titulos">
                                             <h1>Numeração:</h1>
-                                            <h1>Status:</h1>                             
+                                            <h1>Status:</h1>
                                         </div>
                                         <div class="infos">
                                             <h1>ATM 1</h1>

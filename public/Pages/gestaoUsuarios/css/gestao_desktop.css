@@ -10,6 +10,10 @@
     z-index: 999;
 }
 
+#span-erro-desktop {
+    font-size: 1vw;
+    color: #fff;
+}
 
 #box_container_erro_desktop {
     height: 25%;
@@ -51,4 +55,17 @@
 #btnFecharErro-desktop:hover {
     background: #00c4cc;
     color: #000;
+}
+
+#btnCadastrar_desktop {
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.3vw;
+    width: 80%;
+    height: 8%;
+    border-radius: 15px;
+    border: none;
+    background-color: #00c5cc;
+    color: #fff;
+    transition: 0.3s ease;
 }

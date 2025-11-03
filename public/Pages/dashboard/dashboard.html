@@ -5,22 +5,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <link rel="icon" href="assets/logoUPFINITY.png">
-
+    <link rel="icon" href="../../Assets/assets_dashboard/logoUPFINITY.png">
     <!-- BoootStrap -->
-    <!-- 
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-        crossorigin="anonymous"></script> -->
+        crossorigin="anonymous"></script>
 
-    <script src="../../js/sessao.js" defer></script>
-    <title>Dashboard - Upfinity</title>
+    <!-- CSS -->
+
     <link rel="stylesheet" href="./css/dashboard.css">
+
+    <!-- JavaScript -->
+    <script src="../../js/sessao.js" defer></script>
+    <script src="./js/dashboard_desktop" defer></script>
+
+    <!--Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <title>Dashboard - Upfinity</title>
+
 </head>
 
 <body onload="validarSessao()">
+    <div id="alerta_erros_desktop" class="d-none">
+        <div id="box_container_erro_desktop">
+            <div id="container-erro-desktop">
+                <h2 id="h2-erro-desktop">Alerta identificado!</h2>
+                <span id="span-erro-desktop"></span>
+            </div>
+            <button id="btnFecharErro-desktop">Fechar</button>
+        </div>
+    </div>
     <section class="corpo">
 
         <div id="esquerda">
@@ -31,12 +52,12 @@
                 <div id="navegacao">
                     <h1 onclick="window.location = '../visaoGeral/visaoGeral.html'">VISÃO GERAL</h1>
                     <div class="linha"></div>
-                    <h1>DASHBOARDS</h1>
+                    <h1 onclick="window.location = '../dashboard/dashboard.html'">DASHBOARDS</h1>
                     <div class="linha"></div>
-                    <h1 onclick="window.location = '../gestaoUsuarios/gestaoUsuarios.html'">GESTÃO DE
-                        USUÁRIOS</h1>
+                    <h1 onclick="validarRedirecionamento('../gestaoUsuarios/gestaoUsuarios.html')">GESTÃO DE USUÁRIOS
+                    </h1>
                     <div class="linha"></div>
-                    <h1 onclick="window.location = '../gestaoATM/gestaoATM.html'">GESTÃO DE ATMS</h1>
+                    <h1 onclick="validarRedirecionamento('../gestaoATM/gestaoATM.html')">GESTÃO DE ATMS</h1>
                     <div class="linha"></div>
                 </div>
             </div>
@@ -54,7 +75,7 @@
         <div id="centro">
             <div id="centro-cima">
                 <div id="lado-titulo">
-                    <h1 id="titulo">MONITORAMENTO - </h1>
+                    <h1 id="titulo">MONITORAMENTO</h1>
                     <select id="comboATMs">
                         <option value="">ATM 1</option>
                         <option value="">ATM 2</option>
@@ -68,9 +89,6 @@
                         <option value="">ATM 10</option>
                         <option value="">ATM 11</option>
                         <option value="">ATM 12</option>
-                        <option value="">ATM 13</option>
-                        <option value="">ATM 14</option>
-                        <option value="">ATM 15</option>
                     </select>
                 </div>
 
@@ -122,7 +140,8 @@
                     <div id="box-graficos">
                         <div id="caixa_global_graflinha">
                             <div id="linha_cima">
-                                <img onclick="exibirDialog()" id="icone_informativo" src="../../Assets/assets_dashboard/iconeInformativo.png">
+                                <img onclick="exibirDialog()" id="icone_informativo"
+                                    src="../../Assets/assets_dashboard/iconeInformativo.png">
                                 <h1>Níveis dos componentes</h1>
                                 <select onchange="trocarComponente()" id="combo_componentes">
                                     <option value="cpu">CPU</option>
@@ -174,7 +193,7 @@
                                     <h2>CPU</h2>
                                 </div>
                             </div>
-                            
+
                             <div class="box_alerta">
                                 <h3>25/06/25, 15:45:30</h3>
                                 <div class="gravidade-alerta">
@@ -235,7 +254,7 @@
                                     <h2>Disco</h2>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
