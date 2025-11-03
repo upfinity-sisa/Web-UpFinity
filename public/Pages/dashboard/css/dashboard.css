@@ -1217,3 +1217,56 @@ table {
     cursor: pointer;
     scale: 1.02;
 }
+
+#dialogInsert {
+    justify-self: center;
+    align-self: center;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    height: 330px; 
+    gap: 3vh;
+}
+
+#titulo_informar_dialog {
+    font-size: 1.4vw;
+    color: #268184;
+}
+
+#ip_atm, #botao_cadastrar_atm_dialog, #botao_cancelar_dialog {
+    width: 80%;
+    height: 5vh;
+    border: 2px solid #00c4cc;
+    background-color: white;
+    border-radius: 0.5vw;
+    font-size: 1.3vw;
+    color: #3c4548;
+}
+
+#botao_cancelar_dialog {
+    color: #00c4cc;
+}
+
+#botao_cadastrar_atm_dialog {
+    background-color: #00c4cc;
+    color: white;
+}
+
+#div_titulo_informar {
+    width: 85%;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#botoes_dialog {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 0.7vw;
+    margin-top: 0.5vw;
+    height: 38%;
+}

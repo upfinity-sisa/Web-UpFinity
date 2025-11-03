@@ -17,6 +17,7 @@ var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var empresaRouter = require("./src/routes/empresa");
 var gestaoRouter = require("./src/routes/gestaoUsuarios");
+var gestaoATMRouter = require("./src/routes/gestaoATM");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -28,6 +29,7 @@ app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/empresa", empresaRouter);
 app.use("/gestao", gestaoRouter);
+app.use("/gestaoATM", gestaoATMRouter);
 
 app.listen(PORTA_APP, function () {
   console.log(`
