@@ -887,8 +887,10 @@ div {
     display: flex;
     justify-content: center;
     align-items: center;
-
     width: 20%;
+    border: 2px solid #cecece;
+    padding: 2px;
+    border-radius: 8px;
 }
 
 #simbolo_buscar h1 {
@@ -940,6 +942,7 @@ div {
     align-items: center;
     justify-content: center;
     gap: 20px;
+    min-height: 13vw;
 }
 
 .titulos h1 {
@@ -966,12 +969,16 @@ div {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    max-width: 5vw;
+    margin-left: 2.3vw;
+    justify-content: center;
 }
 
 .infos {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    justify-content: center;
 }
 
 .botoes {
