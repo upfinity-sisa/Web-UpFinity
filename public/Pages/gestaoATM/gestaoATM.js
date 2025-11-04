@@ -1,6 +1,6 @@
 function exibirATM() {
 
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < 12; i++) {
 
         baixo_gestao.innerHTML += `
     
