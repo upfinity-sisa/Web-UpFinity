@@ -577,9 +577,10 @@ div {
     display: flex;
     justify-content: center;
     max-height: 85%;
+    height: 100vh;
     flex-wrap: wrap;
     gap: 50px;
-    overflow-y: scroll;
+    overflow-y: hidden;
     padding-left: 100px;
     padding-right: 100px;
 }

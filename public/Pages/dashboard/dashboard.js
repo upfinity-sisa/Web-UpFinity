@@ -178,7 +178,7 @@ window.addEventListener('resize', function () {
 })
 
 var options = {
-    series: [85, 20],
+    series: [81, 19],
     labels: ["UPTIME", "DOWNTIME"],
     legend: {
         position: 'top'
