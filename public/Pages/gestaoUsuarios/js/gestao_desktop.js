@@ -121,7 +121,7 @@ function exibirCaixasFuncionarios(resposta2) {
 }
 
 function exibirFuncionarios() {
-
+    const baixo_gestao = document.getElementById('baixo_gestao')
     var fkEmpresa = sessionStorage.FK_EMPRESA
     var idUsuario = sessionStorage.ID_USUARIO
 
@@ -129,11 +129,24 @@ function exibirFuncionarios() {
         method: "GET",
     })
         .then(function (resposta) {
-            resposta.json().then((resposta2) => {
-                console.log(resposta2)
-                baixo_gestao.innerHTML = ""
-                exibirCaixasFuncionarios(resposta2)
+            resposta.json().then(analistas => {
+                if (analistas.length >= 1) {
+                    console.log(analistas)
+                    baixo_gestao.style.removeProperty('justify-content');
+                    baixo_gestao.innerHTML = ""
+                    exibirCaixasFuncionarios(analistas)
+                }
+                else {
+                    baixo_gestao.style.justifyContent = 'center';
+                    baixo_gestao.innerHTML = `
+                            <div id="containerSemAtms_desktop">
+                                <img id="usuario_nao_encontrado_desktop" src="../../Assets/Elements/Icons/usuario_nao_encontrado.png">
+                                <span id="spn_nao_encontrado_desktop">Ops! Você não possui funcionários cadastrados.</span>
+                            </div>
+                `
+                }
             })
+
         })
         .catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);

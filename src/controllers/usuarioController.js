@@ -16,11 +16,6 @@ function autenticar(req, res) {
         console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
 
         if (resultadoAutenticar.length == 1) {
-          console.log("resultado controller");
-
-          console.log(resultadoAutenticar);
-
-
           res.json({
             idUsuario: resultadoAutenticar[0].idUsuario,
             email: resultadoAutenticar[0].email,
@@ -28,7 +23,6 @@ function autenticar(req, res) {
             CPF: resultadoAutenticar[0].CPF,
             fkEmpresa: resultadoAutenticar[0].fkEmpresa,
             fkTipoUsuario: resultadoAutenticar[0].fkTipoUsuario,
-
           });
           console.log(resultadoAutenticar[0]);
         } else if (resultadoAutenticar.length == 0) {

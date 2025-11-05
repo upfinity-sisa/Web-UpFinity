@@ -7,9 +7,9 @@ btnFecharErro_desktop.addEventListener('click', function () {
     alerta_erros_desktop.classList.add('d-none')
 })
 
-const btnEntrar_desktop = document.getElementById('btnEntrar_desktop')
+const btnEnviar_desktop = document.getElementById('btnEnviar_desktop')
 
-btnEntrar_desktop.addEventListener('click', function (event) {
+btnEnviar_desktop.addEventListener('click', function (event) {
     event.preventDefault()
 
     const email = document.getElementById('ipt_email_desktop').value
@@ -29,6 +29,7 @@ btnEntrar_desktop.addEventListener('click', function (event) {
         if (resposta.ok) {
             console.log(resposta);
             resposta.json().then(json => {
+                sessionStorage.clear()
                 sessionStorage.EMAIL_USUARIO = json.email;
                 sessionStorage.ID_USUARIO = json.idUsuario;
                 console.log(json)
