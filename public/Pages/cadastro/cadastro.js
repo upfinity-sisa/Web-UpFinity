@@ -28,9 +28,9 @@ ipts_cnpj.forEach(input => {
 ipts_cpf.forEach(input => {
     input.addEventListener("input", function () {
         let valor = this.value.replace(/\D/g, "")
-
+        
         if (valor.length > 11) valor = valor.slice(0, 11)
-
+        
         if (valor.length > 3) {
             valor = valor.replace(/^(\d{3})(\d)/, "$1.$2")
         }

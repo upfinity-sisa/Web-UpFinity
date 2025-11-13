@@ -1,8 +1,3 @@
-let razaoSocial;
-let nomeFicticio;
-let cnpj;
-
-
 const btnContinuar_desktop = document.getElementById('btnContinuar_desktop')
 
 const form_cadastro_usuario_desktop = document.getElementById('form-cadastro-usuario-desktop')
@@ -119,48 +114,17 @@ function executarProgresso() {
     setTimeout(executarProgresso, array_carregamento[indice_carregamento]);
 }
 
+btn_valida_desktop.addEventListener('click', function () {
+    window.location = '.././login/login.html';
+})
+
 function validarEmail(email) {
     const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
     return regex.test(email);
 }
 
-btnCadastro_desktop.addEventListener("click", function (event) {
-    event.preventDefault();
 
-    const ipt_nome_desktop = document.getElementById('ipt_nome_desktop').value
-    const ipt_email_desktop = document.getElementById('ipt_email_desktop').value
-    const ipt_cpf_desktop = document.getElementById('ipt_cpf_desktop').value
-    const ipt_senha_desktop = document.getElementById('ipt_senha_desktop').value
-    const ipt_conf_senha_desktop = document.getElementById('ipt_conf_senha_desktop').value
-
-    if (ipt_nome_desktop.trim() == '' || ipt_email_desktop.trim() == '' || ipt_cpf_desktop.trim() == '' || ipt_senha_desktop.trim() == '') {
-        alerta_erros_desktop.classList.remove('d-none')
-        span_erro_desktop.innerText = 'Preencha todos os campos obrigatórios.'
-        return
-    }
-    if (!validarEmail(ipt_email_desktop)) {
-        alerta_erros_desktop.classList.remove('d-none')
-        span_erro_desktop.innerText = 'Email inválido, preencha novamente.'
-        return
-    }
-    if (ipt_cpf_desktop.length !== 14) {
-        alerta_erros_desktop.classList.remove('d-none')
-        span_erro_desktop.innerText = 'Preencha o cpf corretamente.'
-        return
-    }
-    if (ipt_senha_desktop != ipt_conf_senha_desktop) {
-        alerta_erros_desktop.classList.remove('d-none')
-        span_erro_desktop.innerText = 'As senhas não coincidem, verifique novamente.'
-        return
-    }
-})
-
-
-btn_valida_desktop.addEventListener('click', function () {
-    window.location = '.././login/login.html';
-})
-
-function cadastrar() {
+function Cadastrar() {
     btnCadastro_desktop.disabled = true;
 
     var razaoSocial = ipt_razao_social_desktop.value;
