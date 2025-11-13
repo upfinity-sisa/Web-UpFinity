@@ -17,6 +17,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="./css/style_desktop.css">
+    <link rel="stylesheet" href="./css/style_mobile.css">
 
     <!--Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,6 +28,7 @@
     <!-- JavaScript -->
     <script src="./cadastro.js" defer></script>
     <script src="./js/cadastro_desktop.js" defer></script>
+    <script src="./js/cadastro_mobile.js" defer></script>
 
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
@@ -36,7 +38,47 @@
 
 <body>
     <div class="d-block d-md-none" id="mobileContent">
-        Conteúdo Mobile
+
+        <div id="container_master">
+            <div id="logo"></div>
+        </div>
+
+        <div id="container_cadastro">
+            <h1>Cadastre-se</h1>
+
+            <div class="etapa">
+                <img src="../../Assets/Elements/Icons/etapa1_disable.png" alt="etapa1">
+                <p>Cadastre sua empresa</p>
+            </div>
+
+            <div class="etapa">
+                <img src="../../Assets/Elements/Icons/etapa2_disable.png" alt="etapa2">
+                <p>Cadastre o usuário</p>
+            </div>
+
+
+
+            <form>
+
+                <label class="label-ipt-mobile" for="ipt_razao_social_mobile">Razão Social</label>
+                <input id="ipt_razao_social_mobile" class="ipt_style_mobile" type="text" placeholder="UpFinity">
+
+                <label class="label-ipt-mobile" for="ipt_nome_fantasia_mobile">Nome Fantasia</label>
+                <input id="ipt_nome_fantasia_mobile" class="ipt_style_mobile" type="text" placeholder="Ex: Up">
+
+                <label class="label-ipt-mobile" for="ipt_cnpj_mobile">CNPJ</label>
+                <input id="ipt_cnpj_mobile" class="ipt_style_mobile" type="text" placeholder="Ex: 111.111.111-11">
+
+                <button type="button">Continuar</button>
+            </form>
+
+            <p class="login">Já possui uma conta?</p>
+
+            <form class="d-none">
+            </form>
+            
+
+        </div>
     </div>
     <div class="d-none d-md-block d-lg-none" id="tabletContent">
         Conteúdo Tablet
