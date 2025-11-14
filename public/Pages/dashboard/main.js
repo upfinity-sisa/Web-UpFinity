@@ -9,7 +9,7 @@ let dadosDisco = []
 let dadosRede = []
 
 function carregarParametros(){
-  fetch(`/dashboard/pegar-parametros/1`, { cache: 'no-store' }).then(
+  fetch(`/dashboard/pegar-parametros/${sessionStorage.getItem("FK_EMPRESA")}`, { cache: 'no-store' }).then(
     (response) => {
       if(response.ok) {
         response.json().then((resposta) => {
