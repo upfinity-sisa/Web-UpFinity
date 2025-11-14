@@ -1,7 +1,37 @@
+// 1 - CPU 
+// 2 - RAM
+// 3 - Disco
+// 4 - Rede
+
 let dadosCpu = []
 let dadosRam = []
 let dadosDisco = []
 let dadosRede = []
+
+function carregarParametros(){
+  fetch(`/dashboard/pegar-parametros/1`, { cache: 'no-store' }).then(
+    (response) => {
+      if(response.ok) {
+        response.json().then((resposta) => {
+          for (let i = 0; i < resposta.length; i++) {
+            console.log(resposta[i])
+
+            switch(resposta[i]["fkTipoComponente"]) {
+              case 1:
+                console.log(`Parametros CPU: ${JSON.stringify(resposta[i])}`)
+                break;
+            }
+
+          }
+        })
+      } else {
+        console.error("carregarParametros: nenhum dado encontrado ou erro na API")
+      }
+    }
+  ).catch((erro) => {
+    console.error(`carregarParametros: erro na obtenção dos dados: ${erro.message}`)
+  })
+}
 
 function ultimasCapturas() {
   fetch(`/dashboard/ultimas-capturas/1`, { cache: 'no-store' }).then(
@@ -52,5 +82,6 @@ function ultimasCapturas() {
 }
 
 window.onload = () => {
+  carregarParametros()
   ultimasCapturas()
 }

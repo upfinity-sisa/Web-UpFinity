@@ -16,6 +16,23 @@ function ultimasCapturas(req, res) {
   })
 }
 
+function pegarParametros(req, res) {
+  let idEmpresa = req.params.idEmpresa;
+
+  dashboardModel.pegarParametros(idEmpresa).then((resultado) => {
+    if (resultado.length > 0) {
+      res.status(200).json(resultado);
+    } else {
+      res.status(204).send('pegarParametros: nenhum resultado encontrado!')
+    }
+  }).catch((erro) => {
+    console.log(erro);
+    console.log("Houve um erro ao buscar as últimas capturas: ", erro.sqlMessage);
+    res.status(500).json(erro.sqlMessage);
+  })
+}
+
 module.exports = {
-  ultimasCapturas
+  ultimasCapturas,
+  pegarParametros
 }
