@@ -14,11 +14,29 @@ function carregarParametros(){
       if(response.ok) {
         response.json().then((resposta) => {
           for (let i = 0; i < resposta.length; i++) {
-            console.log(resposta[i])
-
             switch(resposta[i]["fkTipoComponente"]) {
               case 1:
-                console.log(`Parametros CPU: ${JSON.stringify(resposta[i])}`)
+                if (resposta[i]["fkTipoAlerta"] == 1) {
+                  sessionStorage.setItem("PARAM_CRITICO_CPU", resposta[i]["limiteMax"])
+                } else {
+                  sessionStorage.setItem("PARAM_IMPORTANTE_CPU", resposta[i]["limiteMax"])
+                }
+                break;
+              case 2:
+                if (resposta[i]["fkTipoAlerta"] == 1) {
+                  sessionStorage.setItem("PARAM_CRITICO_RAM", resposta[i]["limiteMax"])
+                } else {
+                  sessionStorage.setItem("PARAM_IMPORTANTE_RAM", resposta[i]["limiteMax"])
+                }           
+                break;
+              case 3:
+                if (resposta[i]["fkTipoAlerta"] == 1) {
+                  sessionStorage.setItem("PARAM_CRITICO_DISCO", resposta[i]["limiteMax"])
+                } else {
+                  sessionStorage.setItem("PARAM_IMPORTANTE_DISCO", resposta[i]["limiteMax"])
+                }                
+                break;
+              default:
                 break;
             }
 
