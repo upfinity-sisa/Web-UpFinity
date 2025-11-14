@@ -51,55 +51,6 @@ function carregarParametros(){
   })
 }
 
-function ultimasCapturas() {
-  fetch(`/dashboard/ultimas-capturas/1`, { cache: 'no-store' }).then(
-    (response) => {
-      if (response.ok) {
-        response.json().then((resposta) => {
-          for (let i = 0; i < resposta.length; i++){
-            switch (resposta[i]["fkComponente"]) {
-              case 1:
-                dadosCpu.push(resposta[i]["valor"])
-                break;
-              case 2:
-                dadosRam.push(resposta[i]["valor"])
-                break;
-              case 3:
-                dadosDisco.push(resposta[i]["valor"])
-                break;
-              case 4:
-                dadosRede.push(resposta[i]["valor"])
-                break;
-              default:
-                break;
-            }
-          }
-
-          let kpiCpu = document.getElementById("dado-kpi-cpu");
-          let kpiRam = document.getElementById("dado-kpi-ram");
-          let kpiDisco = document.getElementById("dado-kpi-disco");
-          let kpiRede = document.getElementById("dado-kpi-rede");
-
-          kpiCpu.innerHTML  = dadosCpu[dadosCpu.length-1] + "%"
-          kpiRam.innerHTML  = dadosRam[dadosRam.length-1] + "%"
-          kpiDisco.innerHTML  = dadosDisco[dadosDisco.length-1] + "%"
-
-          if (dadosRede[dadosRede.length-1] > 0) {
-            kpiRede.innerHTML = "Conectado"
-          } else {
-            kpiRede.innerHTML = "Não conectado"
-          }
-        })
-      } else {
-        console.error("ultimasCapturas: nenhum dado encontrado ou erro na API")
-      }
-    }
-  ).catch((erro) => {
-    console.error(`ultimasCapturas: erro na obtenção dos dados: ${erro.message}`)
-  })
-}
-
 window.onload = () => {
   carregarParametros()
-  ultimasCapturas()
 }

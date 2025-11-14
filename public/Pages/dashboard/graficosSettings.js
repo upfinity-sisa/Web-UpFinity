@@ -1,8 +1,57 @@
 combo_componentes.value = "cpu";
 
-var dados_cpu = [4.87, 29.45, 17.02, 8.66, 23.71, 12.34, 30.91, 29.9, 41.13]
-var dados_ram = [3.42, 27.18, 45.07, 11.59, 32.66, 40.91, 50.12, 50.67, 52.01]
-var dados_disco = [20.19, 39.82, 20.56, 45.24, 40.99, 30.07, 55.67, 50.24, 50.67]
+let dados_cpu = []
+let dados_ram = []
+let dados_disco = []
+let dados_rede = []
+
+function ultimasCapturas() {
+  fetch(`/dashboard/ultimas-capturas/1`, { cache: 'no-store' }).then(
+    (response) => {
+      if (response.ok) {
+        response.json().then((resposta) => {
+          for (let i = 0; i < resposta.length; i++){
+            switch (resposta[i]["fkComponente"]) {
+              case 1:
+                dados_cpu.push(resposta[i]["valor"])
+                break;
+              case 2:
+                dados_ram.push(resposta[i]["valor"])
+                break;
+              case 3:
+                dados_disco.push(resposta[i]["valor"])
+                break;
+              case 4:
+                dados_rede.push(resposta[i]["valor"])
+                break;
+              default:
+                break;
+            }
+          }
+
+          let kpiCpu = document.getElementById("dado-kpi-cpu");
+          let kpiRam = document.getElementById("dado-kpi-ram");
+          let kpiDisco = document.getElementById("dado-kpi-disco");
+          let kpiRede = document.getElementById("dado-kpi-rede");
+
+          kpiCpu.innerHTML  = dados_cpu[dados_cpu.length-1] + "%"
+          kpiRam.innerHTML  = dados_ram[dados_ram.length-1] + "%"
+          kpiDisco.innerHTML  = dados_disco[dados_disco.length-1] + "%"
+
+          if (dados_rede[dados_rede.length-1] > 0) {
+            kpiRede.innerHTML = "Conectado"
+          } else {
+            kpiRede.innerHTML = "Não conectado"
+          }
+        })
+      } else {
+        console.error("ultimasCapturas: nenhum dado encontrado ou erro na API")
+      }
+    }
+  ).catch((erro) => {
+    console.error(`ultimasCapturas: erro na obtenção dos dados: ${erro.message}`)
+  })
+}
 
 function vwParaPx(vwValue) {
     const larguraViewport = window.innerWidth;
@@ -83,7 +132,7 @@ var options = {
         ]
     },
     xaxis: {
-        categories: ['11:49:50', '11:49:53', '11:49:56', '11:49:59', '11:50:02', '11:50:05', '11:50:08', '11:50:11', '11:50:14'],
+        categories: ['11:49:50', '11:49:53', '11:49:56', '11:49:59', '11:50:02', '11:50:05', '11:50:08', '11:50:11', '11:50:14', '11:50:17'],
         labels: {
             style: {
                 fontSize: `${vwParaPx(0.8)}px`,
@@ -257,3 +306,7 @@ var options = {
 };
 var chart = new ApexCharts(document.querySelector("#torta_baixo"), options);
 chart.render();
+
+window.onload = () => {
+  ultimasCapturas()
+}
