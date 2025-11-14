@@ -26,6 +26,7 @@
 
   <!-- JavaScript -->
   <script src="./script.js" defer></script>
+  <script src="./js/script_mobile.js" defer></script>
 
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
@@ -36,12 +37,54 @@
 <body>
   <main>
     <div class="d-block d-md-none" id="mobileContent">
-
-      <div id="container_main_mobile">
-
+      <header id="header_mobile">
+        <img src="./Assets/Logo/UpFinity.png" id="header_logo_mobile">
+        <img src="./Assets/Elements/Icons/menuHamburguer.png" id="header_menu_mobile">
+      </header>
+      <div id="container_menu_mobile">
+        <div id="navegacao_header_mobile">
+          <nav id="nav_header_mobile">
+            <ul id="ul_header_mobile">
+              <div class="container_header_li_mobile">
+                <li class="li_header_mobile" id="aInicioHeader_Mobile">Início</li>
+                <div class="divisor_li_mobile"></div>
+              </div>
+              <div class="container_header_li_mobile">
+                <li class="li_header_mobile" id="aBeneficioHeader_Mobile">Benefícios</li>
+                <div class="divisor_li_mobile"></div>
+              </div>
+              <div class="container_header_li_mobile">
+                <li class="li_header_mobile" id="aDiferencialHeader_Mobile">Diferenciais</li>
+                <div class="divisor_li_mobile"></div>
+              </div>
+              <div class="container_header_li_mobile">
+                <li class="li_header_mobile" id="aFluxoHeader_Mobile">Fluxo</li>
+                <div class="divisor_li_mobile"></div>
+              </div>
+            </ul>
+          </nav>
+        </div>
       </div>
+      <main id="main_mobile">
+        <div id="container_inicial_mobile">
+          <div id="subcontainer_inicial_top_mobile">
+            <div id="subcontainer-info-txt-mobile">
+              <p id="p-inicial-info-txt-mobile">Conectados<br>
+                hoje, amanhã<br>
+                e <span class="color-txt-inicial">sempre</span>.</p>
+              <p id="p-inicial-info-descricao-mobile">Monitoramento proativo e integrado para ATM's, capaz de prever
+                falhas, reduzir indisponibilidade e aumentar a eficiência operacional.</p>
+              <a href="./Pages/login/login.html" class="a_btn_mobile">
+                <button class="btn_style_mobile"><img src="./Assets/Elements/Icons/cadastro_icon.png"
+                    class="btn_arrow_style_mobile">Conecte-se conosco</button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </main>
 
     </div>
+
     <div class="d-none d-md-block d-lg-none" id="tabletContent">
       Conteúdo Tablet
     </div>

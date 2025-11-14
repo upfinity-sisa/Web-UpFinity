@@ -1,7 +1,156 @@
-#container_main_mobile {
-    height: 40vh;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+#header_mobile {
+    position: fixed;
+    height: 10vh;
+    background: #000;
     width: 100%;
-    background: url('../Assets/Elements/img_principal_mobile.png');
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 3vw;
+}
+
+#header_logo_mobile {
+    width: 20vw;
+}
+
+#header_menu_mobile {
+    width: 4vw;
+}
+
+#container_menu_mobile {
+    position: fixed;
+    overflow: hidden;
+    top: 10vh;
+    height: 0;
+    width: 100%;
+    transition: 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    background-color: #000000;
+    background-image: url("../Assets/Elements/fundoMenu_mobile.svg");
+
+}
+
+#h2_menu {
+    font-size: 6vw;
+    color: #fff;
+    font-weight: 450;
+}
+
+#navegacao_header_mobile {
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+}
+
+#nav_header_mobile {
+    height: 80%;
+    width: 100%;
+    display: flex;
+}
+
+#ul_header_mobile {
+    height: 80%;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    flex-direction: column;
+    padding: 0;
+}
+
+.li_header_mobile {
+    list-style: none;
+    font-size: 3.5vw;
+    width: 65%;
+}
+
+.divisor_li_mobile {
+    height: 0.12vw;
+    width: 100%;
+    background: #00C4CC;
+}
+
+.container_header_li_mobile {
+    height: 8.4vh;
+    padding-left: 8vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 80%;
+}
+
+#main_mobile {
+    padding-top: 10vh;
+    height: 200vh;
+    width: 100%;
+}
+
+#container_inicial_mobile {
+    background: url("../Assets/Elements/bg_inicio_desktop.png");
     background-size: 100% 100%;
     background-repeat: no-repeat;
+    height: auto;
+    height: 100vh;
+}
+
+#subcontainer_inicial_top_mobile {
+    padding-top: 1vw;
+    height: auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#subcontainer-info-txt-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#p-inicial-info-txt-mobile, #p-inicial-info-descricao-mobile {
+    width: 90%;
+    height: auto;
+}
+
+#p-inicial-info-txt-mobile {
+    font-size: 10vw;
+    font-weight: 300;
+}
+
+#p-inicial-info-descricao-mobile {
+    font-size: 4.5vw;
+    font-weight: 200;
+}
+
+.btn_style_mobile {
+    width: 60vw;
+    padding: 0 2.2vw;
+    height: 12vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 20vw;
+    font-size: 3.8vw;
+    margin-top: 2%;
+}
+
+.btn_arrow_style_mobile {
+    width: 6vw;
+}
+
+.a_btn_mobile {
+    text-decoration: none;
 }
