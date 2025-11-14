@@ -20,23 +20,23 @@ btnContinuar_mobile.addEventListener('click', function (event) {
     const ipt_cnpj_mobile = document.getElementById('ipt_cnpj_mobile').value
 
     if (ipt_razao_social_mobile.trim() === '' || ipt_cnpj_mobile.trim() === '') {
-        //alerta_erros_mobile.classList.remove('d-none')
-        //span_erro_mobile.innerText = 'Preencha todos os campos obrigatórios.'
-        alert('Preencha todos os campos obrigatórios.')
+        alerta_erros_mobile.classList.remove('d-none')
+        span_erro_mobile.innerText = 'Preencha todos os campos obrigatórios.'
+        //alert('Preencha todos os campos obrigatórios.')
         return
     }
 
     if (ipt_nome_fantasia_mobile !== '' && ipt_nome_fantasia_mobile.trim() === '') {
-        //alerta_erros_mobile.classList.remove('d-none')
-        //span_erro_mobile.innerText = 'O nome fictício não pode conter apenas espaços em branco.'
-        alert('O nome fictício não pode conter apenas espaços em branco.')
+        alerta_erros_mobile.classList.remove('d-none')
+        span_erro_mobile.innerText = 'O nome fictício não pode conter apenas espaços em branco.'
+        //alert('O nome fictício não pode conter apenas espaços em branco.')
         return
     }
 
     if (ipt_cnpj_mobile.length !== 18) {
-        //alerta_erros_mobile.classList.remove('d-none')
-        //span_erro_mobile.innerText = 'O CNPJ deve estar completo no formato 00.000.000/0000-00.'
-        alert('O CNPJ deve estar completo no formato 00.000.000/0000-00.')
+        alerta_erros_mobile.classList.remove('d-none')
+        span_erro_mobile.innerText = 'O CNPJ deve estar completo no formato 00.000.000/0000-00.'
+        //alert('O CNPJ deve estar completo no formato 00.000.000/0000-00.')
         return
     }
 
@@ -59,9 +59,75 @@ a_voltar_form_mobile.addEventListener('click', function () {
     etapa2_mobile.src = "../../Assets/Elements/Icons/etapa2_disable.png"
 })
 
-btnFecharErro_mobile.addEventListener('click', function () {
-    alerta_erros_mobile.classList.add('d-none')
+if (btnFecharErro_mobile) {
+    btnFecharErro_mobile.addEventListener('click', function () {
+        alerta_erros_mobile.classList.add('d-none')
+    })
+}
+
+// validando empresa
+
+const btnCadastro_mobile = document.getElementById("btnCadastro_mobile");
+const valida_cadastro_mobile = document.getElementById("valida_cadastro_mobile");
+const circulo_progresso_mobile = document.getElementById("circulo_progresso_mobile");
+const check_img_mobile = document.getElementById('check_img_mobile')
+const container_info_progresso_mobile = document.getElementById("container_info_progresso_mobile");
+const btn_valida_mobile = document.getElementById("btn_valida_mobile");
+
+(() => {
+    const raio = 40;
+    const circunferencia = 2 * Math.PI * raio;
+
+    circulo_progresso_mobile.style.strokeDasharray = `${circunferencia}`;
+    circulo_progresso_mobile.style.strokeDashoffset = circunferencia;
+
+    function carregamentoProgresso(percent) {
+        if (percent >= 0 && percent <= 100) {
+            const offset = circunferencia * (1 - percent / 100);
+            circulo_progresso_mobile.style.strokeDashoffset = offset;
+        }
+    }
+
+    const controle_aguarde = setInterval(() => {
+        container_info_progresso_mobile.innerText += '.'
+        if (container_info_progresso_mobile.innerText.slice(-4) === '....') {
+            container_info_progresso_mobile.innerText = container_info_progresso_mobile.innerText.slice(0, -4)
+        }
+    }, 325)
+
+    const array_carregamento = [25, 10, 200, 20, 100, 10, 40, 1000];
+    let indice_carregamento = 0;
+    let progresso = 0;
+
+    function executarProgresso() {
+        progresso++;
+        carregamentoProgresso(progresso);
+
+        if (progresso >= 100) {
+            clearInterval(controle_aguarde);
+            circulo_progresso_mobile.style.stroke = '#1ede0d';
+            container_info_progresso_mobile.innerText = 'Empresa validada com sucesso!';
+            check_img_mobile.src = "../../Assets/Elements/Icons/check_progresso.png"
+            btn_valida_mobile.classList.remove('d-none');
+            return;
+        }
+
+        indice_carregamento++
+        if (indice_carregamento + 1 == array_carregamento.length) {
+            indice_carregamento = 0;
+        }
+
+        setTimeout(executarProgresso, array_carregamento[indice_carregamento]);
+    }
+
+    window.executarProgresso_mobile = executarProgresso;
+
+})();
+
+btn_valida_mobile.addEventListener('click', function () {
+    window.location = '.././login/login.html';
 })
+
 
 function validarEmail(email) {
     const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
@@ -84,6 +150,7 @@ function Cadastrar() {
     if (nome.trim() == '' || email.trim() == '' || cpf.trim() == '' || senha.trim() == '') {
         alerta_erros_mobile.classList.remove('d-none');
         span_erro_mobile.innerText = 'Preencha todos os campos obrigatórios.';
+        //alert('Preencha todos os campos obrigatórios.')
         btnCadastro_mobile.disabled = false;
         return;
     }
@@ -91,6 +158,7 @@ function Cadastrar() {
     if (!validarEmail(email)) {
         alerta_erros_mobile.classList.remove('d-none');
         span_erro_mobile.innerText = 'Email inválido, preencha novamente.';
+        //alert('Email inválido, preencha novamente.')
         btnCadastro_mobile.disabled = false;
         return;
     }
@@ -98,6 +166,7 @@ function Cadastrar() {
     if (cpf.length !== 14) {
         alerta_erros_mobile.classList.remove('d-none');
         span_erro_mobile.innerText = 'Preencha o CPF corretamente.';
+        //alert('Preencha o CPF corretamente.')
         btnCadastro_mobile.disabled = false;
         return;
     }
@@ -105,6 +174,7 @@ function Cadastrar() {
     if (senha != confirmarsenha) {
         alerta_erros_mobile.classList.remove('d-none');
         span_erro_mobile.innerText = 'As senhas não coincidem, verifique novamente.';
+        //alert('As senhas não coincidem, verifique novamente.')
         btnCadastro_mobile.disabled = false;
         return;
     }
@@ -138,7 +208,7 @@ function Cadastrar() {
         .then((resposta) => {
             if (resposta.ok) {
                 valida_cadastro_mobile.classList.remove('d-none');
-                executarProgresso();
+                executarProgresso_mobile();
             } else {
                 throw "Erro ao cadastrar usuário!";
             }
@@ -147,6 +217,7 @@ function Cadastrar() {
             console.log(`#ERRO: ${erro}`);
             alerta_erros_mobile.classList.remove('d-none');
             span_erro_mobile.innerText = 'Erro ao realizar cadastro, verifique os campos.';
+            //alert('Erro ao realizar cadastro, verifique os campos.')
         })
         .finally(() => {
             btnCadastro_mobile.disabled = false;

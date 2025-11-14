@@ -46,39 +46,137 @@
         <div id="container_cadastro">
             <h1>Cadastre-se</h1>
 
+
+
             <div class="etapa">
-                <img src="../../Assets/Elements/Icons/etapa1_disable.png" alt="etapa1">
+                <img src="../../Assets/Elements/Icons/etapa1_disable.png" id="etapa1_mobile">
                 <p>Cadastre sua empresa</p>
             </div>
 
+            <div id="linha-mobile"></div>
+
             <div class="etapa">
-                <img src="../../Assets/Elements/Icons/etapa2_disable.png" alt="etapa2">
+                <img src="../../Assets/Elements/Icons/etapa2_disable.png" id="etapa2_mobile">
                 <p>Cadastre o usuário</p>
             </div>
 
 
 
-            <form>
+            <form id="form-cadastro-empresa-mobile">
 
-                <label class="label-ipt-mobile" for="ipt_razao_social_mobile">Razão Social</label>
+                <label class="label-ipt-mobile" for="ipt_razao_social_mobile">Razão Social<span
+                        class="spn-obrigatorio">*</span></label>
                 <input id="ipt_razao_social_mobile" class="ipt_style_mobile" type="text" placeholder="UpFinity">
 
                 <label class="label-ipt-mobile" for="ipt_nome_fantasia_mobile">Nome Fantasia</label>
                 <input id="ipt_nome_fantasia_mobile" class="ipt_style_mobile" type="text" placeholder="Ex: Up">
 
-                <label class="label-ipt-mobile" for="ipt_cnpj_mobile">CNPJ</label>
-                <input id="ipt_cnpj_mobile" class="ipt_style_mobile" type="text" placeholder="Ex: 111.111.111-11">
+                <label class="label-ipt-mobile" for="ipt_cnpj_mobile">CNPJ<span class="spn-obrigatorio">*</span></label>
+                <input id="ipt_cnpj_mobile" class="ipt_style_mobile ipt_cnpj" type="text"
+                    placeholder="Ex: 111.111.111-11">
 
-                <button type="button">Continuar</button>
+                <button class="btn_style-form-mobile" id="btnContinuar_mobile" type="submit">Continuar</button>
+
+
+                <div id="container-possui-conta-mobile">
+                    <a href="../login/login.html">
+                        <span class="login">Já possui uma conta?</span>
+                    </a>
+                </div>
             </form>
 
-            <p class="login">Já possui uma conta?</p>
+            <form id="form-cadastro-usuario-mobile" class="d-none">
+                <div id="container-voltar-form-mobile">
+                    <a id="a-voltar-form-mobile">
+                        <img id="voltar_form_mobile" src="../../Assets/Elements/Icons/voltar_form_cadastro.png">
+                        <span id="span-voltar-form-mobile">Voltar</span>
+                    </a>
+                </div>
 
-            <form class="d-none">
+                <div class="container-ipt-mobile">
+                    <label class="label-ipt-mobile" for="ipt_nome_mobile">Nome<span
+                            class="spn-obrigatorio">*</span></label>
+                    <input id="ipt_nome_mobile" class="ipt_style_mobile" type="text" placeholder="Ex: Seu Nome"
+                        required>
+                </div>
+
+                <div class="container-ipt-mobile">
+                    <label class="label-ipt-mobile" for="ipt_email_mobile">Email<span
+                            class="spn-obrigatorio">*</span></label>
+                    <input id="ipt_email_mobile" class="ipt_style_mobile" type="email"
+                        placeholder="Ex: seuemail@email.com" required>
+                </div>
+
+                <div class="container-ipt-mobile">
+                    <label class="label-ipt-mobile" for="ipt_cpf_mobile">CPF<span
+                            class="spn-obrigatorio">*</span></label>
+                    <input id="ipt_cpf_mobile" class="ipt_style_mobile ipt_cpf" type="text"
+                        placeholder="Ex: xxx.xxx.xxx-xx" required>
+                </div>
+
+                <div class="container-ipt-mobile">
+                    <label class="label-ipt-mobile" for="ipt_senha_mobile">Senha<span
+                            class="spn-obrigatorio">*</span></label>
+                    <input id="ipt_senha_mobile" class="ipt_style_mobile" type="password" placeholder="Ex: ********"
+                        required>
+                </div>
+
+                <div class="container-ipt-mobile">
+                    <label class="label-ipt-mobile" for="ipt_conf_senha_mobile">Confirme sua senha<span
+                            class="spn-obrigatorio">*</span></label>
+                    <input id="ipt_conf_senha_mobile" class="ipt_style_mobile" type="password"
+                        placeholder="Ex: ********" required>
+                </div>
+
+                <button class="btn_style-form-mobile" id="btnCadastro_mobile" onclick="Cadastrar()" type="submit">
+                    Concluir cadastro
+                </button>
+
+
             </form>
-            
+
+           
+            <div id="alerta_erros_mobile" class="d-none">
+                <div id="box_container_erro_mobile">
+                    <div id="container-erro-mobile">
+                        <h2 id="h2-erro-mobile">Alerta identificado!</h2>
+                        <span id="span-erro-mobile"></span>
+                    </div>
+                    <button id="btnFecharErro-mobile">Fechar</button>
+                </div>
+            </div>
+
+            <div id="valida_cadastro_mobile" class="d-none">
+                <div id="container_valida_mobile">
+                    <div id="container_valida_title_mobile">
+                        <h1 id="h1_valida_mobile">Por favor aguarde</h1>
+                        <span id="span_valida_mobile">Estamos validando seu cadastro</span>
+                    </div>
+
+                    <div id="container_valida_loading_mobile">
+                        <div id="container_progresso_mobile">
+                            <svg id="svg_carregamento_mobile" viewBox="0 0 100 100">
+                                <circle class="bg" cx="50" cy="50" r="40"></circle>
+                                <circle class="fg" id="circulo_progresso_mobile" cx="50" cy="50" r="40"></circle>
+                            </svg>
+
+                            <div id="check_progresso_mobile">
+                                <img src="" id="check_img_mobile" alt="check">
+                            </div>
+
+                            <div id="container_info_progresso_mobile">Validando sua empresa</div>
+                        </div>
+                    </div>
+
+                    <div id="container_valida_continuar_mobile">
+                        <button id="btn_valida_mobile" class="d-none">Continuar para o login</button>
+                    </div>
+                </div>
+            </div>
 
         </div>
+
+
     </div>
     <div class="d-none d-md-block d-lg-none" id="tabletContent">
         Conteúdo Tablet
@@ -93,6 +191,7 @@
                 <button id="btnFecharErro-desktop">Fechar</button>
             </div>
         </div>
+
         <div class="d-none" id="valida_cadastro_desktop">
             <div id="container_valida_desktop">
                 <div id="container_valida_title_desktop">

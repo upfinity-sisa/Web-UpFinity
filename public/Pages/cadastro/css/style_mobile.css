@@ -1,55 +1,62 @@
 #container_master {
-    position: relative;
-    height: 40vh;
-    width: 100%;
-    background: url("../../../Assets/Elements/img_principal_mobile.png");
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
+  position: relative;
+  height: 40vh;
+  width: 100%;
+  background: url("../../../Assets/Elements/img_principal_mobile.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
 #logo {
-    position: absolute;
-    height: 40vh;
-    width: 100%;
-    background: url("../../../Assets/Logo/UpFinity.png");
-    background-size: 30% 30%;
-    background-repeat: no-repeat;
-    background-position: 5% 10%;
+  position: absolute;
+  height: 40vh;
+  width: 100%;
+  background: url("../../../Assets/Logo/UpFinity.png");
+  background-size: 30% 30%;
+  background-repeat: no-repeat;
+  background-position: 5% 10%;
 }
 
 #container_cadastro {
-    position: relative;
-    background-color: white;
-    width: 100%;
-    padding: 30px 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: 'Poppins', sans-serif;
+  position: relative;
+  background-color: white;
+  width: 100%;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
 }
 
 #container_cadastro h1 {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    font-weight: 600;
-    color: #222;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: #222;
 }
 
 .etapa {
-    text-align: center;
-    margin-bottom: 15px;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 .etapa img {
-    width: 40px;
-    height: auto;
-    display: block;
-    margin: 0 auto 5px auto;
+  width: 40px;
+  height: auto;
+  display: block;
+  margin: 0 auto 5px auto;
 }
 
 .etapa p {
-    font-size: 1rem;
-    color: #333;
+  font-size: 1rem;
+  color: #333;
+}
+
+#linha-mobile {
+  width: 70%;
+  height: 2px;
+  background-color: #04979c;
+  margin: 10px 0 15px 0;
 }
 
 form {
@@ -59,36 +66,230 @@ form {
   margin-top: 10px;
 }
 
-label {
+.label-ipt-mobile {
   font-size: 0.9rem;
-  margin-top: 10px;
+  margin-top: 12px;
   color: black;
 }
 
-input {
-  margin-top: 5px;
-  padding: 10px;
-  border: none;
-  background-color: #f1f3f6;
-  border-radius: 4px;
-}
-
-button {
-  margin-top: 20px;
+.ipt_style_mobile {
+  all: unset;
+  width: 100%;
+  background: #f2f4f8;
   padding: 12px;
-  background-color: #00d6d6;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-weight: bold;
-  cursor: pointer;
+  border-bottom: 1.5px solid #dcdfe2;
+  color: #000;
+  font-size: 0.95rem;
+  border-radius: 3px;
 }
 
-.login {
+.spn-obrigatorio {
+  color: red;
+  margin-left: 4px;
+}
+
+.btn_style-form-mobile {
+  all: unset;
+  margin-top: 25px;
+  padding: 14px 0;
+  background-color: #00c4cc;
+  color: white;
+  text-align: center;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.btn_style-form-mobile:active {
+  opacity: .8;
+}
+
+#container-possui-conta-mobile {
+  width: 100%;
+  text-align: center;
   margin-top: 20px;
-  color: #007bff;
+  border-top: 1px solid #dcdfe2;
+  padding-top: 12px;
+}
+
+#container-possui-conta-mobile .login {
+  color: #173279;
   font-size: 0.9rem;
 }
 
+#container-voltar-form-mobile {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+#a-voltar-form-mobile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#voltar_form_mobile {
+  width: 5vw;
+}
+
+#span-voltar-form-mobile {
+  color: #000;
+  font-size: 1rem;
+}
+
+#alerta_erros_mobile,
+#valida_cadastro_mobile {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.63);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  padding: 0;
+
+}
+
+#box_container_erro_mobile {
+  width: 85%;
+  max-width: 350px;
+  background: #000;
+  border: 2px solid #00c4cc;
+  border-radius: 15px;
+  padding: 25px 30px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  height: 30vh;
+}
+
+#h2-erro-mobile {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #f01008;
+  margin-bottom: 10px;
+}
 
 
+#span-erro-mobile {
+  color: #fff;
+  font-size: 1rem;
+  display: block;
+  margin-bottom: 20px;
+}
+
+#btnFecharErro-mobile {
+  all: unset;
+  width: 60%;
+  padding: 10px 0;
+  border: 1px solid #00c4cc;
+  border-radius: 12px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: .2s;
+}
+
+#btnFecharErro-mobile:active {
+  background: #00c4cc;
+  color: #000;
+}
+
+#container_valida_mobile {
+  width: 85%;
+  background: #000;
+  border: 1px solid #00c4cc;
+  border-radius: 15px;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  gap: 20px;
+}
+
+#container_valida_title_mobile {
+  text-align: center;
+}
+
+#h1_valida_mobile {
+  font-size: 1.3rem;
+}
+
+#span_valida_mobile {
+  font-size: 1.05rem;
+  color: #dcdcdc;
+}
+
+#container_progresso_mobile {
+  position: relative;
+  width: 48vw;
+  height: 48vh;
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#svg_carregamento_mobile {
+  transform: rotate(-90deg);
+  width: 100%;
+  height: 100%;
+}
+
+.bg-mobile {
+  stroke: #1a1a1a;
+  stroke-width: 10;
+  fill: none;
+}
+
+.fg-mobile {
+  stroke: #00c4cc;
+  stroke-width: 10;
+  fill: none;
+  transition: stroke-dashoffset .2s linear;
+}
+
+#check_progresso_mobile {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#check_img_mobile {
+  width: 18vw;
+}
+
+#container_info_progresso_mobile {
+  text-align: center;
+  font-size: 1rem;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+#btn_valida_mobile {
+  all: unset;
+  width: 60%;
+  text-align: center;
+  padding: 12px 0;
+  border-radius: 10px;
+  border: 1px solid #00c4cc;
+  font-size: 1rem;
+  margin-top: 15px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#btn_valida_mobile:active {
+  background: #00c4cc;
+  color: #000;
+}
