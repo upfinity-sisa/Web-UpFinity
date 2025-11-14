@@ -11,4 +11,8 @@ router.get('/ultimas-capturas/:idAtm', (req, res) => {
   dashboardController.ultimasCapturas(req, res)
 })
 
+router.get('/pegar-parametros/:idEmpresa', (req, res) => {
+  dashboardController.pegarParametros(req, res)
+})
+
 module.exports = router;
