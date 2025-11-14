@@ -8,12 +8,13 @@
 #header_mobile {
     position: fixed;
     height: 10vh;
-    background: #000;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 3vw;
+    transition: 0.2s ease;
+    background-color: #000;
 }
 
 #header_logo_mobile {
@@ -35,7 +36,7 @@
     align-items: center;
     justify-content: space-between;
     flex-direction: column;
-    background-color: #000000;
+    background-color: #000;
     background-image: url("../Assets/Elements/fundoMenu_mobile.svg");
 
 }
@@ -144,6 +145,8 @@
     border-radius: 20vw;
     font-size: 3.8vw;
     margin-top: 2%;
+    background: #D5D5D5;
+    border: none;
 }
 
 .btn_arrow_style_mobile {
@@ -152,4 +155,15 @@
 
 .a_btn_mobile {
     text-decoration: none;
+}
+
+#subcontainer_inicial_img_mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+}
+
+#img_inicio_mobile {
+    width: 100vw;
 }

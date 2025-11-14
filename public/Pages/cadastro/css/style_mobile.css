@@ -7,14 +7,9 @@
   background-repeat: no-repeat;
 }
 
-#logo {
-  position: absolute;
-  height: 40vh;
-  width: 100%;
-  background: url("../../../Assets/Logo/UpFinity.png");
-  background-size: 30% 30%;
-  background-repeat: no-repeat;
-  background-position: 5% 10%;
+#logo_mobile {
+  padding: 2vw 0 0 2vw;
+  width: 15vw;
 }
 
 #container_cadastro {
