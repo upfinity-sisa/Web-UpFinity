@@ -31,7 +31,9 @@ function ultimasCapturasRede(req, res) {
       if (resultado.length > 0) {
         res.status(200).json(resultado);
       } else {
-        res.status(204).send("ultimasCapturasRede: nenhum resultado encontrado!");
+        res
+          .status(204)
+          .send("ultimasCapturasRede: nenhum resultado encontrado!");
       }
     })
     .catch((erro) => {
@@ -58,10 +60,7 @@ function pegarParametros(req, res) {
     })
     .catch((erro) => {
       console.log(erro);
-      console.log(
-        "Houve um erro ao buscar os parametros: ",
-        erro.sqlMessage
-      );
+      console.log("Houve um erro ao buscar os parametros: ", erro.sqlMessage);
       res.status(500).json(erro.sqlMessage);
     });
 }
@@ -87,10 +86,7 @@ function pegarDowntime(req, res) {
     })
     .catch((erro) => {
       console.log(erro);
-      console.log(
-        "Houve um erro ao buscar o downtime: ",
-        erro.sqlMessage
-      );
+      console.log("Houve um erro ao buscar o downtime: ", erro.sqlMessage);
       res.status(500).json(erro.sqlMessage);
     });
 }
@@ -98,18 +94,45 @@ function pegarDowntime(req, res) {
 function pegarUltimosHorariosCaptura(req, res) {
   const idAtm = req.params.idAtm;
 
-  dashboardModel.pegarUltimosHorariosCaptura(idAtm)
-  .then((resultado) => {
-    if (resultado.length > 0) {
-      res.status(200).json(resultado);
-    } else {
-      res.status(204).send("pegarUltimosHorariosCaptura: nenhum resultado encontrado!")
-    }
-  })
-  .catch((erro) => {
+  dashboardModel
+    .pegarUltimosHorariosCaptura(idAtm)
+    .then((resultado) => {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado);
+      } else {
+        res
+          .status(204)
+          .send("pegarUltimosHorariosCaptura: nenhum resultado encontrado!");
+      }
+    })
+    .catch((erro) => {
       console.log(erro);
       console.log(
         "Houve um erro ao buscar os ultimos horarios de captura: ",
+        erro.sqlMessage
+      );
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function carregarAlertas(req, res) {
+  const idAtm = req.params.idAtm;
+
+  dashboardModel
+    .carregarAlertas(idAtm)
+    .then((resultado) => {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado);
+      } else {
+        res
+          .status(204)
+          .send("carregarAlertas: nenhum resultado encontrado!");
+      }
+    })
+    .catch((erro) => {
+      console.log(erro);
+      console.log(
+        "Houve um erro ao carregar os alertas: ",
         erro.sqlMessage
       );
       res.status(500).json(erro.sqlMessage);
@@ -121,5 +144,6 @@ module.exports = {
   ultimasCapturasRede,
   pegarParametros,
   pegarDowntime,
-  pegarUltimosHorariosCaptura
+  pegarUltimosHorariosCaptura,
+  carregarAlertas,
 };

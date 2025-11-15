@@ -27,4 +27,8 @@ router.get("/ultimos-horarios/:idAtm", (req, res) => {
   dashboardController.pegarUltimosHorariosCaptura(req, res);
 });
 
+router.get("/carregar-alertas/:idAtm", (req, res) => {
+  dashboardController.carregarAlertas(req, res);
+});
+
 module.exports = router;

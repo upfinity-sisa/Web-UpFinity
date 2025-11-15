@@ -74,7 +74,7 @@ function carregarParametros() {
     });
 }
 
-function pegarDadosRede() {
+function carregarDadosRede() {
   fetch(`/dashboard/ultimas-capturas-rede/1`, {
     cache: "no-store",
   })
@@ -97,7 +97,147 @@ function pegarDadosRede() {
     });
 }
 
+function carregarAlertas() {
+  fetch(`/dashboard/carregar-alertas/1`, {
+    cache: "no-store",
+  })
+    .then((response) => {
+      if (response.ok) {
+        response.json().then((resposta) => {
+          if (resposta.length > 1) {
+            const boxAlertas = document.getElementById("caixalerta-baixo");
+
+            const formatarData = (data) => {
+              const date = new Date(data);
+              const hora = date.getUTCHours().toString().padStart(2, "0");
+              const minuto = date.getUTCMinutes().toString().padStart(2, "0");
+              const segundo = date.getUTCSeconds().toString().padStart(2, "0");
+              const dia = date.getUTCDate().toString();
+              const mes = (date.getUTCMonth() + 1).toString();
+              const ano = date.getUTCFullYear().toString();
+              return `${dia}/${mes}/${ano}, ${hora}:${minuto}:${segundo}`;
+            };
+
+            for (let i = 0; i < resposta.length; i++) {
+              switch (resposta[i].fkComponente) {
+                case 1:
+                  if (resposta[i].descricao == "Moderado") {
+                    boxAlertas.innerHTML += `
+                    <div class="box_alerta">
+                        <h3>${formatarData(resposta[i].horario)}</h3>
+                        <div class="gravidade-alerta">
+                            <img src="../../Assets/assets_dashboard/alertaAmarelo.png"
+                                alt="simbolo de alerta moderado">
+                            <h1 style="color: #f4a261;">MODERADO</h1>
+                        </div>
+                        <div class="componente-alerta">
+                            <h4>Componente: </h4>
+                            <h2>CPU</h2>
+                        </div>
+                    </div> 
+                    `;
+                  } else {
+                    boxAlertas.innerHTML += `
+                    <div class="box_alerta">
+                      <h3>${formatarData(resposta[i].horario)}</h3>
+                      <div class="gravidade-alerta">
+                          <img src="../../Assets/assets_dashboard/alertaVermelho.png"
+                              alt="simbolo de alerta grave">
+                          <h1>CRÍTICO</h1>
+                      </div>
+                      <div class="componente-alerta">
+                          <h4>Componente: </h4>
+                          <h2>CPU</h2>
+                      </div>
+                    </div>
+                    `;
+                  }
+                  break;
+                case 2:
+                  if (resposta[i].descricao == "Moderado") {
+                    boxAlertas.innerHTML += `
+                    <div class="box_alerta">
+                        <h3>${formatarData(resposta[i].horario)}</h3>
+                        <div class="gravidade-alerta">
+                            <img src="../../Assets/assets_dashboard/alertaAmarelo.png"
+                                alt="simbolo de alerta moderado">
+                            <h1 style="color: #f4a261;">MODERADO</h1>
+                        </div>
+                        <div class="componente-alerta">
+                            <h4>Componente: </h4>
+                            <h2>RAM</h2>
+                        </div>
+                    </div> 
+                    `;
+                  } else {
+                    boxAlertas.innerHTML += `
+                    <div class="box_alerta">
+                      <h3>${formatarData(resposta[i].horario)}</h3>
+                      <div class="gravidade-alerta">
+                          <img src="../../Assets/assets_dashboard/alertaVermelho.png"
+                              alt="simbolo de alerta grave">
+                          <h1>CRÍTICO</h1>
+                      </div>
+                      <div class="componente-alerta">
+                          <h4>Componente: </h4>
+                          <h2>RAM</h2>
+                      </div>
+                    </div>
+                    `;
+                  }
+                  break;
+                case 3:
+                  if (resposta[i].descricao == "Moderado") {
+                    boxAlertas.innerHTML += `
+                    <div class="box_alerta">
+                        <h3>${formatarData(resposta[i].horario)}</h3>
+                        <div class="gravidade-alerta">
+                            <img src="../../Assets/assets_dashboard/alertaAmarelo.png"
+                                alt="simbolo de alerta moderado">
+                            <h1 style="color: #f4a261;">MODERADO</h1>
+                        </div>
+                        <div class="componente-alerta">
+                            <h4>Componente: </h4>
+                            <h2>DISCO</h2>
+                        </div>
+                    </div> 
+                    `;
+                  } else {
+                    boxAlertas.innerHTML += `
+                    <div class="box_alerta">
+                      <h3>${formatarData(resposta[i].horario)}</h3>
+                      <div class="gravidade-alerta">
+                          <img src="../../Assets/assets_dashboard/alertaVermelho.png"
+                              alt="simbolo de alerta grave">
+                          <h1>CRÍTICO</h1>
+                      </div>
+                      <div class="componente-alerta">
+                          <h4>Componente: </h4>
+                          <h2>DISCO</h2>
+                      </div>
+                    </div>
+                    `;
+                  }
+                  break;
+                default:
+                  break;
+              }
+            }
+          }
+        });
+      } else {
+        console.error("carregarAlertas: nenhum dado encontrado ou erro na API");
+      }
+    })
+    .catch((erro) => {
+      console.error(
+        `carregarAlertas: erro na obtenção dos dados: ${erro.message}`
+      );
+    });
+}
+
 window.addEventListener("DOMContentLoaded", () => {
   carregarParametros();
-  pegarDadosRede();
+  carregarDadosRede();
+  carregarAlertas();
 });

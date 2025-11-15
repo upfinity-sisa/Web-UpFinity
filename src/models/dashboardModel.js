@@ -41,10 +41,19 @@ function pegarUltimosHorariosCaptura(idAtm) {
   return database.executar(instrucaoSql);
 }
 
+function carregarAlertas(idAtm) {
+  let instrucaoSql = `
+    select descricao, fkComponente, horario from Alerta a join TipoAlerta ta on ta.idTipoAlerta = a.fkTipoAlerta join Captura c on c.idCaptura = a.fkCaptura where fkAtm = ${idAtm};
+  `;
+  console.log('Executando a instrução SQL: ' + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
 module.exports = {
   ultimasCapturas,
   ultimasCapturasRede,
   pegarParametros,
   pegarDowntime,
-  pegarUltimosHorariosCaptura
+  pegarUltimosHorariosCaptura,
+  carregarAlertas
 }
