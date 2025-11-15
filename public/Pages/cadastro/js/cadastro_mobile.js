@@ -107,7 +107,7 @@ const btn_valida_mobile = document.getElementById("btn_valida_mobile");
             clearInterval(controle_aguarde);
             circulo_progresso_mobile.style.stroke = '#1ede0d';
             container_info_progresso_mobile.innerText = 'Empresa validada com sucesso!';
-            check_img_mobile.src = "../../Assets/Elements/Icons/check_progresso.png"
+            check_img_mobile.src = "../../../Assets/Elements/Icons/check_progresso.png"
             btn_valida_mobile.classList.remove('d-none');
             return;
         }
@@ -135,7 +135,7 @@ function validarEmail(email) {
 }
 
 
-function Cadastrar() {
+function CadastrarM() {
     btnCadastro_mobile.disabled = true;
 
     var razaoSocial = ipt_razao_social_mobile.value;

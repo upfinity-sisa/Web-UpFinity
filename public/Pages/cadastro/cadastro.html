@@ -128,7 +128,7 @@
                         placeholder="Ex: ********" required>
                 </div>
 
-                <button class="btn_style-form-mobile" id="btnCadastro_mobile" onclick="Cadastrar()" type="submit">
+                <button class="btn_style-form-mobile" id="btnCadastro_mobile" onclick="CadastrarM()" type="submit">
                     Concluir cadastro
                 </button>
 
@@ -149,15 +149,15 @@
             <div id="valida_cadastro_mobile" class="d-none">
                 <div id="container_valida_mobile">
                     <div id="container_valida_title_mobile">
-                        <h1 id="h1_valida_mobile">Por favor aguarde</h1>
+                        <span id="span_valida_mobile">Por favor aguarde</span> <br>
                         <span id="span_valida_mobile">Estamos validando seu cadastro</span>
                     </div>
 
                     <div id="container_valida_loading_mobile">
                         <div id="container_progresso_mobile">
                             <svg id="svg_carregamento_mobile" viewBox="0 0 100 100">
-                                <circle class="bg" cx="50" cy="50" r="40"></circle>
-                                <circle class="fg" id="circulo_progresso_mobile" cx="50" cy="50" r="40"></circle>
+                                <circle class="bg-mobile" cx="50" cy="50" r="40"></circle>
+                                <circle class="fg-mobile" id="circulo_progresso_mobile" cx="50" cy="50" r="40"></circle>
                             </svg>
 
                             <div id="check_progresso_mobile">
@@ -179,7 +179,6 @@
 
     </div>
     <div class="d-none d-md-block d-lg-none" id="tabletContent">
-        Conteúdo Tablet
     </div>
     <div class="d-none d-lg-block" id="desktopContent">
         <div id="alerta_erros_desktop" class="d-none">
