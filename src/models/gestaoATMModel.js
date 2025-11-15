@@ -18,7 +18,17 @@ function validarCadastroATM(empresa) {
     return database.executar(instrucaoSql);
 }
 
+function atualizarParametro(empresa, tipoComponente, tipoAlerta, limiteMAX) {
+    var instrucaoSql = `
+      update Parametro set limiteMAX = ${limiteMAX} where fkEmpresa = ${empresa} and 
+          fkTipoComponente = ${tipoComponente} and fkTipoAlerta = ${tipoAlerta};
+    `
+
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
   cadastrarATM,
   validarCadastroATM,
+  atualizarParametro,
 };

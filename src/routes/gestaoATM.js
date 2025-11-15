@@ -11,4 +11,8 @@ router.post("/validarCadastroATM", function (req, res) {
   gestaoATMController.validarCadastroATM(req, res);
 });
 
+router.post("/atualizarParametro", function (req, res) {
+  gestaoATMController.atualizarParametro(req, res);
+});
+
 module.exports = router;

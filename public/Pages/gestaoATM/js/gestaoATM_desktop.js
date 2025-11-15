@@ -2,6 +2,11 @@ function validarCadastroATM() {
 
     var empresaVar = sessionStorage.FK_EMPRESA
 
+    if (empresaVar == "") {
+        alert("Favor informar o IP da sua máquina antes de cadastrá-la")
+        return
+    }
+
     fetch("/gestaoATM/validarCadastroATM", {
         method: "POST",
         headers: {
@@ -55,3 +60,36 @@ function cadastrarATM() {
         
 }
 
+function atualizarParametro() {
+
+    var empresaVar = sessionStorage.FK_EMPRESA
+    var tipoComponenteVar = combo_componente.value
+    var tipoAlertaVar = combo_nivel_alerta.value
+    var limiteMAXVar = ipt_limiteMAX.value
+
+    if (limiteMAXVar == "") {
+        alert("Favor preencher o campo de limite")
+        return
+    }
+
+    fetch("/gestaoATM/atualizarParametro", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            fkEmpresa: empresaVar,
+            fkTipoComponente: tipoComponenteVar,
+            fkTipoAlerta: tipoAlertaVar,
+            limiteMAX: limiteMAXVar,
+        }),
+    })
+        .then(function (resposta) {
+            alert("Atualização realizada com sucesso")
+            ipt_limiteMAX.value = ""
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+}

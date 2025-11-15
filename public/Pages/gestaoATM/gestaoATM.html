@@ -84,28 +84,27 @@
                                     <div class="inputs_cima">
                                         <div class="caixa_input div_input_limite_max">
                                             <h2>Limite máximo:</h2>
-                                            <input type="number" class="inputs ipt_limite_max" min="0">
+                                            <input type="number" class="inputs ipt_limite_max" min="0" id="ipt_limiteMAX">
                                         </div>
                                         <div class="caixa_input div_input_nivel_alerta">
                                             <h2>Nível do alerta:</h2>
                                             <select name="nivel_alerta" id="combo_nivel_alerta"
                                                 class="inputs input_nivel_alerta">
-                                                <option value="2">CRÍTICO</option>
-                                                <option value="3">IMPORTANTE</option>
+                                                <option value="1">CRÍTICO</option>
+                                                <option value="2">MODERADO</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="inputs_baixo">
                                         <h2>Componente:</h2>
                                         <select name="componente" id="combo_componente" class="inputs input_componente">
-                                            <option value="2">CPU</option>
-                                            <option value="3">MEMÓRIA RAM</option>
-                                            <option value="4">DISCO</option>
-                                            <option value="5">REDE</option>
+                                            <option value="1">CPU</option>
+                                            <option value="2">MEMÓRIA RAM</option>
+                                            <option value="3">DISCO</option>
                                         </select>
                                     </div>
                                 </div>
-                                <button onclick="validarFuncionario()"
+                                <button onclick="atualizarParametro()"
                                     class="botao botao_definir_parametros">Definir</button>
                             </div>
                         </div>

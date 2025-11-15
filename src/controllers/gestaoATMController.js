@@ -17,7 +17,19 @@ function validarCadastroATM(req, res) {
     });
 }
 
+function atualizarParametro(req, res) {
+    var fkEmpresa = req.body.fkEmpresa;
+    var fkTipoComponente = req.body.fkTipoComponente;
+    var fkTipoAlerta = req.body.fkTipoAlerta;
+    var limiteMAX = req.body.limiteMAX;
+
+    gestaoATMModel.atualizarParametro(fkEmpresa, fkTipoComponente, fkTipoAlerta, limiteMAX).then((resultado) => {
+        res.status(201).json(resultado);
+    });
+}
+
 module.exports = {
   cadastrarATM,
   validarCadastroATM,
+  atualizarParametro,
 };
