@@ -136,11 +136,59 @@ function ultimasCapturas() {
           let kpiCpu = document.getElementById("dado-kpi-cpu");
           let kpiRam = document.getElementById("dado-kpi-ram");
           let kpiDisco = document.getElementById("dado-kpi-disco");
-          
+
+          const corModerado = "#f4a261";
+          const corCritico = "#e63946";
+
+          let statusKpiCpu = document.getElementById("status-cpu");
+          let statusKpiRAM = document.getElementById("status-ram");
+          let statusKpiDisco = document.getElementById("status-disco");
 
           kpiCpu.innerHTML = dados_cpu[dados_cpu.length - 1] + "%";
           kpiRam.innerHTML = dados_ram[dados_ram.length - 1] + "%";
           kpiDisco.innerHTML = dados_disco[dados_disco.length - 1] + "%";
+
+          if (
+            dados_cpu[dados_cpu.length - 1] >
+            sessionStorage.getItem("PARAM_CRITICO_CPU")
+          ) {
+            statusKpiCpu.innerHTML = "Crítico";
+            statusKpiCpu.style.color = corCritico;
+          } else if (
+            dados_cpu[dados_cpu.length - 1] >
+            sessionStorage.getItem("PARAM_IMPORTANTE_CPU")
+          ) {
+            statusKpiCpu.innerHTML = "Moderado";
+            statusKpiCpu.style.color = corModerado;
+          }
+
+          if (
+            dados_ram[dados_ram.length - 1] >
+            sessionStorage.getItem("PARAM_CRITICO_RAM")
+          ) {
+            statusKpiRAM.innerHTML = "Crítico";
+            statusKpiRAM.style.color = corCritico;
+          } else if (
+            dados_ram[dados_ram.length - 1] >
+            sessionStorage.getItem("PARAM_IMPORTANTE_RAM")
+          ) {
+            statusKpiRAM.innerHTML = "Moderado";
+            statusKpiRAM.style.color = corModerado;
+          }
+
+          if (
+            dados_disco[dados_disco.length - 1] >
+            sessionStorage.getItem("PARAM_CRITICO_DISCO")
+          ) {
+            statusKpiDisco.innerHTML = "Crítico";
+            statusKpiDisco.style.color = corCritico;
+          } else if (
+            dados_disco[dados_disco.length - 1] >
+            sessionStorage.getItem("PARAM_IMPORTANTE_DISCO")
+          ) {
+            statusKpiDisco.innerHTML = "Moderado";
+            statusKpiDisco.style.color = corModerado;
+          }
         });
       } else {
         console.error("ultimasCapturas: nenhum dado encontrado ou erro na API");
