@@ -144,11 +144,40 @@
         </div>
     </dialog>
 
+    <dialog id="dialogAtualizar">
+        <div id="div_titulo_informar">
+            <h1 id="titulo_informar_dialog">Atualize as informações do seu ATM:</h1>
+            <div class="linha"></div>
+        </div>
+        <div id="div_campo_input_dialog">
+            <h1 id="titulo_ip_dialog">IP do ATM:</h1>
+            <input id="ip_atm_atualizar" maxlength="15">
+        </div>
+        <div class="combo_status">
+            <h1>Definir novo Status</h1>
+            <select class="inputs">
+                <option>ATIVO</option>
+                <option>INATIVO</option>
+                <option>EM MANUTENÇÃO</option>
+            </select>
+        </div>
+        <div id="botoes_dialog_atualizar">
+            <button onclick="" id="botao_cadastrar_atm_dialog">Atualizar</button>
+            <button onclick="fechar()" id="botao_cancelar_dialog">Cancelar</button>
+        </div>
+    </dialog>
+
 </body>
 
 </html>
 
 <script>
+    
+    function abrirModalAtualizar() {
+        dialogAtualizar.showModal()
+        dialogAtualizar.style.display = "flex";
+    }
+
     function exibirDialog() {
         dialogInsert.showModal()
         dialogInsert.style.display = "flex";
@@ -157,6 +186,8 @@
     function fechar() {
         dialogInsert.close()
         dialogInsert.style.display = "none";
+        dialogAtualizar.close()
+        dialogAtualizar.style.display = "none";
         ip_atm.value = ""
     }
 </script>

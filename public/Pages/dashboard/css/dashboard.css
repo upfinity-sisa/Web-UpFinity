@@ -792,9 +792,9 @@ div {
     text-align: center;
     font-family: "Montserrat", sans-serif;
     font-size: 1vw;
-    height: 30%;
+    height: 50px;
     width: 80%;
-    border-radius: 15px;
+    border-radius: 8px;
     border: 2px solid #999999;
     color: #999999;
     background-color: white;
@@ -1075,10 +1075,12 @@ div {
 }
 
 .combo_status {
+    height: 20%;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     text-align: center;
 }
 
@@ -1086,14 +1088,12 @@ div {
     font-family: "Montserrat", sans-serif;
     font-size: 1.2vw;
     color: #5c5f60;
-    margin-top: 10%;
 }
 
 .combo_status select {
     text-align: center;
     font-family: "Montserrat", sans-serif;
     font-size: 1vw;
-    width: 100%;
     height: 2.5vw;
     border-radius: 10 px;
     border: 2px solid #999999;
@@ -1247,7 +1247,7 @@ table {
     color: #268184;
 }
 
-#ip_atm, #botao_cadastrar_atm_dialog, #botao_cancelar_dialog {
+#ip_atm, #botao_cadastrar_atm_dialog, #botao_cancelar_dialog, #ip_atm_atualizar {
     width: 80%;
     height: 5vh;
     border: 2px solid #00c4cc;
@@ -1282,4 +1282,38 @@ table {
     gap: 0.7vw;
     margin-top: 0.5vw;
     height: 38%;
+}
+
+#dialogAtualizar {
+    justify-self: center;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    width: 33vw;
+    gap: 1vw;
+    height: 52vh;
+}
+
+#titulo_ip_dialog {
+    font-size: 1.2vw;
+    color: #616d6e;
+}
+
+#div_campo_input_dialog {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#botoes_dialog_atualizar {
+    gap: 0.6vw;
+    width: 100%;
+    height: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
