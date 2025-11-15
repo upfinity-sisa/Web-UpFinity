@@ -94,6 +94,7 @@ function atualizarParametro() {
 
 }
 
+dadosATMs = {}
 function buscarDadosATMs() {
 
     var fkEmpresa = sessionStorage.FK_EMPRESA
@@ -104,6 +105,7 @@ function buscarDadosATMs() {
         .then(function (resposta) {
             resposta.json().then((resposta2) => {
                 console.log(resposta2)
+                dadosATMs = resposta2
                 if (resposta2.length <= 0) {
                     baixo_gestao.style.justifyContent = 'center';
                     baixo_gestao.innerHTML = `
@@ -156,5 +158,29 @@ function exibirATMs(resposta2) {
             </div>`
 
     }
+
+}
+
+function exibirATMsPorBusca() {
+    vt_dados_busca = []
+
+    if (busca_nome.value == "") {
+        buscarDadosATMs()
+        return
+    }
+
+    for (let i = 0; i < dadosATMs.length; i++) {
+        if (dadosATMs[i].numeracao == busca_nome.value) {
+            vt_dados_busca.push(dadosATMs[i])
+        }
+    }
+
+    busca_nome.value = ""
+
+    if (vt_dados_busca.length == 0) {
+        alert("Não foi encontrado nenhum ATM com essa numeração")
+        return
+    }
+    exibirATMs(vt_dados_busca)
 
 }
