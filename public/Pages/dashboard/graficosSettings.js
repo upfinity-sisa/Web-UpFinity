@@ -117,6 +117,7 @@ function ultimasCapturas() {
     .then((response) => {
       if (response.ok) {
         return response.json().then((resposta) => {
+          resposta.reverse();
           for (let i = 0; i < resposta.length; i++) {
             switch (resposta[i]["fkComponente"]) {
               case 1:
@@ -206,9 +207,9 @@ function ultimasCapturas() {
 function pegarUltimosHorariosCaptura() {
   const formatarData = (data) => {
     const date = new Date(data);
-    const hora = date.getUTCHours().toString().padStart(2, "0");
-    const minuto = date.getUTCMinutes().toString().padStart(2, "0");
-    const segundo = date.getUTCSeconds().toString().padStart(2, "0");
+    const hora = date.getHours().toString().padStart(2, "0");
+    const minuto = date.getMinutes().toString().padStart(2, "0");
+    const segundo = date.getSeconds().toString().padStart(2, "0");
     return `${hora}:${minuto}:${segundo}`;
   };
 

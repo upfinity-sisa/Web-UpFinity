@@ -71,12 +71,8 @@ function pegarDowntime(req, res) {
   const dataFim = new Date();
   const dataInicio = new Date(dataFim.getTime() - 7 * 24 * 60 * 60 * 1000);
 
-  function formatarData(data) {
-    return data.toISOString().slice(0, 19).replace("T", " ");
-  }
-
   dashboardModel
-    .pegarDowntime(idAtm, formatarData(dataFim), formatarData(dataInicio))
+    .pegarDowntime(idAtm, dataFim, dataInicio)
     .then((resultado) => {
       if (resultado.length > 0) {
         res.status(200).json(resultado);
