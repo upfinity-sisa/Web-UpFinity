@@ -1317,3 +1317,24 @@ table {
     align-items: center;
     justify-content: center;
 }
+
+
+#containerSemAtms_desktop {
+    width: 50%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#usuario_nao_encontrado_desktop {
+    width: 6vw;
+}
+
+#spn_nao_encontrado_desktop {
+    margin-top: 4%;
+    color: #878787;
+    font-size: 1.2vw;
+    text-align: center;
+}

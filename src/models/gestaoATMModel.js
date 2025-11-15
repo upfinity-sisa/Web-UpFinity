@@ -27,8 +27,27 @@ function atualizarParametro(empresa, tipoComponente, tipoAlerta, limiteMAX) {
     return database.executar(instrucaoSql);
 }
 
+function exibirATMs(empresa) {
+    var instrucaoSql = `
+
+    select numeracao, IP,
+		case when statusEstado = 3 then 'Sem informações'
+        when statusMonitoramento = 3 then 'Normal'
+        when statusMonitoramento = 2 then 'Moderado'
+        when statusMonitoramento = 1 then 'Crítico'
+        end as statusMonitoramento,
+        case when statusEstado = 1 then 'Ligado'
+        when statusEstado = 2 then 'Desigado'
+        when statusEstado = 3 then 'Em manutenção'
+        end as statusEstado from Atm where fkEmpresa = ${empresa};
+    
+    `
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
   cadastrarATM,
   validarCadastroATM,
   atualizarParametro,
+  exibirATMs,
 };

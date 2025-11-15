@@ -15,4 +15,8 @@ router.post("/atualizarParametro", function (req, res) {
   gestaoATMController.atualizarParametro(req, res);
 });
 
+router.get("/exibirATMs/:fkEmpresa", function (req, res) {
+    gestaoATMController.exibirATMs(req, res);
+})
+
 module.exports = router;

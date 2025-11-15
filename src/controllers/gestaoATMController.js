@@ -28,8 +28,16 @@ function atualizarParametro(req, res) {
     });
 }
 
+function exibirATMs(req, res) {
+    var fkEmpresa = req.params.fkEmpresa;
+    gestaoATMModel.exibirATMs(fkEmpresa).then((resultado) => {
+        res.status(201).json(resultado);
+    });
+}
+
 module.exports = {
   cadastrarATM,
   validarCadastroATM,
   atualizarParametro,
+  exibirATMs,
 };

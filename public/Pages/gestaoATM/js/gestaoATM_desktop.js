@@ -93,3 +93,68 @@ function atualizarParametro() {
         });
 
 }
+
+function buscarDadosATMs() {
+
+    var fkEmpresa = sessionStorage.FK_EMPRESA
+
+    fetch(`/gestaoATM/exibirATMs/${fkEmpresa}`, {
+        method: "GET",
+    })
+        .then(function (resposta) {
+            resposta.json().then((resposta2) => {
+                console.log(resposta2)
+                if (resposta2.length <= 0) {
+                    baixo_gestao.style.justifyContent = 'center';
+                    baixo_gestao.innerHTML = `
+                        <div id="containerSemAtms_desktop">
+                            <img id="usuario_nao_encontrado_desktop" src="../../Assets/assets_dashboard/img-0-ATMs.png">
+                            <span id="spn_nao_encontrado_desktop">Ops! Você não possui ATMs cadastrados.</span>
+                        </div>`
+                } else {
+                    exibirATMs(resposta2)
+                }
+            })
+
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+
+}
+buscarDadosATMs()
+
+function exibirATMs(resposta2) {
+
+    baixo_gestao.innerHTML = ""
+    for (let i = 0; i < resposta2.length; i++) {
+
+        baixo_gestao.innerHTML += `
+    
+            <div class="caixa_gestao">
+                <div class="infos_atms">
+                    <div class="informacoes informacoes-extensao-atms">
+                        <div class="titulos">
+                            <h1>Numeração:</h1>
+                            <h1>Status:</h1>
+                            <h1>Estado:</h1>
+                            <h1>IPV4:</h1>
+                        </div>
+                        <div class="infos">
+                            <h1>ATM ${resposta2[i].numeracao}</h1>
+                            <h1>${resposta2[i].statusEstado}</h1>
+                            <h1>${resposta2[i].statusMonitoramento}</h1>
+                            <h1>${resposta2[i].IP}</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="botoes">
+                    <button onclick="abrirModalAtualizar()" class="btn_atualizar">Atualizar</button>
+                    <button class="btn_remover">Remover</button>
+                </div>
+            </div>`
+
+    }
+
+}
