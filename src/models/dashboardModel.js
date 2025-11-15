@@ -13,10 +13,20 @@ function pegarParametros(idEmpresa) {
   SELECT * FROM Parametro WHERE fkEmpresa = ${idEmpresa} 
   `;
   console.log("Executando a instrução SQL: " + instrucaoSql);
+ 
+  return database.executar(instrucaoSql)
+}
+
+function pegarDowntime(idAtm, dataInicio, dataFim) {
+  let instrucaoSql = `
+  SELECT horario FROM Captura WHERE fkAtm = ${idAtm} AND horario BETWEEN '${dataFim}' AND '${dataInicio}' ORDER BY horario ASC;
+  `;
+  console.log("Executando a instrução SQL: " + instrucaoSql);
   return database.executar(instrucaoSql)
 }
 
 module.exports = {
   ultimasCapturas,
-  pegarParametros
+  pegarParametros,
+  pegarDowntime
 }

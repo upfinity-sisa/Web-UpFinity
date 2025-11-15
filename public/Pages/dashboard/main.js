@@ -51,6 +51,6 @@ function carregarParametros(){
   })
 }
 
-window.onload = () => {
-  carregarParametros()
-}
+window.addEventListener("DOMContentLoaded", () => {
+  carregarParametros();
+})

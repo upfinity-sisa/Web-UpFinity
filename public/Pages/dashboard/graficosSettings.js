@@ -226,87 +226,133 @@ window.addEventListener('resize', function () {
     window.location.reload(true);
 })
 
-var options = {
-    series: [81.5, 18.5],
-    labels: ["UPTIME", "DOWNTIME"],
-    legend: {
-        position: 'top'
-    },
-    chart: {
-        type: 'donut',
-        toolbar: {
-            show: true,
-            tools: {
-                download: true,
-                selection: false,
-                zoom: false,
-                zoomin: false,
-                zoomout: false,
-                pan: false,
-                reset: false
-            },
-            offsetX: 0,
-            offsetY: 0,
-        },
-    },
-    dataLabels: {
-        enabled: true,
-        style: {
-            fontSize: `${vwParaPx(1)}px`,
-            fontFamily: 'poppins leve',
-            colors: ['#fff']
-        }
-    },
-    responsive: [{
-        breakpoint: 480,
-        options: {
-            chart: {
-                width: 400
-            },
-            legend: {
-                position: 'bottom',
-                fontSize: `${vwParaPx(1)}px`,
-                fontFamily: 'poppins leve',
-            }
-        }
-    }],
-    tooltip: {
-        enabled: true,
-        y: {
-            formatter: function (val) {
+let downtime = []
 
-                return val + "%";
-            },
-            title: {
-                formatter: function (seriesName) {
-                    return seriesName
-                }
-            }
-        },
-        theme: 'light',
-        style: {
-            fontSize: `${vwParaPx(0.8)}px`,
-            fontFamily: 'poppins leve',
-        }
-    },
-    legend: {
-        position: 'top',
-        fontSize: `${vwParaPx(1)}px`,
-        fontFamily: 'poppins leve',
-        color: "#000"
-    },
-    plotOptions: {
-        pie: {
-            donut: {
-                size: '50%'
-            }
-        }
-    },
-    colors: ['#6ce5e8', '#41b8d5']
-};
-var chart = new ApexCharts(document.querySelector("#torta_baixo"), options);
-chart.render();
+function carregarDowntime() {
+  fetch(`/dashboard/pegar-downtime/1`, { cache: 'no-store' }).then(
+    (response) => {
+      if(response.ok) {
+        response.json().then((resposta) => {
+          if(resposta.length == 0) {
+            console.log("nenhuma captura encontrada nos últimos 7 dias.")
+          }
 
-window.onload = () => {
-  ultimasCapturas()
+          if (resposta.length == 1) {
+            console.log("apenas uma captura. não é possível calcular o downtime")
+          }
+
+          let totalDownTimeSeg = 0;
+
+          for (let i = 0; i < resposta.length - 1; i++) {
+            const t1 = new Date(resposta[i].horario);
+            const t2 = new Date(resposta[i+1].horario);
+            const diffEmSegundos = (t2.getTime() - t1.getTime()) / 1000;
+
+            if (diffEmSegundos > 12) {
+                totalDownTimeSeg += (diffEmSegundos - 3)
+            }
+          }
+            const totalSegundosSemana = 7*24*60*60;
+            const totalUpTimeSeg = totalSegundosSemana - totalDownTimeSeg;
+
+            const totalUpTimePercent = (totalUpTimeSeg / totalSegundosSemana) * 100;
+            const totalDownTimePercent = (totalDownTimeSeg / totalSegundosSemana) * 100;
+
+            downtime[0] = Number(totalUpTimePercent.toFixed(2));
+            downtime[1] = Number(totalDownTimePercent.toFixed(2));
+
+            var options = {
+                series: downtime,
+                labels: ["UPTIME", "DOWNTIME"],
+                legend: {
+                    position: 'top'
+                },
+                chart: {
+                    type: 'donut',
+                    toolbar: {
+                        show: true,
+                        tools: {
+                            download: true,
+                            selection: false,
+                            zoom: false,
+                            zoomin: false,
+                            zoomout: false,
+                            pan: false,
+                            reset: false
+                        },
+                        offsetX: 0,
+                        offsetY: 0,
+                    },
+                },
+                dataLabels: {
+                    enabled: true,
+                    style: {
+                        fontSize: `${vwParaPx(1)}px`,
+                        fontFamily: 'poppins leve',
+                        colors: ['#fff']
+                    }
+                },
+                responsive: [{
+                    breakpoint: 480,
+                    options: {
+                        chart: {
+                            width: 400
+                        },
+                        legend: {
+                            position: 'bottom',
+                            fontSize: `${vwParaPx(1)}px`,
+                            fontFamily: 'poppins leve',
+                        }
+                    }
+                }],
+                tooltip: {
+                    enabled: true,
+                    y: {
+                        formatter: function (val) {
+
+                            return val + "%";
+                        },
+                        title: {
+                            formatter: function (seriesName) {
+                                return seriesName
+                            }
+                        }
+                    },
+                    theme: 'light',
+                    style: {
+                        fontSize: `${vwParaPx(0.8)}px`,
+                        fontFamily: 'poppins leve',
+                    }
+                },
+                legend: {
+                    position: 'top',
+                    fontSize: `${vwParaPx(1)}px`,
+                    fontFamily: 'poppins leve',
+                    color: "#000"
+                },
+                plotOptions: {
+                    pie: {
+                        donut: {
+                            size: '50%'
+                        }
+                    }
+                },
+                colors: ['#6ce5e8', '#41b8d5']
+            };
+
+            var chart = new ApexCharts(document.querySelector("#torta_baixo"), options);
+            chart.render();
+        })
+      } else {
+        console.error("carregarDowntime: nenhum dado encontrado ou erro na API")
+      }
+    }
+  ).catch((erro) => {
+    console.error(`carregarDowntime: erro na obtenção dos dados: ${erro.message}`)
+  })
 }
+
+window.addEventListener("DOMContentLoaded", () => {
+  ultimasCapturas();
+  carregarDowntime();
+})

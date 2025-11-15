@@ -15,4 +15,8 @@ router.get('/pegar-parametros/:idEmpresa', (req, res) => {
   dashboardController.pegarParametros(req, res)
 })
 
+router.get('/pegar-downtime/:idAtm', (req, res) => {
+  dashboardController.pegarDowntime(req, res);
+})
+
 module.exports = router;
