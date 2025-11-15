@@ -252,6 +252,8 @@ function carregarDowntime() {
             );
           }
 
+          console.log(resposta)
+
           let downtime = [];
           let totalDownTimeSeg = 0;
 
