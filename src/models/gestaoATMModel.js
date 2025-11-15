@@ -45,9 +45,27 @@ function exibirATMs(empresa) {
     return database.executar(instrucaoSql);
 }
 
+function removerComponentes(empresa, numeracao) {
+    var instrucaoSql = `
+    delete from Componente where fkAtm = (select idAtm from Atm where fkEmpresa = ${empresa} and numeracao = ${numeracao});
+    `
+
+    return database.executar(instrucaoSql);
+}
+
+function removerATM(empresa, numeracao) {
+    var instrucaoSql = `
+    delete from Atm where fkEmpresa = ${empresa} and numeracao = ${numeracao};
+    `
+
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
   cadastrarATM,
   validarCadastroATM,
   atualizarParametro,
   exibirATMs,
+  removerComponentes,
+  removerATM,
 };

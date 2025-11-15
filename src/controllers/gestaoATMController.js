@@ -35,9 +35,24 @@ function exibirATMs(req, res) {
     });
 }
 
+function removerComponentes(req, res) {
+    var fkEmpresa = req.body.fkEmpresa;
+    var numeracao = req.body.numeracao;
+
+    gestaoATMModel.removerComponentes(fkEmpresa, numeracao).then((resultado) => {
+        gestaoATMModel.removerATM(fkEmpresa, numeracao).then((resultado2) => {
+            res.status(201).json(resultado2);
+        });
+	});
+
+}
+
+//removerComponentes
+
 module.exports = {
   cadastrarATM,
   validarCadastroATM,
   atualizarParametro,
   exibirATMs,
+  removerComponentes,
 };

@@ -2,11 +2,6 @@ function validarCadastroATM() {
 
     var empresaVar = sessionStorage.FK_EMPRESA
 
-    if (empresaVar == "") {
-        alert("Favor informar o IP da sua máquina antes de cadastrá-la")
-        return
-    }
-
     fetch("/gestaoATM/validarCadastroATM", {
         method: "POST",
         headers: {
@@ -39,6 +34,11 @@ function cadastrarATM() {
     console.log(empresaVar)
     console.log(ipVar)
 
+    if (ipVar == "") {
+        alert("Favor informar o IP da sua máquina antes de cadastrá-la")
+        return
+    }
+
     fetch("/gestaoATM/cadastrarATM", {
         method: "POST",
         headers: {
@@ -51,6 +51,7 @@ function cadastrarATM() {
     })
         .then(function (resposta) {
             alert("Cadastro realizado com sucesso")
+            buscarDadosATMs()
         })
         .catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
@@ -153,7 +154,7 @@ function exibirATMs(resposta2) {
                 </div>
                 <div class="botoes">
                     <button onclick="abrirModalAtualizar()" class="btn_atualizar">Atualizar</button>
-                    <button class="btn_remover">Remover</button>
+                    <button onclick="removerATM(${resposta2[i].numeracao})" class="btn_remover">Remover</button>
                 </div>
             </div>`
 
@@ -182,5 +183,28 @@ function exibirATMsPorBusca() {
         return
     }
     exibirATMs(vt_dados_busca)
+
+}
+
+function removerATM(numeracao) {
+    
+    var empresaVar = sessionStorage.FK_EMPRESA
+
+    fetch("/gestaoATM/removerComponentes", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            fkEmpresa: empresaVar,
+            numeracao: numeracao,
+        }),
+    })
+        .then(function (resposta) {
+            buscarDadosATMs()
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
 
 }

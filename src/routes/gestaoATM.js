@@ -19,4 +19,8 @@ router.get("/exibirATMs/:fkEmpresa", function (req, res) {
     gestaoATMController.exibirATMs(req, res);
 })
 
+router.post("/removerComponentes", function (req, res) {
+  gestaoATMController.removerComponentes(req, res);
+});
+
 module.exports = router;
