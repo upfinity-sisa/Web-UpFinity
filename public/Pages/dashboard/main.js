@@ -109,12 +109,12 @@ function carregarAlertas() {
 
             const formatarData = (data) => {
               const date = new Date(data);
-              const hora = date.getUTCHours().toString().padStart(2, "0");
-              const minuto = date.getUTCMinutes().toString().padStart(2, "0");
-              const segundo = date.getUTCSeconds().toString().padStart(2, "0");
-              const dia = date.getUTCDate().toString();
-              const mes = (date.getUTCMonth() + 1).toString();
-              const ano = date.getUTCFullYear().toString();
+              const hora = date.getHours().toString().padStart(2, "0");
+              const minuto = date.getMinutes().toString().padStart(2, "0");
+              const segundo = date.getSeconds().toString().padStart(2, "0");
+              const dia = date.getDate().toString();
+              const mes = (date.getMonth() + 1).toString();
+              const ano = date.getFullYear().toString();
               return `${dia}/${mes}/${ano}, ${hora}:${minuto}:${segundo}`;
             };
 
