@@ -9,6 +9,16 @@ function cadastrarATM(empresa, ip) {
     return database.executar(instrucaoSql);
 }
 
+function validarCadastroATM(empresa) {
+    var instrucaoSql = `
+    select (select count(*) from Atm where fkEmpresa = ${empresa}) as 'qtdATMs', 
+        maxATMs from Empresa join Plano on idPlano = fkPlano where idEmpresa = ${empresa};
+    `
+
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
   cadastrarATM,
+  validarCadastroATM,
 };

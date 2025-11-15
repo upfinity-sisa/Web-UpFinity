@@ -9,6 +9,15 @@ function cadastrarATM(req, res) {
     });
 }
 
+function validarCadastroATM(req, res) {
+    var idEmpresa = req.body.idEmpresa;
+
+    gestaoATMModel.validarCadastroATM(idEmpresa).then((resultado) => {
+        res.status(201).json(resultado);
+    });
+}
+
 module.exports = {
   cadastrarATM,
+  validarCadastroATM,
 };
