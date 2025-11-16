@@ -9,131 +9,150 @@ let dadosDisco = [];
 let dadosRede = [];
 
 function carregarParametros() {
-  fetch(`/dashboard/pegar-parametros/${sessionStorage.getItem("FK_EMPRESA")}`, {
-    cache: "no-store",
-  })
-    .then((response) => {
-      if (response.ok) {
-        response.json().then((resposta) => {
-          if (resposta.length > 0) {
-            for (let i = 0; i < resposta.length; i++) {
-              switch (resposta[i]["fkTipoComponente"]) {
-                case 1:
-                  if (resposta[i]["fkTipoAlerta"] == 1) {
-                    sessionStorage.setItem(
-                      "PARAM_CRITICO_CPU",
-                      resposta[i]["limiteMax"]
-                    );
-                  } else {
-                    sessionStorage.setItem(
-                      "PARAM_IMPORTANTE_CPU",
-                      resposta[i]["limiteMax"]
-                    );
-                  }
-                  break;
-                case 2:
-                  if (resposta[i]["fkTipoAlerta"] == 1) {
-                    sessionStorage.setItem(
-                      "PARAM_CRITICO_RAM",
-                      resposta[i]["limiteMax"]
-                    );
-                  } else {
-                    sessionStorage.setItem(
-                      "PARAM_IMPORTANTE_RAM",
-                      resposta[i]["limiteMax"]
-                    );
-                  }
-                  break;
-                case 3:
-                  if (resposta[i]["fkTipoAlerta"] == 1) {
-                    sessionStorage.setItem(
-                      "PARAM_CRITICO_DISCO",
-                      resposta[i]["limiteMax"]
-                    );
-                  } else {
-                    sessionStorage.setItem(
-                      "PARAM_IMPORTANTE_DISCO",
-                      resposta[i]["limiteMax"]
-                    );
-                  }
-                  break;
-                default:
-                  break;
-              }
+    fetch(
+        `/dashboard/pegar-parametros/${sessionStorage.getItem('FK_EMPRESA')}`,
+        {
+            cache: 'no-store',
+        }
+    )
+        .then(response => {
+            if (response.ok) {
+                response.json().then(resposta => {
+                    if (resposta.length > 0) {
+                        for (let i = 0; i < resposta.length; i++) {
+                            switch (resposta[i]['fkTipoComponente']) {
+                                case 1:
+                                    if (resposta[i]['fkTipoAlerta'] == 1) {
+                                        sessionStorage.setItem(
+                                            'PARAM_CRITICO_CPU',
+                                            resposta[i]['limiteMax']
+                                        );
+                                    } else {
+                                        sessionStorage.setItem(
+                                            'PARAM_IMPORTANTE_CPU',
+                                            resposta[i]['limiteMax']
+                                        );
+                                    }
+                                    break;
+                                case 2:
+                                    if (resposta[i]['fkTipoAlerta'] == 1) {
+                                        sessionStorage.setItem(
+                                            'PARAM_CRITICO_RAM',
+                                            resposta[i]['limiteMax']
+                                        );
+                                    } else {
+                                        sessionStorage.setItem(
+                                            'PARAM_IMPORTANTE_RAM',
+                                            resposta[i]['limiteMax']
+                                        );
+                                    }
+                                    break;
+                                case 3:
+                                    if (resposta[i]['fkTipoAlerta'] == 1) {
+                                        sessionStorage.setItem(
+                                            'PARAM_CRITICO_DISCO',
+                                            resposta[i]['limiteMax']
+                                        );
+                                    } else {
+                                        sessionStorage.setItem(
+                                            'PARAM_IMPORTANTE_DISCO',
+                                            resposta[i]['limiteMax']
+                                        );
+                                    }
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                    } else {
+                        console.error(
+                            'carregarParametros: nenhum parâmetro encontrado.'
+                        );
+                    }
+                });
+            } else {
+                console.error(
+                    'carregarParametros: nenhum dado encontrado ou erro na API'
+                );
             }
-          } else {
-            console.error("carregarParametros: nenhum parâmetro encontrado.");
-          }
+        })
+        .catch(erro => {
+            console.error(
+                `carregarParametros: erro na obtenção dos dados: ${erro.message}`
+            );
         });
-      } else {
-        console.error(
-          "carregarParametros: nenhum dado encontrado ou erro na API"
-        );
-      }
-    })
-    .catch((erro) => {
-      console.error(
-        `carregarParametros: erro na obtenção dos dados: ${erro.message}`
-      );
-    });
 }
 
 function carregarDadosRede(idAtm) {
-  fetch(`/dashboard/ultimas-capturas-rede/${idAtm}`, {
-    cache: "no-store",
-  })
-    .then((response) => {
-      if (response.ok) {
-        response.json().then((resposta) => {
-          let kpiRede = document.getElementById("dado-kpi-rede");
-
-          if (resposta.length > 0) {
-            if (resposta[resposta.length - 1].valor > 0) {
-              kpiRede.innerHTML = "Conectado";
-            } else {
-              kpiRede.innerHTML = "Não conectado";
-            }
-          } else {
-            kpiRede.innerHTML = "N/D";
-          }
-        });
-      } else {
-        console.error("dadosRede: nenhum dado encontrado ou erro na API");
-        document.getElementById("dado-kpi-rede").innerHTML = "Erro";
-      }
+    fetch(`/dashboard/ultimas-capturas-rede/${idAtm}`, {
+        cache: 'no-store',
     })
-    .catch((erro) => {
-      console.error(`dadosRede: erro na obtenção dos dados: ${erro.message}`);
-    });
+        .then(response => {
+            if (response.ok) {
+                response.json().then(resposta => {
+                    let kpiRede = document.getElementById('dado-kpi-rede');
+
+                    if (resposta.length > 0) {
+                        if (resposta[resposta.length - 1].valor > 0) {
+                            kpiRede.innerHTML = 'Conectado';
+                        } else {
+                            kpiRede.innerHTML = 'Não conectado';
+                        }
+                    } else {
+                        kpiRede.innerHTML = 'N/D';
+                    }
+                });
+            } else {
+                console.error(
+                    'dadosRede: nenhum dado encontrado ou erro na API'
+                );
+                document.getElementById('dado-kpi-rede').innerHTML = 'Erro';
+            }
+        })
+        .catch(erro => {
+            console.error(
+                `dadosRede: erro na obtenção dos dados: ${erro.message}`
+            );
+        });
 }
 
 function carregarAlertas(idAtm) {
-  fetch(`/dashboard/carregar-alertas/${idAtm}`, {
-    cache: "no-store",
-  })
-    .then((response) => {
-      if (response.ok) {
-        response.json().then((resposta) => {
-          const boxAlertas = document.getElementById("caixalerta-baixo");
-          boxAlertas.innerHTML = "";
+    fetch(`/dashboard/carregar-alertas/${idAtm}`, {
+        cache: 'no-store',
+    })
+        .then(response => {
+            if (response.ok) {
+                response.json().then(resposta => {
+                    const boxAlertas =
+                        document.getElementById('caixalerta-baixo');
+                    boxAlertas.innerHTML = '';
 
-          if (resposta.length > 0) {
-            const formatarData = (data) => {
-              const date = new Date(data);
-              const hora = date.getHours().toString().padStart(2, "0");
-              const minuto = date.getMinutes().toString().padStart(2, "0");
-              const segundo = date.getSeconds().toString().padStart(2, "0");
-              const dia = date.getDate().toString();
-              const mes = (date.getMonth() + 1).toString();
-              const ano = date.getFullYear().toString();
-              return `${dia}/${mes}/${ano}, ${hora}:${minuto}:${segundo}`;
-            };
+                    if (resposta.length > 0) {
+                        const formatarData = data => {
+                            const date = new Date(data);
+                            const hora = date
+                                .getHours()
+                                .toString()
+                                .padStart(2, '0');
+                            const minuto = date
+                                .getMinutes()
+                                .toString()
+                                .padStart(2, '0');
+                            const segundo = date
+                                .getSeconds()
+                                .toString()
+                                .padStart(2, '0');
+                            const dia = date.getDate().toString();
+                            const mes = (date.getMonth() + 1).toString();
+                            const ano = date.getFullYear().toString();
+                            return `${dia}/${mes}/${ano}, ${hora}:${minuto}:${segundo}`;
+                        };
 
-            for (let i = 0; i < resposta.length; i++) {
-              switch (parseInt(resposta[i].fkComponente)) {
-                case 1:
-                  if (resposta[i].descricao == "Moderado") {
-                    boxAlertas.innerHTML += `
+                        for (let i = 0; i < resposta.length; i++) {
+                            switch (parseInt(resposta[i].fkComponente)) {
+                                case 1:
+                                    if (resposta[i].descricao == 'Moderado') {
+                                        boxAlertas.innerHTML += `
                     <div class="box_alerta">
                         <h3>${formatarData(resposta[i].horario)}</h3>
                         <div class="gravidade-alerta">
@@ -147,8 +166,8 @@ function carregarAlertas(idAtm) {
                         </div>
                     </div> 
                     `;
-                  } else {
-                    boxAlertas.innerHTML += `
+                                    } else {
+                                        boxAlertas.innerHTML += `
                     <div class="box_alerta">
                       <h3>${formatarData(resposta[i].horario)}</h3>
                       <div class="gravidade-alerta">
@@ -162,11 +181,11 @@ function carregarAlertas(idAtm) {
                       </div>
                     </div>
                     `;
-                  }
-                  break;
-                case 2:
-                  if (resposta[i].descricao == "Moderado") {
-                    boxAlertas.innerHTML += `
+                                    }
+                                    break;
+                                case 2:
+                                    if (resposta[i].descricao == 'Moderado') {
+                                        boxAlertas.innerHTML += `
                     <div class="box_alerta">
                         <h3>${formatarData(resposta[i].horario)}</h3>
                         <div class="gravidade-alerta">
@@ -180,8 +199,8 @@ function carregarAlertas(idAtm) {
                         </div>
                     </div> 
                     `;
-                  } else {
-                    boxAlertas.innerHTML += `
+                                    } else {
+                                        boxAlertas.innerHTML += `
                     <div class="box_alerta">
                       <h3>${formatarData(resposta[i].horario)}</h3>
                       <div class="gravidade-alerta">
@@ -195,11 +214,11 @@ function carregarAlertas(idAtm) {
                       </div>
                     </div>
                     `;
-                  }
-                  break;
-                case 3:
-                  if (resposta[i].descricao == "Moderado") {
-                    boxAlertas.innerHTML += `
+                                    }
+                                    break;
+                                case 3:
+                                    if (resposta[i].descricao == 'Moderado') {
+                                        boxAlertas.innerHTML += `
                     <div class="box_alerta">
                         <h3>${formatarData(resposta[i].horario)}</h3>
                         <div class="gravidade-alerta">
@@ -213,8 +232,8 @@ function carregarAlertas(idAtm) {
                         </div>
                     </div> 
                     `;
-                  } else {
-                    boxAlertas.innerHTML += `
+                                    } else {
+                                        boxAlertas.innerHTML += `
                     <div class="box_alerta">
                       <h3>${formatarData(resposta[i].horario)}</h3>
                       <div class="gravidade-alerta">
@@ -228,42 +247,78 @@ function carregarAlertas(idAtm) {
                       </div>
                     </div>
                     `;
-                  }
-                  break;
-                default:
-                  break;
-              }
+                                    }
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                    }
+                });
+            } else {
+                console.error(
+                    'carregarAlertas: nenhum dado encontrado ou erro na API'
+                );
             }
-          }
+        })
+        .catch(erro => {
+            console.error(
+                `carregarAlertas: erro na obtenção dos dados: ${erro.message}`
+            );
         });
-      } else {
-        console.error("carregarAlertas: nenhum dado encontrado ou erro na API");
-      }
+}
+
+let comboATMS = document.getElementById('comboATMs');
+function carregarAtms() {
+    fetch(`/dashboard/carregar-atms/${sessionStorage.getItem('FK_EMPRESA')}`, {
+        cache: 'no-store',
     })
-    .catch((erro) => {
-      console.error(
-        `carregarAlertas: erro na obtenção dos dados: ${erro.message}`
-      );
-    });
+        .then(response => {
+            if (response.ok) {
+                response.json().then(resposta => {
+                    if (resposta.length > 0) {
+                        console.log('atms: ', resposta);
+                        for (let i = 0; i < resposta.length; i++) {
+                            comboATMS.innerHTML += `
+                        <option value="${resposta[i].idAtm}">ATM ${resposta[i].idAtm}</option>
+                        `;
+                        }
+                    } else {
+                        console.error(
+                            'carregarAtms: nenhum parâmetro encontrado.'
+                        );
+                    }
+                });
+            } else {
+                console.error(
+                    'carregarAtms: nenhum dado encontrado ou erro na API'
+                );
+            }
+        })
+        .catch(erro => {
+            console.error(
+                `carregarAtms: erro na obtenção dos dados: ${erro.message}`
+            );
+        });
 }
 
 let intervalId2 = null;
-let comboATMS = document.getElementById("comboATMs");
 
 function atualizarDados() {
-  let idAtm = comboATMS.value;
-  carregarDadosRede(idAtm);
-  carregarAlertas(idAtm);
+    let idAtm = comboATMS.value;
+    carregarDadosRede(idAtm);
+    carregarAlertas(idAtm);
 }
 
-window.addEventListener("DOMContentLoaded", () => {
-  carregarParametros();
-  atualizarDados();
-  intervalId2 = setInterval(atualizarDados, 3500);
-
-  comboATMS.addEventListener("change", () => {
-    clearInterval(intervalId2);
+window.addEventListener('DOMContentLoaded', () => {
+    carregarParametros();
+    carregarAtms();
     atualizarDados();
     intervalId2 = setInterval(atualizarDados, 3500);
-  });
+
+    comboATMS.addEventListener('change', () => {
+        clearInterval(intervalId2);
+        atualizarDados();
+        intervalId2 = setInterval(atualizarDados, 3500);
+    });
 });
