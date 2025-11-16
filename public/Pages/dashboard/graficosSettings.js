@@ -98,7 +98,7 @@ function trocarComponente() {
               strokeDashArray: 0,
             },
             {
-              y: sessionStorage.getItem("PARAM_IMPORTANTE_RAM"),
+              y: sessionStorage.getItem("PARAM_IMPORTANTE_DISCO"),
               borderColor: "#f4a261",
               strokeDashArray: 0,
             },
