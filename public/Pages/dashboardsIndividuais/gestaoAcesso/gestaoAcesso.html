@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <link rel="icon" href="../../../Assets/assets_dashboard/logoUPFINITY.png">
+
+     <!-- BoootStrap -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+    <!-- CSS -->
+
+    <link rel="stylesheet" href="./gestaoAcesso.css">
+
+    <!-- JavaScript -->
+    <script src="../../../js/sessao.js" defer></script>
+    <script src="./gestaoAcesso.js" defer></script>
+    <!-- <script src="./js/gestaoAcesso_desktop.js" defer></script> -->
+
+    <title>Gestão de Acesso</title>
+</head>
+
+<body>
+    <section class="corpo">
+        <!-- <div id="alerta_erros_desktop" class="d-none">
+            <div id="box_container_erro_desktop">
+                <div id="container-erro-desktop">
+                    <h2 id="h2-erro-desktop">Alerta identificado!</h2>
+                    <span id="span-erro-desktop"></span>
+                </div>
+                <button id="btnFecharErro-desktop">Fechar</button>
+            </div>
+        </div>
+    -->
+
+        <div id="esquerda">
+            <div id="esquerda-cima">
+                <img src="../../../Assets/assets_dashboard/logoUPFINITY.png" id="logo-upfinity" alt="logo-upfinity">
+            </div>
+            <div id="esquerda-centro">
+                <div id="navegacao">
+                    <h1 onclick="window.location = '../../visaoGeral/visaoGeral.html'">VISÃO GERAL</h1>
+                    <div class="linha"></div>
+                    <h1 onclick="window.location = '../../dashboard/dashboard.html'">DASHBOARDS</h1>
+                    <div class="linha"></div>
+                    <h1 onclick="validarRedirecionamento('../../gestaoUsuarios/gestaoUsuarios.html')">GESTÃO DE USUÁRIOS
+                    </h1>
+                    <div class="linha"></div>
+                    <h1 onclick="validarRedirecionamento('../../gestaoATM/gestaoATM.html')">GESTÃO DE ATMS</h1>
+                    <div class="linha"></div>
+                </div>
+            </div>
+            <div id="esquerda-baixo">
+                <div id="navegacaoSair">
+                    <div class="linha"></div>
+                    <div id="btSair">
+                        <h1>SAIR</h1>
+                        <img src="../../../Assets/assets_dashboard/SAIRICON.png" alt="logoSaída">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="centro">
+            <div id="centro-cima">
+                <div id="lado-titulo">
+                    <h1 id="titulo">GESTÃO DE ACESSO E USO</h1>
+                    <select id="comboDias">
+                        <option value="1"></option>
+                        <option value="2"></option>
+                        <option value="3"></option>
+                        <option value="4"></option>
+                        <option value="5"></option>
+                        <option value="6"></option>
+                        <option value="7"></option>
+                    </select>
+                </div>
+            </div>
+            <div id="centro-baixo">
+                <div id="centro-esquerda">
+                    <div id="box-kpis">
+                        <div class="kpi">
+                            <div class="kpi-cima"><h1>Total de Logins no Dia</h1></div>
+                            <div class="kpi-baixo"><h1 id="kpi-logins"></h1></div>
+                        </div>
+
+                        <div class="kpi">
+                            <div class="kpi-cima"><h1>Usuários Ativos Hoje</h1></div>
+                            <div class="kpi-baixo"><h1 id="kpi-ativos"></h1></div>
+                        </div>
+
+                        <div class="kpi">
+                            <div class="kpi-cima"><h1>Alertas Gerados Hoje</h1></div>
+                            <div class="kpi-baixo"><h1 id="kpi-alertas"></h1></div>
+                        </div>
+
+                        <div class="kpi">
+                            <div class="kpi-cima"><h1>ATMs Offline Agora</h1></div>
+                            <div class="kpi-baixo"><h1 id="kpi-offline"></h1></div>
+                        </div>
+
+                        <div class="kpi">
+                            <div class="kpi-cima"><h1>ATMs em Estado Crítico</h1></div>
+                            <div class="kpi-baixo"><h1 id="kpi-criticos"></h1></div>
+                        </div>
+
+                        <div class="kpi">
+                            <div class="kpi-cima"><h1>Prejuízo Diário</h1></div>
+                            <div class="kpi-baixo"><h1 id="kpi-prejuizo"></h1></div>
+                        </div>
+                    </div>
+                    <div id="box-graficos">
+                        <div id="grafico-login"></div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+</body>
+
+</html>
