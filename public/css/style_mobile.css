@@ -15,6 +15,7 @@
     padding: 0 3vw;
     transition: 0.2s ease;
     background-color: #000;
+    z-index: 999;
 }
 
 .espaco-header-mobile {
@@ -42,7 +43,7 @@
     flex-direction: column;
     background-color: #000;
     background-image: url("../Assets/Elements/fundoMenu_mobile.svg");
-
+    z-index: 999;
 }
 
 #h2_menu {
@@ -263,4 +264,145 @@
     color: #000;
     font-size: 3.8vw;
     width: 95%;
+}
+
+#container_diferencial-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: auto;
+    background: #000;
+    padding-bottom: 8vw;
+}
+
+#subcontainer_diferencial_img_mobile, #subcontainer_conecte_img_mobile {
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#img_diferencial_mobile {
+    width: 80vw;
+}
+
+#diferencial-h1-mobile {
+    font-weight: 400;
+    color: #fff;
+}
+
+#subcontainer_diferencial_gerencie_mobile {
+    height: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#h2-diferencial-mobile {
+    margin-top: 5%;
+    width: 65%;
+    font-size: 8.5vw;
+    font-weight: 400;
+}
+
+#p-diferencial-mobile, .span-diferencial-mobile {
+    font-size: 3.5vw;
+    font-weight: 400;
+}
+
+#subcontainer_diferencial_metricas_mobile, #subcontainer_diferencial_btn_mobile, #subcontainer_conecte_btn_mobile, #subcontainer_fluxo_mobile {
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.span-diferencial-metricas-mobile {
+    font-size: 9vw;
+}
+
+#subcontainer_diferencial_btn_mobile {
+    margin-top: 5%;
+}
+
+#container_conecte_mobile, #container_fluxo_mobile {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    height: auto;
+    padding-bottom: 8vw;
+}
+
+#h2-conecte-mobile {
+    margin-top: 5%;
+    width: 90%;
+    font-size: 8.5vw;
+    font-weight: 400;
+    color: #000;
+}
+
+#p-diferencial-mobile, #p-conecte-mobile {
+    width: 95%;
+}
+
+#p-conecte-mobile {
+    font-size: 3.5vw;
+    font-weight: 400;
+    color: #000;
+}
+
+#subcontainer_fluxo_mobile {
+    gap: 8vw;
+    padding-top: 10vw;
+}
+
+#container_fluxo_mobile {
+    background: #fff;
+}
+
+.cards_fluxo_mobile {
+    position: relative;
+    height: 60vw;
+    width: 80%;
+    background: url('../Assets/Elements/linha1_mobile.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#card-title-fluxo-mobile {
+    height: auto;
+}
+
+.card-title-fluxo-mobile {
+    display: flex;
+    align-items: center;
+    height: 27%;
+    width: 50vw;
+    position: absolute;
+    left: 10%;
+    top: -13.5%;
+}
+
+.icon-card-fluxo-mobile {
+    width: 15vw;
+}
+
+.span-card-fluxo-mobile {
+    padding-left: 2vw;
+    color: #000;
+    font-size: 5.5vw;
+}
+
+.p-card-fluxo-mobile {
+    color: #000;
+    width: 100%;
+    padding: 0 4vw;
+    font-size: 4.3vw;
+    margin-bottom: 10vw;
 }
