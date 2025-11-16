@@ -1,18 +1,18 @@
 @font-face {
     font-family: poppins leve;
-    src: url("../../../Assets/assets_dashboard/poppins/Poppins-Light.ttf");
+    src: url('../../../Assets/assets_dashboard/poppins/Poppins-Light.ttf');
 }
 
 * {
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 :root {
-  --ciano:#268184;
-  --branco: #F7F7F7;
-  --preto: #232023;
-  --cinza-linha: #999999;
-  --azul-claro: #2ed1d7;
+    --ciano: #268184;
+    --branco: #f7f7f7;
+    --preto: #232023;
+    --cinza-linha: #999999;
+    --azul-claro: #2ed1d7;
 }
 
 body {
@@ -24,16 +24,16 @@ div {
     padding: 0;
 }
 
-html, body {
+html,
+body {
     width: 100%;
     height: 100%;
     overflow: hidden;
 }
 
-
 .corpo {
     display: flex;
-    background-color: #F7F7F7;
+    background-color: #f7f7f7;
     height: 100%;
     width: 100%;
 }
@@ -70,7 +70,7 @@ html, body {
 #navegacao {
     width: 85%;
     height: 40%;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     color: white;
     font-size: 10px;
     display: flex;
@@ -105,7 +105,7 @@ html, body {
     width: 85%;
     height: 65%;
     text-align: center;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     color: white;
     font-size: 10px;
     display: flex;
@@ -136,7 +136,6 @@ html, body {
     color: #ff0000;
 }
 
-
 #btSair img {
     height: 1.25vw;
 }
@@ -165,7 +164,7 @@ html, body {
 
 #titulo {
     margin: 0;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 2.45vw;
     margin-left: 2%;
     white-space: nowrap;
@@ -179,7 +178,7 @@ html, body {
     width: 12%;
     background-color: #2ed1d7;
     border-radius: 15px;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     color: #fff;
     font-size: 1.2vw;
     font-weight: bold;
@@ -224,7 +223,6 @@ html, body {
     color: var(--ciano);
 }
 
-
 #kpi1 {
     margin-left: 5%;
 }
@@ -232,7 +230,7 @@ html, body {
 .kpi-title-row {
     display: flex;
     flex-direction: row;
-    align-items: center; 
+    align-items: center;
     gap: 8px;
 }
 
@@ -242,7 +240,6 @@ html, body {
     margin-left: 5%;
 }
 
-
 .info-trigger {
     font-size: 0.9rem;
     user-select: none;
@@ -251,24 +248,26 @@ html, body {
 .info-tooltip {
     visibility: hidden;
     opacity: 0;
-    transition: opacity 0.3s, visibility 0.3s;
+    transition:
+        opacity 0.3s,
+        visibility 0.3s;
     position: absolute;
-    bottom: 150%; 
+    bottom: 150%;
     left: 50%;
     transform: translateX(-50%);
     background-color: var(--preto);
     color: var(--branco);
     padding: 10px 15px;
     border-radius: 6px;
-    width: 220px; 
-    font-size: 0.9rem; 
+    width: 220px;
+    font-size: 0.9rem;
     font-weight: normal;
     text-align: left;
-    line-height: 1.4; 
+    line-height: 1.4;
 }
 
 .info-tooltip::after {
-    content: "";
+    content: '';
     position: absolute;
     top: 100%;
     left: 50%;
@@ -298,6 +297,8 @@ html, body {
     height: 60vh;
     margin-left: 5%;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 .caixa-alertas {
@@ -315,4 +316,16 @@ html, body {
     font-weight: bold;
     margin-top: 3%;
     color: var(--branco);
+}
+
+.caixa-grafico-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--branco);
+    text-align: center;
+    margin-top: 2%;
+}
+
+#grafico-linha {
+    margin-top: 2%;
 }

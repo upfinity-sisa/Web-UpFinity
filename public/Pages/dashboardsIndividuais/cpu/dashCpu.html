@@ -5,7 +5,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashboard - CPU</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
   <script src="dashCpu.js" defer></script>
+
   <link rel="stylesheet" href="dashCpu.css" />
   <link rel="icon" href="../../../Assets/assets_dashboard/logoUPFINITY.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -114,7 +117,10 @@
         </div>
       </div>
       <div class="container-graficos">
-        <div class="caixa-grafico"></div>
+        <div class="caixa-grafico">
+          <span  class="caixa-grafico-title">Uso de CPU</span>
+          <div id="grafico-linha"></div>
+        </div>
         <div class="caixa-alertas">
           <span class="caixa-alertas-title">Alertas</span>
         </div>
