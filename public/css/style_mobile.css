@@ -142,7 +142,7 @@
 }
 
 .btn_style_mobile {
-    width: 60vw;
+    width: 100%;
     padding: 0 2.2vw;
     height: 12vw;
     display: flex;
@@ -161,6 +161,7 @@
 }
 
 .a_btn_mobile {
+    width: 60vw;
     text-decoration: none;
 }
 
@@ -241,7 +242,7 @@
 }
 
 .img_cards_mobile {
-    width: 20%;
+    width: 17%;
 }
 
 .box_txt_cards_mobile {
@@ -311,7 +312,7 @@
     font-weight: 400;
 }
 
-#subcontainer_diferencial_metricas_mobile, #subcontainer_diferencial_btn_mobile, #subcontainer_conecte_btn_mobile, #subcontainer_fluxo_mobile {
+#subcontainer_diferencial_metricas_mobile, #container_monitore_info_mobile, #container_monitore_mobile, #subcontainer_monitore_mobile, #subcontainer_diferencial_btn_mobile, #subcontainer_conecte_btn_mobile, #subcontainer_fluxo_mobile, #container_nav_footer_mobile, #container_info_footer_mobile {
     height: auto;
     display: flex;
     justify-content: center;
@@ -405,4 +406,93 @@
     padding: 0 4vw;
     font-size: 4.3vw;
     margin-bottom: 10vw;
+}
+
+#container_monitore_mobile {
+    padding-bottom: 8vw;
+}
+
+#subcontainer_monitore_mobile {
+    width: 90vw;
+    height: 40vw;
+    border-radius: 20px;
+    background: url("../Assets/Elements/img_monitore_tempo_real.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 200% 120%;
+    flex-direction: column;
+}
+
+#span_monitore_info_mobile {
+    font-size: 5vw;
+    text-align: center;
+}
+
+#container_monitore_info_mobile {
+    margin-top: 5%;
+}
+
+#footer_mobile {
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 6vw 0;
+}
+
+#logo-footer-mobile {
+    width: 22vw;
+}
+
+#p-footer-mobile {
+    width: 85%;
+    font-size: 3vw;
+}
+
+.spn_title_footer_mobile {
+    font-size: 3.8vw;
+    width: 85%;
+}
+
+#container_nav_footer_mobile .spn_title_footer_mobile:nth-child(1) {
+    width: auto;
+}
+
+#nav_footer_mobile {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3%;
+}
+
+#ul_footer_mobile {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 5vw;
+}
+
+#container_nav_footer_mobile {
+    border-top: 1px solid #f4f4f4;
+    border-bottom: 1px solid #f4f4f4;
+    width: 80%;
+    padding: 1vw 0;
+}
+
+.li_footer_mobile {
+    list-style: none;
+    font-size: 3vw;
+}
+
+#container_info_footer_mobile {
+    margin-top: 3%;
+    gap: 1.4vw;
+}
+
+.spn_desc_footer_mobile {
+    font-size: 2vw;
+    width: 85%;
 }
