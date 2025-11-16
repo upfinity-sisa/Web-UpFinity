@@ -20,6 +20,7 @@ var gestaoRouter = require("./src/routes/gestaoUsuarios");
 var gestaoATMRouter = require("./src/routes/gestaoATM");
 var dashboardRouter = require("./src/routes/dashboardRoutes");
 var alertasRouter = require("./src/routes/alertasRoutes");
+var gestaoAcessoRouter = require("./src/routes/gestaoAcessoRoutes");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -34,6 +35,7 @@ app.use("/gestao", gestaoRouter);
 app.use("/gestaoATM", gestaoATMRouter);
 app.use("/dashboard", dashboardRouter);
 app.use("/alertas", alertasRouter);
+app.use("/gestaoAcesso", gestaoAcessoRouter);
 
 app.listen(PORTA_APP, function () {
   console.log(`
