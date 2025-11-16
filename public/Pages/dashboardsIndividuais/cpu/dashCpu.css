@@ -3,6 +3,10 @@
     src: url("../../../Assets/assets_dashboard/poppins/Poppins-Light.ttf");
 }
 
+* {
+    font-family: "Montserrat", sans-serif;
+}
+
 :root {
   --ciano:#268184;
   --branco: #F7F7F7;
@@ -183,3 +187,132 @@ html, body {
     margin-left: 3%;
 }
 
+.container-kpis {
+    width: 100vw;
+    height: 25vh;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+}
+
+.kpi {
+    background-color: var(--azul-claro);
+    width: 17vw;
+    height: 17vh;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: var(--branco);
+}
+
+.title-kpi {
+    font-size: 2.3rem;
+    color: var(--ciano);
+}
+
+.data-kpi {
+    font-size: 2rem;
+}
+
+.status-kpi {
+    margin-top: 4%;
+    font-size: 1.2rem;
+    color: var(--ciano);
+}
+
+
+#kpi1 {
+    margin-left: 5%;
+}
+
+.kpi-title-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center; 
+    gap: 8px;
+}
+
+.info-container {
+    position: relative;
+    align-self: flex-start;
+    margin-left: 5%;
+}
+
+
+.info-trigger {
+    font-size: 0.9rem;
+    user-select: none;
+}
+
+.info-tooltip {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0.3s;
+    position: absolute;
+    bottom: 150%; 
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--preto);
+    color: var(--branco);
+    padding: 10px 15px;
+    border-radius: 6px;
+    width: 220px; 
+    font-size: 0.9rem; 
+    font-weight: normal;
+    text-align: left;
+    line-height: 1.4; 
+}
+
+.info-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+}
+
+.info-container:hover .info-tooltip,
+.info-trigger:focus + .info-tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+.container-graficos {
+    width: 100vw;
+    height: 63vh;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.caixa-grafico {
+    background-color: var(--azul-claro);
+    width: 50vw;
+    height: 60vh;
+    margin-left: 5%;
+    border-radius: 10px;
+}
+
+.caixa-alertas {
+    background-color: var(--azul-claro);
+    width: 20vw;
+    height: 60vh;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.caixa-alertas-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 3%;
+    color: var(--branco);
+}
