@@ -15,50 +15,54 @@ function carregarParametros() {
     .then((response) => {
       if (response.ok) {
         response.json().then((resposta) => {
-          for (let i = 0; i < resposta.length; i++) {
-            switch (resposta[i]["fkTipoComponente"]) {
-              case 1:
-                if (resposta[i]["fkTipoAlerta"] == 1) {
-                  sessionStorage.setItem(
-                    "PARAM_CRITICO_CPU",
-                    resposta[i]["limiteMax"]
-                  );
-                } else {
-                  sessionStorage.setItem(
-                    "PARAM_IMPORTANTE_CPU",
-                    resposta[i]["limiteMax"]
-                  );
-                }
-                break;
-              case 2:
-                if (resposta[i]["fkTipoAlerta"] == 1) {
-                  sessionStorage.setItem(
-                    "PARAM_CRITICO_RAM",
-                    resposta[i]["limiteMax"]
-                  );
-                } else {
-                  sessionStorage.setItem(
-                    "PARAM_IMPORTANTE_RAM",
-                    resposta[i]["limiteMax"]
-                  );
-                }
-                break;
-              case 3:
-                if (resposta[i]["fkTipoAlerta"] == 1) {
-                  sessionStorage.setItem(
-                    "PARAM_CRITICO_DISCO",
-                    resposta[i]["limiteMax"]
-                  );
-                } else {
-                  sessionStorage.setItem(
-                    "PARAM_IMPORTANTE_DISCO",
-                    resposta[i]["limiteMax"]
-                  );
-                }
-                break;
-              default:
-                break;
+          if (resposta.length > 0) {
+            for (let i = 0; i < resposta.length; i++) {
+              switch (resposta[i]["fkTipoComponente"]) {
+                case 1:
+                  if (resposta[i]["fkTipoAlerta"] == 1) {
+                    sessionStorage.setItem(
+                      "PARAM_CRITICO_CPU",
+                      resposta[i]["limiteMax"]
+                    );
+                  } else {
+                    sessionStorage.setItem(
+                      "PARAM_IMPORTANTE_CPU",
+                      resposta[i]["limiteMax"]
+                    );
+                  }
+                  break;
+                case 2:
+                  if (resposta[i]["fkTipoAlerta"] == 1) {
+                    sessionStorage.setItem(
+                      "PARAM_CRITICO_RAM",
+                      resposta[i]["limiteMax"]
+                    );
+                  } else {
+                    sessionStorage.setItem(
+                      "PARAM_IMPORTANTE_RAM",
+                      resposta[i]["limiteMax"]
+                    );
+                  }
+                  break;
+                case 3:
+                  if (resposta[i]["fkTipoAlerta"] == 1) {
+                    sessionStorage.setItem(
+                      "PARAM_CRITICO_DISCO",
+                      resposta[i]["limiteMax"]
+                    );
+                  } else {
+                    sessionStorage.setItem(
+                      "PARAM_IMPORTANTE_DISCO",
+                      resposta[i]["limiteMax"]
+                    );
+                  }
+                  break;
+                default:
+                  break;
+              }
             }
+          } else {
+            console.error("carregarParametros: nenhum parâmetro encontrado.");
           }
         });
       } else {
@@ -75,17 +79,20 @@ function carregarParametros() {
 }
 
 function carregarDadosRede() {
-  fetch(`/dashboard/ultimas-capturas-rede/1`, {
+  fetch(`/dashboard/ultimas-capturas-rede/3`, {
     cache: "no-store",
   })
     .then((response) => {
       if (response.ok) {
         response.json().then((resposta) => {
           let kpiRede = document.getElementById("dado-kpi-rede");
-          if (resposta[resposta.length - 1].valor > 0) {
-            kpiRede.innerHTML = "Conectado";
-          } else {
-            kpiRede.innerHTML = "Não conectado";
+
+          if (resposta.length > 0) {
+            if (resposta[resposta.length - 1].valor > 0) {
+              kpiRede.innerHTML = "Conectado";
+            } else {
+              kpiRede.innerHTML = "Não conectado";
+            }
           }
         });
       } else {
@@ -98,13 +105,13 @@ function carregarDadosRede() {
 }
 
 function carregarAlertas() {
-  fetch(`/dashboard/carregar-alertas/1`, {
+  fetch(`/dashboard/carregar-alertas/3`, {
     cache: "no-store",
   })
     .then((response) => {
       if (response.ok) {
         response.json().then((resposta) => {
-          if (resposta.length > 1) {
+          if (resposta.length > 0) {
             const boxAlertas = document.getElementById("caixalerta-baixo");
 
             const formatarData = (data) => {

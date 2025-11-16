@@ -113,27 +113,10 @@ function trocarComponente() {
 }
 
 function ultimasCapturas() {
-  fetch(`/dashboard/ultimas-capturas/1`, { cache: "no-store" })
+  return fetch(`/dashboard/ultimas-capturas/3`, { cache: "no-store" })
     .then((response) => {
       if (response.ok) {
         return response.json().then((resposta) => {
-          resposta.reverse();
-          for (let i = 0; i < resposta.length; i++) {
-            switch (resposta[i]["fkComponente"]) {
-              case 1:
-                dados_cpu.push(resposta[i]["valor"]);
-                break;
-              case 2:
-                dados_ram.push(resposta[i]["valor"]);
-                break;
-              case 3:
-                dados_disco.push(resposta[i]["valor"]);
-                break;
-              default:
-                break;
-            }
-          }
-
           let kpiCpu = document.getElementById("dado-kpi-cpu");
           let kpiRam = document.getElementById("dado-kpi-ram");
           let kpiDisco = document.getElementById("dado-kpi-disco");
@@ -145,50 +128,80 @@ function ultimasCapturas() {
           let statusKpiRAM = document.getElementById("status-ram");
           let statusKpiDisco = document.getElementById("status-disco");
 
-          kpiCpu.innerHTML = dados_cpu[dados_cpu.length - 1] + "%";
-          kpiRam.innerHTML = dados_ram[dados_ram.length - 1] + "%";
-          kpiDisco.innerHTML = dados_disco[dados_disco.length - 1] + "%";
+          if (resposta.length > 0) {
+            resposta.reverse();
+            for (let i = 0; i < resposta.length; i++) {
+              switch (resposta[i]["fkComponente"]) {
+                case 1:
+                  dados_cpu.push(resposta[i]["valor"]);
+                  break;
+                case 2:
+                  dados_ram.push(resposta[i]["valor"]);
+                  break;
+                case 3:
+                  dados_disco.push(resposta[i]["valor"]);
+                  break;
+                default:
+                  break;
+              }
+            }
+          }
 
-          if (
-            dados_cpu[dados_cpu.length - 1] >
-            sessionStorage.getItem("PARAM_CRITICO_CPU")
-          ) {
-            statusKpiCpu.innerHTML = "Crítico";
+          if (dados_cpu.length > 0) {
+            let valorCpu = dados_cpu[dados_cpu.length - 1];
+            kpiCpu.innerHTML = valorCpu + "%";
+
+            if (valorCpu > sessionStorage.getItem("PARAM_CRITICO_CPU")) {
+              statusKpiCpu.innerHTML = "Crítico";
+              statusKpiCpu.style.color = corCritico;
+            } else if (
+              valorCpu > sessionStorage.getItem("PARAM_IMPORTANTE_CPU")
+            ) {
+              statusKpiCpu.innerHTML = "Moderado";
+              statusKpiCpu.style.color = corModerado;
+            }
+          } else {
+            kpiCpu.innerHTML = "N/D";
+            statusKpiCpu.innerHTML = "Indisponível";
             statusKpiCpu.style.color = corCritico;
-          } else if (
-            dados_cpu[dados_cpu.length - 1] >
-            sessionStorage.getItem("PARAM_IMPORTANTE_CPU")
-          ) {
-            statusKpiCpu.innerHTML = "Moderado";
-            statusKpiCpu.style.color = corModerado;
           }
 
-          if (
-            dados_ram[dados_ram.length - 1] >
-            sessionStorage.getItem("PARAM_CRITICO_RAM")
-          ) {
-            statusKpiRAM.innerHTML = "Crítico";
+          if (dados_ram.length > 0) {
+            let valorRam = dados_ram[dados_ram.length - 1];
+            kpiRam.innerHTML = valorRam + "%";
+
+            if (valorRam > sessionStorage.getItem("PARAM_CRITICO_RAM")) {
+              statusKpiRAM.innerHTML = "Crítico";
+              statusKpiRAM.style.color = corCritico;
+            } else if (
+              valorRam > sessionStorage.getItem("PARAM_IMPORTANTE_RAM")
+            ) {
+              statusKpiRAM.innerHTML = "Moderado";
+              statusKpiRAM.style.color = corModerado;
+            }
+          } else {
+            kpiRam.innerHTML = "N/D";
+            statusKpiRAM.innerHTML = "Indisponível";
             statusKpiRAM.style.color = corCritico;
-          } else if (
-            dados_ram[dados_ram.length - 1] >
-            sessionStorage.getItem("PARAM_IMPORTANTE_RAM")
-          ) {
-            statusKpiRAM.innerHTML = "Moderado";
-            statusKpiRAM.style.color = corModerado;
           }
 
-          if (
-            dados_disco[dados_disco.length - 1] >
-            sessionStorage.getItem("PARAM_CRITICO_DISCO")
-          ) {
-            statusKpiDisco.innerHTML = "Crítico";
+          if (dados_disco.length > 0) {
+            let valorDisco = dados_disco[dados_disco.length - 1];
+            kpiDisco.innerHTML = valorDisco + "%";
+
+            if (valorDisco > sessionStorage.getItem("PARAM_CRITICO_DISCO")) {
+              statusKpiDisco.innerHTML = "Crítico";
+              statusKpiDisco.style.color = corCritico;
+            } else if (
+              valorDisco > sessionStorage.getItem("PARAM_IMPORTANTE_DISCO")
+            ) {
+              statusKpiDisco.innerHTML = "Moderado";
+              statusKpiDisco.style.color = corModerado;
+            }
+          } else {
+            kpiDisco.innerHTML = "N/D";
+            statusKpiDisco.innerHTML = "Indisponível";
             statusKpiDisco.style.color = corCritico;
-          } else if (
-            dados_disco[dados_disco.length - 1] >
-            sessionStorage.getItem("PARAM_IMPORTANTE_DISCO")
-          ) {
-            statusKpiDisco.innerHTML = "Moderado";
-            statusKpiDisco.style.color = corModerado;
           }
         });
       } else {
@@ -213,13 +226,15 @@ function pegarUltimosHorariosCaptura() {
     return `${hora}:${minuto}:${segundo}`;
   };
 
-  return fetch(`/dashboard/ultimos-horarios/1`, { cache: "no-store" })
+  return fetch(`/dashboard/ultimos-horarios/3`, { cache: "no-store" })
     .then((response) => {
       if (response.ok) {
         return response.json().then((resposta) => {
-          resposta.reverse();
-          for (let i = 0; i < resposta.length; i++) {
-            horarios_captura.push(formatarData(resposta[i].horario));
+          if (resposta.length > 0) {
+            resposta.reverse();
+            for (let i = 0; i < resposta.length; i++) {
+              horarios_captura.push(formatarData(resposta[i].horario));
+            }
           }
         });
       } else {
@@ -238,7 +253,7 @@ function pegarUltimosHorariosCaptura() {
 }
 
 function carregarDowntime() {
-  fetch(`/dashboard/pegar-downtime/1`, { cache: "no-store" })
+  fetch(`/dashboard/pegar-downtime/3`, { cache: "no-store" })
     .then((response) => {
       if (response.ok) {
         response.json().then((resposta) => {
@@ -252,7 +267,7 @@ function carregarDowntime() {
             );
           }
 
-          console.log(resposta)
+          console.log(resposta);
 
           let downtime = [];
           let totalDownTimeSeg = 0;
@@ -473,13 +488,24 @@ window.addEventListener("resize", function () {
   window.location.reload(true);
 });
 
-window.addEventListener("DOMContentLoaded", () => {
-  carregarDowntime();
+function atualizarGrafico() {
+  dados_cpu = []
+  dados_ram = []
+  dados_disco = []
+  horarios_captura = []
+
   Promise.all([ultimasCapturas(), pegarUltimosHorariosCaptura()])
     .then(() => {
       trocarComponente();
+      console.log("Grafico atualizado com sucesso");
     })
     .catch((erro) => {
-      console.error("Erro ao carregar os dados do grafico de linha: ", erro);
+      console.error("Erro ao atualizar grafico de linha: ", erro);
     });
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  carregarDowntime();
+  atualizarGrafico();
+  setInterval(atualizarGrafico, 3500);
 });

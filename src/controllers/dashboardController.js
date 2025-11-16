@@ -6,10 +6,11 @@ function ultimasCapturas(req, res) {
   dashboardModel
     .ultimasCapturas(idAtm)
     .then((resultado) => {
+      console.log(`[Controller] resultado das ultimas capturas: ${resultado}`)
       if (resultado.length > 0) {
         res.status(200).json(resultado);
       } else {
-        res.status(204).send("ultimasCapturas: nenhum resultado encontrado!");
+        res.status(200).json([]);
       }
     })
     .catch((erro) => {
@@ -31,9 +32,7 @@ function ultimasCapturasRede(req, res) {
       if (resultado.length > 0) {
         res.status(200).json(resultado);
       } else {
-        res
-          .status(204)
-          .send("ultimasCapturasRede: nenhum resultado encontrado!");
+        res.status(200).json([]);
       }
     })
     .catch((erro) => {
@@ -55,7 +54,7 @@ function pegarParametros(req, res) {
       if (resultado.length > 0) {
         res.status(200).json(resultado);
       } else {
-        res.status(204).send("pegarParametros: nenhum resultado encontrado!");
+        res.status(200).json([]);
       }
     })
     .catch((erro) => {
@@ -100,9 +99,7 @@ function pegarUltimosHorariosCaptura(req, res) {
       if (resultado.length > 0) {
         res.status(200).json(resultado);
       } else {
-        res
-          .status(204)
-          .send("pegarUltimosHorariosCaptura: nenhum resultado encontrado!");
+        res.status(200).json([]);
       }
     })
     .catch((erro) => {
@@ -124,7 +121,7 @@ function carregarAlertas(req, res) {
       if (resultado.length > 0) {
         res.status(200).json(resultado);
       } else {
-        res.status(204).send("carregarAlertas: nenhum resultado encontrado!");
+        res.status(200).json([]);
       }
     })
     .catch((erro) => {
