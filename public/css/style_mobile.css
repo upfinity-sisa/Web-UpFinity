@@ -17,6 +17,10 @@
     background-color: #000;
 }
 
+.espaco-header-mobile {
+    padding-top: 10vh !important;
+}
+
 #header_logo_mobile {
     width: 20vw;
 }
@@ -101,6 +105,7 @@
     background-size: 100% 100%;
     background-repeat: no-repeat;
     height: auto;
+    padding-bottom: 8vw;
 }
 
 #subcontainer_inicial_top_mobile {
@@ -147,6 +152,7 @@
     margin-top: 2%;
     background: #D5D5D5;
     border: none;
+    color: #000;
 }
 
 .btn_arrow_style_mobile {
@@ -161,9 +167,100 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: auto;
+    height: 100vw;
 }
 
 #img_inicio_mobile {
     width: 100vw;
+}
+
+#subcontainer_inicial_parceiros_mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#span-parceiros-mobile, #img1-parceiros-mobile {
+    padding-left: 3vw;
+}
+
+#span-parceiros-mobile {
+    font-size: 5vw;
+}
+
+#img1-parceiros-mobile {
+    width: 23vw;
+}
+
+#container_oque_fazemos_mobile {
+    height: auto;
+}
+
+.span-title-mobile {
+    font-size: 5vw;
+    display: block;
+    text-align: center;
+    width: 100%;
+}
+
+.h1-title-mobile {
+    color: #000;
+    text-align: center;
+    font-size: 6vw;
+    font-weight: 400;
+}
+
+#container_cards_mobile {
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 4vw;
+    padding: 6vw 0;
+}
+
+.cards_mobile {
+    height: 62vw;
+    width: 90%;
+    background: #f4f4f4;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 5vw 0;
+}
+
+.box_img_cards_mobile {
+    display: flex;
+    align-items: center;
+    padding-left: 5vw;
+    height: 30%;
+}
+
+.img_cards_mobile {
+    width: 20%;
+}
+
+.box_txt_cards_mobile {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    height: 65%;
+    padding-left: 5vw;
+}
+
+.spn_title_cards {
+    color: #000;
+    font-size: 5vw;
+    font-weight: 400;
+}
+
+.p_txt_cards {
+    padding: 0;
+    margin: 0;
+    color: #000;
+    font-size: 3.8vw;
+    width: 95%;
 }
