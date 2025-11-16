@@ -5,6 +5,7 @@ let dados_ram = [];
 let dados_disco = [];
 let dados_rede = [];
 let horarios_captura = [];
+let graficoDowntime = null;
 
 function vwParaPx(vwValue) {
   const larguraViewport = window.innerWidth;
@@ -112,8 +113,8 @@ function trocarComponente() {
   }
 }
 
-function ultimasCapturas() {
-  return fetch(`/dashboard/ultimas-capturas/3`, { cache: "no-store" })
+function ultimasCapturas(idAtm) {
+  return fetch(`/dashboard/ultimas-capturas/${idAtm}`, { cache: "no-store" })
     .then((response) => {
       if (response.ok) {
         return response.json().then((resposta) => {
@@ -123,6 +124,7 @@ function ultimasCapturas() {
 
           const corModerado = "#f4a261";
           const corCritico = "#e63946";
+          const corOk = "#00bf35";
 
           let statusKpiCpu = document.getElementById("status-cpu");
           let statusKpiRAM = document.getElementById("status-ram");
@@ -131,7 +133,7 @@ function ultimasCapturas() {
           if (resposta.length > 0) {
             resposta.reverse();
             for (let i = 0; i < resposta.length; i++) {
-              switch (resposta[i]["fkComponente"]) {
+              switch (parseInt(resposta[i]["fkComponente"])) {
                 case 1:
                   dados_cpu.push(resposta[i]["valor"]);
                   break;
@@ -159,6 +161,9 @@ function ultimasCapturas() {
             ) {
               statusKpiCpu.innerHTML = "Moderado";
               statusKpiCpu.style.color = corModerado;
+            } else {
+              statusKpiCpu.innerHTML = "Normal";
+              statusKpiCpu.style.color = corOk;
             }
           } else {
             kpiCpu.innerHTML = "N/D";
@@ -178,6 +183,9 @@ function ultimasCapturas() {
             ) {
               statusKpiRAM.innerHTML = "Moderado";
               statusKpiRAM.style.color = corModerado;
+            } else {
+              statusKpiRAM.innerHTML = "Normal";
+              statusKpiRAM.style.color = corOk;
             }
           } else {
             kpiRam.innerHTML = "N/D";
@@ -197,6 +205,9 @@ function ultimasCapturas() {
             ) {
               statusKpiDisco.innerHTML = "Moderado";
               statusKpiDisco.style.color = corModerado;
+            } else {
+              statusKpiDisco.innerHTML = "Normal";
+              statusKpiDisco.style.color = corOk;
             }
           } else {
             kpiDisco.innerHTML = "N/D";
@@ -217,7 +228,7 @@ function ultimasCapturas() {
     });
 }
 
-function pegarUltimosHorariosCaptura() {
+function pegarUltimosHorariosCaptura(idAtm) {
   const formatarData = (data) => {
     const date = new Date(data);
     const hora = date.getHours().toString().padStart(2, "0");
@@ -226,7 +237,7 @@ function pegarUltimosHorariosCaptura() {
     return `${hora}:${minuto}:${segundo}`;
   };
 
-  return fetch(`/dashboard/ultimos-horarios/3`, { cache: "no-store" })
+  return fetch(`/dashboard/ultimos-horarios/${idAtm}`, { cache: "no-store" })
     .then((response) => {
       if (response.ok) {
         return response.json().then((resposta) => {
@@ -252,12 +263,13 @@ function pegarUltimosHorariosCaptura() {
     });
 }
 
-function carregarDowntime() {
-  fetch(`/dashboard/pegar-downtime/3`, { cache: "no-store" })
+function carregarDowntime(idAtm) {
+  fetch(`/dashboard/pegar-downtime/${idAtm}`, { cache: "no-store" })
     .then((response) => {
       if (response.ok) {
         response.json().then((resposta) => {
           if (resposta.length == 0) {
+            console.log("resposta downtime: ", resposta);
             console.log("nenhuma captura encontrada nos últimos 7 dias.");
           }
 
@@ -266,9 +278,6 @@ function carregarDowntime() {
               "apenas uma captura. não é possível calcular o downtime"
             );
           }
-
-          console.log(resposta);
-
           let downtime = [];
           let totalDownTimeSeg = 0;
 
@@ -293,91 +302,95 @@ function carregarDowntime() {
           downtime[0] = Number(totalUpTimePercent.toFixed(2));
           downtime[1] = Number(totalDownTimePercent.toFixed(2));
 
-          var options = {
-            series: downtime,
-            labels: ["UPTIME", "DOWNTIME"],
-            legend: {
-              position: "top",
-            },
-            chart: {
-              type: "donut",
-              toolbar: {
-                show: true,
-                tools: {
-                  download: true,
-                  selection: false,
-                  zoom: false,
-                  zoomin: false,
-                  zoomout: false,
-                  pan: false,
-                  reset: false,
-                },
-                offsetX: 0,
-                offsetY: 0,
+          if (graficoDowntime == null) {
+            var options = {
+              series: downtime,
+              labels: ["UPTIME", "DOWNTIME"],
+              legend: {
+                position: "top",
               },
-            },
-            dataLabels: {
-              enabled: true,
-              style: {
+              chart: {
+                type: "donut",
+                toolbar: {
+                  show: true,
+                  tools: {
+                    download: true,
+                    selection: false,
+                    zoom: false,
+                    zoomin: false,
+                    zoomout: false,
+                    pan: false,
+                    reset: false,
+                  },
+                  offsetX: 0,
+                  offsetY: 0,
+                },
+              },
+              dataLabels: {
+                enabled: true,
+                style: {
+                  fontSize: `${vwParaPx(1)}px`,
+                  fontFamily: "poppins leve",
+                  colors: ["#fff"],
+                },
+              },
+              responsive: [
+                {
+                  breakpoint: 480,
+                  options: {
+                    chart: {
+                      width: 400,
+                    },
+                    legend: {
+                      position: "bottom",
+                      fontSize: `${vwParaPx(1)}px`,
+                      fontFamily: "poppins leve",
+                    },
+                  },
+                },
+              ],
+              tooltip: {
+                enabled: true,
+                y: {
+                  formatter: function (val) {
+                    return val + "%";
+                  },
+                  title: {
+                    formatter: function (seriesName) {
+                      return seriesName;
+                    },
+                  },
+                },
+                theme: "light",
+                style: {
+                  fontSize: `${vwParaPx(0.8)}px`,
+                  fontFamily: "poppins leve",
+                },
+              },
+              legend: {
+                position: "top",
                 fontSize: `${vwParaPx(1)}px`,
                 fontFamily: "poppins leve",
-                colors: ["#fff"],
+                color: "#000",
               },
-            },
-            responsive: [
-              {
-                breakpoint: 480,
-                options: {
-                  chart: {
-                    width: 400,
-                  },
-                  legend: {
-                    position: "bottom",
-                    fontSize: `${vwParaPx(1)}px`,
-                    fontFamily: "poppins leve",
+              plotOptions: {
+                pie: {
+                  donut: {
+                    size: "50%",
                   },
                 },
               },
-            ],
-            tooltip: {
-              enabled: true,
-              y: {
-                formatter: function (val) {
-                  return val + "%";
-                },
-                title: {
-                  formatter: function (seriesName) {
-                    return seriesName;
-                  },
-                },
-              },
-              theme: "light",
-              style: {
-                fontSize: `${vwParaPx(0.8)}px`,
-                fontFamily: "poppins leve",
-              },
-            },
-            legend: {
-              position: "top",
-              fontSize: `${vwParaPx(1)}px`,
-              fontFamily: "poppins leve",
-              color: "#000",
-            },
-            plotOptions: {
-              pie: {
-                donut: {
-                  size: "50%",
-                },
-              },
-            },
-            colors: ["#6ce5e8", "#41b8d5"],
-          };
+              colors: ["#6ce5e8", "#41b8d5"],
+            };
 
-          var chart = new ApexCharts(
-            document.querySelector("#torta_baixo"),
-            options
-          );
-          chart.render();
+            graficoDowntime = new ApexCharts(
+              document.querySelector("#torta_baixo"),
+              options
+            );
+            graficoDowntime.render();
+          } else {
+            graficoDowntime.updateSeries(downtime);
+          }
         });
       } else {
         console.error(
@@ -488,24 +501,37 @@ window.addEventListener("resize", function () {
   window.location.reload(true);
 });
 
-function atualizarGrafico() {
-  dados_cpu = []
-  dados_ram = []
-  dados_disco = []
-  horarios_captura = []
+function atualizarGrafico(idAtm) {
+  dados_cpu = [];
+  dados_ram = [];
+  dados_disco = [];
+  horarios_captura = [];
 
-  Promise.all([ultimasCapturas(), pegarUltimosHorariosCaptura()])
+  Promise.all([ultimasCapturas(idAtm), pegarUltimosHorariosCaptura(idAtm)])
     .then(() => {
       trocarComponente();
-      console.log("Grafico atualizado com sucesso");
     })
     .catch((erro) => {
       console.error("Erro ao atualizar grafico de linha: ", erro);
     });
 }
 
+let intervalId = null;
+let comboATMs = document.getElementById("comboATMs");
+
+function atualizarDashboard() {
+  let idAtm = comboATMs.value;
+  atualizarGrafico(idAtm);
+  carregarDowntime(idAtm);
+}
+
 window.addEventListener("DOMContentLoaded", () => {
-  carregarDowntime();
-  atualizarGrafico();
-  setInterval(atualizarGrafico, 3500);
+  atualizarDashboard();
+  intervalId = setInterval(atualizarDashboard, 3500);
+
+  comboATMs.addEventListener("change", () => {
+    clearInterval(intervalId);
+    atualizarDashboard();
+    intervalId = setInterval(atualizarDashboard, 3500);
+  });
 });

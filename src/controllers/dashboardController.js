@@ -6,7 +6,6 @@ function ultimasCapturas(req, res) {
   dashboardModel
     .ultimasCapturas(idAtm)
     .then((resultado) => {
-      console.log(`[Controller] resultado das ultimas capturas: ${resultado}`)
       if (resultado.length > 0) {
         res.status(200).json(resultado);
       } else {

@@ -78,8 +78,8 @@ function carregarParametros() {
     });
 }
 
-function carregarDadosRede() {
-  fetch(`/dashboard/ultimas-capturas-rede/3`, {
+function carregarDadosRede(idAtm) {
+  fetch(`/dashboard/ultimas-capturas-rede/${idAtm}`, {
     cache: "no-store",
   })
     .then((response) => {
@@ -93,10 +93,13 @@ function carregarDadosRede() {
             } else {
               kpiRede.innerHTML = "Não conectado";
             }
+          } else {
+            kpiRede.innerHTML = "N/D";
           }
         });
       } else {
         console.error("dadosRede: nenhum dado encontrado ou erro na API");
+        document.getElementById("dado-kpi-rede").innerHTML = "Erro";
       }
     })
     .catch((erro) => {
@@ -104,16 +107,17 @@ function carregarDadosRede() {
     });
 }
 
-function carregarAlertas() {
-  fetch(`/dashboard/carregar-alertas/3`, {
+function carregarAlertas(idAtm) {
+  fetch(`/dashboard/carregar-alertas/${idAtm}`, {
     cache: "no-store",
   })
     .then((response) => {
       if (response.ok) {
         response.json().then((resposta) => {
-          if (resposta.length > 0) {
-            const boxAlertas = document.getElementById("caixalerta-baixo");
+          const boxAlertas = document.getElementById("caixalerta-baixo");
+          boxAlertas.innerHTML = "";
 
+          if (resposta.length > 0) {
             const formatarData = (data) => {
               const date = new Date(data);
               const hora = date.getHours().toString().padStart(2, "0");
@@ -126,7 +130,7 @@ function carregarAlertas() {
             };
 
             for (let i = 0; i < resposta.length; i++) {
-              switch (resposta[i].fkComponente) {
+              switch (parseInt(resposta[i].fkComponente)) {
                 case 1:
                   if (resposta[i].descricao == "Moderado") {
                     boxAlertas.innerHTML += `
@@ -243,8 +247,23 @@ function carregarAlertas() {
     });
 }
 
+let intervalId2 = null;
+let comboATMS = document.getElementById("comboATMs");
+
+function atualizarDados() {
+  let idAtm = comboATMS.value;
+  carregarDadosRede(idAtm);
+  carregarAlertas(idAtm);
+}
+
 window.addEventListener("DOMContentLoaded", () => {
   carregarParametros();
-  carregarDadosRede();
-  carregarAlertas();
+  atualizarDados();
+  intervalId2 = setInterval(atualizarDados, 3500);
+
+  comboATMS.addEventListener("change", () => {
+    clearInterval(intervalId2);
+    atualizarDados();
+    intervalId2 = setInterval(atualizarDados, 3500);
+  });
 });
