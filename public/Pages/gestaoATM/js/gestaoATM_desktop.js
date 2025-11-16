@@ -50,7 +50,6 @@ function cadastrarATM() {
         }),
     })
         .then(function (resposta) {
-            alert("Cadastro realizado com sucesso")
             buscarDadosATMs()
         })
         .catch(function (resposta) {
@@ -86,7 +85,6 @@ function atualizarParametro() {
         }),
     })
         .then(function (resposta) {
-            alert("Atualização realizada com sucesso")
             ipt_limiteMAX.value = ""
         })
         .catch(function (resposta) {
@@ -95,7 +93,7 @@ function atualizarParametro() {
 
 }
 
-dadosATMs = {}
+var dadosATMs = {}
 function buscarDadosATMs() {
 
     var fkEmpresa = sessionStorage.FK_EMPRESA
@@ -128,8 +126,10 @@ function buscarDadosATMs() {
 }
 buscarDadosATMs()
 
+var atm_pra_atualizar = 0
 function exibirATMs(resposta2) {
 
+    baixo_gestao.style.justifyContent = 'flex-start';
     baixo_gestao.innerHTML = ""
     for (let i = 0; i < resposta2.length; i++) {
 
@@ -153,7 +153,7 @@ function exibirATMs(resposta2) {
                     </div>
                 </div>
                 <div class="botoes">
-                    <button onclick="abrirModalAtualizar()" class="btn_atualizar">Atualizar</button>
+                    <button onclick="abrirModalAtualizar(); atm_pra_atualizar = ${resposta2[i].numeracao}; console.log(atm_pra_atualizar)" class="btn_atualizar">Atualizar</button>
                     <button onclick="removerATM(${resposta2[i].numeracao})" class="btn_remover">Remover</button>
                 </div>
             </div>`
@@ -202,6 +202,71 @@ function removerATM(numeracao) {
     })
         .then(function (resposta) {
             buscarDadosATMs()
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+}
+
+function redirecionar() {
+    if (ip_atm_atualizar.value == "") {
+        atualizarEstado()
+    } else {
+        atualizarATM()
+    }
+}
+
+function atualizarEstado() {
+
+    var empresaVar = sessionStorage.FK_EMPRESA
+    var numeracaoVar = atm_pra_atualizar
+    var estadoVar = combo_estados.value
+
+    fetch("/gestaoATM/atualizarEstado", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            fkEmpresa: empresaVar,
+            numeracao: numeracaoVar,
+            statusEstado: estadoVar,
+        }),
+    })
+        .then(function (resposta) {
+            buscarDadosATMs()
+            fechar()
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+}
+
+function atualizarATM() {
+
+    var empresaVar = sessionStorage.FK_EMPRESA
+    var numeracaoVar = atm_pra_atualizar
+    var estadoVar = combo_estados.value
+    var ipVar = ip_atm_atualizar.value
+
+    fetch("/gestaoATM/atualizarATM", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            fkEmpresa: empresaVar,
+            numeracao: numeracaoVar,
+            statusEstado: estadoVar,
+            IP: ipVar,
+        }),
+    })
+        .then(function (resposta) {
+            buscarDadosATMs()
+            fechar()
+            ip_atm_atualizar.value = ""
         })
         .catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);

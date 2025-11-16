@@ -155,14 +155,14 @@
         </div>
         <div class="combo_status">
             <h1>Definir novo Status</h1>
-            <select class="inputs">
-                <option>ATIVO</option>
-                <option>INATIVO</option>
-                <option>EM MANUTENÇÃO</option>
+            <select id="combo_estados" class="inputs">
+                <option value="1">ATIVO</option>
+                <option value="2">INATIVO</option>
+                <option value="3">EM MANUTENÇÃO</option>
             </select>
         </div>
         <div id="botoes_dialog_atualizar">
-            <button onclick="" id="botao_cadastrar_atm_dialog">Atualizar</button>
+            <button onclick="redirecionar()" id="botao_cadastrar_atm_dialog">Atualizar</button>
             <button onclick="fechar()" id="botao_cancelar_dialog">Cancelar</button>
         </div>
     </dialog>

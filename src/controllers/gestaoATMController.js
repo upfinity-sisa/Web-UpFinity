@@ -47,7 +47,26 @@ function removerComponentes(req, res) {
 
 }
 
-//removerComponentes
+function atualizarEstado(req, res) {
+    var fkEmpresa = req.body.fkEmpresa;
+    var numeracao = req.body.numeracao;
+    var statusEstado = req.body.statusEstado;
+
+    gestaoATMModel.atualizarEstado(fkEmpresa, numeracao, statusEstado).then((resultado) => {
+        res.status(201).json(resultado);
+    });
+}
+
+function atualizarATM(req, res) {
+    var fkEmpresa = req.body.fkEmpresa;
+    var numeracao = req.body.numeracao;
+    var statusEstado = req.body.statusEstado;
+    var IP = req.body.IP;
+
+    gestaoATMModel.atualizarATM(fkEmpresa, numeracao, statusEstado, IP).then((resultado) => {
+        res.status(201).json(resultado);
+    });
+}
 
 module.exports = {
   cadastrarATM,
@@ -55,4 +74,6 @@ module.exports = {
   atualizarParametro,
   exibirATMs,
   removerComponentes,
+  atualizarEstado,
+  atualizarATM,
 };

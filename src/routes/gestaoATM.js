@@ -23,4 +23,12 @@ router.post("/removerComponentes", function (req, res) {
   gestaoATMController.removerComponentes(req, res);
 });
 
+router.post("/atualizarEstado", function (req, res) {
+  gestaoATMController.atualizarEstado(req, res);
+});
+
+router.post("/atualizarATM", function (req, res) {
+  gestaoATMController.atualizarATM(req, res);
+});
+
 module.exports = router;

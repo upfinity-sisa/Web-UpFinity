@@ -61,6 +61,22 @@ function removerATM(empresa, numeracao) {
     return database.executar(instrucaoSql);
 }
 
+function atualizarEstado(empresa, numeracao, estado) {
+    var instrucaoSql = `
+    update Atm set statusEstado = ${estado} where fkEmpresa = ${empresa} and numeracao = ${numeracao};
+    `
+
+    return database.executar(instrucaoSql);
+}
+
+function atualizarATM(empresa, numeracao, estado, IP) {
+    var instrucaoSql = `
+    update Atm set statusEstado = ${estado}, IP = '${IP}' where fkEmpresa = ${empresa} and numeracao = ${numeracao};
+    `
+
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
   cadastrarATM,
   validarCadastroATM,
@@ -68,4 +84,6 @@ module.exports = {
   exibirATMs,
   removerComponentes,
   removerATM,
+  atualizarEstado,
+  atualizarATM,
 };
