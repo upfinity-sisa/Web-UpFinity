@@ -89,9 +89,9 @@
           </div>
         </div>
         <div id="container_oque_fazemos_mobile" class="espaco-header-mobile">
-          <span class="color-txt-inicial span-title-mobile">O que
+          <span data-aos="fade-up" class="color-txt-inicial span-title-mobile">O que
             fazemos</span>
-          <h1 class="h1-title-mobile">Para o maior progresso no <br>seu negócio</h1>
+          <h1 data-aos="fade-up" class="h1-title-mobile">Para o maior progresso no <br>seu negócio</h1>
           <div id="container_cards_mobile">
             <div class="cards_mobile">
               <div class="box_img_cards_mobile">
@@ -611,9 +611,11 @@
   </div>
   </main>
   <script>
-    AOS.init({
-      duration: 800,
-      once: true,
+    window.addEventListener("load", () => {
+      AOS.init({
+        duration: 800,
+        once: true
+      });
     });
   </script>
 </body>

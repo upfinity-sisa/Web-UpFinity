@@ -7,6 +7,7 @@ function AbrirMenuMobile() {
     container_menu_mobile.style.borderBottomRightRadius = '0';
 
     btn_header_menu_mobile.src = './Assets/Elements/Icons/fecharMenu.png'
+    AOS.refresh();
 }
 
 function FecharMenuMobile() {
@@ -14,6 +15,8 @@ function FecharMenuMobile() {
     container_menu_mobile.style.borderBottomLeftRadius = '50%';
     container_menu_mobile.style.borderBottomRightRadius = '50%';
     btn_header_menu_mobile.src = './Assets/Elements/Icons/menuHamburguer.png'
+    AOS.refresh();
+
 }
 
 btn_header_menu_mobile.addEventListener('click', function () {
