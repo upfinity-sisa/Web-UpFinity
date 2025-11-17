@@ -10,6 +10,8 @@ div {
 #dashSeguranca {
     width: 100vw;
     height: 100vh;
+    display: flex;
+    background-color: #F7F7F7;
 }
 
 #esquerda {
@@ -113,4 +115,146 @@ div {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#navegacao h1:hover {
+    cursor: pointer;
+    margin-left: 15px;
+}
+
+#direita {
+    width: 85%;
+    height: 100%;
+}
+
+#direita-cima {
+    height: 12%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 30%;
+}
+
+#titulo-seguranca {
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+    font-size: 2.45vw;
+    font-weight: 500;
+    color: #268184;
+    margin-left: 5%;
+    white-space: nowrap;
+}
+
+#direita-baixo {
+    width: 100%;
+    height: 88%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+#centro-seguranca {
+    width: 76vw;
+    height: 84vh;
+    margin-top: 0.5vh;
+    display: flex;
+}
+
+#informacoes {
+    height: 100%;
+    width: 82%;
+}
+
+#listas {
+    height: 100%;
+    width: 28%;
+}
+
+#KPIS {
+    width: 100%;
+    height: 27%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#conteudo {
+    width: 100%;
+    height: 73%;
+    display: flex;
+}
+
+#conexoes {
+    width: 100%;
+    height: 42%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#alertas {
+    width: 100%;
+    height: 58%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#grafico {
+    height: 100%;
+    width: 69%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+#arquivos {
+    height: 100%;
+    width: 31%;
+    display: flex;
+    align-items: flex-start;
+}
+
+#caixa_conexoes {
+    width: 87%;
+    height: 95%;
+    background-color: white;
+    border-radius: 0.6vw;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 6px 18px;
+}
+
+#caixa_alertas {
+    width: 87%;
+    height: 92%;
+    background-color: white;
+    border-radius: 0.6vw;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 6px 18px;
+
+}
+
+.kpi {
+    width: 23%;
+    height: 91%;
+    background-color: white;
+    border-radius: 0.6vw;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 6px 18px;
+
+}
+
+#caixa_grafico {
+    height: 96%;
+    width: 98%;
+    background-color: white;
+    border-radius: 0.6vw;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 6px 18px;
+    margin-top: 0.3vw;
+}
+
+#caixa_arquivos {
+    height: 96%;
+    width: 98%;
+    background-color: white;
+    border-radius: 0.6vw;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 6px 18px;
+    margin-top: 0.3vw;
 }

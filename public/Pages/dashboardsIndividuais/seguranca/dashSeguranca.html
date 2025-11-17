@@ -18,14 +18,14 @@
             </div>
             <div id="esquerda-centro">
                 <div id="navegacao">
-                    <h1 onclick="window.location = '../visaoGeral/visaoGeral.html'">VISÃO GERAL</h1>
+                    <h1 onclick="window.location = '../../visaoGeral/visaoGeral.html'">VISÃO GERAL</h1>
                     <div class="linha"></div>
-                    <h1 onclick="window.location = '../dashboard/dashboard.html'">DASHBOARDS</h1>
+                    <h1 onclick="window.location = '../../dashboard/dashboard.html'">DASHBOARDS</h1>
                     <div class="linha"></div>
-                    <h1 onclick="validarRedirecionamento('../gestaoUsuarios/gestaoUsuarios.html')">GESTÃO DE USUÁRIOS
+                    <h1 onclick="validarRedirecionamento('../../gestaoUsuarios/gestaoUsuarios.html')">GESTÃO DE USUÁRIOS
                     </h1>
                     <div class="linha"></div>
-                    <h1 onclick="validarRedirecionamento('../gestaoATM/gestaoATM.html')">GESTÃO DE ATMS</h1>
+                    <h1 onclick="validarRedirecionamento('../../gestaoATM/gestaoATM.html')">GESTÃO DE ATMS</h1>
                     <div class="linha"></div>
                 </div>
             </div>
@@ -34,13 +34,61 @@
                     <div class="linha"></div>
                     <div id="btSair">
                         <h1>SAIR</h1>
-                        <img src="../../Assets/assets_dashboard/SAIRICON.png" alt="logoSaída">
+                        <img src="../../../Assets/assets_dashboard/SAIRICON.png" alt="logoSaída">
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div id="direita">
+
+            <div id="direita-cima">
+                <h1 id="titulo-seguranca">VISÃO GERAL - ATMs</h1>
+            </div>
+            <div id="direita-baixo">
+                <div id="centro-seguranca">
+                    <div id="informacoes">
+                        <div id="KPIS">
+                            <div class="kpi"></div>
+                            <div class="kpi"></div>
+                            <div class="kpi"></div>
+                            <div class="kpi"></div>
+                        </div>
+                        <div id="conteudo">
+                            <div id="arquivos">
+                                <div id="caixa_arquivos"></div>
+                            </div>
+                            <div id="grafico">
+                                <div id="caixa_grafico"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="listas">
+                        <div id="conexoes">
+                            <div id="caixa_conexoes"></div>
+                        </div>
+                        <div id="alertas">
+                            <div id="caixa_alertas"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
     </section>
 </body>
 
 </html>
+
+<script>
+    function validarRedirecionamento(endpoint) {
+    if (sessionStorage.FK_TIPOUSUARIO == 3) {
+        alerta_erros_desktop.classList.remove('d-none')
+        span_erro_desktop.innerText = 'Você não tem permissão para entrar nessa página'
+        return;
+    }
+
+        window.location = `${endpoint}`
+    }
+</script>
