@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../../../Assets/assets_dashboard/logoUPFINITY.png" />
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <link rel="stylesheet" href="dashSeguranca.css">
     <title>Segurança Upfinity</title>
 </head>
@@ -59,7 +60,12 @@
                                 <div id="caixa_arquivos"></div>
                             </div>
                             <div id="grafico">
-                                <div id="caixa_grafico"></div>
+                                <div id="caixa_grafico">
+                                    <div id="titulo_grafico">
+                                        <h1 id="titulo-grafico-linha">Alertas por semana nos últimos 2 meses</h1>
+                                    </div>
+                                    <div id="graficoLinha"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -92,3 +98,5 @@
         window.location = `${endpoint}`
     }
 </script>
+
+<script src="dashSeguranca.js"></script>

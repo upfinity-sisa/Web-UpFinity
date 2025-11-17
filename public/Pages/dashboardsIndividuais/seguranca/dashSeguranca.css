@@ -1,3 +1,8 @@
+@font-face {
+    font-family: poppins leve;
+    src: url("../../../Assets/assets_dashboard/poppins/Poppins-Light.ttf");
+}
+
 body {
     margin: 0;
 }
@@ -5,6 +10,10 @@ body {
 div {
     margin: 0;
     padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
 }
 
 #dashSeguranca {
@@ -248,6 +257,10 @@ div {
     border-radius: 0.6vw;
     box-shadow: rgba(0, 0, 0, 0.08) 0px 6px 18px;
     margin-top: 0.3vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 #caixa_arquivos {
@@ -257,4 +270,27 @@ div {
     border-radius: 0.6vw;
     box-shadow: rgba(0, 0, 0, 0.08) 0px 6px 18px;
     margin-top: 0.3vw;
+}
+
+#titulo_grafico {
+    width: 100%;
+    height: 13%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#graficoLinha {
+    width: 100%;
+    height: 87%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#titulo-grafico-linha {
+    font-size: 1.4vw;
+    font-family: "Montserrat", sans-serif;
+    color: #545454;
+    text-align: center;
 }
