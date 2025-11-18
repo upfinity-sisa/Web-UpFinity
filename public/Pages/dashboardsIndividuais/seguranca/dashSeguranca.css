@@ -526,3 +526,224 @@ h1, h2, h3, h4, h5, h6 {
     height: 1.3vw;
     margin-right: 0.7vw;
 }
+
+.informativo:hover {
+    cursor: pointer;
+    scale: 1.05;
+}
+
+dialog {
+    padding: 0;
+}
+
+#dialog_invasao {
+    height: 54vh;
+    width: 38vw;
+    background-color: white;
+    border: none;
+    border-radius: 0.5vw;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 6px 18px;
+}
+
+#titulo_dialog_invasao {
+    height: 16%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#titulo-tentativas-invasao {
+    font-family: "Montserrat", sans-serif;
+    color: #545454;
+}
+
+#baixo-dialog-invasao {
+    height: 82%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1vw;
+}
+
+#caixa-tabela-scrolavel {
+    width: 75%;
+    height: 75%;
+    overflow-y: scroll;
+}
+
+#caixa-tabela-scrolavel table, th, td {
+    padding: 0.5vw;
+    border: 0.15vw solid #545454;
+    height: 1.6vw;
+    border-collapse: collapse;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.9vw;
+}
+
+#caixa-tabela-scrolavel table {
+    min-width: 98%;
+}
+
+.botao_fechar_dialog {
+    width: 75%;
+    height: 8%;
+    border-radius: 0.4vw;
+    background-color: #2dafb7;
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1vw;
+    border: none;
+    cursor: pointer;
+}
+
+.botao_fechar_dialog:hover {
+    color: #2dafb7;
+    background-color: white;
+    border: 0.15vw solid #2dafb7;
+}
+
+#dialog_processo {
+    height: 58vh;
+    width: 44vw;
+    background-color: white;
+    border: none;
+    border-radius: 0.5vw;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 6px 18px;
+}
+
+#titulo_dialog_processo {
+    height: 16%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#titulo-processo {
+    font-family: "Montserrat", sans-serif;
+    color: #545454;
+}
+
+#baixo-dialog-processo {
+    height: 82%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1vw;
+}
+
+#caixa-tabela-scrolavel {
+    width: 80%;
+    height: 80%;
+    overflow-y: scroll;
+}
+
+.botao_verificacao {
+    background-color: white;
+    color: #2dafb7;
+    border: 0.15vw solid #2dafb7;
+    width: 80%;
+    height: 90%;
+    cursor: pointer;
+    border-radius: 0.2vw;
+}
+
+.botao_verificacao:hover {
+    background-color: #2dafb7;
+    color: white;
+}
+
+#dialog_portas {
+    height: 58vh;
+    width: 27vw;
+    background-color: white;
+    border: none;
+    border-radius: 0.5vw;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 6px 18px;
+}
+
+#titulo_dialog_portas {
+    height: 16%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#titulo-portas {
+    font-family: "Montserrat", sans-serif;
+    color: #545454;
+}
+
+#baixo-dialog-portas {
+    height: 82%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1vw;
+}
+
+#caixa-tabela-scrolavel {
+    width: 75%;
+    height: 80%;
+    overflow-y: scroll;
+}
+
+.botao_verificacao {
+    background-color: white;
+    color: #2dafb7;
+    border: 0.15vw solid #2dafb7;
+    width: 80%;
+    height: 90%;
+    cursor: pointer;
+    border-radius: 0.2vw;
+}
+
+.botao_verificacao:hover {
+    background-color: #2dafb7;
+    color: white;
+}
+
+#dialog_conexao {
+    height: 58vh;
+    width: 44vw;
+    background-color: white;
+    border: none;
+    border-radius: 0.5vw;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 6px 18px;
+}
+
+#titulo_dialog_conexao {
+    height: 16%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#titulo-conexao {
+    font-family: "Montserrat", sans-serif;
+    color: #545454;
+}
+
+#baixo-dialog-conexao {
+    height: 82%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1vw;
+}
