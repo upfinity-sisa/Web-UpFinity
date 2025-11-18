@@ -738,7 +738,7 @@ dialog {
 }
 
 #dialog_arquivos {
-    height: 25vh;
+    height: 35vh;
     width: 30vw;
     background-color: white;
     border: none;
@@ -767,12 +767,12 @@ dialog {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 1vw;
+    gap: 1.3vw;
 }
 
 .botoes_arquivos {
     width: 75%;
-    height: 25%;
+    height: 18%;
     border-radius: 0.4vw;
     background-color: #2dafb7;
     color: white;
@@ -786,6 +786,13 @@ dialog {
     color: #2dafb7;
     background-color: white;
     border: 0.15vw solid #2dafb7;
+}
+
+#pergunta-dialog-arquivos {
+    font-family: "Montserrat", sans-serif;
+    color: #545454;
+    font-size: 1.2vw;
+    text-align: center;
 }
 
 
