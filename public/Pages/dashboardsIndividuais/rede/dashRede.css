@@ -1,0 +1,198 @@
+@font-face {
+    font-family: poppins leve;
+    src: url("../../../Assets/assets_dashboard/poppins/Poppins-Light.ttf");
+}
+
+body {
+    margin: 0;
+}
+
+div {
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+#dashRede {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    background-color: #F7F7F7;
+}
+
+#esquerda {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #232023;
+    height: 100%;
+    width: 15%;
+}
+
+#esquerda img {
+    height: 8vw;
+}
+
+#navegacao {
+    width: 85%;
+    height: 40%;
+    font-family: "Montserrat", sans-serif;
+    color: white;
+    font-size: 10px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+#navegacao h1 {
+    margin: 0;
+    margin-left: 0.5vw;
+    font-size: 0.92vw;
+    transition: 0.2s ease;
+    line-height: normal;
+    font-weight: bold;
+}
+
+.linha {
+    background-color: #999999;
+    width: 100%;
+    height: 0.1vw;
+}
+
+#navegacaoSair {
+    width: 85%;
+    height: 65%;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    color: white;
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+#btSair {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#btSair h1 {
+    font-size: 1vw;
+    cursor: pointer;
+    transition: 0.2s ease;
+    margin: 0;
+}
+
+#btSair h1:hover {
+    color: #ff0000;
+}
+
+
+#btSair img {
+    height: 1.25vw;
+}
+
+#esquerda-cima {
+    width: 100%;
+    height: 39%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#esquerda-centro {
+    width: 100%;
+    height: 53%;
+    display: flex;
+    justify-content: center;
+}
+
+#esquerda-baixo {
+    width: 100%;
+    height: 8%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#navegacao h1:hover {
+    cursor: pointer;
+    margin-left: 15px;
+}
+
+#direita {
+    width: 85%;
+    height: 100%;
+}
+
+#direita-cima {
+    height: 12%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+#titulo-seguranca {
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+    font-size: 2.45vw;
+    font-weight: 500;
+    color: #268184;
+    margin-left: 5%;
+    white-space: nowrap;
+}
+
+#direita-baixo {
+    width: 100%;
+    height: 88%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+#centro-seguranca {
+    width: 76vw;
+    height: 84vh;
+    margin-top: 0.5vh;
+    display: flex;
+}
+
+#informacoes {
+    height: 100%;
+    width: 100%;
+}
+
+
+#KPIS {
+    width: 100%;
+    height: 27%;
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+}
+
+#conteudo {
+    width: 100%;
+    height: 73%;
+    display: flex;
+}
+
+.kpi {
+    flex: 1;
+    height: 91%;
+    background-color: white;
+    border-radius: 0.6vw;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 6px 18px;
+
+}
