@@ -488,3 +488,32 @@ h1, h2, h3, h4, h5, h6 {
     align-items: flex-start;
     gap: 3.7vw;
 }
+
+.box-titulo-kpi {
+    height: 46%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box-valor-kpi {
+    height: 54%;
+    width: 100%;
+}
+
+.titulo-kpi {
+    text-align: center;
+    font-size: 1.2vw;
+    max-width: 95%;
+    font-family: "Montserrat", sans-serif;
+    color: #3a3d3d;
+    font-weight: 300;
+}
+
+.valor-kpi {
+    text-align: center;
+    font-size: 2.8vw;
+    font-family: "Montserrat", sans-serif;
+    color: #545454;
+}
