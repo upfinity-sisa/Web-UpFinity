@@ -358,18 +358,30 @@
             </div>
         </dialog>
 
+        <dialog id="dialog_arquivos">
+            <div id="titulo_dialog_arquivos">
+                <h1 id="titulo-arquivos">Declarar alteração como segura</h1>
+                <div class="linha_caixas"></div>
+            </div>
+            <div id="baixo-dialog-arquivos">
+                <button onclick="fecharDialog()" class="botoes_arquivos">Declarar</button>
+                <button onclick="fecharDialog()" class="botoes_arquivos">Fechar</button>
+            </div>
+        </dialog>
+
     </section>
 </body>
 
 </html>
 
 <script>
-
+    
     function fecharDialog() {
         dialog_invasao.close()
         dialog_processo.close()
         dialog_portas.close()
         dialog_conexao.close()
+        dialog_arquivos.close()
     }
     
 

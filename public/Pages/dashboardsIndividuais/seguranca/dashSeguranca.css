@@ -480,6 +480,11 @@ h1, h2, h3, h4, h5, h6 {
     height: 1.5vw;
 }
 
+.img-arquivo:hover {
+    cursor: pointer;
+    scale: 1.05;
+}
+
 .nome_arquivo {
     display: flex;
     width: 70%;
@@ -645,21 +650,6 @@ dialog {
     overflow-y: scroll;
 }
 
-.botao_verificacao {
-    background-color: white;
-    color: #2dafb7;
-    border: 0.15vw solid #2dafb7;
-    width: 80%;
-    height: 90%;
-    cursor: pointer;
-    border-radius: 0.2vw;
-}
-
-.botao_verificacao:hover {
-    background-color: #2dafb7;
-    color: white;
-}
-
 #dialog_portas {
     height: 58vh;
     width: 27vw;
@@ -745,6 +735,57 @@ dialog {
     align-items: center;
     flex-direction: column;
     gap: 1vw;
+}
+
+#dialog_arquivos {
+    height: 25vh;
+    width: 30vw;
+    background-color: white;
+    border: none;
+    border-radius: 0.5vw;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 6px 18px;
+}
+
+#titulo_dialog_arquivos {
+    height: 25%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#titulo-arquivos {
+    font-family: "Montserrat", sans-serif;
+    color: #545454;
+}
+
+#baixo-dialog-arquivos {
+    height: 75%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1vw;
+}
+
+.botoes_arquivos {
+    width: 75%;
+    height: 25%;
+    border-radius: 0.4vw;
+    background-color: #2dafb7;
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1vw;
+    border: none;
+    cursor: pointer;
+}
+
+.botoes_arquivos:hover {
+    color: #2dafb7;
+    background-color: white;
+    border: 0.15vw solid #2dafb7;
 }
 
 

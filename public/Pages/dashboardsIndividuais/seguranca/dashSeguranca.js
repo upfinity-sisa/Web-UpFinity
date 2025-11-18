@@ -80,7 +80,7 @@ for (let i = 0; i < 20; i++) {
 		lista_arquivos.innerHTML += `
 		<div class="nome_arquivo">
 			<h1 class="titulo-nome-arquivo">/bin/netstat</h1>
-			<img class="img-arquivo" src="../../../Assets/assets_dashboard/alertaAmarelo.png">
+			<img onclick="dialog_arquivos.showModal()" class="img-arquivo" src="../../../Assets/assets_dashboard/alertaAmarelo.png">
 		</div>
 		<div class="linha_arquivos"></div>
   		`
