@@ -141,7 +141,6 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
     display: flex;
     align-items: center;
-    gap: 30%;
 }
 
 #titulo-seguranca {
@@ -746,4 +745,24 @@ dialog {
     align-items: center;
     flex-direction: column;
     gap: 1vw;
+}
+
+
+#comboATMs {
+    border: none;
+    outline: none;
+    height: 5vh;
+    width: 7vw;
+    background-color: #2ed1d7;
+    border-radius: 15px;
+    font-family: "Montserrat", sans-serif;
+    color: #fff;
+    font-size: 1.2vw;
+    font-weight: bold;
+    text-align: center;
+    margin-left: 1%;
+}
+
+#comboATMs:focus {
+    border: 2px solid #268184;
 }
