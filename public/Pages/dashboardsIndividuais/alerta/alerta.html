@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../../../Assets/assets_dashboard/logoUPFINITY.png">
+
+    <!-- BoootStrap -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="./alerta.css">
+    <!-- <link rel="stylesheet" href="../../dashboard/css/dashboard.css"> -->
+
+    <!--Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <!-- JavaScript -->
+    <script src="./alerta.js" defer></script>
+    <script src="../../js/sessao.js" defer></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+    <title>UpFinity</title>
+</head>
+
+<body onload="validarSessao()">
+    <section class="corpo">
+        <div id="esquerda">
+            <div id="esquerda-cima">
+                <img src="../../../Assets/assets_dashboard/logoUPFINITY.png" id="logo-upfinity" alt="logo-upfinity">
+            </div>
+            <div id="esquerda-centro">
+                <div id="navegacao">
+                    <h1 onclick="window.location = '../../visaoGeral/visaoGeral.html'">VISÃO GERAL</h1>
+                    <div class="linha"></div>
+                    <h1 onclick="window.location = '../../dashboard/dashboard.html'">DASHBOARDS</h1>
+                    <div class="linha"></div>
+                    <h1 onclick="validarRedirecionamento('../../gestaoUsuarios/gestaoUsuarios.html')">GESTÃO DE USUÁRIOS
+                    </h1>
+                    <div class="linha"></div>
+                    <h1 onclick="validarRedirecionamento('../../gestaoATM/gestaoATM.html')">GESTÃO DE ATMS</h1>
+                    <div class="linha"></div>
+                </div>
+            </div>
+            <div id="esquerda-baixo">
+                <div id="navegacaoSair">
+                    <div class="linha"></div>
+                    <div id="btSair">
+                        <h1>SAIR</h1>
+                        <img src="../../../Assets/assets_dashboard/SAIRICON.png" alt="logoSaída">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="centro">
+            <div id="centro-cima">
+                <div id="lado-titulo">
+                    <h1 id="titulo">ALERTAS</h1>
+                    <span id="spn_subtitulo">Monitore os alertas de seus ATMs em tempo real</span>
+                </div>
+
+            </div>
+
+            <div id="centro-baixo">
+                <div class="container_graficos">
+                    <div id="container_kpi">
+                        <div class="box_style_kpi">
+                            <div class="container_titulo_kpi">
+                                <h2 class="h2_titulo_kpi">Alertas ativos</h2>
+                                <img src="../../../Assets/Elements/Icons/dashAlerta_metricas_kpi1.png" class="img_kpi">
+                            </div>
+                            <div class="container_dado_kpi">
+                                <h2 class="h2_dado_kpi">X</h2>
+                            </div>
+                            <div class="container_detalhamento_kpi">
+                                <div class="box_detalhamento">
+                                    <span class="spn_detalhamento color_critico">X</span> Críticos
+                                </div>
+                                <div class="box_detalhamento">
+                                    <span class="spn_detalhamento color_moderado">X</span> Moderados
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box_style_kpi">
+                            <div class="container_titulo_kpi">
+                                <h2 class="h2_titulo_kpi">ATM com mais alertas ativos</h2>
+                                <img src="../../../Assets/Elements/Icons/dashAlerta_ativo_kpi2.png" class="img_kpi">
+                            </div>
+                            <div class="container_dado_kpi">
+                                <h2 class="h2_dado_kpi">X</h2>
+                            </div>
+                            <div class="container_detalhamento_kpi">
+                                <div class="box_detalhamento">
+                                    <span class="spn_detalhamento color_critico">X</span> Críticos
+                                </div>
+                                <div class="box_detalhamento">
+                                    <span class="spn_detalhamento color_moderado">X</span> Moderados
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box_style_kpi">
+                            <div class="container_titulo_kpi">
+                                <h2 class="h2_titulo_kpi">Alertas resolvidos (Últimos 7 dias)</h2>
+                                <img src="../../../Assets/Elements/Icons/dashAlerta_resolvido_kpi3.png" class="img_kpi">
+                            </div>
+                            <div class="container_dado_kpi">
+                                <h2 class="h2_dado_kpi">X</h2>
+                            </div>
+                            <div class="container_detalhamento_kpi">
+                                <div class="box_detalhamento">
+                                    <span class="spn_detalhamento color_critico">X</span> Críticos
+                                </div>
+                                <div class="box_detalhamento">
+                                    <span class="spn_detalhamento color_moderado">X</span> Moderados
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div id="container_left_graficos">
+
+                    </div>
+                </div>
+                <div class="container_graficos"></div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
