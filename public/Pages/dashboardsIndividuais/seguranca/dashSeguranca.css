@@ -294,3 +294,197 @@ h1, h2, h3, h4, h5, h6 {
     color: #545454;
     text-align: center;
 }
+
+#titulo_alertas {
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#titulo-historico-alertas {
+    font-size: 1.4vw;
+    font-family: "Montserrat", sans-serif;
+    color: #545454;
+}
+
+.linha_caixas {
+    background-color: #999999;
+    width: 90%;
+    height: 0.105vw;
+}
+
+#lista_alertas {
+    height: 76%;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6vw;
+}
+
+.box_alerta {
+    width: 90%;
+    flex: none;
+    background-color: #ffffff;
+    border: 2px solid #e4e4e4;
+    border-radius: 0.6vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0.2vw;
+}
+
+.box_alerta h1, h2, h3, h4 {
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+}
+
+.gravidade-alerta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: flex-start;
+    margin-left: 8px;
+    gap: 5px;
+}
+
+.gravidade-alerta img {
+    width: 2vw;
+}
+
+.componente-alerta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: flex-start;
+    margin-left: 8px;
+    gap: 10px;
+}
+
+.box_alerta h1 {
+    font-size: 1.2vw;
+    color: #df8e4e;
+}
+
+.box_alerta h2 {
+    color: #445257;
+    font-size: 1vw;
+}
+
+.box_alerta h3 {
+    width: 95%;
+    text-align: end;
+    color: #999999;
+    font-size: 0.8vw;
+    padding: 1% 3% 0 0;
+}
+
+.box_alerta h4 {
+    color: #797a7b;
+    font-size: 0.85vw;
+    margin-left: 0.5vw;
+}
+
+#titulo_conexoes {
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#titulo-conexoes-abertas {
+    font-size: 1.4vw;
+    font-family: "Montserrat", sans-serif;
+    color: #545454;
+}
+
+#lista_conexoes {
+    width: 100%;
+    height: 76%;
+    display: flex;
+    overflow-y: scroll;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6vw;
+}
+
+.box_conexao {
+    width: 90%;
+    border-radius: 0.3vw;
+    border: 0.105vw solid #e4e4e4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.7vw;
+}
+
+.porta_conexao, .pipe_conexao, .ip_conexao {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.4vw;
+}
+
+.porta_conexao {
+    color: #747474;
+}
+
+.pipe_conexao {
+    color: #2dafb7;
+}
+
+.ip_conexao {
+    font-weight: 300;
+    color: #747474;
+}
+
+#titulo_arquivos {
+    height: 14%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#titulo-arquivos-criticos {
+    font-size: 1.6vw;
+    font-family: "Montserrat", sans-serif;
+    color: #545454;
+}
+
+#lista_arquivos {
+    width: 100%;
+    height: 84%;
+    display: flex;
+    overflow-y: scroll;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6vw;
+}
+
+.titulo-nome-arquivo {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.1vw;
+    color: #666666;
+    font-weight: 300;
+}
+
+.linha_arquivos {
+    background-color: #c4c4c4;
+    width: 80%;
+    height: 0.08vw;
+    outline: 0.08vw solid #c4c4c4;
+}
+
+.img-arquivo {
+    height: 1.5vw;
+}
+
+.nome_arquivo {
+    display: flex;
+    width: 70%;
+    align-items: flex-start;
+    gap: 3.7vw;
+}

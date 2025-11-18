@@ -57,7 +57,13 @@
                         </div>
                         <div id="conteudo">
                             <div id="arquivos">
-                                <div id="caixa_arquivos"></div>
+                                <div id="caixa_arquivos">
+                                    <div id="titulo_arquivos">
+                                        <h1 id="titulo-arquivos-criticos">Arquivos Críticos</h1>
+                                        <div class="linha_caixas"></div>
+                                    </div>
+                                    <div id="lista_arquivos"></div>
+                                </div>
                             </div>
                             <div id="grafico">
                                 <div id="caixa_grafico">
@@ -71,10 +77,22 @@
                     </div>
                     <div id="listas">
                         <div id="conexoes">
-                            <div id="caixa_conexoes"></div>
+                            <div id="caixa_conexoes">
+                                <div id="titulo_conexoes">
+                                    <h1 id="titulo-conexoes-abertas">Conexões Abertas</h1>
+                                    <div class="linha_caixas"></div>
+                                </div>
+                                <div id="lista_conexoes"></div>
+                            </div>
                         </div>
                         <div id="alertas">
-                            <div id="caixa_alertas"></div>
+                            <div id="caixa_alertas">
+                                <div id="titulo_alertas">
+                                    <h1 id="titulo-historico-alertas">Histórico de Alertas</h1>
+                                    <div class="linha_caixas"></div>
+                                </div>
+                                <div id="lista_alertas"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -89,11 +107,11 @@
 
 <script>
     function validarRedirecionamento(endpoint) {
-    if (sessionStorage.FK_TIPOUSUARIO == 3) {
-        alerta_erros_desktop.classList.remove('d-none')
-        span_erro_desktop.innerText = 'Você não tem permissão para entrar nessa página'
-        return;
-    }
+        if (sessionStorage.FK_TIPOUSUARIO == 3) {
+            alerta_erros_desktop.classList.remove('d-none')
+            span_erro_desktop.innerText = 'Você não tem permissão para entrar nessa página'
+            return;
+        }
 
         window.location = `${endpoint}`
     }

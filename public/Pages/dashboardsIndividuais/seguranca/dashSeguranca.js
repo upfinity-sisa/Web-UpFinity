@@ -3,105 +3,6 @@ function vwParaPx(vwValue) {
   const valorEmPx = (larguraViewport / 100) * vwValue;
   return Math.round(valorEmPx);
 }
-/*
-var optionsComponentes = {
-    
-  series: [
-    {
-      name: "CPU",
-      data: [20, 30, 40, 50, 60],
-    },
-  ],
-  legend: {
-    position: "top",
-    fontSize: `${vwParaPx(1)}px`,
-    fontFamily: "poppins leve",
-    markers: {
-      size: `${vwParaPx(0.4)}`,
-    },
-  },
-  chart: {
-    height: "90%",
-    width: "100%",
-    type: "line",
-    zoom: {
-      enabled: false,
-    },
-    toolbar: {
-      show: true,
-      tools: {
-        download: true,
-        selection: false,
-        zoom: false,
-        zoomin: false,
-        zoomout: false,
-        pan: false,
-        reset: false,
-      },
-      offsetX: 0,
-      offsetY: 0,
-    },
-  },
-  dataLabels: {
-    enabled: false,
-  },
-  stroke: {
-    curve: "straight",
-    width: `${vwParaPx(0.2)}`,
-  },
-  grid: {
-    row: {
-      colors: ["#f3f3f3", "transparent"],
-      opacity: 0.5,
-    },
-  },
-  colors: ["#6ce5e8"],
-  yaxis: {
-    min: 0,
-    max: 100,
-    labels: {
-      style: {
-        fontSize: `${vwParaPx(0.8)}px`,
-        fontFamily: "poppins leve",
-      },
-    },
-  },
-  annotations: {
-    yaxis: [
-      {
-        y: 37.83,
-        borderColor: "#FF4560",
-        strokeDashArray: 0,
-      },
-      {
-        y: 31.23,
-        borderColor: "#f4a261",
-        strokeDashArray: 0,
-      },
-    ],
-  },
-  xaxis: {
-    categories: ['12:30', '12:30', '12:30', '12:30', '12:30'],
-    labels: {
-      style: {
-        fontSize: `${vwParaPx(0.8)}px`,
-        fontFamily: "poppins leve",
-      },
-    },
-  },
-};
-
-var chartLinha = new ApexCharts(
-  document.querySelector("#graficoLinha"),
-  optionsComponentes
-);
-chartLinha.render();
-
-*/
-
-
-
-
 
 var options = {
   series: [{
@@ -141,4 +42,76 @@ colors: ["#00c7cd"],
 var chart = new ApexCharts(document.querySelector("#graficoLinha"), options);
 chart.render();
 
+lista_alertas.innerHTML = ""
+for (let i = 0; i < 6; i++) {
+    lista_alertas.innerHTML += `
+    <div class="box_alerta">
+        <h3>2025-03-02 10:22:04</h3>
+        <div class="gravidade-alerta">
+            <img src="../../../Assets/assets_dashboard/alertaAmarelo.png"
+                alt="simbolo de alerta grave">
+            <h1>CRÍTICO</h1>
+        </div>
+        <div class="componente-alerta">
+            <h4>Tentativa de conexão suspeita vinda do IP: 127.0.0.1</h4>
+        </div>
+    </div> 
+    `
+}
 
+lista_conexoes.innerHTML = ""
+for (let i = 0; i < 15; i++) {
+  lista_conexoes.innerHTML += `
+  <div class="box_conexao">
+      <h1 class="porta_conexao">3333</h1>
+      <h1 class="pipe_conexao">|</h1>
+      <h1 class="ip_conexao">127.0.0.1</h1>
+  </div>
+  `
+}
+
+lista_arquivos.innerHTML = ""
+for (let i = 0; i < 3; i++) {
+  lista_arquivos.innerHTML += `
+  <div class="nome_arquivo">
+      <h1 class="titulo-nome-arquivo">/bin/netstat</h1>
+  </div>
+  <div class="linha_arquivos"></div>
+  `
+}
+
+/*--------------MUITOS MOCKS PRA ARQUIVOS-----------------*/
+
+lista_arquivos.innerHTML += `
+<div class="nome_arquivo">
+    <h1 class="titulo-nome-arquivo">/bin/netstat</h1>
+    <img class="img-arquivo" src="../../../Assets/assets_dashboard/alertaAmarelo.png">
+</div>
+<div class="linha_arquivos"></div>
+`
+
+for (let i = 0; i < 8; i++) {
+  lista_arquivos.innerHTML += `
+  <div class="nome_arquivo">
+      <h1 class="titulo-nome-arquivo">/bin/netstat</h1>
+  </div>
+  <div class="linha_arquivos"></div>
+  `
+}
+
+for (let i = 0; i < 2; i++) {
+  lista_arquivos.innerHTML += `
+  <div class="nome_arquivo">
+      <h1 class="titulo-nome-arquivo">/bin/netstat</h1>
+      <img class="img-arquivo" src="../../../Assets/assets_dashboard/alertaAmarelo.png">
+  </div>
+  <div class="linha_arquivos"></div>
+  `
+}
+
+lista_arquivos.innerHTML += `
+  <div class="nome_arquivo">
+      <h1 class="titulo-nome-arquivo">/bin/netstat</h1>
+  </div>
+  <div class="linha_arquivos"></div>
+  `
