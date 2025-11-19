@@ -1,4 +1,5 @@
 var idATM = 1;
+var segurancaDash = 0;
 
 function vwParaPx(vwValue) {
 	const larguraViewport = window.innerWidth;
@@ -161,28 +162,6 @@ function exibirKPIinvasoes(resposta2) {
 
 }
 
-function exibirKPIarquivos(resposta2) {
-	valor_kpi_arquivo.innerHTML = resposta2.length
-
-	tabela_arquivos.innerHTML = ""
-	tabela_arquivos.innerHTML += `
-	<tr>
-		<th style="color: #268184;">Caminho do arquivo</th>
-		<th>Verificar</th>
-	</tr>
-	`
-	for (let i = 0; i < resposta2.length; i++) {
-
-		tabela_arquivos.innerHTML += `
-		<tr>
-			<td>${resposta2[i].nome}</td>
-			<td><button class="botao_verificacao">Declarar Seguro</button></td>
-		</tr>
-		`
-	}
-
-}
-
 function exibirKPIportas(resposta2) {
 	valor_kpi_porta.innerHTML = resposta2.length
 
@@ -215,6 +194,8 @@ function exibirKPIconexoesSUS(resposta2) {
 	</tr>
 	`
 	for (let i = 0; i < resposta2.length; i++) {
+
+		segurancaDash++;
 
 		tabela_conexoes.innerHTML += `
 		<tr>
@@ -294,6 +275,8 @@ function exibirArquivosCriticos(resposta2) {
 
 		} else {
 
+			segurancaDash++;
+
 			lista_arquivos.innerHTML += `
 			<div class="nome_arquivo">
 				<h1 class="titulo-nome-arquivo">${resposta2[i].nome}</h1>
@@ -305,6 +288,17 @@ function exibirArquivosCriticos(resposta2) {
 		}
 	}
 
+	exibirDadosSegurancaATM()
+
+}
+
+function exibirDadosSegurancaATM() {
+	if (segurancaDash> 0) {
+		valor_kpi_seguranca.innerHTML="INSEGURO"
+	} else {
+		valor_kpi_seguranca.innerHTML="SEGURO"
+	}
+	segurancaDash = 0;
 }
 
 

@@ -56,21 +56,10 @@
                         <div id="KPIS">
                             <div class="kpi">
                                 <div class="box-titulo-kpi">
-                                    <h1 class="titulo-kpi">Tentativas de invasão da última semana</h1>
+                                    <h1 class="titulo-kpi">Estado atual do ATM</h1>
                                 </div>
                                 <div class="box-valor-kpi">
-                                    <h1 id="valor_kpi_invasao" class="valor-kpi">0</h1>
-                                </div>
-                                <div class="box-informativo">
-                                    <img onclick="dialog_invasao.showModal()" class="informativo" src="../../../Assets/assets_dashboard/iconeInformativo.png">
-                                </div>
-                            </div>
-                            <div class="kpi">
-                                <div class="box-titulo-kpi">
-                                    <h1 class="titulo-kpi">Arquivos Críticos Alterados</h1>
-                                </div>
-                                <div class="box-valor-kpi">
-                                    <h1 id="valor_kpi_arquivo" class="valor-kpi">0</h1>
+                                    <h1 id="valor_kpi_seguranca" style="font-size: 2vw;" class="valor-kpi"></h1>
                                 </div>
                                 <div class="box-informativo">
                                     <img onclick="dialog_processo.showModal()" class="informativo" src="../../../Assets/assets_dashboard/iconeInformativo.png">
@@ -78,10 +67,21 @@
                             </div>
                             <div class="kpi">
                                 <div class="box-titulo-kpi">
+                                    <h1 class="titulo-kpi">Tentativas de invasão da última semana</h1>
+                                </div>
+                                <div class="box-valor-kpi">
+                                    <h1 id="valor_kpi_invasao" class="valor-kpi"></h1>
+                                </div>
+                                <div class="box-informativo">
+                                    <img onclick="dialog_invasao.showModal()" class="informativo" src="../../../Assets/assets_dashboard/iconeInformativo.png">
+                                </div>
+                            </div>
+                            <div class="kpi">
+                                <div class="box-titulo-kpi">
                                     <h1 class="titulo-kpi">Portas abertas</h1>
                                 </div>
                                 <div class="box-valor-kpi">
-                                    <h1 id="valor_kpi_porta" class="valor-kpi">0</h1>
+                                    <h1 id="valor_kpi_porta" class="valor-kpi"></h1>
                                 </div>
                                 <div onclick="dialog_portas.showModal()" class="box-informativo">
                                     <img class="informativo" src="../../../Assets/assets_dashboard/iconeInformativo.png">
@@ -92,7 +92,7 @@
                                     <h1 class="titulo-kpi">Conexões Suspeitas</h1>
                                 </div>
                                 <div class="box-valor-kpi">
-                                    <h1 id="valor_kpi_conexoes" class="valor-kpi">0</h1>
+                                    <h1 id="valor_kpi_conexoes" class="valor-kpi"></h1>
                                 </div>
                                 <div class="box-informativo">
                                     <img onclick="dialog_conexao.showModal()" class="informativo" src="../../../Assets/assets_dashboard/iconeInformativo.png">
