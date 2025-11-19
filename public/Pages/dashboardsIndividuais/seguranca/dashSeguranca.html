@@ -59,7 +59,7 @@
                                     <h1 class="titulo-kpi">Tentativas de invasão da última semana</h1>
                                 </div>
                                 <div class="box-valor-kpi">
-                                    <h1 class="valor-kpi">47</h1>
+                                    <h1 id="valor_kpi_invasao" class="valor-kpi">0</h1>
                                 </div>
                                 <div class="box-informativo">
                                     <img onclick="dialog_invasao.showModal()" class="informativo" src="../../../Assets/assets_dashboard/iconeInformativo.png">
@@ -70,7 +70,7 @@
                                     <h1 class="titulo-kpi">Arquivos Críticos Alterados</h1>
                                 </div>
                                 <div class="box-valor-kpi">
-                                    <h1 class="valor-kpi">2</h1>
+                                    <h1 id="valor_kpi_arquivo" class="valor-kpi">0</h1>
                                 </div>
                                 <div class="box-informativo">
                                     <img onclick="dialog_processo.showModal()" class="informativo" src="../../../Assets/assets_dashboard/iconeInformativo.png">
@@ -81,7 +81,7 @@
                                     <h1 class="titulo-kpi">Portas abertas</h1>
                                 </div>
                                 <div class="box-valor-kpi">
-                                    <h1 class="valor-kpi">3</h1>
+                                    <h1 id="valor_kpi_porta" class="valor-kpi">0</h1>
                                 </div>
                                 <div onclick="dialog_portas.showModal()" class="box-informativo">
                                     <img class="informativo" src="../../../Assets/assets_dashboard/iconeInformativo.png">
@@ -92,7 +92,7 @@
                                     <h1 class="titulo-kpi">Conexões Suspeitas</h1>
                                 </div>
                                 <div class="box-valor-kpi">
-                                    <h1 class="valor-kpi">0</h1>
+                                    <h1 id="valor_kpi_conexoes" class="valor-kpi">0</h1>
                                 </div>
                                 <div class="box-informativo">
                                     <img onclick="dialog_conexao.showModal()" class="informativo" src="../../../Assets/assets_dashboard/iconeInformativo.png">
@@ -151,36 +151,7 @@
             </div>
             <div id="baixo-dialog-invasao">
                 <div id="caixa-tabela-scrolavel">
-                    <table>
-                    <tr>
-                        <th style="color: #268184;">IP do invasor</th>
-                        <th style="color: #268184;">Horário da tentativa</th>
-                    </tr>
-                    <tr>
-                        <td>127.0.0.1</td>
-                        <td>2025-03-24 12:34:03</td>
-                    </tr>
-                    <tr>
-                        <td>127.0.0.1</td>
-                        <td>2025-03-24 12:34:03</td>
-                    </tr>
-                    <tr>
-                        <td>127.0.0.1</td>
-                        <td>2025-03-24 12:34:03</td>
-                    </tr>
-                    <tr>
-                        <td>127.0.0.1</td>
-                        <td>2025-03-24 12:34:03</td>
-                    </tr>
-                    <tr>
-                        <td>127.0.0.1</td>
-                        <td>2025-03-24 12:34:03</td>
-                    </tr>
-                    <tr>
-                        <td>127.0.0.1</td>
-                        <td>2025-03-24 12:34:03</td>
-                    </tr>
-                    </table>
+                    <table id="tabela_invasoes"></table>
                 </div>
                 <button onclick="fecharDialog()" class="botao_fechar_dialog">Fechar</button>
             </div>
@@ -193,48 +164,7 @@
             </div>
             <div id="baixo-dialog-processo">
                 <div id="caixa-tabela-scrolavel">
-                    <table>
-                    <tr>
-                        <th style="color: #268184;">Caminho do arquivo</th>
-                        <th>Verificar</th>
-                    </tr>
-                    <tr>
-                        <td>2025-03-24 12:34:03</td>
-                        <td><button class="botao_verificacao">Declarar Seguro</button></td>
-                    </tr>
-                    <tr>
-                        <td>2025-03-24 12:34:03</td>
-                        <td><button class="botao_verificacao">Declarar Seguro</button></td>
-                    </tr>
-                    <tr>
-                        <td>2025-03-24 12:34:03</td>
-                        <td><button class="botao_verificacao">Declarar Seguro</button></td>
-                    </tr>
-                    <tr>
-                        <td>2025-03-24 12:34:03</td>
-                        <td><button class="botao_verificacao">Declarar Seguro</button></td>
-                    </tr>
-                    <tr>
-                        <td>2025-03-24 12:34:03</td>
-                        <td><button class="botao_verificacao">Declarar Seguro</button></td>
-                    </tr>
-                    <tr>
-                        <td>2025-03-24 12:34:03</td>
-                        <td><button class="botao_verificacao">Declarar Seguro</button></td>
-                    </tr>
-                    <tr>
-                        <td>2025-03-24 12:34:03</td>
-                        <td><button class="botao_verificacao">Declarar Seguro</button></td>
-                    </tr>
-                    <tr>
-                        <td>2025-03-24 12:34:03</td>
-                        <td><button class="botao_verificacao">Declarar Seguro</button></td>
-                    </tr>
-                    <tr>
-                        <td>2025-03-24 12:34:03</td>
-                        <td><button class="botao_verificacao">Declarar Seguro</button></td>
-                    </tr>
-                    </table>
+                    <table id="tabela_arquivos"></table>
                 </div>
                 <button onclick="fecharDialog()" class="botao_fechar_dialog">Fechar</button>
             </div>
@@ -247,38 +177,7 @@
             </div>
             <div id="baixo-dialog-portas">
                 <div id="caixa-tabela-scrolavel">
-                    <table>
-                    <tr>
-                        <th style="color: #268184;">Nome do processo</th>
-                    </tr>
-                    <tr>
-                        <td>127.0.0.1</td>
-                    </tr>
-                    <tr>
-                        <td>127.0.0.1</td>
-                    </tr>
-                    <tr>
-                        <td>127.0.0.1</td>
-                    </tr>
-                    <tr>
-                        <td>127.0.0.1</td>
-                    </tr>
-                    <tr>
-                        <td>127.0.0.1</td>
-                    </tr>
-                    <tr>
-                        <td>127.0.0.1</td>
-                    </tr>
-                    <tr>
-                        <td>127.0.0.1</td>
-                    </tr>
-                    <tr>
-                        <td>127.0.0.1</td>
-                    </tr>
-                    <tr>
-                        <td>127.0.0.1</td>
-                    </tr>
-                    </table>
+                    <table id="tabela_portas"></table>
                 </div>
                 <button onclick="fecharDialog()" class="botao_fechar_dialog">Fechar</button>
             </div>
@@ -291,58 +190,7 @@
             </div>
             <div id="baixo-dialog-conexao">
                 <div id="caixa-tabela-scrolavel">
-                    <table>
-                    <tr>
-                        <th style="color: #268184;">Porta Local</th>
-                        <th style="color: #268184;">IP da Conexão</th>
-                        <th>Verificar</th>
-                    </tr>
-                    <tr>
-                        <td>127.0.0.1</td>
-                        <td>2025-03-24 12:34:03</td>
-                        <td><button class="botao_verificacao">Declarar Seguro</button></td>
-                    </tr>
-                    <tr>
-                        <td>127.0.0.1</td>
-                        <td>2025-03-24 12:34:03</td>
-                        <td><button class="botao_verificacao">Declarar Seguro</button></td>
-                    </tr>
-                    <tr>
-                        <td>127.0.0.1</td>
-                        <td>2025-03-24 12:34:03</td>
-                        <td><button class="botao_verificacao">Declarar Seguro</button></td>
-                    </tr>
-                    <tr>
-                        <td>127.0.0.1</td>
-                        <td>2025-03-24 12:34:03</td>
-                        <td><button class="botao_verificacao">Declarar Seguro</button></td>
-                    </tr>
-                    <tr>
-                        <td>127.0.0.1</td>
-                        <td>2025-03-24 12:34:03</td>
-                        <td><button class="botao_verificacao">Declarar Seguro</button></td>
-                    </tr>
-                    <tr>
-                        <td>127.0.0.1</td>
-                        <td>2025-03-24 12:34:03</td>
-                        <td><button class="botao_verificacao">Declarar Seguro</button></td>
-                    </tr>
-                    <tr>
-                        <td>127.0.0.1</td>
-                        <td>2025-03-24 12:34:03</td>
-                        <td><button class="botao_verificacao">Declarar Seguro</button></td>
-                    </tr>
-                    <tr>
-                        <td>127.0.0.1</td>
-                        <td>2025-03-24 12:34:03</td>
-                        <td><button class="botao_verificacao">Declarar Seguro</button></td>
-                    </tr>
-                    <tr>
-                        <td>127.0.0.1</td>
-                        <td>2025-03-24 12:34:03</td>
-                        <td><button class="botao_verificacao">Declarar Seguro</button></td>
-                    </tr>
-                    </table>
+                    <table id="tabela_conexoes"></table>
                 </div>
                 <button onclick="fecharDialog()" class="botao_fechar_dialog">Fechar</button>
             </div>

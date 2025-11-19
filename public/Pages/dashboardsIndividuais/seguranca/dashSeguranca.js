@@ -96,14 +96,14 @@ for (let i = 0; i < 20; i++) {
   	`
 }
 
-function exibirKPIinvasoes() {
+function buscar_dados_KPIinvasoes() {
 
-    fetch(`/segurancaRoutes/exibirKPIinvasoes/${idATM}`, {
+    fetch(`/seguranca/exibirKPIinvasoes/${idATM}`, {
         method: "GET",
     })
         .then(function (resposta) {
             resposta.json().then(resposta2 => {
-                console.log(resposta2)
+				exibirKPIinvasoes(resposta2)
             })
         })
         .catch(function (resposta) {
@@ -112,4 +112,162 @@ function exibirKPIinvasoes() {
 
 }
 
-exibirKPIinvasoes()
+function buscar_dados_KPIarquivos() {
+
+    fetch(`/seguranca/exibirKPIarquivos/${idATM}`, {
+        method: "GET",
+    })
+        .then(function (resposta) {
+            resposta.json().then(resposta2 => {
+				exibirKPIarquivos(resposta2)
+            })
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+}
+
+function buscar_dados_portas_abertas() {
+
+    fetch(`/seguranca/exibirPortasAbertas/${idATM}`, {
+        method: "GET",
+    })
+        .then(function (resposta) {
+            resposta.json().then(resposta2 => {
+                console.log(resposta2)
+				exibirKPIportas(resposta2)
+            })
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+}
+
+function buscar_dados_conexoes_suspeitas() {
+
+    fetch(`/seguranca/exibirKPIconexoesSUS/${idATM}`, {
+        method: "GET",
+    })
+        .then(function (resposta) {
+            resposta.json().then(resposta2 => {
+                console.log(resposta2)
+				exibirKPIconexoesSUS(resposta2)
+            })
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+}
+
+function exibirKPIinvasoes(resposta2) {
+	valor_kpi_invasao.innerHTML = resposta2.length
+
+	tabela_invasoes.innerHTML = ""
+	tabela_invasoes.innerHTML += `
+	<tr>
+		<th style="color: #268184;">IP do invasor</th>
+		<th style="color: #268184;">Horário da tentativa</th>
+	</tr>
+	`
+	for (let i = 0; i < resposta2.length; i++) {
+
+		const dataFeia = resposta2[i].horarioInvasao;
+
+		const data = new Date(dataFeia);
+
+		const ano = data.getFullYear();
+		const mes = String(data.getMonth() + 1).padStart(2, '0');
+		const dia = String(data.getDate()).padStart(2, '0');
+
+		const horas = String(data.getHours()).padStart(2, '0');
+		const minutos = String(data.getMinutes()).padStart(2, '0');
+		const segundos = String(data.getSeconds()).padStart(2, '0');
+
+		const dataBonita = `${ano}-${mes}-${dia}, ${horas}:${minutos}:${segundos}`;
+
+		tabela_invasoes.innerHTML += `
+		<tr>
+			<td>${resposta2[i].IP}</td>
+			<td>${dataBonita}</td>
+		</tr>
+		`
+	}
+
+}
+
+function exibirKPIarquivos(resposta2) {
+	valor_kpi_arquivo.innerHTML = resposta2.length
+
+	tabela_arquivos.innerHTML = ""
+	tabela_arquivos.innerHTML += `
+	<tr>
+		<th style="color: #268184;">Caminho do arquivo</th>
+		<th>Verificar</th>
+	</tr>
+	`
+	for (let i = 0; i < resposta2.length; i++) {
+
+		tabela_arquivos.innerHTML += `
+		<tr>
+			<td>${resposta2[i].nome}</td>
+			<td><button class="botao_verificacao">Declarar Seguro</button></td>
+		</tr>
+		`
+	}
+
+}
+
+function exibirKPIportas(resposta2) {
+	valor_kpi_porta.innerHTML = resposta2.length
+
+	tabela_portas.innerHTML = ""
+	tabela_portas.innerHTML += `
+	<tr>
+		<th style="color: #268184;">Portas</th>
+	</tr>
+	`
+	for (let i = 0; i < resposta2.length; i++) {
+
+		tabela_portas.innerHTML += `
+		<tr>
+			<td>${resposta2[i].portaLocal}</td>
+		</tr>
+		`
+	}
+
+}
+
+function exibirKPIconexoesSUS(resposta2) {
+	valor_kpi_conexoes.innerHTML = resposta2.length
+
+	tabela_conexoes.innerHTML = ""
+	tabela_conexoes.innerHTML += `
+	<tr>
+		<th style="color: #268184;">Porta Local</th>
+		<th style="color: #268184;">IP da Conexão</th>
+		<th>Verificar</th>
+	</tr>
+	`
+	for (let i = 0; i < resposta2.length; i++) {
+
+		tabela_conexoes.innerHTML += `
+		<tr>
+			<td>${resposta2[i].portaLocal}</td>
+			<td>${resposta2[i].IPremoto}</td>
+			<td><button class="botao_verificacao">Declarar Seguro</button></td>
+		</tr>
+		`
+	}
+
+}
+
+function carregarInformacoes() {
+	buscar_dados_KPIinvasoes()
+	buscar_dados_KPIarquivos()
+	buscar_dados_portas_abertas()
+	buscar_dados_conexoes_suspeitas()
+}
+carregarInformacoes()
