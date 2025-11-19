@@ -21,6 +21,7 @@ var gestaoATMRouter = require("./src/routes/gestaoATM");
 var dashboardRouter = require("./src/routes/dashboardRoutes");
 var alertasRouter = require("./src/routes/alertasRoutes");
 var gestaoAcessoRouter = require("./src/routes/gestaoAcessoRoutes");
+var segurancaRouter = require("./src/routes/segurancaRoutes"); //Rota da Catarina ;)
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -36,6 +37,7 @@ app.use("/gestaoATM", gestaoATMRouter);
 app.use("/dashboard", dashboardRouter);
 app.use("/alertas", alertasRouter);
 app.use("/gestaoAcesso", gestaoAcessoRouter);
+app.use("/seguranca", segurancaRouter);
 
 app.listen(PORTA_APP, function () {
   console.log(`
