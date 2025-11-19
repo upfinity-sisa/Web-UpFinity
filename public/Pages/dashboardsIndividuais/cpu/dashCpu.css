@@ -202,11 +202,11 @@ body {
     border-radius: 10px;
     color: var(--branco);
     font-weight: bold;
-    position: relative; 
-    overflow: hidden;   
-    cursor: pointer;      
-    transition: transform 0.3s ease; 
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .kpi-content {
@@ -218,7 +218,7 @@ body {
     align-items: center;
     transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
     opacity: 1;
-    transform: translateX(0); 
+    transform: translateX(0);
 }
 
 .kpi-info-overlay {
@@ -239,7 +239,7 @@ body {
     font-weight: normal;
     opacity: 0;
     visibility: hidden;
-    transform: translateX(-100%); 
+    transform: translateX(-100%);
     transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
@@ -280,8 +280,6 @@ body {
     gap: 8px;
 }
 
-
-
 .container-graficos {
     width: 100vw;
     height: 63vh;
@@ -298,6 +296,7 @@ body {
     border-radius: 10px;
     display: flex;
     flex-direction: column;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .caixa-alertas {
@@ -308,6 +307,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .caixa-alertas-title {
@@ -362,7 +362,7 @@ body {
 }
 
 .data-alerta {
-    font-size: .7rem;
+    font-size: 0.7rem;
     margin-top: 4%;
 }
 
@@ -381,7 +381,7 @@ body {
     border-radius: 10px;
     font-weight: bold;
     color: var(--ciano);
-    transition: .5s ease all;
+    transition: 0.5s ease all;
 }
 
 .botao-historico:hover {
