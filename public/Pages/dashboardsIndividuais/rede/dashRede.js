@@ -137,8 +137,7 @@ var options = {
             stops: [0, 100]
         }
     },
-    // Ajustando as cores para combinar com seu dashboard
-    colors: ['#268184'] 
+     colors: ['#268184'] 
 };
 
 var chart = new ApexCharts(document.querySelector("#chart-timeline"), options);
@@ -146,7 +145,6 @@ chart.render();
 
 
 var resetCssClasses = function (activeEl) {
-    // CORREÇÃO: Seleciona apenas os botões da toolbar para não quebrar o site
     var els = document.querySelectorAll('.toolbar button') 
     Array.prototype.forEach.call(els, function (el) {
         el.classList.remove('active')

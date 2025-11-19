@@ -236,31 +236,30 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #conteudo {
-    /* Garante espaçamento do topo */
     padding-top: 1.5vh; 
     display: flex;
-    justify-content: flex-start; /* Alinha à esquerda */
+    justify-content: flex-start; 
 }
 
 #grafico-container {
     width: 68%;
-    height: 70%; /* Reduzido de 95% para 70% para não ficar gigante */
+    height: 70%; 
     background-color: white;
     border-radius: 0.6vw;
     box-shadow: rgba(0, 0, 0, 0.08) 0px 6px 18px;
     padding: 1vw;
     box-sizing: border-box;
     display: flex;
-    flex-direction: column; /* Organiza botões e gráfico um embaixo do outro */
+    flex-direction: column; 
 }
 
-/* Estilo dos botões de Zoom */
+
 .toolbar {
     display: flex;
     justify-content: flex-end;
     gap: 0.5vw;
     margin-bottom: 1vh;
-    flex: none; /* Impede que a toolbar estique ou encolha */
+    flex: none; 
 }
 
 .toolbar button {
@@ -280,13 +279,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .toolbar button.active {
-    background-color: #268184; /* Cor do seu tema */
+    background-color: #268184; 
     color: white;
     border-color: #268184;
 }
 
 #chart-timeline {
     width: 100%;
-    flex: 1;       /* OBRIGATÓRIO: Faz o gráfico ocupar todo o espaço que sobra abaixo dos botões */
-    min-height: 0; /* OBRIGATÓRIO: Permite que o gráfico encolha se necessário */
+    flex: 1;       
+    min-height: 0; 
 }
