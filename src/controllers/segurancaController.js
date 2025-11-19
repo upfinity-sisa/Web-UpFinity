@@ -28,9 +28,27 @@ function exibirKPIconexoesSUS(req, res) {
     });
 }
 
+function exibirAlertas(req, res) {
+    var idAtm = req.params.idAtm;
+    var fkEmpresa = req.params.idAtm;
+    segurancaModel.exibirAlertas(idAtm, fkEmpresa).then((resultado) => {
+        res.status(201).json(resultado);
+    });
+}
+
+function exibirArquivosCriticos(req, res) {
+    var idAtm = req.params.idAtm;
+    var fkEmpresa = req.params.idAtm;
+    segurancaModel.exibirArquivosCriticos(idAtm, fkEmpresa).then((resultado) => {
+        res.status(201).json(resultado);
+    });
+}
+
 module.exports = {
   exibirKPIinvasoes,
   exibirKPIarquivos,
   exibirPortasAbertas,
   exibirKPIconexoesSUS,
+  exibirAlertas,
+  exibirArquivosCriticos,
 };

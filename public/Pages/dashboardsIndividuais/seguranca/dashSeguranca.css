@@ -415,27 +415,32 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 0.3vw;
     border: 0.105vw solid #e4e4e4;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 0.7vw;
-}
-
-.porta_conexao, .pipe_conexao, .ip_conexao {
-    font-family: "Montserrat", sans-serif;
-    font-size: 1.4vw;
 }
 
 .porta_conexao {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.3vw;
     color: #747474;
-}
-
-.pipe_conexao {
-    color: #2dafb7;
 }
 
 .ip_conexao {
     font-weight: 300;
     color: #747474;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1vw;
+}
+
+.porta_local_lista {
+    font-size: 1.1vw;
+    color: #989898;
+}
+
+.ip_remoto {
+    font-size: 0.9vw;
+    color: #989898;
 }
 
 #titulo_arquivos {

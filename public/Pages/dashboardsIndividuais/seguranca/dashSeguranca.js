@@ -44,58 +44,6 @@ var options = {
 var chart = new ApexCharts(document.querySelector("#graficoLinha"), options);
 chart.render();
 
-lista_alertas.innerHTML = ""
-for (let i = 0; i < 6; i++) {
-	lista_alertas.innerHTML += `
-    <div class="box_alerta">
-        <h3>2025-03-02 10:22:04</h3>
-        <div class="gravidade-alerta">
-            <img src="../../../Assets/assets_dashboard/alertaAmarelo.png"
-                alt="simbolo de alerta grave">
-            <h1>CRÍTICO</h1>
-        </div>
-        <div class="componente-alerta">
-            <h4>Tentativa de conexão suspeita vinda do IP: 127.0.0.1</h4>
-        </div>
-    </div> 
-    `
-}
-
-lista_conexoes.innerHTML = ""
-for (let i = 0; i < 15; i++) {
-	lista_conexoes.innerHTML += `
-		<div class="box_conexao">
-			<h1 class="porta_conexao">3333</h1>
-			<h1 class="pipe_conexao">|</h1>
-			<h1 class="ip_conexao">127.0.0.1</h1>
-		</div>
-  `
-}
-
-
-lista_arquivos.innerHTML = ""
-for (let i = 0; i < 20; i++) {
-
-	alerta = Math.floor(Math.random() * 10)
-
-	if (alerta > 7) {
-		lista_arquivos.innerHTML += `
-		<div class="nome_arquivo">
-			<h1 class="titulo-nome-arquivo">/bin/netstat</h1>
-			<img onclick="dialog_arquivos.showModal()" class="img-arquivo" src="../../../Assets/assets_dashboard/alertaAmarelo.png">
-		</div>
-		<div class="linha_arquivos"></div>
-  		`
-	}
-
-	lista_arquivos.innerHTML += `
-		<div class="nome_arquivo">
-			<h1 class="titulo-nome-arquivo">/bin/netstat</h1>
-		</div>
-		<div class="linha_arquivos"></div>
-  	`
-}
-
 function buscar_dados_KPIinvasoes() {
 
     fetch(`/seguranca/exibirKPIinvasoes/${idATM}`, {
@@ -135,8 +83,8 @@ function buscar_dados_portas_abertas() {
     })
         .then(function (resposta) {
             resposta.json().then(resposta2 => {
-                console.log(resposta2)
 				exibirKPIportas(resposta2)
+				exibirListaConexoesAbertas(resposta2)
             })
         })
         .catch(function (resposta) {
@@ -152,8 +100,39 @@ function buscar_dados_conexoes_suspeitas() {
     })
         .then(function (resposta) {
             resposta.json().then(resposta2 => {
-                console.log(resposta2)
 				exibirKPIconexoesSUS(resposta2)
+            })
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+}
+
+function buscar_dados_alertas() {
+
+    fetch(`/seguranca/exibirAlertas/${idATM}/${sessionStorage.FK_EMPRESA}`, {
+        method: "GET",
+    })
+        .then(function (resposta) {
+            resposta.json().then(resposta2 => {
+				exibirAlertas(resposta2)
+            })
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+}
+
+function buscar_dados_arquivos_criticos() {
+
+    fetch(`/seguranca/exibirArquivosCriticos/${idATM}/${sessionStorage.FK_EMPRESA}`, {
+        method: "GET",
+    })
+        .then(function (resposta) {
+            resposta.json().then(resposta2 => {
+				exibirArquivosCriticos(resposta2)
             })
         })
         .catch(function (resposta) {
@@ -264,10 +243,93 @@ function exibirKPIconexoesSUS(resposta2) {
 
 }
 
+
+function exibirListaConexoesAbertas(resposta2) {
+	
+	lista_conexoes.innerHTML = ""
+	for (let i = 0; i < resposta2.length; i++) {
+		lista_conexoes.innerHTML += `
+		<div class="box_conexao">
+			<h1 class="porta_conexao"> <b class="porta_local_lista">Porta Local:</b> ${resposta2[i].portaLocal}</h1>
+			<h1 class="ip_conexao">${resposta2[i].IPremoto}</h1>
+		</div>
+ 		`
+	}
+
+}
+
+function exibirAlertas(resposta2) {
+
+	lista_alertas.innerHTML = ""
+	for (let i = 0; i < resposta2.length; i++) {
+
+		const dataFeia = resposta2[i].horario;
+
+		const data = new Date(dataFeia);
+
+		const ano = data.getFullYear();
+		const mes = String(data.getMonth() + 1).padStart(2, '0');
+		const dia = String(data.getDate()).padStart(2, '0');
+
+		const horas = String(data.getHours()).padStart(2, '0');
+		const minutos = String(data.getMinutes()).padStart(2, '0');
+		const segundos = String(data.getSeconds()).padStart(2, '0');
+
+		const dataBonita = `${ano}/${mes}/${dia}, ${horas}:${minutos}:${segundos}`;
+
+		lista_alertas.innerHTML += `
+		<div class="box_alerta">
+			<h3>${dataBonita}</h3>
+			<div class="gravidade-alerta">
+				<img src="../../../Assets/assets_dashboard/alertaAmarelo.png"
+					alt="simbolo de alerta grave">
+				<h1>ATENÇÃO</h1>
+			</div>
+			<div class="componente-alerta">
+				<h4>${resposta2[i].mensagem}</h4>
+			</div>
+		</div> 
+		`
+	}
+
+}
+
+function exibirArquivosCriticos(resposta2) {
+
+	lista_arquivos.innerHTML = ""
+	for (let i = 0; i < resposta2.length; i++) {
+
+		if (resposta2[i].fkAlertaSeguranca == null) {
+
+			lista_arquivos.innerHTML += `
+			<div class="nome_arquivo">
+				<h1 class="titulo-nome-arquivo">/bin/netstat</h1>
+			</div>
+			<div class="linha_arquivos"></div>
+			`
+
+		} else {
+
+			lista_arquivos.innerHTML += `
+			<div class="nome_arquivo">
+				<h1 class="titulo-nome-arquivo">/bin/netstat</h1>
+				<img onclick="dialog_arquivos.showModal()" class="img-arquivo" src="../../../Assets/assets_dashboard/alertaAmarelo.png">
+			</div>
+			<div class="linha_arquivos"></div>
+			`
+
+		}
+	}
+
+}
+
+
 function carregarInformacoes() {
 	buscar_dados_KPIinvasoes()
 	buscar_dados_KPIarquivos()
 	buscar_dados_portas_abertas()
 	buscar_dados_conexoes_suspeitas()
+	buscar_dados_alertas()
+	buscar_dados_arquivos_criticos()
 }
 carregarInformacoes()

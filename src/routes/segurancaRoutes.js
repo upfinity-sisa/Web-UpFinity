@@ -19,4 +19,12 @@ router.get("/exibirKPIconexoesSUS/:idAtm", function (req, res) {
     segurancaController.exibirKPIconexoesSUS(req, res);
 })
 
+router.get("/exibirAlertas/:idAtm/:fkEmpresa", function (req, res) {
+    segurancaController.exibirAlertas(req, res);
+})
+
+router.get("/exibirArquivosCriticos/:idAtm/:fkEmpresa", function (req, res) {
+    segurancaController.exibirArquivosCriticos(req, res);
+})
+
 module.exports = router;
