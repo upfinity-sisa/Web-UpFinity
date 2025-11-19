@@ -1,3 +1,5 @@
+var idATM = 1;
+
 function vwParaPx(vwValue) {
 	const larguraViewport = window.innerWidth;
 	const valorEmPx = (larguraViewport / 100) * vwValue;
@@ -93,3 +95,21 @@ for (let i = 0; i < 20; i++) {
 		<div class="linha_arquivos"></div>
   	`
 }
+
+function exibirKPIinvasoes() {
+
+    fetch(`/segurancaRoutes/exibirKPIinvasoes/${idATM}`, {
+        method: "GET",
+    })
+        .then(function (resposta) {
+            resposta.json().then(resposta2 => {
+                console.log(resposta2)
+            })
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+}
+
+exibirKPIinvasoes()
