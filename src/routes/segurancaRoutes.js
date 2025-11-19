@@ -7,10 +7,6 @@ router.get("/exibirKPIinvasoes/:idAtm/:fkEmpresa", function (req, res) {
     segurancaController.exibirKPIinvasoes(req, res);
 })
 
-router.get("/exibirKPIarquivos/:idAtm", function (req, res) {
-    segurancaController.exibirKPIarquivos(req, res);
-})
-
 router.get("/exibirPortasAbertas/:idAtm/:fkEmpresa", function (req, res) {
     segurancaController.exibirPortasAbertas(req, res);
 })

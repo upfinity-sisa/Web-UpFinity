@@ -60,22 +60,6 @@ function buscar_dados_KPIinvasoes() {
 
 }
 
-function buscar_dados_KPIarquivos() {
-
-    fetch(`/seguranca/exibirKPIarquivos/${idATM}`, {
-        method: "GET",
-    })
-        .then(function (resposta) {
-            resposta.json().then(resposta2 => {
-				exibirKPIarquivos(resposta2)
-            })
-        })
-        .catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
-
-}
-
 function buscar_dados_portas_abertas() {
 
     fetch(`/seguranca/exibirPortasAbertas/${idATM}/${sessionStorage.FK_EMPRESA}`, {
@@ -303,7 +287,7 @@ function exibirArquivosCriticos(resposta2) {
 
 			lista_arquivos.innerHTML += `
 			<div class="nome_arquivo">
-				<h1 class="titulo-nome-arquivo">/bin/netstat</h1>
+				<h1 class="titulo-nome-arquivo">${resposta2[i].nome}</h1>
 			</div>
 			<div class="linha_arquivos"></div>
 			`
@@ -312,7 +296,7 @@ function exibirArquivosCriticos(resposta2) {
 
 			lista_arquivos.innerHTML += `
 			<div class="nome_arquivo">
-				<h1 class="titulo-nome-arquivo">/bin/netstat</h1>
+				<h1 class="titulo-nome-arquivo">${resposta2[i].nome}</h1>
 				<img onclick="dialog_arquivos.showModal()" class="img-arquivo" src="../../../Assets/assets_dashboard/alertaAmarelo.png">
 			</div>
 			<div class="linha_arquivos"></div>
@@ -326,8 +310,8 @@ function exibirArquivosCriticos(resposta2) {
 
 function carregarInformacoes() {
 	buscar_dados_KPIinvasoes()
-	buscar_dados_KPIarquivos()
 	buscar_dados_portas_abertas()
+	buscar_dados_arquivos_criticos()
 	buscar_dados_conexoes_suspeitas()
 	buscar_dados_alertas()
 	buscar_dados_arquivos_criticos()

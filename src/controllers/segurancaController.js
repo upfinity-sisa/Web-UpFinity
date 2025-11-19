@@ -8,13 +8,6 @@ function exibirKPIinvasoes(req, res) {
     });
 }
 
-function exibirKPIarquivos(req, res) {
-    var idAtm = req.params.idAtm;
-    segurancaModel.exibirKPIarquivos(idAtm).then((resultado) => {
-        res.status(201).json(resultado);
-    });
-}
-
 function exibirPortasAbertas(req, res) {
     var idAtm = req.params.idAtm;
     var fkEmpresa = req.params.fkEmpresa;
@@ -49,7 +42,6 @@ function exibirArquivosCriticos(req, res) {
 
 module.exports = {
   exibirKPIinvasoes,
-  exibirKPIarquivos,
   exibirPortasAbertas,
   exibirKPIconexoesSUS,
   exibirAlertas,
