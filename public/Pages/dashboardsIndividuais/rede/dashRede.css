@@ -194,5 +194,99 @@ h1, h2, h3, h4, h5, h6 {
     background-color: white;
     border-radius: 0.6vw;
     box-shadow: rgba(0, 0, 0, 0.08) 0px 6px 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
+.box-titulo-kpi {
+    height: 45%; 
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    padding-bottom: 1vh;  
+}
+
+.box-valor-kpi {
+    height: 55%; 
+    width: 100%;
+    display: flex;          
+    justify-content: center;
+    align-items: flex-start; 
+}
+
+.titulo-kpi {
+    text-align: center;
+    font-size: 1.2vw;      
+    max-width: 90%;
+    font-family: "Montserrat", sans-serif;
+    color: #3a3d3d;        
+    font-weight: 300;      
+    margin: 0;
+}
+
+.valor-kpi {
+    text-align: center;
+    font-size: 2.8vw;      
+    font-family: "Montserrat", sans-serif;
+    color: #545454;       
+    margin: 0;
+    font-weight: bold;     
+}
+
+#conteudo {
+    /* Garante espaçamento do topo */
+    padding-top: 1.5vh; 
+    display: flex;
+    justify-content: flex-start; /* Alinha à esquerda */
+}
+
+#grafico-container {
+    width: 68%;
+    height: 70%; /* Reduzido de 95% para 70% para não ficar gigante */
+    background-color: white;
+    border-radius: 0.6vw;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 6px 18px;
+    padding: 1vw;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column; /* Organiza botões e gráfico um embaixo do outro */
+}
+
+/* Estilo dos botões de Zoom */
+.toolbar {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5vw;
+    margin-bottom: 1vh;
+    flex: none; /* Impede que a toolbar estique ou encolha */
+}
+
+.toolbar button {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 4px 12px;
+    cursor: pointer;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.8vw;
+    color: #545454;
+    transition: 0.2s;
+}
+
+.toolbar button:hover {
+    background-color: #f0f0f0;
+}
+
+.toolbar button.active {
+    background-color: #268184; /* Cor do seu tema */
+    color: white;
+    border-color: #268184;
+}
+
+#chart-timeline {
+    width: 100%;
+    flex: 1;       /* OBRIGATÓRIO: Faz o gráfico ocupar todo o espaço que sobra abaixo dos botões */
+    min-height: 0; /* OBRIGATÓRIO: Permite que o gráfico encolha se necessário */
 }
