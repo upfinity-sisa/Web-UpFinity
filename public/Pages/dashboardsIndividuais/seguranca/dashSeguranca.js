@@ -46,7 +46,7 @@ chart.render();
 
 function buscar_dados_KPIinvasoes() {
 
-    fetch(`/seguranca/exibirKPIinvasoes/${idATM}`, {
+    fetch(`/seguranca/exibirKPIinvasoes/${idATM}/${sessionStorage.FK_EMPRESA}`, {
         method: "GET",
     })
         .then(function (resposta) {
@@ -78,7 +78,7 @@ function buscar_dados_KPIarquivos() {
 
 function buscar_dados_portas_abertas() {
 
-    fetch(`/seguranca/exibirPortasAbertas/${idATM}`, {
+    fetch(`/seguranca/exibirPortasAbertas/${idATM}/${sessionStorage.FK_EMPRESA}`, {
         method: "GET",
     })
         .then(function (resposta) {
@@ -95,7 +95,7 @@ function buscar_dados_portas_abertas() {
 
 function buscar_dados_conexoes_suspeitas() {
 
-    fetch(`/seguranca/exibirKPIconexoesSUS/${idATM}`, {
+    fetch(`/seguranca/exibirKPIconexoesSUS/${idATM}/${sessionStorage.FK_EMPRESA}`, {
         method: "GET",
     })
         .then(function (resposta) {

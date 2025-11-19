@@ -1,9 +1,9 @@
 var database = require("../database/config");
 
-function exibirKPIinvasoes(idAtm) {
+function exibirKPIinvasoes(idAtm, fkEmpresa) {
     var instrucaoSql = `
     select * from Invasao where fkSeguranca = 
-	    (select idSeguranca from Seguranca join Atm on idAtm = fkAtm where categoria = "invasao" and idAtm = ${idAtm})
+	    (select idSeguranca from Seguranca join Atm on idAtm = fkAtm where categoria = "invasao" and idAtm = ${idAtm} and fkEmpresa = ${fkEmpresa}) 
 		    and horarioCaptura = (select max(horarioCaptura) from Invasao);
     `
 
@@ -24,24 +24,24 @@ function exibirKPIarquivos(idAtm) {
     return database.executar(instrucaoSql);
 }
 
-function exibirPortasAbertas(idAtm) {
+function exibirPortasAbertas(idAtm, fkEmpresa) {
     var instrucaoSql = `
     select * from ConexaoAberta where 
-	    (select idSeguranca from Seguranca join Atm on idAtm = fkAtm where categoria = "conexao" and idAtm = ${idAtm})
+	    (select idSeguranca from Seguranca join Atm on idAtm = fkAtm where categoria = "conexao" and idAtm = ${idAtm} and fkEmpresa = ${fkEmpresa})
 		    and horario = (select max(horario) from ConexaoAberta);
     `
 
     return database.executar(instrucaoSql);
 }
 
-function exibirKPIconexoesSUS(idAtm) {
+function exibirKPIconexoesSUS(idAtm, fkEmpresa) {
     var instrucaoSql = `
     select ConexaoAberta.* from 
 		AlertaSeguranca join ConexaoAberta
         on idAlertaSeguranca = fkAlertaSeguranca
         join Seguranca on
         idSeguranca = fkSeguranca
-        where idSeguranca = (select idSeguranca from Seguranca join Atm on idAtm = fkAtm where categoria = "conexao" and idAtm = ${idAtm})
+        where idSeguranca = (select idSeguranca from Seguranca join Atm on idAtm = fkAtm where categoria = "conexao" and idAtm = ${idAtm} and fkEmpresa = ${fkEmpresa})
         and ConexaoAberta.horario = (select max(horario) from ConexaoAberta);
     `
 

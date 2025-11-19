@@ -2,7 +2,8 @@ var segurancaModel = require("../models/segurancaModel")
 
 function exibirKPIinvasoes(req, res) {
     var idAtm = req.params.idAtm;
-    segurancaModel.exibirKPIinvasoes(idAtm).then((resultado) => {
+    var fkEmpresa = req.params.fkEmpresa;
+    segurancaModel.exibirKPIinvasoes(idAtm, fkEmpresa).then((resultado) => {
         res.status(201).json(resultado);
     });
 }
@@ -16,21 +17,23 @@ function exibirKPIarquivos(req, res) {
 
 function exibirPortasAbertas(req, res) {
     var idAtm = req.params.idAtm;
-    segurancaModel.exibirPortasAbertas(idAtm).then((resultado) => {
+    var fkEmpresa = req.params.fkEmpresa;
+    segurancaModel.exibirPortasAbertas(idAtm, fkEmpresa).then((resultado) => {
         res.status(201).json(resultado);
     });
 }
 
 function exibirKPIconexoesSUS(req, res) {
     var idAtm = req.params.idAtm;
-    segurancaModel.exibirKPIconexoesSUS(idAtm).then((resultado) => {
+    var fkEmpresa = req.params.fkEmpresa;
+    segurancaModel.exibirKPIconexoesSUS(idAtm, fkEmpresa).then((resultado) => {
         res.status(201).json(resultado);
     });
 }
 
 function exibirAlertas(req, res) {
     var idAtm = req.params.idAtm;
-    var fkEmpresa = req.params.idAtm;
+    var fkEmpresa = req.params.fkEmpresa;
     segurancaModel.exibirAlertas(idAtm, fkEmpresa).then((resultado) => {
         res.status(201).json(resultado);
     });
@@ -38,7 +41,7 @@ function exibirAlertas(req, res) {
 
 function exibirArquivosCriticos(req, res) {
     var idAtm = req.params.idAtm;
-    var fkEmpresa = req.params.idAtm;
+    var fkEmpresa = req.params.fkEmpresa;
     segurancaModel.exibirArquivosCriticos(idAtm, fkEmpresa).then((resultado) => {
         res.status(201).json(resultado);
     });
