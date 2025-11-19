@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="../../../Assets/assets_dashboard/logoUPFINITY.png">
 
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <!-- BoootStrap -->
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -37,6 +38,60 @@
 
 <body onload="validarSessao()">
     <section class="corpo">
+        <div id="container_sombra" class="d-none">
+            <div id="container_gerenciar">
+                <img src="../../../Assets/Elements/Icons/fecharMenu.png" id="img_fechar_gerenciar">
+                <div id="box_gerenciar">
+                    <div id="box_titulo_gerenciar">
+                        <h2 id="h2_titulo_gerenciar">Alertas - Organizados por Criticidade</h2>
+                        <span id="span_titulo_gerenciar">Lista completa de alertas do sistema, incluindo resolvidos e em
+                            aberto</span>
+                    </div>
+                    <div id="box_gerenciar_atms">
+                        <div class="box_atm">
+                            <div class="container_titulo_atm">
+                                <span class="nome_atm">ATM01</span>
+                                <span class="nome_componente">CPU</span>
+                                <span class="status_critico">Crítico</span>
+                                <span class="status_emAberto">Em aberto</span>
+                            </div>
+                            <span class="desc_atm">Processamento elevado - (80%)</span>
+                            <div class="container_acao_alerta">
+                                <span class="dataHora_captura">17/11/2025, 12:20:59</span>
+                                <button class="btn_resolvido">Marcar como resolvido</button>
+                            </div>
+                        </div>
+                        <div class="box_atm">
+                            <div class="container_titulo_atm">
+                                <span class="nome_atm">ATM02</span>
+                                <span class="nome_componente">RAM</span>
+                                <span class="status_moderado">Moderado</span>
+                                <span class="status_emAberto">Em aberto</span>
+                            </div>
+                            <span class="desc_atm">Consumo elevado - (90%)</span>
+                            <div class="container_acao_alerta">
+                                <span class="dataHora_captura">17/11/2025, 12:20:59</span>
+                                <button class="btn_resolvido">Marcar como resolvido</button>
+                            </div>
+                        </div>
+                        <div class="box_atm">
+                            <div class="container_titulo_atm">
+                                <span class="nome_atm">ATM01</span>
+                                <span class="nome_componente">Rede</span>
+                                <span class="status_critico">Crítico</span>
+                                <span class="status_resolvido">Resolvido</span>
+                            </div>
+                            <span class="desc_atm">Sem conexão com a internet</span>
+                            <div class="container_acao_alerta">
+                                <span class="dataHora_captura">17/11/2025, 12:20:59</span>
+                                <button class="btn_emAberto">Marcar como em aberto</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
         <div id="esquerda">
             <div id="esquerda-cima">
                 <img src="../../../Assets/assets_dashboard/logoUPFINITY.png" id="logo-upfinity" alt="logo-upfinity">
@@ -131,10 +186,59 @@
 
                     </div>
                     <div id="container_left_graficos">
-
+                        <div class="container_grafico_baixo">
+                            <h2 class="h2_grafico">Quantidade total de alertas por tipo<br>(Último mês)</h2>
+                            <div class="box_grafico_baixo">
+                                <div id="grafico1"></div>
+                            </div>
+                        </div>
+                        <div class="container_grafico_baixo">
+                            <h2 class="h2_grafico">Quantidade de alertas ativos por tipo</h2>
+                            <div class="box_grafico_baixo">
+                                <div id="grafico2"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="container_graficos"></div>
+                <div class="container_graficos">
+                    <div class="container_grafico_direita">
+                        <h2 class="h2_grafico">Divisão de alertas em<br>tempo real</h2>
+                        <div id="box_grafico_direita">
+                            <div id="grafico3"></div>
+                        </div>
+                    </div>
+                    <div class="container_grafico_direita">
+                        <div id="container_titulo_gerenciar">
+                            <img src="../../../Assets/Elements/Icons/dashAlerta_lista.png" id="img_lista">
+                            <span id="spn_titulo_lista">Lista de alertas</span>
+                        </div>
+                        <div id="container_lista_metricas">
+                            <div class="box_lista_metricas">
+                                <span class="span_title_metricas">Total</span>
+                                <span class="span_metricas"><b>14</b></span>
+                            </div>
+
+                            <div class="box_lista_metricas">
+                                <span class="span_title_metricas color_critico">Críticos</span>
+                                <span class="span_metricas">2</span>
+                            </div>
+
+                            <div class="box_lista_metricas">
+                                <span class="span_title_metricas color_moderado">Moderados:</span>
+                                <span class="span_metricas">12</span>
+                            </div>
+
+                            <div class="box_lista_metricas">
+                                <span class="span_title_metricas">Ativos</span>
+                                <span class="span_metricas">3</span>
+                            </div>
+
+                        </div>
+                        <div id="container_lista_gerenciar">
+                            <button id="btn_gerenciar">Gerenciar alertas</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
