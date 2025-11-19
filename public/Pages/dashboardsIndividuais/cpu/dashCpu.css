@@ -316,6 +316,7 @@ body {
     font-weight: bold;
     margin-top: 3%;
     color: var(--branco);
+    margin-bottom: 5%;
 }
 
 .caixa-grafico-title {
@@ -328,4 +329,62 @@ body {
 
 #grafico-linha {
     margin-top: 2%;
+}
+
+.container-alertas {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.alerta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--ciano);
+    padding: 5% 3%;
+    color: var(--branco);
+    font-weight: bold;
+    width: 70%;
+    border-radius: 10px;
+}
+
+.title-alerta {
+    font-size: 1.4rem;
+}
+
+.dado-alerta {
+    font-size: 1.5rem;
+    margin-top: 4%;
+}
+
+.data-alerta {
+    font-size: .7rem;
+    margin-top: 4%;
+}
+
+.container-botao-historico {
+    width: 100%;
+    height: 15%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.botao-historico {
+    background-color: var(--branco);
+    padding: 4% 20%;
+    border-radius: 10px;
+    font-weight: bold;
+    color: var(--ciano);
+    transition: .5s ease all;
+}
+
+.botao-historico:hover {
+    transform: scale(1.02);
 }
