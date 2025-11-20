@@ -13,7 +13,7 @@ function exibirPortasAbertas(idAtm, fkEmpresa) {
     var instrucaoSql = `
     select * from ConexaoAberta where 
 	    (select idSeguranca from Seguranca join Atm on idAtm = fkAtm where categoria = "conexao" and idAtm = ${idAtm} and fkEmpresa = ${fkEmpresa})
-		    and horario = (select max(horario) from ConexaoAberta);
+		    and horario = (select max(horario) from ConexaoAberta) order by fkAlertaSeguranca desc;
     `
 
     return database.executar(instrucaoSql);

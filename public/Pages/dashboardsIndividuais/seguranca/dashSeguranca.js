@@ -69,6 +69,7 @@ function buscar_dados_portas_abertas() {
         .then(function (resposta) {
             resposta.json().then(resposta2 => {
 				exibirKPIportas(resposta2)
+				exibirKPIconexoesSUS(resposta2)
 				exibirListaConexoesAbertas(resposta2)
             })
         })
@@ -85,7 +86,6 @@ function buscar_dados_conexoes_suspeitas() {
     })
         .then(function (resposta) {
             resposta.json().then(resposta2 => {
-				exibirKPIconexoesSUS(resposta2)
             })
         })
         .catch(function (resposta) {
@@ -164,26 +164,11 @@ function exibirKPIinvasoes(resposta2) {
 
 function exibirKPIportas(resposta2) {
 	valor_kpi_porta.innerHTML = resposta2.length
-
-	tabela_portas.innerHTML = ""
-	tabela_portas.innerHTML += `
-	<tr>
-		<th style="color: #268184;">Portas</th>
-	</tr>
-	`
-	for (let i = 0; i < resposta2.length; i++) {
-
-		tabela_portas.innerHTML += `
-		<tr>
-			<td>${resposta2[i].portaLocal}</td>
-		</tr>
-		`
-	}
-
 }
 
 function exibirKPIconexoesSUS(resposta2) {
-	valor_kpi_conexoes.innerHTML = resposta2.length
+
+	var conSus = 0;
 
 	tabela_conexoes.innerHTML = ""
 	tabela_conexoes.innerHTML += `
@@ -197,14 +182,31 @@ function exibirKPIconexoesSUS(resposta2) {
 
 		segurancaDash++;
 
-		tabela_conexoes.innerHTML += `
-		<tr>
-			<td>${resposta2[i].portaLocal}</td>
-			<td>${resposta2[i].IPremoto}</td>
-			<td><button class="botao_verificacao">Declarar Seguro</button></td>
-		</tr>
-		`
+		if (resposta2[i].fkAlertaSeguranca != null) {
+			conSus++;
+
+			tabela_conexoes.innerHTML += `
+			<tr>
+				<td>${resposta2[i].portaLocal}</td>
+				<td>${resposta2[i].IPremoto}</td>
+				<td><button class="botao_verificacao">Declarar Seguro</button></td>
+			</tr>
+			`
+
+		} else {
+
+			tabela_conexoes.innerHTML += `
+			<tr>
+				<td>${resposta2[i].portaLocal}</td>
+				<td>${resposta2[i].IPremoto}</td>
+				<td class="titulo_seguranca_tr">SEGURO</td>
+			</tr>
+			`
+
+		}
 	}
+
+	valor_kpi_conexoes.innerHTML = conSus
 
 }
 

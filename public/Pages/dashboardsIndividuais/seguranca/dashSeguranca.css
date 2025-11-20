@@ -841,3 +841,8 @@ dialog {
     height: 90%;
     background-color: #999999;
 }
+
+.titulo_seguranca_tr {
+    font-weight: 800;
+    color: #268184;
+}

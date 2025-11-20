@@ -61,9 +61,7 @@
                                 <div class="box-valor-kpi">
                                     <h1 id="valor_kpi_seguranca" style="font-size: 2vw;" class="valor-kpi"></h1>
                                 </div>
-                                <div class="box-informativo">
-                                    <img onclick="dialog_processo.showModal()" class="informativo" src="../../../Assets/assets_dashboard/iconeInformativo.png">
-                                </div>
+                                <div class="box-informativo"></div>
                             </div>
                             <div class="kpi">
                                 <div class="box-titulo-kpi">
@@ -162,31 +160,6 @@
             </div>
         </dialog>
 
-        <dialog id="dialog_processo">
-            <div id="titulo_dialog_processo">
-                <h1 id="titulo-processo">Arquivos críticos alterados:</h1>
-                <div class="linha_caixas"></div>
-            </div>
-            <div id="baixo-dialog-processo">
-                <div id="caixa-tabela-scrolavel">
-                    <table id="tabela_arquivos"></table>
-                </div>
-                <button onclick="fecharDialog()" class="botao_fechar_dialog">Fechar</button>
-            </div>
-        </dialog>
-
-        <dialog id="dialog_portas">
-            <div id="titulo_dialog_portas">
-                <h1 id="titulo-portas">Portas Abertas:</h1>
-                <div class="linha_caixas"></div>
-            </div>
-            <div id="baixo-dialog-portas">
-                <div id="caixa-tabela-scrolavel">
-                    <table id="tabela_portas"></table>
-                </div>
-                <button onclick="fecharDialog()" class="botao_fechar_dialog">Fechar</button>
-            </div>
-        </dialog>
 
         <dialog id="dialog_conexao">
             <div id="titulo_dialog_conexao">
@@ -222,8 +195,6 @@
     
     function fecharDialog() {
         dialog_invasao.close()
-        dialog_processo.close()
-        dialog_portas.close()
         dialog_conexao.close()
         dialog_arquivos.close()
     }
