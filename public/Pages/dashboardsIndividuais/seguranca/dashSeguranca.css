@@ -819,3 +819,25 @@ dialog {
 #comboATMs:focus {
     border: 2px solid #268184;
 }
+
+.caixa-kpi-dupla {
+    width: 49%;
+    height: 100%;
+}
+
+.kpi_dupla {
+    width: 48%;
+    height: 91%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    border-radius: 0.6vw;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 6px 18px;
+}
+
+.linha_vertical {
+    width: 0.109vw;
+    height: 90%;
+    background-color: #999999;
+}
