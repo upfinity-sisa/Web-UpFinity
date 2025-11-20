@@ -1,0 +1,50 @@
+var cpuModel = require('../models/cpuModel');
+
+function getDados(req, res) {
+    const idAtm = req.params.idAtm;
+
+    cpuModel
+        .getDados(idAtm)
+        .then(response => {
+            if (response.length > 0) {
+                res.status(200).json(response);
+            } else {
+                res.status(200).json([]);
+            }
+        })
+        .catch(erro => {
+            console.log(erro);
+            console.log(
+                'Houve um erro ao buscar os dados de cpu: ',
+                erro.sqlMessage
+            );
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
+function getAlertas(req, res) {
+    const idAtm = req.params.idAtm;
+
+    cpuModel
+        .getAlertas(idAtm)
+        .then(response => {
+            if (response.length > 0) {
+                res.status(200).json(response);
+            } else {
+                res.status(200).json([]);
+            }
+        })
+        .catch(erro => {
+            console.log(erro);
+            console.log(
+                'Houve um erro ao buscar os dados de cpu: ',
+                erro.sqlMessage
+            );
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
+module.exports = {
+    getDados,
+    getAlertas,
+};

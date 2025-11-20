@@ -388,3 +388,12 @@ body {
     cursor: pointer;
     transform: scale(1.02);
 }
+
+#kpi4 {
+    width: 20vw;
+}
+
+#kpi4 .title-kpi {
+    text-align: center;
+    font-size: 1.9rem;
+}
