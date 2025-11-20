@@ -485,12 +485,15 @@ h1, h2, h3, h4, h5, h6 {
     height: 1.5vw;
 }
 
-.img-arquivo:hover {
+.nome_arquivo_hover:hover {
     cursor: pointer;
-    scale: 1.05;
+    border: 0.109vw solid #99999962;
+    border-radius: 0.6vw;
+    padding-left: 1vw;
+    padding-right: 1vw;
 }
 
-.nome_arquivo {
+.nome_arquivo, .nome_arquivo_hover {
     display: flex;
     width: 70%;
     align-items: center;

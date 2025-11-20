@@ -280,9 +280,9 @@ function exibirArquivosCriticos(resposta2) {
 			segurancaDash++;
 
 			lista_arquivos.innerHTML += `
-			<div class="nome_arquivo">
+			<div class="nome_arquivo_hover" onclick="dialog_arquivos.showModal()">
 				<h1 class="titulo-nome-arquivo">${resposta2[i].nome}</h1>
-				<img onclick="dialog_arquivos.showModal()" class="img-arquivo" src="../../../Assets/assets_dashboard/alertaAmarelo.png">
+				<img class="img-arquivo" src="../../../Assets/assets_dashboard/alertaAmarelo.png">
 			</div>
 			<div class="linha_arquivos"></div>
 			`
