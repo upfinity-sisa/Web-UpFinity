@@ -1,7 +1,6 @@
 contador = 1
 
 for (let i = 1; i <= 12; i++) {
-
     num_cor = Math.floor(Math.random() * 3) + 1
     linha_wifi = `style="height: 2.5vw; margin-right: 10px;" src="../../Assets/assets_dashboard/simbolo_wifi.png"`
 

@@ -1,0 +1,105 @@
+:root {
+    --branco-bordas: rgb(230, 230, 230);
+}
+
+body {
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+#meio-baixo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#container-tabela {
+    width: 90%;
+    border: 2px solid var(--branco-bordas);
+}
+
+#tabela-visao-geral {
+    margin-bottom: 0;
+}
+
+#tabela-arredondada {
+    overflow: hidden;
+    border-radius: 10px;
+    border: 2px solid var(--branco-bordas);
+}
+
+.linha-tabela-visao-geral {
+    height: 7vh;
+}
+
+.celula-tabela {
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 2% 0 !important;
+    text-align: center;
+}
+
+.containeres {
+    padding: 3%;
+    border-radius: 10px;
+}
+
+#container-filtro {
+    width: 90%;
+    height: 40vh;
+    border: 2px solid var(--branco-bordas);
+}
+
+#titulo-container-tabela,
+#titulo-container-filtros {
+    width: 90%;
+    height: 12vh;
+    font-family: 'Montserrat';
+}
+
+#titulo-container-tabela h1,
+#titulo-container-filtros h1 {
+    font-weight: bold;
+}
+
+#titulo-container-tabela p,
+#titulo-container-filtros p {
+    margin-bottom: 3%;
+}
+
+#busca-filtros {
+    all: unset;
+    background-color: var(--branco-bordas);
+    padding: 15px;
+    width: 70%;
+    border-radius: 8px;
+}
+.select-filtros {
+    all: unset;
+    border: 2px solid var(--branco-bordas);
+    padding: 10px;
+    width: 10%;
+    border-radius: 8px;
+    margin-left: 1%;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    cursor: pointer;
+}
+
+.select-baixo {
+    margin-left: 0;
+    width: 11%;
+}
+
+#select-componente {
+    width: 16%;
+}
+
+#filtros-container-filtros {
+    margin-top: 2%;
+    width: 90%;
+}

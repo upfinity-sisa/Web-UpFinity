@@ -16,6 +16,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="../dashboard/css/dashboard.css">
+    <link rel="stylesheet" href="../visaoGeral/css/visaoGeral.css">
 
     <!-- JavaScript -->
     <script src="../../js/sessao.js" defer></script>
@@ -30,16 +31,7 @@
     <title>Visão Geral - Upfinity</title>
 </head>
 
-<body onload="validarSessao()">
-    <div id="alerta_erros_desktop" class="d-none">
-        <div id="box_container_erro_desktop">
-            <div id="container-erro-desktop">
-                <h2 id="h2-erro-desktop">Alerta identificado!</h2>
-                <span id="span-erro-desktop"></span>
-            </div>
-            <button id="btnFecharErro-desktop">Fechar</button>
-        </div>
-    </div>
+<body>
     <section class="corpo">
         <div id="esquerda">
             <div id="esquerda-cima">
@@ -71,19 +63,86 @@
 
         <div id="centro">
             <div id="meio-cima">
-                <h1 id="vg_titulo">VISÃO GERAL - ATMs</h1>
-                <div id="legenda">
-                    <img src="../../Assets/assets_dashboard/bolinha_verde.png" alt="bolinha_verde">
-                    <h1>Normal</h1>
-                    <img src="../../Assets/assets_dashboard/bolinha_amarela.png" alt="bolinha_verde">
-                    <h1>Moderado</h1>
-                    <img src="../../Assets/assets_dashboard/bolinha_vermelha.png" alt="bolinha_verde">
-                    <h1>Crítico</h1>
+                <h1 id="vg_titulo">VISÃO GERAL</h1>
+            </div>
+            <div id="meio-baixo">
+                <div class="containeres" id="container-filtro">
+                    <div id="titulo-container-filtros">
+                        <h1>Filtros</h1>
+                        <p>Busque por ATMs ou status</p>
+                    </div>
+                    <div id="busca-container-filtros">
+                        <input type="text" id="busca-filtros" placeholder="Digite aqui">
+                        <select name="" class="select-filtros">
+                            <option value="todos-status" selected>Todos os status</option>
+                            <option value="critico">Crítico</option>
+                            <option value="moderado">Moderado</option>
+                            <option value="normal">Normal</option>
+                        </select>
+                    </div>
+                    <div id="filtros-container-filtros">
+                        <select name="" class="select-filtros select-baixo" id="select-componente">
+                            <option value="todos-componentes" selected>Todos os componentes</option>
+                            <option value="cpu">CPU</option>
+                            <option value="ram">RAM</option>
+                            <option value="disco">Disco</option>
+                            <option value="rede">Rede</option>
+                        </select>
+                        <select name="" class="select-filtros select-baixo" id="select-ordenacao">
+                            <option value="padrao" selected>Padrão</option>
+                            <option value="descrescente">Descrescente</option>
+                            <option value="ascendente">Ascendente</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="containeres" id="container-tabela">
+                    <div id="titulo-container-tabela">
+                        <h1>ATMS</h1>
+                        <p>Detalhamento dos recursos e status de cada máquina</p>
+                    </div>
+                    <div id="tabela-arredondada">
+                        <table class="table" id="tabela-visao-geral">
+                            <thead id="cabecalho-tabela-visao-geral">
+                                <tr class="linha-tabela-visao-geral">
+                                    <th class="celula-tabela" scope="col">ATM</th>
+                                    <th class="celula-tabela" scope="col">CPU</th>
+                                    <th class="celula-tabela" scope="col">RAM</th>
+                                    <th class="celula-tabela" scope="col">Disco</th>
+                                    <th class="celula-tabela" scope="col">Rede</th>
+                                    <th class="celula-tabela" scope="col">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-group-divider" id="corpo-tabela-visao-geral">
+                                <tr class="linha-tabela-visao-geral">
+                                    <th class="celula-tabela" scope="row">1</th>
+                                    <td class="celula-tabela">XX%</td>
+                                    <td class="celula-tabela">XX%</td>
+                                    <td class="celula-tabela">XX%</td>
+                                    <td class="celula-tabela">Conectado</td>
+                                    <td class="celula-tabela">Normal</td>
+                                </tr>
+                                <tr class="linha-tabela-visao-geral">
+                                    <th class="celula-tabela" scope="row">2</th>
+                                    <td class="celula-tabela">XX%</td>
+                                    <td class="celula-tabela">XX%</td>
+                                    <td class="celula-tabela">XX%</td>
+                                    <td class="celula-tabela">Conectado</td>
+                                    <td class="celula-tabela">Normal</td>
+                                </tr>
+                                <tr class="linha-tabela-visao-geral">
+                                    <th class="celula-tabela" scope="row">3</th>
+                                    <td class="celula-tabela">XX%</td>
+                                    <td class="celula-tabela">XX%</td>
+                                    <td class="celula-tabela">XX%</td>
+                                    <td class="celula-tabela">Conectado</td>
+                                    <td class="celula-tabela">Normal</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-            <div id="centros"></div>
         </div>
-
 
     </section>
 </body>

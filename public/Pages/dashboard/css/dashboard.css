@@ -1183,7 +1183,9 @@ dialog {
     color: #3c4041;
 }
 
-table, th, td {
+#tabela-parametros,
+.titulo-tabela,
+.linha-tabela {
     padding: 20px;
     border: 2px solid #32b5c7;
     border-collapse: collapse;
@@ -1192,7 +1194,7 @@ table, th, td {
     font-size: 17px;
 }
 
-table {
+#tabela-parametros {
     width: 500px;
     height: 250px;
 }
