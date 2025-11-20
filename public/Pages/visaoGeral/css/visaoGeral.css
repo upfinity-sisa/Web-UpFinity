@@ -1,16 +1,24 @@
 :root {
     --branco-bordas: rgb(230, 230, 230);
+    --ciano: #268184;
+    --azul-claro: #2ed1d7;
 }
 
 body {
     overflow-x: hidden;
-    overflow-y: scroll;
+}
+
+#meio-cima {
+    margin-top: 2%;
 }
 
 #meio-baixo {
+    all: unset;
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 40px;
+    margin-top: 3%;
 }
 
 #container-tabela {
@@ -41,13 +49,13 @@ body {
 }
 
 .containeres {
-    padding: 3%;
+    padding: 2%;
     border-radius: 10px;
 }
 
 #container-filtro {
     width: 90%;
-    height: 40vh;
+    height: 35vh;
     border: 2px solid var(--branco-bordas);
 }
 
@@ -100,6 +108,43 @@ body {
 }
 
 #filtros-container-filtros {
-    margin-top: 2%;
+    margin-top: 1%;
     width: 90%;
+}
+
+#button-filtrar {
+    padding: 13px;
+    width: 5vw;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #41d0d5;
+    transition: 0.5s ease all;
+    margin-left: 1%;
+}
+
+#button-filtrar:hover {
+    transform: scale(1.05);
+    background-color: var(--azul-claro);
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#busca-container-filtros {
+    display: flex;
+}
+
+#esquerda {
+    all: unset;
+    background-color: #232023;
+    width: 15%;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
+.corpo {
+    all: unset;
+    display: flex;
 }
