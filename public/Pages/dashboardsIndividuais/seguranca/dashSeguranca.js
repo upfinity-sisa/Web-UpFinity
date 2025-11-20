@@ -1,5 +1,5 @@
 var idATM = 1;
-var segurancaDash = 0;
+var conteudo = ""
 
 
 function vwParaPx(vwValue) {
@@ -32,7 +32,6 @@ var options = {
 	},
 	yaxis: {
 		min: 0,
-		max: 80,
 		labels: {
 			style: {
 				fontSize: `${vwParaPx(0.8)}px`,
@@ -70,7 +69,6 @@ function buscar_dados_grafico() {
     })
         .then(function (resposta) {
             resposta.json().then(resposta2 => {
-				console.log(resposta2)
 				for (let i = 0; i < resposta2.length; i++) {
 					resposta3.push(resposta2[i].total_alertas)
 				}
@@ -202,7 +200,6 @@ function exibirKPIconexoesSUS(resposta2) {
 	`
 	for (let i = 0; i < resposta2.length; i++) {
 
-		segurancaDash++;
 
 		if (resposta2[i].fkAlertaSeguranca != null) {
 			conSus++;
@@ -299,10 +296,8 @@ function exibirArquivosCriticos(resposta2) {
 
 		} else {
 
-			segurancaDash++;
-
 			lista_arquivos.innerHTML += `
-			<div class="nome_arquivo_hover" onclick="dialog_arquivos.showModal()">
+			<div class="nome_arquivo_hover" onclick="mostrarModalArqs('${resposta2[i].nome}')">
 				<h1 class="titulo-nome-arquivo">${resposta2[i].nome}</h1>
 				<img class="img-arquivo" src="../../../Assets/assets_dashboard/alertaAmarelo.png">
 			</div>
@@ -314,6 +309,12 @@ function exibirArquivosCriticos(resposta2) {
 
 	exibirDadosSegurancaATM()
 
+}
+
+function mostrarModalArqs(nome) {
+	dialog_arquivos.showModal()
+	conteudo = nome
+	alert("Aprovação de alteração declarada. Aguarde nossa validação")
 }
 
 function atualizar_grafico(resposta2) {
@@ -329,12 +330,18 @@ function atualizar_grafico(resposta2) {
 }
 
 function exibirDadosSegurancaATM() {
-	if (segurancaDash> 0) {
-		valor_kpi_seguranca.innerHTML="INSEGURO"
-	} else {
-		valor_kpi_seguranca.innerHTML="SEGURO"
-	}
-	segurancaDash = 0;
+
+	fetch(`/seguranca/selecionarSeguranca/${idATM}/${sessionStorage.FK_EMPRESA}`, {
+        method: "GET",
+    })
+        .then(function (resposta) {
+            resposta.json().then(resposta2 => {
+				valor_kpi_seguranca.innerHTML = resposta2[0].seguranca
+            })
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
 }
 
 
@@ -346,12 +353,40 @@ function carregarInformacoes() {
 	buscar_dados_alertas()
 	buscar_dados_arquivos_criticos()
 	buscar_dados_grafico()
+	exibirDadosSegurancaATM()
 }
 carregarInformacoes()
 
 function atualizar_dados() {
 	setInterval(() => {
 		carregarInformacoes()
-	}, 3000);
+	}, 20000);
 }
 atualizar_dados()
+
+
+function declararSeguro() {
+	
+	fetch("/seguranca/salvarArquivoSalvo", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+			idAtm: idATM,
+            fkEmpresa: sessionStorage.FK_EMPRESA,
+			conteudo01: conteudo,
+        }),
+    })
+        .then(function (resposta) {
+            resposta.json().then((resposta2) => {
+                console.log(resposta2)
+				buscar_dados_arquivos_criticos()
+				dialog_arquivos.close()
+            })
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+}

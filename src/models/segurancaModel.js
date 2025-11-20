@@ -118,6 +118,40 @@ function exibirGrafico(idAtm, fkEmpresa) {
     return database.executar(instrucaoSql);
 }
 
+function salvarArquivoSalvo(idAtm, fkEmpresa, conteudo01) {
+    var instrucaoSql = `
+    
+    update ItemSalvo set conteudo02 = 
+
+	(select hashArqCritico from ArquivoCritico where 
+		(select idSeguranca from Seguranca join Atm on idAtm = fkAtm where categoria = "arquivo" and idAtm = ${idAtm} and fkEmpresa = ${fkEmpresa}) 
+			and  horario = (select max(horario) from ArquivoCritico) and nome = '${conteudo01}')
+            
+	where conteudo01 = '${conteudo01}'
+	and fkSeguranca = (select idSeguranca from Seguranca join Atm on idAtm = fkAtm where categoria = "arquivo" and idAtm = ${idAtm} and fkEmpresa = ${fkEmpresa});
+
+    `
+
+    return database.executar(instrucaoSql);
+}
+
+function selecionarSeguranca(idAtm, fkEmpresa) {
+    var instrucaoSql = `
+    SELECT CASE WHEN
+        (select count(*) from ConexaoAberta where horario = (select max(horario) from ConexaoAberta) and 
+        fkAlertaSeguranca is not null  and fkSeguranca = (select idSeguranca from Seguranca join Atm on idAtm = fkAtm 
+        where categoria = "conexao" and idAtm = ${idAtm} and fkEmpresa = ${fkEmpresa})) >= 1
+        OR
+        (select count(*) from ArquivoCritico where horario = (select max(horario) from ArquivoCritico) and
+        fkAlertaSeguranca is not null and fkSeguranca = (select idSeguranca from Seguranca join Atm on idAtm = fkAtm 
+        where categoria = "arquivo" and idAtm = ${idAtm} and fkEmpresa = ${fkEmpresa})) >= 1 then 'INSEGURO'
+        ELSE 'SEGURO'
+        END as seguranca;
+    `
+
+    return database.executar(instrucaoSql);
+}
+
 
 module.exports = {
   exibirKPIinvasoes,
@@ -126,4 +160,6 @@ module.exports = {
   exibirAlertas,
   exibirArquivosCriticos,
   exibirGrafico,
+  salvarArquivoSalvo,
+  selecionarSeguranca,
 };

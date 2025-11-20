@@ -27,4 +27,12 @@ router.get("/exibirGrafico/:idAtm/:fkEmpresa", function (req, res) {
     segurancaController.exibirGrafico(req, res);
 })
 
+router.post("/salvarArquivoSalvo", function (req, res) {
+  segurancaController.salvarArquivoSalvo(req, res);
+});
+
+router.get("/selecionarSeguranca/:idAtm/:fkEmpresa", function (req, res) {
+    segurancaController.selecionarSeguranca(req, res);
+})
+
 module.exports = router;

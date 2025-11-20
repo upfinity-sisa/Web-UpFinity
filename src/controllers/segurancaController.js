@@ -48,6 +48,24 @@ function exibirGrafico(req, res) {
     });
 }
 
+function salvarArquivoSalvo(req, res) {
+    var idAtm = req.body.idAtm;
+    var fkEmpresa = req.body.fkEmpresa;
+    var conteudo01 = req.body.conteudo01;
+
+    segurancaModel.salvarArquivoSalvo(idAtm, fkEmpresa, conteudo01).then((resultado) => {
+        res.status(201).json(resultado);
+    });
+}
+
+function selecionarSeguranca(req, res) {
+    var idAtm = req.params.idAtm;
+    var fkEmpresa = req.params.fkEmpresa;
+    segurancaModel.selecionarSeguranca(idAtm, fkEmpresa).then((resultado) => {
+        res.status(201).json(resultado);
+    });
+}
+
 module.exports = {
   exibirKPIinvasoes,
   exibirPortasAbertas,
@@ -55,4 +73,6 @@ module.exports = {
   exibirAlertas,
   exibirArquivosCriticos,
   exibirGrafico,
+  salvarArquivoSalvo,
+  selecionarSeguranca,
 };
