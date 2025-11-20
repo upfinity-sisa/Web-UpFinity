@@ -40,10 +40,19 @@ function exibirArquivosCriticos(req, res) {
     });
 }
 
+function exibirGrafico(req, res) {
+    var idAtm = req.params.idAtm;
+    var fkEmpresa = req.params.fkEmpresa;
+    segurancaModel.exibirGrafico(idAtm, fkEmpresa).then((resultado) => {
+        res.status(201).json(resultado);
+    });
+}
+
 module.exports = {
   exibirKPIinvasoes,
   exibirPortasAbertas,
   exibirKPIconexoesSUS,
   exibirAlertas,
   exibirArquivosCriticos,
+  exibirGrafico,
 };

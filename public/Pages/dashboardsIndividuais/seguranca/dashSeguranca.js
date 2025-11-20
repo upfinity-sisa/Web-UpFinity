@@ -1,6 +1,7 @@
 var idATM = 1;
 var segurancaDash = 0;
 
+
 function vwParaPx(vwValue) {
 	const larguraViewport = window.innerWidth;
 	const valorEmPx = (larguraViewport / 100) * vwValue;
@@ -10,7 +11,7 @@ function vwParaPx(vwValue) {
 var options = {
 	series: [{
 		name: 'alertas',
-		data: [2, 3, 4, 4, 6, 5, 9, 11]
+		data: [0, 0, 0, 0, 0, 0, 0, 0]
 	}],
 	chart: {
 		type: 'area'
@@ -31,7 +32,7 @@ var options = {
 	},
 	yaxis: {
 		min: 0,
-		max: 15,
+		max: 80,
 		labels: {
 			style: {
 				fontSize: `${vwParaPx(0.8)}px`,
@@ -53,6 +54,27 @@ function buscar_dados_KPIinvasoes() {
         .then(function (resposta) {
             resposta.json().then(resposta2 => {
 				exibirKPIinvasoes(resposta2)
+            })
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+}
+
+function buscar_dados_grafico() {
+	
+	resposta3 = []
+    fetch(`/seguranca/exibirGrafico/${idATM}/${sessionStorage.FK_EMPRESA}`, {
+        method: "GET",
+    })
+        .then(function (resposta) {
+            resposta.json().then(resposta2 => {
+				console.log(resposta2)
+				for (let i = 0; i < resposta2.length; i++) {
+					resposta3.push(resposta2[i].total_alertas)
+				}
+				atualizar_grafico(resposta3)
             })
         })
         .catch(function (resposta) {
@@ -294,6 +316,18 @@ function exibirArquivosCriticos(resposta2) {
 
 }
 
+function atualizar_grafico(resposta2) {
+
+	chart.updateSeries([
+		{
+			name: "alertas",
+			data: resposta2
+		}
+	]);
+
+
+}
+
 function exibirDadosSegurancaATM() {
 	if (segurancaDash> 0) {
 		valor_kpi_seguranca.innerHTML="INSEGURO"
@@ -311,5 +345,13 @@ function carregarInformacoes() {
 	buscar_dados_conexoes_suspeitas()
 	buscar_dados_alertas()
 	buscar_dados_arquivos_criticos()
+	buscar_dados_grafico()
 }
 carregarInformacoes()
+
+function atualizar_dados() {
+	setInterval(() => {
+		carregarInformacoes()
+	}, 3000);
+}
+atualizar_dados()

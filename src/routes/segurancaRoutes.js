@@ -23,4 +23,8 @@ router.get("/exibirArquivosCriticos/:idAtm/:fkEmpresa", function (req, res) {
     segurancaController.exibirArquivosCriticos(req, res);
 })
 
+router.get("/exibirGrafico/:idAtm/:fkEmpresa", function (req, res) {
+    segurancaController.exibirGrafico(req, res);
+})
+
 module.exports = router;
