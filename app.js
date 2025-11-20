@@ -39,7 +39,7 @@ app.use("/dashboard", dashboardRouter);
 app.use("/alertas", alertasRouter);
 app.use("/gestaoAcesso", gestaoAcessoRouter);
 app.use("/seguranca", segurancaRouter);
-app.use('/cpu', cpuRouter)
+//app.use('/cpu', cpuRouter)
 
 
 app.listen(PORTA_APP, function () {
