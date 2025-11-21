@@ -16,14 +16,6 @@ function exibirPortasAbertas(req, res) {
     });
 }
 
-function exibirKPIconexoesSUS(req, res) {
-    var idAtm = req.params.idAtm;
-    var fkEmpresa = req.params.fkEmpresa;
-    segurancaModel.exibirKPIconexoesSUS(idAtm, fkEmpresa).then((resultado) => {
-        res.status(201).json(resultado);
-    });
-}
-
 function exibirAlertas(req, res) {
     var idAtm = req.params.idAtm;
     var fkEmpresa = req.params.fkEmpresa;
@@ -87,7 +79,6 @@ function buscarAtms(req, res) {
 module.exports = {
   exibirKPIinvasoes,
   exibirPortasAbertas,
-  exibirKPIconexoesSUS,
   exibirAlertas,
   exibirArquivosCriticos,
   exibirGrafico,

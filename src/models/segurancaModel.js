@@ -19,20 +19,6 @@ function exibirPortasAbertas(idAtm, fkEmpresa) {
     return database.executar(instrucaoSql);
 }
 
-function exibirKPIconexoesSUS(idAtm, fkEmpresa) {
-    var instrucaoSql = `
-    select ConexaoAberta.* from 
-		AlertaSeguranca join ConexaoAberta
-        on idAlertaSeguranca = fkAlertaSeguranca
-        join Seguranca on
-        idSeguranca = fkSeguranca
-        where idSeguranca = (select idSeguranca from Seguranca join Atm on idAtm = fkAtm where categoria = "conexao" and idAtm = ${idAtm} and fkEmpresa = ${fkEmpresa})
-        and ConexaoAberta.horario = (select max(horario) from ConexaoAberta);
-    `
-
-    return database.executar(instrucaoSql);
-}
-
 function exibirAlertas(idAtm, fkEmpresa) {
     var instrucaoSql = `
     select AlertaSeguranca.* from 
@@ -173,7 +159,6 @@ function buscarAtms(fkEmpresa) {
 module.exports = {
   exibirKPIinvasoes,
   exibirPortasAbertas,
-  exibirKPIconexoesSUS,
   exibirAlertas,
   exibirArquivosCriticos,
   exibirGrafico,

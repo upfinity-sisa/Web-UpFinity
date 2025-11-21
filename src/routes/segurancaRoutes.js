@@ -11,10 +11,6 @@ router.get("/exibirPortasAbertas/:idAtm/:fkEmpresa", function (req, res) {
     segurancaController.exibirPortasAbertas(req, res);
 })
 
-router.get("/exibirKPIconexoesSUS/:idAtm/:fkEmpresa", function (req, res) {
-    segurancaController.exibirKPIconexoesSUS(req, res);
-})
-
 router.get("/exibirAlertas/:idAtm/:fkEmpresa", function (req, res) {
     segurancaController.exibirAlertas(req, res);
 })
