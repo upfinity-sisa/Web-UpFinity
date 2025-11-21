@@ -170,3 +170,7 @@ body {
     color: var(--vermelho) !important;
     font-weight: bold;
 }
+
+#botao-chamado {
+    font-size: 0.9vw;
+}
