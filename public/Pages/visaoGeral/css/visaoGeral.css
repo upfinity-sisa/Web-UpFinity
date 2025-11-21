@@ -2,6 +2,9 @@
     --branco-bordas: rgb(230, 230, 230);
     --ciano: #268184;
     --azul-claro: #2ed1d7;
+    --verde: #00bf35;
+    --laranja: #f4a261;
+    --vermelho: #e63946;
 }
 
 body {
@@ -52,7 +55,6 @@ body {
     border-radius: 10px;
     background-color: #fff;
     box-shadow: rgba(50, 50, 50, 0.1) 0px 10px 50px;
-
 }
 
 #container-filtro {
@@ -122,7 +124,7 @@ body {
     color: #fff;
     font-size: 1.08rem;
     font-weight: bold;
-    font-family: "Montserrat";
+    font-family: 'Montserrat';
     transition: 0.5s ease all;
     margin-left: 1%;
 }
@@ -152,4 +154,19 @@ body {
     all: unset;
     display: flex;
     background-color: #f7f7f7;
+}
+
+.celula-normal {
+    color: var(--verde) !important;
+    font-weight: bold;
+}
+
+.celula-moderado {
+    color: var(--laranja) !important;
+    font-weight: bold;
+}
+
+.celula-critico {
+    color: var(--vermelho) !important;
+    font-weight: bold;
 }
