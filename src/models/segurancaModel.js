@@ -51,7 +51,7 @@ function exibirArquivosCriticos(idAtm, fkEmpresa) {
     var instrucaoSql = `
     select * from ArquivoCritico where 
 	    (select idSeguranca from Seguranca join Atm on idAtm = fkAtm where categoria = "arquivo" and idAtm = ${idAtm} and fkEmpresa = ${fkEmpresa})
-            and horario = (select max(horario) from ArquivoCritico) order by fkAlertaSeguranca desc;
+            and horario = (select max(horario) from ArquivoCritico) order by possuiAlerta desc;
     `
 
     return database.executar(instrucaoSql);

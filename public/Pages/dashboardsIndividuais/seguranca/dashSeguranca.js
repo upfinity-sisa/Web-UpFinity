@@ -32,6 +32,7 @@ var options = {
 	},
 	yaxis: {
 		min: 0,
+		max: 15,
 		labels: {
 			style: {
 				fontSize: `${vwParaPx(0.8)}px`,
@@ -299,7 +300,7 @@ function exibirArquivosCriticos(resposta2) {
 	lista_arquivos.innerHTML = ""
 	for (let i = 0; i < resposta2.length; i++) {
 
-		if (resposta2[i].fkAlertaSeguranca == null) {
+		if (resposta2[i].possuiAlerta == 0) {
 
 			lista_arquivos.innerHTML += `
 			<div class="nome_arquivo">
