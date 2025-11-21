@@ -23,7 +23,6 @@ body {
 
 #container-tabela {
     width: 90%;
-    border: 2px solid var(--branco-bordas);
 }
 
 #tabela-visao-geral {
@@ -51,12 +50,14 @@ body {
 .containeres {
     padding: 2%;
     border-radius: 10px;
+    background-color: #fff;
+    box-shadow: rgba(50, 50, 50, 0.1) 0px 10px 50px;
+
 }
 
 #container-filtro {
     width: 90%;
     height: 35vh;
-    border: 2px solid var(--branco-bordas);
 }
 
 #titulo-container-tabela,
@@ -117,14 +118,17 @@ body {
     width: 5vw;
     text-align: center;
     border-radius: 10px;
-    background-color: #41d0d5;
+    background-color: var(--ciano);
+    color: #fff;
+    font-size: 1.08rem;
+    font-weight: bold;
+    font-family: "Montserrat";
     transition: 0.5s ease all;
     margin-left: 1%;
 }
 
 #button-filtrar:hover {
     transform: scale(1.05);
-    background-color: var(--azul-claro);
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -147,4 +151,5 @@ body {
 .corpo {
     all: unset;
     display: flex;
+    background-color: #f7f7f7;
 }
