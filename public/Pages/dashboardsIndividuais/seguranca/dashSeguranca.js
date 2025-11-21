@@ -88,7 +88,6 @@ function buscar_dados_portas_abertas() {
     })
         .then(function (resposta) {
             resposta.json().then(resposta2 => {
-				exibirKPIportas(resposta2)
 				exibirKPIconexoesSUS(resposta2)
 				exibirListaConexoesAbertas(resposta2)
             })
@@ -182,11 +181,19 @@ function exibirKPIinvasoes(resposta2) {
 
 }
 
-function exibirKPIportas(resposta2) {
-	valor_kpi_porta.innerHTML = resposta2.length
-}
-
 function exibirKPIconexoesSUS(resposta2) {
+
+	var vt_nomes_iguais = [resposta2[0].portaLocal]
+	var resposta3 = [resposta2[0]]
+
+	for (let i = 0; i < resposta2.length; i++) {
+		if (!vt_nomes_iguais.includes(resposta2[i].portaLocal)) {
+			resposta3.push(resposta2[i])
+			vt_nomes_iguais.push(resposta2[i].portaLocal)
+		}
+	}
+
+	valor_kpi_porta.innerHTML = resposta3.length
 
 	var conSus = 0;
 
@@ -198,16 +205,16 @@ function exibirKPIconexoesSUS(resposta2) {
 		<th>Verificar</th>
 	</tr>
 	`
-	for (let i = 0; i < resposta2.length; i++) {
+	for (let i = 0; i < resposta3.length; i++) {
 
 
-		if (resposta2[i].fkAlertaSeguranca != null) {
+		if (resposta3[i].fkAlertaSeguranca != null) {
 			conSus++;
 
 			tabela_conexoes.innerHTML += `
 			<tr>
-				<td>${resposta2[i].portaLocal}</td>
-				<td>${resposta2[i].IPremoto}</td>
+				<td>${resposta3[i].portaLocal}</td>
+				<td>${resposta3[i].IPremoto}</td>
 				<td><button class="botao_verificacao">Declarar Seguro</button></td>
 			</tr>
 			`
@@ -216,8 +223,8 @@ function exibirKPIconexoesSUS(resposta2) {
 
 			tabela_conexoes.innerHTML += `
 			<tr>
-				<td>${resposta2[i].portaLocal}</td>
-				<td>${resposta2[i].IPremoto}</td>
+				<td>${resposta3[i].portaLocal}</td>
+				<td>${resposta3[i].IPremoto}</td>
 				<td class="titulo_seguranca_tr">SEGURO</td>
 			</tr>
 			`
@@ -231,13 +238,25 @@ function exibirKPIconexoesSUS(resposta2) {
 
 
 function exibirListaConexoesAbertas(resposta2) {
+
+	console.log(resposta2)
+
+	var vt_nomes_iguais = [resposta2[0].portaLocal]
+	var resposta3 = [resposta2[0]]
+
+	for (let i = 0; i < resposta2.length; i++) {
+		if (!vt_nomes_iguais.includes(resposta2[i].portaLocal)) {
+			resposta3.push(resposta2[i])
+			vt_nomes_iguais.push(resposta2[i].portaLocal)
+		}
+	}
 	
 	lista_conexoes.innerHTML = ""
-	for (let i = 0; i < resposta2.length; i++) {
+	for (let i = 0; i < resposta3.length; i++) {
 		lista_conexoes.innerHTML += `
 		<div class="box_conexao">
-			<h1 class="porta_conexao"> <b class="porta_local_lista">Porta Local:</b> ${resposta2[i].portaLocal}</h1>
-			<h1 class="ip_conexao">${resposta2[i].IPremoto}</h1>
+			<h1 class="porta_conexao"> <b class="porta_local_lista">Porta Local:</b> ${resposta3[i].portaLocal}</h1>
+			<h1 class="ip_conexao">${resposta3[i].IPremoto}</h1>
 		</div>
  		`
 	}
@@ -314,7 +333,6 @@ function exibirArquivosCriticos(resposta2) {
 function mostrarModalArqs(nome) {
 	dialog_arquivos.showModal()
 	conteudo = nome
-	alert("Aprovação de alteração declarada. Aguarde nossa validação")
 }
 
 function atualizar_grafico(resposta2) {
@@ -383,6 +401,7 @@ function declararSeguro() {
                 console.log(resposta2)
 				buscar_dados_arquivos_criticos()
 				dialog_arquivos.close()
+				alert("Aprovação de alteração declarada. Aguarde nossa validação")
             })
         })
         .catch(function (resposta) {
