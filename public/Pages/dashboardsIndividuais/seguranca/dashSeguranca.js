@@ -98,21 +98,6 @@ function buscar_dados_portas_abertas() {
 
 }
 
-function buscar_dados_conexoes_suspeitas() {
-
-    fetch(`/seguranca/exibirKPIconexoesSUS/${idATM}/${sessionStorage.FK_EMPRESA}`, {
-        method: "GET",
-    })
-        .then(function (resposta) {
-            resposta.json().then(resposta2 => {
-            })
-        })
-        .catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
-
-}
-
 function buscar_dados_alertas() {
 
     fetch(`/seguranca/exibirAlertas/${idATM}/${sessionStorage.FK_EMPRESA}`, {
@@ -367,7 +352,6 @@ function carregarInformacoes() {
 	buscar_dados_KPIinvasoes()
 	buscar_dados_portas_abertas()
 	buscar_dados_arquivos_criticos()
-	buscar_dados_conexoes_suspeitas()
 	buscar_dados_alertas()
 	buscar_dados_arquivos_criticos()
 	buscar_dados_grafico()
