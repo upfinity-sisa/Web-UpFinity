@@ -277,10 +277,9 @@ function carregarAtms() {
             if (response.ok) {
                 response.json().then(resposta => {
                     if (resposta.length > 0) {
-                        console.log('atms: ', resposta);
                         for (let i = 0; i < resposta.length; i++) {
                             comboATMS.innerHTML += `
-                        <option value="${resposta[i].idAtm}">ATM ${resposta[i].idAtm}</option>
+                        <option value="${resposta[i].numeracao}">ATM ${resposta[i].numeracao}</option>
                         `;
                         }
                     } else {
