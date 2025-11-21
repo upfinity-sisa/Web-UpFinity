@@ -152,6 +152,15 @@ function selecionarSeguranca(idAtm, fkEmpresa) {
     return database.executar(instrucaoSql);
 }
 
+function salvarConexaoSalva(idAtm, fkEmpresa, conteudo01, conteudo02) {
+    var instrucaoSql = `
+    insert into ItemSalvo (categoria, conteudo01, conteudo02, fkSeguranca) values
+    ('conexao', '${conteudo01}', '${conteudo02}', (select idSeguranca from Seguranca join Atm on idAtm = fkAtm where categoria = "conexao" and idAtm = ${idAtm} and fkEmpresa = ${fkEmpresa}));
+    `
+
+    return database.executar(instrucaoSql);
+}
+
 
 module.exports = {
   exibirKPIinvasoes,
@@ -162,4 +171,5 @@ module.exports = {
   exibirGrafico,
   salvarArquivoSalvo,
   selecionarSeguranca,
+  salvarConexaoSalva,
 };

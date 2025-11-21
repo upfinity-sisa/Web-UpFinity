@@ -66,6 +66,17 @@ function selecionarSeguranca(req, res) {
     });
 }
 
+function salvarConexaoSalva(req, res) {
+    var idAtm = req.body.idAtm;
+    var fkEmpresa = req.body.fkEmpresa;
+    var conteudo01 = req.body.conteudo01;
+    var conteudo02 = req.body.conteudo02;
+
+    segurancaModel.salvarConexaoSalva(idAtm, fkEmpresa, conteudo01, conteudo02).then((resultado) => {
+        res.status(201).json(resultado);
+    });
+}
+
 module.exports = {
   exibirKPIinvasoes,
   exibirPortasAbertas,
@@ -75,4 +86,5 @@ module.exports = {
   exibirGrafico,
   salvarArquivoSalvo,
   selecionarSeguranca,
+  salvarConexaoSalva,
 };

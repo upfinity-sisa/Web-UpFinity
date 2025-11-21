@@ -215,7 +215,7 @@ function exibirKPIconexoesSUS(resposta2) {
 			<tr>
 				<td>${resposta3[i].portaLocal}</td>
 				<td>${resposta3[i].IPremoto}</td>
-				<td><button class="botao_verificacao">Declarar Seguro</button></td>
+				<td><button onclick="declararConexaoSegura('${resposta3[i].portaLocal}', '${resposta3[i].IPremoto}')" class="botao_verificacao">Declarar Seguro</button></td>
 			</tr>
 			`
 
@@ -408,4 +408,32 @@ function declararSeguro() {
             console.log(`#ERRO: ${resposta}`);
         });
 
+}
+
+function declararConexaoSegura(porta, ip) {
+
+	fetch("/seguranca/salvarConexaoSalva", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+			idAtm: idATM,
+            fkEmpresa: sessionStorage.FK_EMPRESA,
+			conteudo01: porta,
+			conteudo02: ip,
+        }),
+    })
+        .then(function (resposta) {
+            resposta.json().then((resposta2) => {
+                console.log(resposta2)
+				buscar_dados_portas_abertas()
+				dialog_conexao.close()
+				alert("A aprovação da nova porta foi declarada. Aguarde nossa validação")
+            })
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+	
 }

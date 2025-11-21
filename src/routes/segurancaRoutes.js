@@ -35,4 +35,8 @@ router.get("/selecionarSeguranca/:idAtm/:fkEmpresa", function (req, res) {
     segurancaController.selecionarSeguranca(req, res);
 })
 
+router.post("/salvarConexaoSalva", function (req, res) {
+  segurancaController.salvarConexaoSalva(req, res);
+});
+
 module.exports = router;
