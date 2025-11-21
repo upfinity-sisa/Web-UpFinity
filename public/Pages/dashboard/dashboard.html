@@ -89,6 +89,8 @@
                             <div class="kpi-cima">
                                 <img src="../../Assets/assets_dashboard/simboloCPU.png" alt="imagem CPU">
                                 <h1>CPU</h1>
+                                 <img onclick="exibirDialog1()" id="icone_informativo"
+                                    src="../../Assets/assets_dashboard/iconeInformativo.png">
                             </div>
                             <div class="kpi-baixo">
                                 <h1 id="dado-kpi-cpu"></h1>
@@ -98,7 +100,9 @@
                         <div class="kpi">
                             <div class="kpi-cima">
                                 <img src="../../Assets/assets_dashboard/simboloRAM.png" alt="imagem CPU">
-                                <h1>RAM</h1>
+                                <h1>RAM</h1><br>
+                                 <img onclick="exibirDialog2()" id="icone_informativo"
+                                    src="../../Assets/assets_dashboard/iconeInformativo.png">
                             </div>
                             <div class="kpi-baixo">
                                 <h1 id="dado-kpi-ram"></h1>
@@ -109,6 +113,8 @@
                             <div class="kpi-cima">
                                 <img src="../../Assets/assets_dashboard/simboloDISCO.png" alt="imagem CPU">
                                 <h1>DISCO</h1>
+                                 <img onclick="exibirDialog3()" id="icone_informativo"
+                                    src="../../Assets/assets_dashboard/iconeInformativo.png">
                             </div>
                             <div class="kpi-baixo">
                                 <h1 id="dado-kpi-disco"></h1>
@@ -129,8 +135,6 @@
                     <div id="box-graficos">
                         <div id="caixa_global_graflinha">
                             <div id="linha_cima">
-                                <img onclick="exibirDialog()" id="icone_informativo"
-                                    src="../../Assets/assets_dashboard/iconeInformativo.png">
                                 <h1>Níveis dos componentes</h1>
                                 <select onchange="trocarComponente()" id="combo_componentes">
                                     <option value="cpu">CPU</option>
@@ -138,6 +142,7 @@
                                     <option value="disco">Disco</option>
                                 </select>
                             </div>
+                            
                             <div id="caixagraflinha">
                             </div>
                         </div>
@@ -164,50 +169,111 @@
             </div>
         </div>
     </section>
-    <dialog id="dialogInfo">
+    <dialog id="dialogInfo1">
         <div>
-            <h1 id="titulo_modal">Parâmetros de Alertas</h1>
+            <h1 id="titulo_moda">Parâmetros de Alertas</h1>
             <div class="linha"></div>
         </div>
         <div class="baixo_dialog">
-            <table id="tabela-parametros">
+            <table id="tabela-parametros1">
                 <tr>
                     <th class="titulo-tabela">Alerta</th>
                     <th class="titulo-tabela" style="color: #268184;">CPU</th>
-                    <th class="titulo-tabela" style="color: #268184;">RAM</th>
-                    <th class="titulo-tabela" style="color: #268184;">Disco</th>
                 </tr>
                 <tr>
                     <td class="linha-tabela" style="color: #e63946;"><b>Crítico</b></td>
                     <td class="linha-tabela" >>= 37.83</td>
-                    <td class="linha-tabela" >>= 52.46</td>
-                    <td class="linha-tabela" >>= 59.50</td>
                 </tr>
                 <tr>
                     <td class="linha-tabela" style="color: #f4a261;"><b>Moderado</b></td>
                     <td class="linha-tabela" >>= 31.23</td>
-                    <td class="linha-tabela" >>= 51.33</td>
-                    <td class="linha-tabela" >>= 57.50</td>
                 </tr>
             </table>
             <div class="botoes_dialog">
-                <button onclick="fechar()">Fechar Tabela</button>
+                <button onclick="fechar1()">Fechar Tabela</button>
                 <button onclick="window.location='../gestaoATM/gestaoATM.html'">Definir Alertas</button>
             </div>
         </div>
     </dialog>
 </body>
-
+<dialog id="dialogInfo2">
+        <div>
+            <h1 id="titulo_moda">Parâmetros de Alertas</h1>
+            <div class="linha"></div>
+        </div>
+        <div class="baixo_dialog">
+            <table id="tabela-parametros1">
+                <tr>
+                    <th class="titulo-tabela">Alerta</th>
+                    <th class="titulo-tabela" style="color: #268184;">RAM</th>
+                </tr>
+                <tr>
+                    <td class="linha-tabela" style="color: #e63946;"><b>Crítico</b></td>
+                    <td class="linha-tabela" >>= 37.834</td>
+                </tr>
+                <tr>
+                    <td class="linha-tabela" style="color: #f4a261;"><b>Moderado</b></td>
+                    <td class="linha-tabela" >>= 31.23</td>
+                </tr>
+            </table>
+            <div class="botoes_dialog">
+                <button onclick="fechar2()">Fechar Tabela</button>
+                <button onclick="window.location='../gestaoATM/gestaoATM.html'">Definir Alertas</button>
+            </div>
+        </div>
+    </dialog>
+    <dialog id="dialogInfo3">
+        <div>
+            <h1 id="titulo_moda">Parâmetros de Alertas</h1>
+            <div class="linha"></div>
+        </div>
+        <div class="baixo_dialog">
+            <table id="tabela-parametros1">
+                <tr>
+                    <th class="titulo-tabela">Alerta</th>
+                    <th class="titulo-tabela" style="color: #268184;">DISCO</th>
+                </tr>
+                <tr>
+                    <td class="linha-tabela" style="color: #e63946;"><b>Crítico</b></td>
+                    <td class="linha-tabela" >>= 37.83</td>
+                </tr>
+                <tr>
+                    <td class="linha-tabela" style="color: #f4a261;"><b>Moderado</b></td>
+                    <td class="linha-tabela" >>= 31.23</td>
+                </tr>
+            </table>
+            <div class="botoes_dialog">
+                <button onclick="fechar3()">Fechar Tabela</button>
+                <button onclick="window.location='../gestaoATM/gestaoATM.html'">Definir Alertas</button>
+            </div>
+        </div>
+    </dialog>
 </html>
 
 <script>
-    function exibirDialog() {
-        dialogInfo.showModal()
-        dialogInfo.style.display = "flex";
+    function exibirDialog1() {
+        dialogInfo1.showModal()
+        dialogInfo1.style.display = "flex";
+    }
+      function exibirDialog2() {
+        dialogInfo2.showModal()
+        dialogInfo2.style.display = "flex";
+    }
+      function exibirDialog3() {
+        dialogInfo3.showModal()
+        dialogInfo3.style.display = "flex";
     }
 
-    function fechar() {
-        dialogInfo.close()
-        dialogInfo.style.display = "none";
+    function fechar1() {
+        dialogInfo1.close()
+        dialogInfo1.style.display = "none";
+    }
+    function fechar2() {
+        dialogInfo2.close()
+        dialogInfo2.style.display = "none";
+    }
+    function fechar3() {
+        dialogInfo3.close()
+        dialogInfo3.style.display = "none";
     }
 </script>
