@@ -77,6 +77,13 @@ function salvarConexaoSalva(req, res) {
     });
 }
 
+function buscarAtms(req, res) {
+    var fkEmpresa = req.params.fkEmpresa;
+    segurancaModel.buscarAtms(fkEmpresa).then((resultado) => {
+        res.status(201).json(resultado);
+    });
+}
+
 module.exports = {
   exibirKPIinvasoes,
   exibirPortasAbertas,
@@ -87,4 +94,5 @@ module.exports = {
   salvarArquivoSalvo,
   selecionarSeguranca,
   salvarConexaoSalva,
+  buscarAtms,
 };

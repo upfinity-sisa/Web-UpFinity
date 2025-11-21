@@ -161,6 +161,14 @@ function salvarConexaoSalva(idAtm, fkEmpresa, conteudo01, conteudo02) {
     return database.executar(instrucaoSql);
 }
 
+function buscarAtms(fkEmpresa) {
+    var instrucaoSql = `
+    select idAtm, numeracao from Atm where fkEmpresa = ${fkEmpresa};
+    `
+
+    return database.executar(instrucaoSql);
+}
+
 
 module.exports = {
   exibirKPIinvasoes,
@@ -172,4 +180,5 @@ module.exports = {
   salvarArquivoSalvo,
   selecionarSeguranca,
   salvarConexaoSalva,
+  buscarAtms,
 };

@@ -168,6 +168,13 @@ function exibirKPIinvasoes(resposta2) {
 
 function exibirKPIconexoesSUS(resposta2) {
 
+	if (resposta2.length == 0) {
+		valor_kpi_conexoes.innerHTML = "0"
+		valor_kpi_porta.innerHTML = "0"
+		tabela_conexoes.innerHTML = ""
+		return
+	}
+
 	var vt_nomes_iguais = [resposta2[0].portaLocal]
 	var resposta3 = [resposta2[0]]
 
@@ -224,7 +231,10 @@ function exibirKPIconexoesSUS(resposta2) {
 
 function exibirListaConexoesAbertas(resposta2) {
 
-	console.log(resposta2)
+	if (resposta2.length == 0) {
+		lista_conexoes.innerHTML = ""
+		return
+	}
 
 	var vt_nomes_iguais = [resposta2[0].portaLocal]
 	var resposta3 = [resposta2[0]]
@@ -420,4 +430,40 @@ function declararConexaoSegura(porta, ip) {
             console.log(`#ERRO: ${resposta}`);
         });
 	
+}
+
+
+function buscarAtms() {
+
+	fetch(`/seguranca/buscarAtms/${sessionStorage.FK_EMPRESA}`, {
+        method: "GET",
+    })
+        .then(function (resposta) {
+            resposta.json().then(resposta2 => {
+				
+				comboATMs.innerHTML = ""
+
+				for (let i = 0; i < resposta2.length; i++) {
+
+					const option = document.createElement("option");
+					option.value = resposta2[i].idAtm;
+					option.textContent = `ATM ${resposta2[i].numeracao}`;
+					comboATMs.appendChild(option);
+
+				}
+
+            })
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+}
+
+buscarAtms()
+
+function mudarATM() {
+
+	idATM = comboATMs.value
+	carregarInformacoes()
+
 }

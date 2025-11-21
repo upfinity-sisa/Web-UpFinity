@@ -39,4 +39,8 @@ router.post("/salvarConexaoSalva", function (req, res) {
   segurancaController.salvarConexaoSalva(req, res);
 });
 
+router.get("/buscarAtms/:fkEmpresa", function (req, res) {
+    segurancaController.buscarAtms(req, res);
+})
+
 module.exports = router;
