@@ -64,6 +64,44 @@ function carregarParametros() {
                                     break;
                             }
                         }
+
+                        const paramCriticoCpuDiv =
+                            document.getElementById('paramCriticoCPU');
+
+                        const paramModeradoCpuDiv =
+                            document.getElementById('paramModeradoCPU');
+
+                        const paramCriticoRamDiv =
+                            document.getElementById('paramCriticoRAM');
+
+                        const paramModeradoRamDiv =
+                            document.getElementById('paramModeradoRAM');
+
+                        const paramCriticoDiscoDiv =
+                            document.getElementById('paramCriticoDisco');
+                        const paramModeradoDiscoDiv =
+                            document.getElementById('paramModeradoDisco');
+
+                        paramCriticoCpuDiv.innerHTML += parseFloat(
+                            sessionStorage.getItem('PARAM_CRITICO_CPU')
+                        ).toFixed(2);
+                        paramModeradoCpuDiv.innerHTML += parseFloat(
+                            sessionStorage.getItem('PARAM_IMPORTANTE_CPU')
+                        ).toFixed(2);
+
+                        paramCriticoRamDiv.innerHTML += parseFloat(
+                            sessionStorage.getItem('PARAM_CRITICO_RAM')
+                        ).toFixed(2);
+                        paramModeradoRamDiv.innerHTML += parseFloat(
+                            sessionStorage.getItem('PARAM_IMPORTANTE_RAM')
+                        ).toFixed(2);
+
+                        paramCriticoDiscoDiv.innerHTML += parseFloat(
+                            sessionStorage.getItem('PARAM_CRITICO_DISCO')
+                        ).toFixed(2);
+                        paramModeradoDiscoDiv.innerHTML += parseFloat(
+                            sessionStorage.getItem('PARAM_IMPORTANTE_DISCO')
+                        ).toFixed(2);
                     } else {
                         console.error(
                             'carregarParametros: nenhum parâmetro encontrado.'
