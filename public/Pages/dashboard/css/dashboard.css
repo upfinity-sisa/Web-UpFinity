@@ -145,6 +145,9 @@ div {
     justify-content: center;
     align-items: center;
     gap: 10px;
+    height: 100%;
+    width: 100%;
+    color: #fff;
 }
 
 #btSair h1 {
@@ -1339,4 +1342,14 @@ dialog {
     color: #878787;
     font-size: 1.2vw;
     text-align: center;
+}
+
+#botao_gira {
+    font-size: 0.9vw;
+}
+
+#botao_gira:hover {
+    color: #2db2b7;
+    cursor: pointer;
+    transition: 0.2s ease;
 }
