@@ -396,7 +396,6 @@ function declararSeguro() {
                 console.log(resposta2)
 				buscar_dados_arquivos_criticos()
 				dialog_arquivos.close()
-				alert("Aprovação de alteração declarada. Aguarde nossa validação")
             })
         })
         .catch(function (resposta) {
@@ -424,7 +423,6 @@ function declararConexaoSegura(porta, ip) {
                 console.log(resposta2)
 				buscar_dados_portas_abertas()
 				dialog_conexao.close()
-				alert("A aprovação da nova porta foi declarada. Aguarde nossa validação")
             })
         })
         .catch(function (resposta) {

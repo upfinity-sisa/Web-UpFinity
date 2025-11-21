@@ -46,7 +46,9 @@ function salvarArquivoSalvo(req, res) {
     var conteudo01 = req.body.conteudo01;
 
     segurancaModel.salvarArquivoSalvo(idAtm, fkEmpresa, conteudo01).then((resultado) => {
-        res.status(201).json(resultado);
+        segurancaModel.atualizarUltimaCapturaArquivo(idAtm, fkEmpresa, conteudo01).then((resultado2) => {
+            res.status(201).json(resultado2);
+        });
     });
 }
 

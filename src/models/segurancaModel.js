@@ -121,6 +121,20 @@ function salvarArquivoSalvo(idAtm, fkEmpresa, conteudo01) {
     return database.executar(instrucaoSql);
 }
 
+function atualizarUltimaCapturaArquivo(idAtm, fkEmpresa, conteudo01) {
+    var instrucaoSql = `
+    
+    update ArquivoCritico set possuiAlerta = 0 
+        where fkSeguranca = (select idSeguranca from Seguranca join Atm on idAtm = fkAtm where categoria = "arquivo" and idAtm = ${idAtm} and fkEmpresa = ${fkEmpresa})
+        and nome = '${conteudo01}' 
+        and idArquivoCritico = (select t.maxId from (select MAX(idArquivoCritico) as maxId from ArquivoCritico where fkSeguranca = (select idSeguranca from Seguranca join Atm on idAtm = fkAtm where categoria = "arquivo" and idAtm = ${idAtm} and fkEmpresa = ${fkEmpresa}) 
+        and nome = '${conteudo01}') as t);
+
+    `
+
+    return database.executar(instrucaoSql);
+}
+
 function selecionarSeguranca(idAtm, fkEmpresa) {
     var instrucaoSql = `
     SELECT CASE WHEN
@@ -163,6 +177,7 @@ module.exports = {
   exibirArquivosCriticos,
   exibirGrafico,
   salvarArquivoSalvo,
+  atualizarUltimaCapturaArquivo,
   selecionarSeguranca,
   salvarConexaoSalva,
   buscarAtms,
