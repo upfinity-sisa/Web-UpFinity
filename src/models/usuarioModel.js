@@ -13,6 +13,13 @@ function autenticar(email, senha) {
   return database.executar(instrucaoSql);
 }
 
+function registrarLogin(idUsuario, email, stats) {
+
+  var instrucaoSql = `INSERT INTO LogAcesso (fkUsuario, email, stats) VALUES (${idUsuario === null ? 'NULL' : idUsuario}, '${email}', ${stats});`;
+  
+  return database.executar(instrucaoSql);
+}
+
 function cadastrarUsuario(nome, email, senha, cnpj, cpf, fkEmpresa) {
 
   console.log(
@@ -74,4 +81,5 @@ module.exports = {
   cadastrarUsuario,
   alterarSenha,
   verificarEmail,
+  registrarLogin,
 };

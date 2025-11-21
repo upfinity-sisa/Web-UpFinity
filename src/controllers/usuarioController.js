@@ -24,8 +24,12 @@ function autenticar(req, res) {
             fkEmpresa: resultadoAutenticar[0].fkEmpresa,
             fkTipoUsuario: resultadoAutenticar[0].fkTipoUsuario,
           });
+
+          usuarioModel.registrarLogin(idUsuario, email, 1);
+
           console.log(resultadoAutenticar[0]);
         } else if (resultadoAutenticar.length == 0) {
+          usuarioModel.registrarLogin(null, email, 0);
           res.status(403).send("Email e/ou senha inválido(s)");
         } else {
           res.status(403).send("Mais de um usuário com o mesmo login e senha!");
