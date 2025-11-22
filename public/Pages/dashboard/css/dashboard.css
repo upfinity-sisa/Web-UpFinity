@@ -1,6 +1,6 @@
 @font-face {
     font-family: poppins leve;
-    src: url("../../../Assets/assets_dashboard/poppins/Poppins-Light.ttf");
+    src: url('../../../Assets/assets_dashboard/poppins/Poppins-Light.ttf');
 }
 
 body {
@@ -73,7 +73,7 @@ div {
 
 .corpo {
     display: flex;
-    background-color: #F7F7F7;
+    background-color: #f7f7f7;
     height: 100vh;
     width: 100vw;
 }
@@ -100,7 +100,7 @@ div {
 #navegacao {
     width: 85%;
     height: 40%;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     color: white;
     font-size: 10px;
     display: flex;
@@ -127,7 +127,7 @@ div {
     width: 85%;
     height: 85%;
     text-align: center;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     color: white;
     font-size: 10px;
     display: flex;
@@ -160,7 +160,6 @@ div {
 #btSair h1:hover {
     color: #ff0000;
 }
-
 
 #btSair img {
     height: 1.25vw;
@@ -198,7 +197,7 @@ div {
 
 #titulo {
     margin: 0;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 2.45vw;
     margin-left: 2%;
     white-space: nowrap;
@@ -230,7 +229,7 @@ div {
     background-color: #2ed1d7;
     border: 2px solid #000000;
     border-radius: 15px;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     color: #fff;
     font-size: 1.2vw;
     font-weight: bold;
@@ -285,7 +284,7 @@ div {
     border: 3px solid #00c5cc;
     border-radius: 10px;
     background-color: white;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     color: #232023;
 }
 
@@ -317,7 +316,7 @@ div {
 
 #linha_cima h1 {
     margin: 0;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     text-align: center;
     font-size: 1.3vw;
     color: #3c4041;
@@ -363,7 +362,6 @@ div {
     text-anchor: middle !important;
 }
 
-
 #torta_cima {
     width: 100%;
     height: 25%;
@@ -375,13 +373,12 @@ div {
 
 #torta_cima h1 {
     margin: 0;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     text-align: center;
     font-size: 1.2vw;
     color: #3c4041;
     max-width: 75%;
 }
-
 
 .kpi-cima {
     width: 100%;
@@ -400,7 +397,6 @@ div {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-
 }
 
 .kpi-cima img {
@@ -408,14 +404,15 @@ div {
 }
 
 .kpi-cima h1 {
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1.2vw;
     color: #3c4041;
 }
 
-.kpi-baixo h1, h2 {
+.kpi-baixo h1,
+h2 {
     margin: 0;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .kpi-baixo h1 {
@@ -470,7 +467,7 @@ div {
     white-space: nowrap;
     margin: 0;
     text-align: center;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     color: #3c4041;
 }
 
@@ -489,7 +486,6 @@ div {
     gap: 1vw;
 }
 
-
 .box_alerta {
     width: 90%;
     flex: none;
@@ -504,9 +500,12 @@ div {
     padding: 0.2vw;
 }
 
-.box_alerta h1, h2, h3, h4 {
+.box_alerta h1,
+h2,
+h3,
+h4 {
     margin: 0;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .gravidade-alerta {
@@ -569,7 +568,7 @@ div {
 
 #vg_titulo {
     margin: 0;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 2.45vw;
     color: #268184;
     margin-left: 5%;
@@ -607,7 +606,7 @@ div {
 
 * {
     scrollbar-width: auto;
-    scrollbar-color: #01c6cc #F7F7F7;
+    scrollbar-color: #01c6cc #f7f7f7;
 }
 
 #legenda {
@@ -624,7 +623,7 @@ div {
 }
 
 #legenda h1 {
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1.2vw;
     color: #353535;
     margin: 0;
@@ -635,7 +634,7 @@ div {
 }
 
 .visao_maquina h1 {
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1.2vw;
     color: #353535;
 }
@@ -648,7 +647,8 @@ div {
     height: 1.2vw;
 }
 
-.img_wifi, .img_sem_wifi {
+.img_wifi,
+.img_sem_wifi {
     margin-right: 10px;
 }
 
@@ -708,7 +708,7 @@ div {
 .caixa_gestao_cima h1,
 .caixa_gestao_esquerda_cima h1 {
     margin: 0;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1.5vw;
     color: #5c5f60;
 }
@@ -750,7 +750,7 @@ div {
 
 #caixa_cadastro_baixo_atm button {
     text-align: center;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1.5vw;
     width: 80%;
     height: 10%;
@@ -760,7 +760,6 @@ div {
     color: #fff;
     transition: 0.3s ease;
 }
-
 
 #caixa_cadastro_baixo_atm button:hover {
     cursor: pointer;
@@ -784,7 +783,7 @@ div {
 #inputs h1,
 #inputs_atm h1 {
     margin: 0;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     color: #797a7b;
     font-size: 1vw;
     float: left;
@@ -793,7 +792,7 @@ div {
 
 .inputs {
     text-align: center;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1vw;
     height: 50px;
     width: 80%;
@@ -805,7 +804,7 @@ div {
 
 .botao {
     text-align: center;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1vw;
     width: 80%;
     height: 10%;
@@ -835,7 +834,6 @@ div {
     cursor: pointer;
 }
 
-
 #inputs,
 #inputs_atm {
     display: flex;
@@ -848,7 +846,7 @@ div {
 }
 
 #inputs input {
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 0.8vw;
     width: 80%;
     height: 10%;
@@ -860,7 +858,7 @@ div {
 
 #inputs select {
     text-align: center;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1vw;
     width: 80%;
     height: 12%;
@@ -899,7 +897,7 @@ div {
 
 #simbolo_buscar h1 {
     margin: 0;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     color: #797a7b;
     font-size: 1vw;
 }
@@ -910,7 +908,7 @@ div {
 }
 
 #caixa_pesquisa input {
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1vw;
     padding-left: 0.2vw;
     width: 60%;
@@ -920,7 +918,8 @@ div {
     color: #5c5f60;
 }
 
-#simbolo_buscar, #simbolo_buscar h1:hover {
+#simbolo_buscar,
+#simbolo_buscar h1:hover {
     cursor: pointer;
     color: #5c5f60;
 }
@@ -951,7 +950,7 @@ div {
 
 .titulos h1 {
     margin: 0;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1vw;
     color: #797a7b;
 }
@@ -964,7 +963,7 @@ div {
 
 .infos h1 {
     margin: 0;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1vw;
     color: #445257;
 }
@@ -998,7 +997,7 @@ div {
     width: 42%;
     background-color: white;
     font-size: 1.2vw;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     cursor: pointer;
 }
 
@@ -1088,14 +1087,14 @@ div {
 }
 
 .combo_status h1 {
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1.2vw;
     color: #5c5f60;
 }
 
 .combo_status select {
     text-align: center;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1vw;
     height: 2.5vw;
     border-radius: 10 px;
@@ -1180,7 +1179,7 @@ dialog {
 
 #titulo_modal {
     margin: 0;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     text-align: center;
     font-size: 1.3vw;
     color: #3c4041;
@@ -1193,7 +1192,7 @@ dialog {
     border: 2px solid #32b5c7;
     border-collapse: collapse;
     text-align: center;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 17px;
 }
 
@@ -1227,7 +1226,7 @@ dialog {
     color: white;
     background-color: #00c5cc;
     border-radius: 8px;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 20px;
 }
 
@@ -1252,7 +1251,10 @@ dialog {
     color: #268184;
 }
 
-#ip_atm, #botao_cadastrar_atm_dialog, #botao_cancelar_dialog, #ip_atm_atualizar {
+#ip_atm,
+#botao_cadastrar_atm_dialog,
+#botao_cancelar_dialog,
+#ip_atm_atualizar {
     width: 80%;
     height: 5vh;
     border: 2px solid #00c4cc;
@@ -1322,7 +1324,6 @@ dialog {
     align-items: center;
     justify-content: center;
 }
-
 
 #containerSemAtms_desktop {
     width: 50%;

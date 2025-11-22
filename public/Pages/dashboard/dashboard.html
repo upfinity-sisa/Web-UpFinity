@@ -64,7 +64,8 @@
             </div>
             <div id="esquerda-baixo">
                 <div id="navegacaoSair">
-                    <h1 onclick="window.open('https://sptech-team-qo8lyo3z.atlassian.net/servicedesk/customer/portal/2')" id="botao_gira">ABRIR CHAMADO</h1>
+                    <h1 onclick="window.open('https://sptech-team-qo8lyo3z.atlassian.net/servicedesk/customer/portal/2')"
+                        id="botao_gira">ABRIR CHAMADO</h1>
                     <div class="linha"></div>
                     <div id="btSair">
                         <h1>SAIR</h1>
@@ -90,7 +91,7 @@
                             <div class="kpi-cima">
                                 <img src="../../Assets/assets_dashboard/simboloCPU.png" alt="imagem CPU">
                                 <h1>CPU</h1>
-                                 <img onclick="exibirDialog1()" id="icone_informativo"
+                                <img onclick="exibirDialog1()" id="icone_informativo"
                                     src="../../Assets/assets_dashboard/iconeInformativo.png">
                             </div>
                             <div class="kpi-baixo">
@@ -102,7 +103,7 @@
                             <div class="kpi-cima">
                                 <img src="../../Assets/assets_dashboard/simboloRAM.png" alt="imagem CPU">
                                 <h1>RAM</h1><br>
-                                 <img onclick="exibirDialog2()" id="icone_informativo"
+                                <img onclick="exibirDialog2()" id="icone_informativo"
                                     src="../../Assets/assets_dashboard/iconeInformativo.png">
                             </div>
                             <div class="kpi-baixo">
@@ -114,7 +115,7 @@
                             <div class="kpi-cima">
                                 <img src="../../Assets/assets_dashboard/simboloDISCO.png" alt="imagem CPU">
                                 <h1>DISCO</h1>
-                                 <img onclick="exibirDialog3()" id="icone_informativo"
+                                <img onclick="exibirDialog3()" id="icone_informativo"
                                     src="../../Assets/assets_dashboard/iconeInformativo.png">
                             </div>
                             <div class="kpi-baixo">
@@ -143,7 +144,7 @@
                                     <option value="disco">Disco</option>
                                 </select>
                             </div>
-                            
+
                             <div id="caixagraflinha">
                             </div>
                         </div>
@@ -198,57 +199,58 @@
     </dialog>
 </body>
 <dialog id="dialogInfo2">
-        <div>
-            <h1 id="titulo_moda">Parâmetros de Alertas</h1>
-            <div class="linha"></div>
+    <div>
+        <h1 id="titulo_moda">Parâmetros de Alertas</h1>
+        <div class="linha"></div>
+    </div>
+    <div class="baixo_dialog">
+        <table id="tabela-parametros1">
+            <tr>
+                <th class="titulo-tabela">Alerta</th>
+                <th class="titulo-tabela" style="color: #268184;">RAM</th>
+            </tr>
+            <tr>
+                <td class="linha-tabela" style="color: #e63946;"><b>Crítico</b></td>
+                <td class="linha-tabela" id="paramCriticoRAM">>=</td>
+            </tr>
+            <tr>
+                <td class="linha-tabela" style="color: #f4a261;"><b>Moderado</b></td>
+                <td class="linha-tabela" id="paramModeradoRAM">>=</td>
+            </tr>
+        </table>
+        <div class="botoes_dialog">
+            <button onclick="fechar2()">Fechar Tabela</button>
+            <button onclick="window.location='../gestaoATM/gestaoATM.html'">Definir Alertas</button>
         </div>
-        <div class="baixo_dialog">
-            <table id="tabela-parametros1">
-                <tr>
-                    <th class="titulo-tabela">Alerta</th>
-                    <th class="titulo-tabela" style="color: #268184;">RAM</th>
-                </tr>
-                <tr>
-                    <td class="linha-tabela" style="color: #e63946;"><b>Crítico</b></td>
-                    <td class="linha-tabela" id="paramCriticoRAM">>=</td>
-                </tr>
-                <tr>
-                    <td class="linha-tabela" style="color: #f4a261;"><b>Moderado</b></td>
-                    <td class="linha-tabela" id="paramModeradoRAM">>=</td>
-                </tr>
-            </table>
-            <div class="botoes_dialog">
-                <button onclick="fechar2()">Fechar Tabela</button>
-                <button onclick="window.location='../gestaoATM/gestaoATM.html'">Definir Alertas</button>
-            </div>
+    </div>
+</dialog>
+<dialog id="dialogInfo3">
+    <div>
+        <h1 id="titulo_moda">Parâmetros de Alertas</h1>
+        <div class="linha"></div>
+    </div>
+    <div class="baixo_dialog">
+        <table id="tabela-parametros1">
+            <tr>
+                <th class="titulo-tabela">Alerta</th>
+                <th class="titulo-tabela" style="color: #268184;">DISCO</th>
+            </tr>
+            <tr>
+                <td class="linha-tabela" style="color: #e63946;"><b>Crítico</b></td>
+                <td class="linha-tabela" id="paramCriticoDisco">>=</td>
+            </tr>
+            <tr>
+                <td class="linha-tabela" style="color: #f4a261;"><b>Moderado</b></td>
+                <td class="linha-tabela" id="paramModeradoDisco">>=</td>
+            </tr>
+        </table>
+        <div class="botoes_dialog">
+            <button onclick="fechar3()">Fechar Tabela</button>
+            <button onclick="window.location='../gestaoATM/gestaoATM.html'">Definir Alertas</button>
         </div>
-    </dialog>
-    <dialog id="dialogInfo3">
-        <div>
-            <h1 id="titulo_moda">Parâmetros de Alertas</h1>
-            <div class="linha"></div>
-        </div>
-        <div class="baixo_dialog">
-            <table id="tabela-parametros1">
-                <tr>
-                    <th class="titulo-tabela">Alerta</th>
-                    <th class="titulo-tabela" style="color: #268184;">DISCO</th>
-                </tr>
-                <tr>
-                    <td class="linha-tabela" style="color: #e63946;"><b>Crítico</b></td>
-                    <td class="linha-tabela" id="paramCriticoDisco">>=</td>
-                </tr>
-                <tr>
-                    <td class="linha-tabela" style="color: #f4a261;"><b>Moderado</b></td>
-                    <td class="linha-tabela" id="paramModeradoDisco">>=</td>
-                </tr>
-            </table>
-            <div class="botoes_dialog">
-                <button onclick="fechar3()">Fechar Tabela</button>
-                <button onclick="window.location='../gestaoATM/gestaoATM.html'">Definir Alertas</button>
-            </div>
-        </div>
-    </dialog>
+    </div>
+</dialog>
+
 </html>
 
 <script>
@@ -256,11 +258,11 @@
         dialogInfo1.showModal()
         dialogInfo1.style.display = "flex";
     }
-      function exibirDialog2() {
+    function exibirDialog2() {
         dialogInfo2.showModal()
         dialogInfo2.style.display = "flex";
     }
-      function exibirDialog3() {
+    function exibirDialog3() {
         dialogInfo3.showModal()
         dialogInfo3.style.display = "flex";
     }

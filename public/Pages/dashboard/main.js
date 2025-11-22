@@ -9,12 +9,9 @@ let dadosDisco = [];
 let dadosRede = [];
 
 function carregarParametros() {
-    fetch(
-        `/dashboard/pegar-parametros/${sessionStorage.getItem('FK_EMPRESA')}`,
-        {
-            cache: 'no-store',
-        }
-    )
+    fetch(`/dashboard/pegar-parametros/${sessionStorage.getItem('FK_EMPRESA')}`, {
+        cache: 'no-store',
+    })
         .then(response => {
             if (response.ok) {
                 response.json().then(resposta => {
@@ -65,22 +62,16 @@ function carregarParametros() {
                             }
                         }
 
-                        const paramCriticoCpuDiv =
-                            document.getElementById('paramCriticoCPU');
+                        const paramCriticoCpuDiv = document.getElementById('paramCriticoCPU');
 
-                        const paramModeradoCpuDiv =
-                            document.getElementById('paramModeradoCPU');
+                        const paramModeradoCpuDiv = document.getElementById('paramModeradoCPU');
 
-                        const paramCriticoRamDiv =
-                            document.getElementById('paramCriticoRAM');
+                        const paramCriticoRamDiv = document.getElementById('paramCriticoRAM');
 
-                        const paramModeradoRamDiv =
-                            document.getElementById('paramModeradoRAM');
+                        const paramModeradoRamDiv = document.getElementById('paramModeradoRAM');
 
-                        const paramCriticoDiscoDiv =
-                            document.getElementById('paramCriticoDisco');
-                        const paramModeradoDiscoDiv =
-                            document.getElementById('paramModeradoDisco');
+                        const paramCriticoDiscoDiv = document.getElementById('paramCriticoDisco');
+                        const paramModeradoDiscoDiv = document.getElementById('paramModeradoDisco');
 
                         paramCriticoCpuDiv.innerHTML += parseFloat(
                             sessionStorage.getItem('PARAM_CRITICO_CPU')
@@ -103,21 +94,15 @@ function carregarParametros() {
                             sessionStorage.getItem('PARAM_IMPORTANTE_DISCO')
                         ).toFixed(2);
                     } else {
-                        console.error(
-                            'carregarParametros: nenhum parâmetro encontrado.'
-                        );
+                        console.error('carregarParametros: nenhum parâmetro encontrado.');
                     }
                 });
             } else {
-                console.error(
-                    'carregarParametros: nenhum dado encontrado ou erro na API'
-                );
+                console.error('carregarParametros: nenhum dado encontrado ou erro na API');
             }
         })
         .catch(erro => {
-            console.error(
-                `carregarParametros: erro na obtenção dos dados: ${erro.message}`
-            );
+            console.error(`carregarParametros: erro na obtenção dos dados: ${erro.message}`);
         });
 }
 
@@ -141,16 +126,12 @@ function carregarDadosRede(idAtm) {
                     }
                 });
             } else {
-                console.error(
-                    'dadosRede: nenhum dado encontrado ou erro na API'
-                );
+                console.error('dadosRede: nenhum dado encontrado ou erro na API');
                 document.getElementById('dado-kpi-rede').innerHTML = 'Erro';
             }
         })
         .catch(erro => {
-            console.error(
-                `dadosRede: erro na obtenção dos dados: ${erro.message}`
-            );
+            console.error(`dadosRede: erro na obtenção dos dados: ${erro.message}`);
         });
 }
 
@@ -161,25 +142,15 @@ function carregarAlertas(idAtm) {
         .then(response => {
             if (response.ok) {
                 response.json().then(resposta => {
-                    const boxAlertas =
-                        document.getElementById('caixalerta-baixo');
+                    const boxAlertas = document.getElementById('caixalerta-baixo');
                     boxAlertas.innerHTML = '';
 
                     if (resposta.length > 0) {
                         const formatarData = data => {
                             const date = new Date(data);
-                            const hora = date
-                                .getHours()
-                                .toString()
-                                .padStart(2, '0');
-                            const minuto = date
-                                .getMinutes()
-                                .toString()
-                                .padStart(2, '0');
-                            const segundo = date
-                                .getSeconds()
-                                .toString()
-                                .padStart(2, '0');
+                            const hora = date.getHours().toString().padStart(2, '0');
+                            const minuto = date.getMinutes().toString().padStart(2, '0');
+                            const segundo = date.getSeconds().toString().padStart(2, '0');
                             const dia = date.getDate().toString();
                             const mes = (date.getMonth() + 1).toString();
                             const ano = date.getFullYear().toString();
@@ -294,15 +265,11 @@ function carregarAlertas(idAtm) {
                     }
                 });
             } else {
-                console.error(
-                    'carregarAlertas: nenhum dado encontrado ou erro na API'
-                );
+                console.error('carregarAlertas: nenhum dado encontrado ou erro na API');
             }
         })
         .catch(erro => {
-            console.error(
-                `carregarAlertas: erro na obtenção dos dados: ${erro.message}`
-            );
+            console.error(`carregarAlertas: erro na obtenção dos dados: ${erro.message}`);
         });
 }
 
@@ -321,21 +288,15 @@ function carregarAtms() {
                         `;
                         }
                     } else {
-                        console.error(
-                            'carregarAtms: nenhum parâmetro encontrado.'
-                        );
+                        console.error('carregarAtms: nenhum parâmetro encontrado.');
                     }
                 });
             } else {
-                console.error(
-                    'carregarAtms: nenhum dado encontrado ou erro na API'
-                );
+                console.error('carregarAtms: nenhum dado encontrado ou erro na API');
             }
         })
         .catch(erro => {
-            console.error(
-                `carregarAtms: erro na obtenção dos dados: ${erro.message}`
-            );
+            console.error(`carregarAtms: erro na obtenção dos dados: ${erro.message}`);
         });
 }
 
