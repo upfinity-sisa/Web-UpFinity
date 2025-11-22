@@ -103,7 +103,7 @@ body {
 
 #navegacaoSair {
     width: 85%;
-    height: 65%;
+    height: 100%;
     text-align: center;
     font-family: 'Montserrat', sans-serif;
     color: white;
@@ -112,10 +112,6 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    flex-direction: column;
 }
 
 #btSair {
@@ -123,6 +119,7 @@ body {
     justify-content: center;
     align-items: center;
     gap: 10px;
+    margin-top: 2%;
 }
 
 #btSair h1 {
@@ -284,6 +281,7 @@ body {
     align-items: center;
     gap: 20px;
     justify-content: center;
+    align-items: center;
 }
 
 .caixa-grafico {
@@ -296,9 +294,6 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-#caixa-grafico-cpu {
-    margin-left: 2%;
-}
 
 .caixa-alertas {
     background-color: #fff;
@@ -395,4 +390,23 @@ body {
 #kpi4 .title-kpi {
     text-align: center;
     font-size: 1.9rem;
+}
+
+#botao_gira {
+    font-size: 0.9vw;
+    margin-bottom: 2%;
+}
+
+#botao_gira:hover {
+    color: #2db2b7;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+#esquerda-centro {
+    all:unset;
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
 }
