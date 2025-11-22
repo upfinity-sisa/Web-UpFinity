@@ -165,6 +165,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
     gap: 1vw;
 }
 
@@ -268,7 +269,11 @@
 }
 
 .color_moderado {
-    color: #f7f302;
+    color: #e8922f;
+}
+
+.color_pendente {
+    color: #c453f9;
 }
 
 
@@ -375,6 +380,12 @@
 
 #spn_titulo_lista {
     font-size: 1.2vw;
+}
+
+.span_title_metricas, .span_metricas {
+    display: flex;
+    align-content: center;
+    justify-content: center;
 }
 
 .span_title_metricas {
@@ -520,7 +531,7 @@
     border-radius: 12px;
 }
 
-.status_critico, .status_moderado, .status_emAberto, .status_resolvido {
+.status_critico, .status_moderado, .status_pendente, .status_resolvido {
     width: 7vw;
     height: 70%;
     display: flex;
@@ -528,17 +539,20 @@
     justify-content: center;
     border: 2.2px solid #000000;
     border-radius: 10px;
-    background: #ff3131;
     font-weight: 600;
     font-size: 1vw;
 }
 
-.status_emAberto {
+.status_critico {
+    background: #ff3131;
+}
+
+.status_pendente {
     background-color: #c453f9;
 }
 
 .status_moderado {
-    background-color: #f7f302;
+    background-color: #e8922f;
 }
 
 .status_resolvido {
@@ -598,4 +612,10 @@
 .btn_emAberto:hover {
     background: #c453f9;
     color: #fff;
+}
+
+.linha {
+    height: 0.5px;
+    width: 100%;
+    background: #929292;
 }

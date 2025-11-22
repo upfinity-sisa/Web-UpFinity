@@ -32,13 +32,13 @@ function exibirATMs(empresa) {
 
     select numeracao, IP,
 		case when statusEstado = 3 then 'Sem informações'
-        when statusMonitoramento = 3 then 'Normal'
+        when statusMonitoramento = 0 then 'Normal'
         when statusMonitoramento = 2 then 'Moderado'
         when statusMonitoramento = 1 then 'Crítico'
         end as statusMonitoramento,
-        case when statusEstado = 1 then 'Ligado'
-        when statusEstado = 2 then 'Desigado'
-        when statusEstado = 3 then 'Em manutenção'
+        case when statusEstado = 0 then 'Desligado'
+        when statusEstado = 1 then 'Ligado'
+        when statusEstado = 2 then 'Em manutenção'
         end as statusEstado from Atm where fkEmpresa = ${empresa};
     
     `
@@ -78,12 +78,12 @@ function atualizarATM(empresa, numeracao, estado, IP) {
 }
 
 module.exports = {
-  cadastrarATM,
-  validarCadastroATM,
-  atualizarParametro,
-  exibirATMs,
-  removerComponentes,
-  removerATM,
-  atualizarEstado,
-  atualizarATM,
+    cadastrarATM,
+    validarCadastroATM,
+    atualizarParametro,
+    exibirATMs,
+    removerComponentes,
+    removerATM,
+    atualizarEstado,
+    atualizarATM,
 };
