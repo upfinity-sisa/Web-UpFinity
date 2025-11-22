@@ -270,7 +270,11 @@ body {
 }
 
 #kpi1 {
-    margin-left: 5%;
+    margin-left: 10%;
+}
+
+#kpi4 {
+    margin-left: 3%;
 }
 
 .kpi-title-row {
@@ -290,13 +294,16 @@ body {
 
 .caixa-grafico {
     background-color: var(--azul-claro);
-    width: 50vw;
+    width: 30vw;
     height: 60vh;
-    margin-left: 5%;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#caixa-grafico-cpu {
+    margin-left: 2%;
 }
 
 .caixa-alertas {

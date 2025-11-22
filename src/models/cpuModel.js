@@ -16,7 +16,7 @@ function getDados(idAtm) {
 )
 
 SELECT * FROM CapturasCpu
-WHERE linha <= 10;
+WHERE linha <= 5;
     `;
     console.log('Executando a instrução SQL: ' + instrucaoSql);
     return database.executar(instrucaoSql);

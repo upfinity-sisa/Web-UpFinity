@@ -1,13 +1,16 @@
+let dados_uso = [];
+let horarios_uso = [];
+let dados_temperatura = [];
+let dados_frequencia = [];
+let graficoLinha = null;
+let graficoTemperatura = null;
+let comboATMSCPU = document.getElementById('comboATMs');
+
 function vwParaPx(vwValue) {
     const larguraViewport = window.innerWidth;
     const valorEmPx = (larguraViewport / 100) * vwValue;
     return Math.round(valorEmPx);
 }
-
-let dados_uso = [];
-let horarios_uso = [];
-let dados_temperatura = [];
-let dados_frequencia = [];
 
 function carregarDadosCPU(idAtm) {
     dados_uso = [];
@@ -98,6 +101,7 @@ function carregarDadosCPU(idAtm) {
                         }
 
                         plotarGraficoLinha();
+                        plotarGraficoTemperatura();
                     }
                 });
             } else {
@@ -109,7 +113,6 @@ function carregarDadosCPU(idAtm) {
         });
 }
 
-let comboATMSCPU = document.getElementById('comboATMs');
 function carregarAtms() {
     fetch(`/dashboard/carregar-atms/${sessionStorage.getItem('FK_EMPRESA')}`, {
         cache: 'no-store',
@@ -165,7 +168,6 @@ function atualizarParametrosKpis() {
     ).toFixed(2);
 }
 
-let graficoLinha = null;
 function plotarGraficoLinha() {
     if (graficoLinha == null) {
         var options = {
@@ -268,6 +270,117 @@ function plotarGraficoLinha() {
                 {
                     name: 'Uso',
                     data: dados_uso,
+                },
+            ],
+            xaxis: {
+                categories: horarios_uso,
+            },
+        });
+    }
+}
+
+function plotarGraficoTemperatura() {
+    if (graficoTemperatura == null) {
+        var options = {
+            series: [
+                {
+                    name: 'Temperatura',
+                    data: dados_temperatura,
+                },
+            ],
+            chart: {
+                height: 400,
+                type: 'line',
+                zoom: {
+                    enabled: false,
+                },
+            },
+            dataLabels: {
+                enabled: false,
+            },
+            stroke: {
+                curve: 'straight',
+                width: `${vwParaPx(0.2)}`,
+            },
+            title: {
+                align: 'left',
+            },
+            xaxis: {
+                categories: horarios_uso,
+            },
+            legend: {
+                position: 'top',
+                fontSize: `${vwParaPx(1)}px`,
+                fontFamily: 'poppins leve',
+                markers: {
+                    size: `${vwParaPx(0.4)}`,
+                },
+            },
+            toolbar: {
+                show: true,
+                tools: {
+                    download: true,
+                    selection: false,
+                    zoom: false,
+                    zoomin: false,
+                    zoomout: false,
+                    pan: false,
+                    reset: false,
+                },
+                offsetX: 0,
+                offsetY: 0,
+            },
+            colors: ['#268184'],
+            yaxis: {
+                min: 0,
+                max: 100,
+                labels: {
+                    style: {
+                        fontSize: `${vwParaPx(0.8)}px`,
+                        fontFamily: 'poppins leve',
+                    },
+                },
+            },
+            annotations: {
+                yaxis: [
+                    {
+                        y: parseFloat(sessionStorage.getItem('PARAM_CRITICO_TEMPERATURA_CPU')),
+                        borderColor: '#FF4560',
+                        strokeDashArray: 0,
+                        label: {
+                            borderColor: '#FF4560',
+                            style: {
+                                color: '#fff',
+                                background: '#FF4560',
+                            },
+                            text: 'Crítico',
+                        },
+                    },
+                    {
+                        y: parseFloat(sessionStorage.getItem('PARAM_IMPORTANTE_TEMPERATURA_CPU')),
+                        borderColor: '#f4a261',
+                        strokeDashArray: 0,
+                        label: {
+                            borderColor: '#f4a261',
+                            style: {
+                                color: '#fff',
+                                background: '#f4a261',
+                            },
+                            text: 'Importante',
+                        },
+                    },
+                ],
+            },
+        };
+
+        graficoTemperatura = new ApexCharts(document.querySelector('#grafico-linha-temperatura'), options);
+        graficoTemperatura.render();
+    } else {
+        graficoTemperatura.updateOptions({
+            series: [
+                {
+                    name: 'Temperatura',
+                    data: dados_temperatura,
                 },
             ],
             xaxis: {
