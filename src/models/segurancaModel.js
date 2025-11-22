@@ -13,7 +13,7 @@ function exibirPortasAbertas(idAtm, fkEmpresa) {
     var instrucaoSql = `
     select * from ConexaoAberta where 
 	    (select idSeguranca from Seguranca join Atm on idAtm = fkAtm where categoria = "conexao" and idAtm = ${idAtm} and fkEmpresa = ${fkEmpresa})
-		    and horario = (select max(horario) from ConexaoAberta) order by fkAlertaSeguranca desc;
+		    and horario = (select max(horario) from ConexaoAberta) order by possuiAlerta desc;
     `
 
     return database.executar(instrucaoSql);
@@ -161,6 +161,22 @@ function salvarConexaoSalva(idAtm, fkEmpresa, conteudo01, conteudo02) {
     return database.executar(instrucaoSql);
 }
 
+function atualizarUltimaCapturaConexao(idAtm, fkEmpresa, conteudo01) {
+
+    var instrucaoSql = `
+    
+    update ConexaoAberta set possuiAlerta = 0 
+        where fkSeguranca = (select idSeguranca from Seguranca join Atm on idAtm = fkAtm where categoria = "conexao" and idAtm = ${idAtm} and fkEmpresa = ${fkEmpresa})
+        and portaLocal = '${conteudo01}' 
+        and idConexaoAberta = (select t.maxId from (select MAX(idConexaoAberta) as maxId from ConexaoAberta where fkSeguranca = (select idSeguranca from Seguranca join Atm on idAtm = fkAtm where categoria = "conexao" and idAtm = ${idAtm} and fkEmpresa = ${fkEmpresa}) 
+        and portaLocal = '${conteudo01}') as t);
+
+    `
+
+    return database.executar(instrucaoSql);
+
+}
+
 function buscarAtms(fkEmpresa) {
     var instrucaoSql = `
     select idAtm, numeracao from Atm where fkEmpresa = ${fkEmpresa};
@@ -180,5 +196,6 @@ module.exports = {
   atualizarUltimaCapturaArquivo,
   selecionarSeguranca,
   salvarConexaoSalva,
+  atualizarUltimaCapturaConexao,
   buscarAtms,
 };

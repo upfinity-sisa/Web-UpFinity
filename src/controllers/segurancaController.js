@@ -67,7 +67,9 @@ function salvarConexaoSalva(req, res) {
     var conteudo02 = req.body.conteudo02;
 
     segurancaModel.salvarConexaoSalva(idAtm, fkEmpresa, conteudo01, conteudo02).then((resultado) => {
-        res.status(201).json(resultado);
+        segurancaModel.atualizarUltimaCapturaConexao(idAtm, fkEmpresa, conteudo01).then((resultado2) => {
+            res.status(201).json(resultado2);
+        });
     });
 }
 

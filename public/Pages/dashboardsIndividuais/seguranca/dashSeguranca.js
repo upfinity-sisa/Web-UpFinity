@@ -32,7 +32,6 @@ var options = {
 	},
 	yaxis: {
 		min: 0,
-		max: 15,
 		labels: {
 			style: {
 				fontSize: `${vwParaPx(0.8)}px`,
@@ -201,7 +200,7 @@ function exibirKPIconexoesSUS(resposta2) {
 	for (let i = 0; i < resposta3.length; i++) {
 
 
-		if (resposta3[i].fkAlertaSeguranca != null) {
+		if (resposta3[i].possuiAlerta == 1) {
 			conSus++;
 
 			tabela_conexoes.innerHTML += `
