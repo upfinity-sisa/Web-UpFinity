@@ -266,10 +266,12 @@ html, body {
     height: auto;
     width: 100%;
     display: grid;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
+    transform: translateX(-210px);
     grid-template-columns: repeat(3, 1fr);
     gap: 35px;
+    margin-top: 50px;
 }
 
 .kpi {
@@ -320,5 +322,5 @@ html, body {
     width: 65%;
     height: auto;
     margin-left: -220px;
-    margin-top: 50px;
+    margin-top: 170px;
 }

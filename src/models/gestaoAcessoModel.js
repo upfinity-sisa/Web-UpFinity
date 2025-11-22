@@ -1,27 +1,27 @@
 var database = require("../database/config");
 
-function buscarAlertasHoje() {
-  var instrucaoSql = `
-  SELECT COUNT(*) AS totalAlertasHoje FROM Alerta a 
-  JOIN Captura c ON c.idCaptura = a.fkCaptura
-  WHERE DATE(c.horario) = CURDATE();`;
+// function buscarAlertasHoje() {
+//   var instrucaoSql = `
+//   SELECT COUNT(*) AS totalAlertasHoje FROM Alerta a 
+//   JOIN Captura c ON c.idCaptura = a.fkCaptura
+//   WHERE DATE(c.horario) = CURDATE();`;
 
-  return database.executar(instrucaoSql);
-}
+//   return database.executar(instrucaoSql);
+// }
 
-function buscarATMSoff() {
-  var instrucaoSql = `
-  SELECT COUNT(*) AS atmsOff FROM Atm WHERE statusEstado = 0;`;
+// function buscarATMSoff() {
+//   var instrucaoSql = `
+//   SELECT COUNT(*) AS atmsOff FROM Atm WHERE statusEstado = 0;`;
 
-  return database.executar(instrucaoSql);
-}
+//   return database.executar(instrucaoSql);
+// }
 
-function buscarATMScriticos() {
-  var instrucaoSql = `
-  SELECT COUNT(*) AS atmsCriticos FROM Atm WHERE statusEstado = 2;`;
+// function buscarATMScriticos() {
+//   var instrucaoSql = `
+//   SELECT COUNT(*) AS atmsCriticos FROM Atm WHERE statusEstado = 2;`;
 
-  return database.executar(instrucaoSql);
-}
+//   return database.executar(instrucaoSql);
+// }
 
 function carregarLoginSucesso() {
   var instrucaoSql = `SELECT COUNT(*) AS LoginsSucesso FROM LogAcesso WHERE stats = 1;`;
@@ -46,11 +46,19 @@ function loginsPorHora() {
     return database.executar(instrucaoSql);
 }
 
+function empresaSemPlano() {
+  
+  var instrucaoSql = `SELECT COUNT(*) AS empresaSemPlano FROM Empresa WHERE fkPlano IS NULL OR statusPagamento = 0;`;
+
+  return database.executar(instrucaoSql);
+}
+
 module.exports = {
-  buscarAlertasHoje,
-  buscarATMSoff,
-  buscarATMScriticos,
+  // buscarAlertasHoje,
+  // buscarATMSoff,
+  // buscarATMScriticos,
   carregarLoginSucesso,
   carregarLoginFalho,
   loginsPorHora,
+  empresaSemPlano,
 };

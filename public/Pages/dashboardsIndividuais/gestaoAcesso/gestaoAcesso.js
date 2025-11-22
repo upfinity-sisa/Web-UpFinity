@@ -1,29 +1,38 @@
-function carregarAlertasHoje() {
-  fetch("http://localhost:3333/gestaoAcesso/alertas-hoje").then(function (resposta) {
-    return resposta.json();
-  }).then(function (json) {
-    document.getElementById("kpi-alertas").innerHTML = json.totalAlertasHoje;
-  });
-}
-carregarAlertasHoje();
+// function carregarAlertasHoje() {
+//   fetch("http://localhost:3333/gestaoAcesso/alertas-hoje").then(function (resposta) {
+//     return resposta.json();
+//   }).then(function (json) {
+//     document.getElementById("kpi-alertas").innerHTML = json.totalAlertasHoje;
+//   });
+// }
+// carregarAlertasHoje();
 
-function carregarATMsOff() {
-  fetch("http://localhost:3333/gestaoAcesso/atmsoff").then(function (resposta) {
-    return resposta.json();
-  }).then(function (json) {
-    document.getElementById("kpi-offline").innerHTML = json.atmsOff;
-  });
-}
-carregarATMsOff();
+// function carregarATMsOff() {
+//   fetch("http://localhost:3333/gestaoAcesso/atmsoff").then(function (resposta) {
+//     return resposta.json();
+//   }).then(function (json) {
+//     document.getElementById("kpi-offline").innerHTML = json.atmsOff;
+//   });
+// }
+// carregarATMsOff();
 
-function carregarATMsCriticos() {
-  fetch("http://localhost:3333/gestaoAcesso/atmscriticos").then(function (resposta) {
+// function carregarATMsCriticos() {
+//   fetch("http://localhost:3333/gestaoAcesso/atmscriticos").then(function (resposta) {
+//     return resposta.json();
+//   }).then(function (json) {
+//     document.getElementById("kpi-criticos").innerHTML = json.atmsCriticos;
+//   });
+// }
+// carregarATMsCriticos();
+
+function empresaSemPlano() {
+  fetch("http://localhost:3333/gestaoAcesso/empresasemplano").then(function (resposta) {
     return resposta.json();
   }).then(function (json) {
-    document.getElementById("kpi-criticos").innerHTML = json.atmsCriticos;
+    document.getElementById("kpi-plano").innerHTML = json.empresaSemPlano;
   });
 }
-carregarATMsCriticos();
+empresaSemPlano();
 
 function carregarLoginSucesso() {
   fetch("http://localhost:3333/gestaoAcesso/loginsucesso").then(function (resposta) {
