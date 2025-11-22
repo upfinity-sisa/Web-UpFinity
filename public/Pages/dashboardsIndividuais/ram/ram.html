@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UpFinity RAM</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="ram.css">
+
+    <script>
+        function validarRedirecionamento(url) {
+            window.location = url;
+        }
+    </script>
+</head>
+
+<body>
+
+    <div id="esquerda">
+        <div id="esquerda-cima">
+            <img src="../../../Assets/assets_dashboard/logoUPFINITY.png" id="logo-upfinity" alt="logo-upfinity">
+        </div>
+        <div id="esquerda-centro">
+            <div id="navegacao">
+                <h1 onclick="window.location = '../../visaoGeral/visaoGeral.html'">VISÃO GERAL</h1>
+                <div class="linha"></div>
+                <h1 onclick="window.location = '../../dashboard/dashboard.html'" class="ativo">DASHBOARDS</h1>
+                <div class="linha"></div>
+                <h1 onclick="validarRedirecionamento('../../gestaoUsuarios/gestaoUsuarios.html')">GESTÃO DE USUÁRIOS
+                </h1>
+                <div class="linha"></div>
+                <h1 onclick="validarRedirecionamento('../../gestaoATM/gestaoATM.html')">GESTÃO DE ATMS</h1>
+                <div class="linha"></div>
+            </div>
+        </div>
+        <div id="esquerda-baixo">
+            <div id="navegacaoSair">
+                <div class="linha"></div>
+                <div id="btSair">
+                    <h1>SAIR</h1>
+                    <img src="../../../Assets/assets_dashboard/SAIRICON.png" alt="logoSaída">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="direita">
+
+        <div id="direita-cima">
+            <h1 id="titulo-ram">MONITORAMENTO DE MEMÓRIA RAM</h1>
+            <button class="botao-menu-secundario"><i class="fa-solid fa-download"></i> Gerar relatório</button>
+        </div>
+
+        <div id="direita-baixo">
+            <div class="conteudo-dashboard">
+
+                <div id="KPIS">
+                    <div class="kpi">
+                        <div class="kpi-titulo">Uso Médio (Últimos 7 dias)</div>
+                        <div class="kpi-valor azul" id="kpi-uso-medio">-- GB</div>
+                    </div>
+                    <div class="kpi">
+                        <div class="kpi-titulo">Aplicação que mais utilizou (Hoje)</div>
+                        <div class="kpi-valor roxo" id="kpi-app-maior-uso">--</div>
+                    </div>
+                    <div class="kpi">
+                        <div class="kpi-titulo">RAM Disponível</div>
+                        <div class="kpi-valor verde" id="kpi-ram-disponivel">-- GB</div>
+                    </div>
+                    <div class="kpi">
+                        <div class="kpi-titulo">A definir</div>
+                        <div class="kpi-valor">...</div>
+                    </div>
+                </div>
+
+                <div class="viewport">
+                    <div class="painel painel-grafico-grande">
+                        <div class="titulo-grafico">Gráfico de Uso Atual (%)</div>
+                        <div class="grafico">
+                            <canvas id="grafico-uso-atual"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="painel painel-progressao">
+                        <div class="titulo-grafico">Progressão de Uso (%)</div>
+                        <div class="grafico-progressao-container">
+                            <div class="progress-bar-legend">
+                                <span class="legend-item"><i class="fa-solid fa-circle verde"></i> Normal (0-69%)</span>
+                                <span class="legend-item"><i class="fa-solid fa-circle amarelo"></i> Moderado
+                                    (70-85%)</span>
+                                <span class="legend-item"><i class="fa-solid fa-circle vermelho"></i> Crítico
+                                    (>85%)</span>
+                            </div>
+                            <div class="progress-bar-wrapper">
+                                <div class="progress-bar" id="progressBar"></div>
+                                <span class="progress-value" id="progressValue">--%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="ram.js" defer></script>
+
+</body>
+
+</html>
