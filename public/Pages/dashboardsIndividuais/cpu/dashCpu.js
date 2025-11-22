@@ -4,6 +4,7 @@ let dados_temperatura = [];
 let dados_frequencia = [];
 let graficoLinha = null;
 let graficoTemperatura = null;
+let graficoRelacao = null;
 let comboATMSCPU = document.getElementById('comboATMs');
 
 function vwParaPx(vwValue) {
@@ -102,6 +103,7 @@ function carregarDadosCPU(idAtm) {
 
                         plotarGraficoLinha();
                         plotarGraficoTemperatura();
+                        plotarGraficoRelacao();
                     }
                 });
             } else {
@@ -219,7 +221,7 @@ function plotarGraficoLinha() {
                 offsetX: 0,
                 offsetY: 0,
             },
-            colors: ['#268184'],
+            colors: ['#2ed1d7'],
             yaxis: {
                 min: 0,
                 max: 100,
@@ -262,7 +264,7 @@ function plotarGraficoLinha() {
             },
         };
 
-        graficoLinha = new ApexCharts(document.querySelector('#grafico-linha'), options);
+        graficoLinha = new ApexCharts(document.getElementById('grafico-linha'), options);
         graficoLinha.render();
     } else {
         graficoLinha.updateOptions({
@@ -373,7 +375,10 @@ function plotarGraficoTemperatura() {
             },
         };
 
-        graficoTemperatura = new ApexCharts(document.querySelector('#grafico-linha-temperatura'), options);
+        graficoTemperatura = new ApexCharts(
+            document.getElementById('grafico-linha-temperatura'),
+            options
+        );
         graficoTemperatura.render();
     } else {
         graficoTemperatura.updateOptions({
@@ -381,6 +386,95 @@ function plotarGraficoTemperatura() {
                 {
                     name: 'Temperatura',
                     data: dados_temperatura,
+                },
+            ],
+            xaxis: {
+                categories: horarios_uso,
+            },
+        });
+    }
+}
+
+function plotarGraficoRelacao() {
+    if (graficoRelacao == null) {
+        var options = {
+            series: [
+                {
+                    name: 'Temperatura',
+                    data: dados_temperatura,
+                },
+                {
+                    name: 'Uso',
+                    data: dados_uso,
+                },
+            ],
+            chart: {
+                height: 400,
+                type: 'line',
+                zoom: {
+                    enabled: false,
+                },
+            },
+            dataLabels: {
+                enabled: false,
+            },
+            stroke: {
+                curve: 'smooth',
+                width: `${vwParaPx(0.2)}`,
+            },
+            title: {
+                align: 'left',
+            },          
+            xaxis: {
+                categories: horarios_uso,
+            },
+            legend: {
+                position: 'top',
+                fontSize: `${vwParaPx(1)}px`,
+                fontFamily: 'poppins leve',
+                markers: {
+                    size: `${vwParaPx(0.4)}`,
+                },
+            },
+            toolbar: {
+                show: true,
+                tools: {
+                    download: true,
+                    selection: false,
+                    zoom: false,
+                    zoomin: false,
+                    zoomout: false,
+                    pan: false,
+                    reset: false,
+                },
+                offsetX: 0,
+                offsetY: 0,
+            },
+            colors: ['#268184', '#2ed1d7'],
+            yaxis: {
+                min: 0,
+                max: 100,
+                labels: {
+                    style: {
+                        fontSize: `${vwParaPx(0.8)}px`,
+                        fontFamily: 'poppins leve',
+                    },
+                },
+            },
+        };
+
+        graficoRelacao = new ApexCharts(document.getElementById('grafico-relacao'), options);
+        graficoRelacao.render();
+    } else {
+        graficoRelacao.updateOptions({
+            series: [
+                {
+                    name: 'Temperatura',
+                    data: dados_temperatura,
+                },
+                {
+                    name: 'Uso',
+                    data: dados_uso,
                 },
             ],
             xaxis: {
