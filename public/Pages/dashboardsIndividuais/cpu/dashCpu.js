@@ -10,6 +10,10 @@ let dados_temperatura = [];
 let dados_frequencia = [];
 
 function carregarDadosCPU(idAtm) {
+    dados_uso = [];
+    horarios_uso = [];
+    dados_temperatura = [];
+    dados_frequencia = [];
     fetch(`/cpu/dados/${idAtm}`, { cache: 'no-store' })
         .then(response => {
             if (response.ok) {
@@ -37,10 +41,10 @@ function carregarDadosCPU(idAtm) {
                         };
 
                         for (let i = 0; i < resposta.length; i++) {
+                            horarios_uso.push(formatarHorario(resposta[i].horario));
                             switch (parseInt(resposta[i].fkComponente)) {
                                 case 1:
                                     dados_uso.push(resposta[i].valor);
-                                    horarios_uso.push(formatarHorario(resposta[i].horario));
                                     break;
                                 case 5:
                                     dados_frequencia.push(resposta[i].valor);
@@ -161,108 +165,126 @@ function atualizarParametrosKpis() {
     ).toFixed(2);
 }
 
+let graficoLinha = null;
 function plotarGraficoLinha() {
-    var options = {
-        series: [
-            {
-                name: 'Uso',
-                data: dados_uso,
-            },
-        ],
-        chart: {
-            height: 400,
-            type: 'line',
-            zoom: {
-                enabled: false,
-            },
-        },
-        dataLabels: {
-            enabled: false,
-        },
-        stroke: {
-            curve: 'straight',
-            width: `${vwParaPx(0.2)}`,
-        },
-        title: {
-            align: 'left',
-        },
-        xaxis: {
-            categories: horarios_uso,
-        },
-        legend: {
-            position: 'top',
-            fontSize: `${vwParaPx(1)}px`,
-            fontFamily: 'poppins leve',
-            markers: {
-                size: `${vwParaPx(0.4)}`,
-            },
-        },
-        toolbar: {
-            show: true,
-            tools: {
-                download: true,
-                selection: false,
-                zoom: false,
-                zoomin: false,
-                zoomout: false,
-                pan: false,
-                reset: false,
-            },
-            offsetX: 0,
-            offsetY: 0,
-        },
-        colors: ['#268184'],
-        yaxis: {
-            min: 0,
-            max: 100,
-            labels: {
-                style: {
-                    fontSize: `${vwParaPx(0.8)}px`,
-                    fontFamily: 'poppins leve',
-                },
-            },
-        },
-        annotations: {
-            yaxis: [
+    if (graficoLinha == null) {
+        var options = {
+            series: [
                 {
-                    y: parseFloat(sessionStorage.getItem('PARAM_CRITICO_CPU')),
-                    borderColor: '#FF4560',
-                    strokeDashArray: 0,
-                    label: {
-                        borderColor: '#FF4560',
-                        style: {
-                            color: '#fff',
-                            background: '#FF4560',
-                        },
-                        text: 'Crítico',
-                    },
-                },
-                {
-                    y: parseFloat(sessionStorage.getItem('PARAM_IMPORTANTE_CPU')),
-                    borderColor: '#f4a261',
-                    strokeDashArray: 0,
-                    label: {
-                        borderColor: '#f4a261',
-                        style: {
-                            color: '#fff',
-                            background: '#f4a261',
-                        },
-                        text: 'Importante',
-                    },
+                    name: 'Uso',
+                    data: dados_uso,
                 },
             ],
-        },
-    };
+            chart: {
+                height: 400,
+                type: 'line',
+                zoom: {
+                    enabled: false,
+                },
+            },
+            dataLabels: {
+                enabled: false,
+            },
+            stroke: {
+                curve: 'straight',
+                width: `${vwParaPx(0.2)}`,
+            },
+            title: {
+                align: 'left',
+            },
+            xaxis: {
+                categories: horarios_uso,
+            },
+            legend: {
+                position: 'top',
+                fontSize: `${vwParaPx(1)}px`,
+                fontFamily: 'poppins leve',
+                markers: {
+                    size: `${vwParaPx(0.4)}`,
+                },
+            },
+            toolbar: {
+                show: true,
+                tools: {
+                    download: true,
+                    selection: false,
+                    zoom: false,
+                    zoomin: false,
+                    zoomout: false,
+                    pan: false,
+                    reset: false,
+                },
+                offsetX: 0,
+                offsetY: 0,
+            },
+            colors: ['#268184'],
+            yaxis: {
+                min: 0,
+                max: 100,
+                labels: {
+                    style: {
+                        fontSize: `${vwParaPx(0.8)}px`,
+                        fontFamily: 'poppins leve',
+                    },
+                },
+            },
+            annotations: {
+                yaxis: [
+                    {
+                        y: parseFloat(sessionStorage.getItem('PARAM_CRITICO_CPU')),
+                        borderColor: '#FF4560',
+                        strokeDashArray: 0,
+                        label: {
+                            borderColor: '#FF4560',
+                            style: {
+                                color: '#fff',
+                                background: '#FF4560',
+                            },
+                            text: 'Crítico',
+                        },
+                    },
+                    {
+                        y: parseFloat(sessionStorage.getItem('PARAM_IMPORTANTE_CPU')),
+                        borderColor: '#f4a261',
+                        strokeDashArray: 0,
+                        label: {
+                            borderColor: '#f4a261',
+                            style: {
+                                color: '#fff',
+                                background: '#f4a261',
+                            },
+                            text: 'Importante',
+                        },
+                    },
+                ],
+            },
+        };
 
-    var chart = new ApexCharts(document.querySelector('#grafico-linha'), options);
-    chart.render();
+        graficoLinha = new ApexCharts(document.querySelector('#grafico-linha'), options);
+        graficoLinha.render();
+    } else {
+        graficoLinha.updateOptions({
+            series: [
+                {
+                    name: 'Uso',
+                    data: dados_uso,
+                },
+            ],
+            xaxis: {
+                categories: horarios_uso,
+            },
+        });
+    }
 }
 
 window.addEventListener('DOMContentLoaded', () => {
     carregarAtms();
     atualizarParametrosKpis();
+    intervaloAtualizacao = setInterval(atualizarDadosCpu, 3500);
 
     comboATMSCPU.addEventListener('change', () => {
+        clearInterval(intervaloAtualizacao);
         atualizarDadosCpu();
+        intervaloAtualizacao = setInterval(atualizarDadosCpu, 3500);
     });
 });
