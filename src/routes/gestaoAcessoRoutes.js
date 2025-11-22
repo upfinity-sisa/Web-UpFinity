@@ -15,4 +15,16 @@ router.get("/atmscriticos", function (req, res) {
   gestaoAcessoController.buscarATMScriticos(req, res);
 });
 
+router.get("/loginsucesso", function (req, res) {
+  gestaoAcessoController.carregarLoginSucesso(req,res);
+});
+
+router.get("/loginfalho", function (req, res) {
+  gestaoAcessoController.carregarLoginFalho(req,res);
+});
+
+router.get("/loginsPorHora", function (req, res) {
+  gestaoAcessoController.loginsPorHora(req,res);
+});
+
 module.exports = router;

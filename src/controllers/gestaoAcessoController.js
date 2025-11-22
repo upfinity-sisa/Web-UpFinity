@@ -33,10 +33,46 @@ function buscarATMScriticos(req, res) {
     });
 }
 
+function carregarLoginSucesso(req, res) {
+    gestaoAcessoModel.carregarLoginSucesso()
+    .then((resultado) => {
+        res.status(200).json(resultado[0]);
+    })
+    .catch((e) => {
+        console.log("Erro ao buscar alertas de hoje:", e);
+        res.status(500).json({e: "Erro ao buscar logins"});
+    });
+}
+
+function carregarLoginFalho(req, res) {
+    gestaoAcessoModel.carregarLoginFalho()
+    .then((resultado) => {
+        res.status(200).json(resultado[0]);
+    })
+    .catch((e) => {
+        console.log("Erro ao buscar alertas de hoje:", e);
+        res.status(500).json({e: "Erro ao buscar logins falhos"});
+    });
+}
+
+function loginsPorHora(req, res) {
+     gestaoAcessoModel.loginsPorHora()
+    .then((resultado) => {
+        res.status(200).json(resultado);
+    })
+    .catch((e) => {
+        console.log("Erro ao buscar logins por hora:", e);
+        res.status(500).json({e: "Erro ao buscar logins por hora"});
+    });
+}
+
 
 
 module.exports = {
   buscarAlertasHoje,
   buscarATMSoff,
-  buscarATMScriticos
+  buscarATMScriticos,
+  carregarLoginSucesso,
+  carregarLoginFalho,
+  loginsPorHora,
 };

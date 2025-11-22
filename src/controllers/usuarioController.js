@@ -25,7 +25,7 @@ function autenticar(req, res) {
             fkTipoUsuario: resultadoAutenticar[0].fkTipoUsuario,
           });
 
-          usuarioModel.registrarLogin(idUsuario, email, 1);
+          usuarioModel.registrarLogin(resultadoAutenticar[0].idUsuario, email, 1);
 
           console.log(resultadoAutenticar[0]);
         } else if (resultadoAutenticar.length == 0) {
