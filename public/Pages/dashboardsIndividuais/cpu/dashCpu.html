@@ -56,71 +56,88 @@
           </select>
         </div>
       </div>
-      <div class="container-kpis">
-        <div class="kpi" id="kpi1">
-          <div class="kpi-content">
-            <span class="title-kpi">% de Uso</span>
-            <span class="data-kpi" id="uso-data"></span>
-            <span class="status-kpi"><span class="color-status" id="status-uso"></span></span>
+      <div class="centro-baixo">
+        <div class="container-kpis">
+          <div class="kpi" id="kpi1">
+            <div class="kpi-content">
+              <span class="title-kpi">% de Uso</span>
+              <span class="data-kpi" id="uso-data"></span>
+              <span class="status-kpi"><span class="color-status" id="status-uso"></span></span>
+            </div>
+            <div class="kpi-info-overlay">
+              <p>
+                Crítico: &lt; <span id="critico-uso"></span>% <br>
+                Moderado: &lt; <span id="moderado-uso"></span>%
+              </p>
+            </div>
           </div>
-          <div class="kpi-info-overlay">
-            <p>
-              Crítico: &lt; <span id="critico-uso"></span>% <br>
-              Moderado: &lt; <span id="moderado-uso"></span>%
-            </p>
+          <div class="kpi" id="kpi2">
+            <div class="kpi-content">
+              <span class="title-kpi">Temperatura</span>
+              <span class="data-kpi" id="temperatura-data"></span>
+              <span class="status-kpi"><span class="color-status" id="status-temperatura"></span></span>
+            </div>
+            <div class="kpi-info-overlay">
+              <p>
+                Crítico: &lt; <span id="critico-temperatura"></span>ºC <br>
+                Moderado: &lt; <span id="moderado-temperatura"></span>ºC
+              </p>
+            </div>
+          </div>
+          <div class="kpi" id="kpi3">
+            <div class="kpi-content">
+              <span class="title-kpi">Frequência</span>
+              <span class="data-kpi" id="frequencia-data"></span>
+              <span class="status-kpi"><span class="color-status" id="status-frequencia"></span></span>
+            </div>
+            <div class="kpi-info-overlay">
+              <p>
+                Crítico: &lt; <span id="critico-frequencia"></span>MHz<br>
+                Moderado: &lt; <span id="moderado-frequencia"></span>MHz
+              </p>
+            </div>
+          </div>
+          <div class="kpi" id="kpi4">
+            <div class="kpi-content">
+              <span class="title-kpi">Quantidade de <br>alertas hoje</span>
+              <span class="data-kpi" id="qtdAlertas-data">0</span>
+            </div>
+            <div class="kpi-info-overlay">
+              <p>
+                Quantidade de alertas <br>(críticos e moderados) no dia de hoje.
+              </p>
+            </div>
           </div>
         </div>
-        <div class="kpi" id="kpi2">
-          <div class="kpi-content">
-            <span class="title-kpi">Temperatura</span>
-            <span class="data-kpi" id="temperatura-data"></span>
-            <span class="status-kpi"><span class="color-status" id="status-temperatura"></span></span>
+        <div class="container-graficos">
+
+          <div class="graficos-cima">
+            <div class="caixa-grafico" id="caixa-grafico-cpu">
+              <span class="caixa-grafico-title">Uso de CPU (%)</span>
+              <div id="grafico-linha"></div>
+            </div>
+            <div class="caixa-grafico">
+              <span class="caixa-grafico-title">Temperatura da CPU (ºC)</span>
+              <div id="grafico-linha-temperatura"></div>
+            </div>
           </div>
-          <div class="kpi-info-overlay">
-            <p>
-              Crítico: &lt; <span id="critico-temperatura"></span>ºC <br>
-              Moderado: &lt; <span id="moderado-temperatura"></span>ºC
-            </p>
+          <div class="graficos-baixo">
+            <div class="caixa-grafico">
+              <span class="caixa-grafico-title">CPU x Temperatura</span>
+              <div id="grafico-relacao"></div>
+            </div>
+            <div class="caixa-grafico" id="caixa-grafico-maiores-usos">
+              <span class="caixa-grafico-title">ATMs com maior uso</span>
+              <div class="linhas-grafico-maiores">
+                <div id="linha-grafico-1"></div>
+                <div id="linha-grafico-2"></div>
+                <div id="linha-grafico-3"></div>
+              </div>
+            </div>
           </div>
+
         </div>
-        <div class="kpi" id="kpi3">
-          <div class="kpi-content">
-            <span class="title-kpi">Frequência</span>
-            <span class="data-kpi" id="frequencia-data"></span>
-            <span class="status-kpi"><span class="color-status" id="status-frequencia"></span></span>
-          </div>
-          <div class="kpi-info-overlay">
-            <p>
-              Crítico: &lt; <span id="critico-frequencia"></span>MHz<br>
-              Moderado: &lt; <span id="moderado-frequencia"></span>MHz
-            </p>
-          </div>
-        </div>
-        <div class="kpi" id="kpi4">
-          <div class="kpi-content">
-            <span class="title-kpi">Quantidade de <br>alertas hoje</span>
-            <span class="data-kpi" id="qtdAlertas-data">0</span>
-          </div>
-          <div class="kpi-info-overlay">
-            <p>
-              Quantidade de alertas <br>(críticos e moderados) no dia de hoje.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="container-graficos">
-        <div class="caixa-grafico" id="caixa-grafico-cpu">
-          <span class="caixa-grafico-title">Uso de CPU</span>
-          <div id="grafico-linha"></div>
-        </div>
-        <div class="caixa-grafico">
-          <span class="caixa-grafico-title">Temperatura da CPU</span>
-          <div id="grafico-linha-temperatura"></div>
-        </div>
-        <div class="caixa-grafico">
-          <span class="caixa-grafico-title">CPU x Temperatura</span>
-          <div id="grafico-relacao"></div>
-        </div>
+
 
         <!-- <div class="caixa-alertas">
           <span class="caixa-alertas-title">Alertas</span>
