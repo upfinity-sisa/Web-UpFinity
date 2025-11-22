@@ -17,6 +17,7 @@ function carregarParametros() {
                 response.json().then(resposta => {
                     if (resposta.length > 0) {
                         for (let i = 0; i < resposta.length; i++) {
+                            console.log(resposta[i]);
                             switch (resposta[i]['fkTipoComponente']) {
                                 case 1:
                                     if (resposta[i]['fkTipoAlerta'] == 1) {
@@ -53,6 +54,19 @@ function carregarParametros() {
                                     } else {
                                         sessionStorage.setItem(
                                             'PARAM_IMPORTANTE_DISCO',
+                                            resposta[i]['limiteMax']
+                                        );
+                                    }
+                                    break;
+                                case 5:
+                                    if (resposta[i]['fkTipoAlerta'] == 1) {
+                                        sessionStorage.setItem(
+                                            'PARAM_CRITICO_TEMPERATURA_CPU',
+                                            resposta[i]['limiteMax']
+                                        );
+                                    } else {
+                                        sessionStorage.setItem(
+                                            'PARAM_IMPORTANTE_TEMPERATURA_CPU',
                                             resposta[i]['limiteMax']
                                         );
                                     }

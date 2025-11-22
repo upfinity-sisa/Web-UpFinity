@@ -123,6 +123,14 @@ function carregarDadosCPU(idAtm) {
                     let kpiTemperatura = document.getElementById('temperatura-data');
                     let kpiFrequencia = document.getElementById('frequencia-data');
 
+                    let statusUso = document.getElementById('status-uso');
+                    let statusTemperatura = document.getElementById('status-temperatura');
+                    let statusFrequencia = document.getElementById('status-frequencia');
+
+                    const corModerado = '#f4a261';
+                    const corCritico = '#e63946';
+                    const corOk = '#00bf35';
+
                     resposta.reverse();
                     if (resposta.length > 0) {
                         for (let i = 0; i < resposta.length; i++) {
@@ -141,14 +149,45 @@ function carregarDadosCPU(idAtm) {
                             }
                         }
 
-                        kpiUso.innerHTML =
-                            parseFloat(dados_uso[dados_uso.length - 1]).toFixed(2) + '%';
-                        kpiTemperatura.innerHTML =
-                            parseFloat(dados_temperatura[dados_temperatura.length - 1]).toFixed(2) +
-                            'ºC';
-                        kpiFrequencia.innerHTML =
-                            parseFloat(dados_frequencia[dados_frequencia.length - 1]).toFixed(2) +
-                            'MHz';
+                        let valorUso = parseFloat(dados_uso[dados_uso.length - 1]).toFixed(2);
+                        let valorTemperatura = parseFloat(
+                            dados_temperatura[dados_temperatura.length - 1]
+                        ).toFixed(2);
+                        let valorFrequencia = parseFloat(
+                            dados_frequencia[dados_frequencia.length - 1]
+                        ).toFixed(2);
+
+                        kpiUso.innerHTML = valorUso + '%';
+                        kpiTemperatura.innerHTML = valorTemperatura + 'ºC';
+                        kpiFrequencia.innerHTML = valorFrequencia + 'MHz';
+
+                        if (valorUso > sessionStorage.getItem('PARAM_CRITICO_CPU')) {
+                            statusUso.innerHTML = 'Crítico';
+                            statusUso.style.color = corCritico;
+                        } else if (valorUso > sessionStorage.getItem('PARAM_IMPORTANTE_CPU')) {
+                            statusUso.innerHTML = 'Importante';
+                            statusUso.style.color = corModerado;
+                        } else {
+                            statusUso.innerHTML = 'Normal';
+                            statusUso.style.color = corOk;
+                        }
+
+                        if (
+                            valorTemperatura >
+                            sessionStorage.getItem('PARAM_CRITICO_TEMPERATURA_CPU')
+                        ) {
+                            statusTemperatura.innerHTML = 'Crítico';
+                            statusTemperatura.style.color = corCritico;
+                        } else if (
+                            valorTemperatura >
+                            sessionStorage.getItem('PARAM_IMPORTANTE_TEMPERATURA_CPU')
+                        ) {
+                            statusTemperatura.innerHTML = 'Importante';
+                            statusTemperatura.style.color = corModerado;
+                        } else {
+                            statusTemperatura.innerHTML = 'Normal';
+                            statusTemperatura.style.color = corOk;
+                        }
                     }
                 });
             } else {
@@ -194,10 +233,33 @@ function atualizarDadosCpu() {
     carregarDadosCPU(idAtm);
 }
 
-comboATMSCPU.addEventListener('change', () => {
-    atualizarDadosCpu();
-});
+function atualizarParametrosKpis() {
+    let parametroCriticoUsoDiv = document.getElementById('critico-uso');
+    let parametroModeradoUsoDiv = document.getElementById('moderado-uso');
+
+    let parametroCriticoTemperaturaDiv = document.getElementById('critico-temperatura');
+    let parametroModeradoTemperaturaDiv = document.getElementById('moderado-temperatura');
+
+    parametroCriticoUsoDiv.innerHTML = parseFloat(
+        sessionStorage.getItem('PARAM_CRITICO_CPU')
+    ).toFixed(2);
+    parametroModeradoUsoDiv.innerHTML = parseFloat(
+        sessionStorage.getItem('PARAM_IMPORTANTE_CPU')
+    ).toFixed(2);
+
+    parametroCriticoTemperaturaDiv.innerHTML = parseFloat(
+        sessionStorage.getItem('PARAM_CRITICO_TEMPERATURA_CPU')
+    ).toFixed(2);
+    parametroModeradoTemperaturaDiv.innerHTML = parseFloat(
+        sessionStorage.getItem('PARAM_IMPORTANTE_TEMPERATURA_CPU')
+    ).toFixed(2);
+}
 
 window.addEventListener('DOMContentLoaded', () => {
     carregarAtms();
+    atualizarParametrosKpis();
+
+    comboATMSCPU.addEventListener('change', () => {
+        atualizarDadosCpu();
+    });
 });
