@@ -849,3 +849,25 @@ dialog {
     font-weight: 800;
     color: #268184;
 }
+
+#img_upstuart {
+    background-size: cover;
+}
+
+#upstuart {
+    width: 4.5vw;
+    height: 4.5vw;
+    position: fixed;
+    background-image: url("../../../Assets/assets_dashboard/upStuart.png");
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    border: 0.109vw solid #2ed1d7;
+    right: 1vw;
+    bottom: 1vw;
+}
+
+#upstuart:hover {
+    cursor: pointer;
+    scale: 1.05;
+}
