@@ -3,7 +3,7 @@ var database = require("../database/config");
 function exibirKPIinvasoes(idAtm, fkEmpresa) {
     var instrucaoSql = `
     select * from Invasao where fkSeguranca = (select idSeguranca from Seguranca join Atm on idAtm = fkAtm where categoria = "invasao" and idAtm = ${idAtm} and fkEmpresa = ${fkEmpresa}) 
-		    and horarioCaptura = (select max(horarioCaptura) from Invasao);
+		    and horarioCaptura = (select max(horarioCaptura) from Invasao) order by horarioInvasao desc;
     `
 
     return database.executar(instrucaoSql);

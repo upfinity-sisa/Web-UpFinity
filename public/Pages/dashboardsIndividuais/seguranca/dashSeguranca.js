@@ -434,3 +434,23 @@ function mudarATM() {
 	carregarInformacoes()
 
 }
+
+
+function formatarBR(data) {
+  const dia = String(data.getDate()).padStart(2, '0');
+  const mes = String(data.getMonth() + 1).padStart(2, '0'); // mês começa em 0
+  return `${dia}/${mes}`;
+}
+
+function exibirTituloGrafico() {
+
+	const hoje = new Date();
+	const doisMesesAtras = new Date();
+	doisMesesAtras.setMonth(doisMesesAtras.getMonth() - 2);
+
+	titulo_grafico_linha.innerHTML = `
+	Alertas por semana  (${formatarBR(doisMesesAtras)} até ${formatarBR(hoje)})
+	`
+
+}
+exibirTituloGrafico()
