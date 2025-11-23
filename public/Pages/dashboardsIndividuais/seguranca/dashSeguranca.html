@@ -97,9 +97,6 @@
                                 <div class="box-valor-kpi">
                                     <h1 id="valor_kpi_invasao" class="valor-kpi"></h1>
                                 </div>
-                                <div class="box-informativo">
-                                    <img onclick="dialog_invasao.showModal()" class="informativo" src="../../../Assets/assets_dashboard/iconeInformativo.png">
-                                </div>
                             </div>
                         </div>
 
@@ -128,7 +125,7 @@
                         <div id="conexoes">
                             <div id="caixa_conexoes">
                                 <div id="titulo_conexoes">
-                                    <h1 id="titulo-conexoes-abertas">Conexões Abertas</h1>
+                                    <h1 id="titulo-conexoes-abertas">Tentativas de Login</h1>
                                     <div class="linha_caixas"></div>
                                 </div>
                                 <div id="lista_conexoes"></div>
@@ -148,20 +145,6 @@
             </div>
 
         </div>
-
-        <dialog id="dialog_invasao">
-            <div id="titulo_dialog_invasao">
-                <h1 id="titulo-tentativas-invasao">Tentativas de invasão da última semana:</h1>
-                <div class="linha_caixas"></div>
-            </div>
-            <div id="baixo-dialog-invasao">
-                <div id="caixa-tabela-scrolavel">
-                    <table id="tabela_invasoes"></table>
-                </div>
-                <button onclick="fecharDialog()" class="botao_fechar_dialog">Fechar</button>
-            </div>
-        </dialog>
-
 
         <dialog id="dialog_conexao">
             <div id="titulo_dialog_conexao">
@@ -196,12 +179,10 @@
 <script>
     
     function fecharDialog() {
-        dialog_invasao.close()
         dialog_conexao.close()
         dialog_arquivos.close()
     }
     
-
     function validarRedirecionamento(endpoint) {
         if (sessionStorage.FK_TIPOUSUARIO == 3) {
             alerta_erros_desktop.classList.remove('d-none')
