@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	let labels = Array(maxPontos).fill('');
 	let dataRam = Array(maxPontos).fill(0);
 
-	const chartFontColor = '#E2E8F0';
-	const chartGridColor = 'rgba(148, 163, 184, 0.2)';
+	const chartFontColor = '#000000ff';
+	const chartGridColor = 'rgba(0, 0, 0, 0.2)';
 
 	const ctxUsoAtual = document.getElementById('grafico-uso-atual').getContext('2d');
 
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				label: 'Uso de RAM (%)',
 				data: dataRam,
 				borderColor: 'var(--cor-destaque)',
-				backgroundColor: 'rgba(59, 130, 246, 0.2)',
+				backgroundColor: 'rgba(86, 122, 180, 0.2)',
 				fill: true,
 				tension: 0.3,
 				borderWidth: 2,
