@@ -13,6 +13,8 @@
     --preto: #232023;
     --cinza-linha: #999999;
     --azul-claro: #2ed1d7;
+    --laranja: #f4a261;
+    --vermelho: #e63946;
 }
 
 body {
@@ -238,7 +240,6 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    font-weight: bold;
     opacity: 0;
     visibility: hidden;
     transform: translateX(-100%);
@@ -427,4 +428,14 @@ body {
 .linhas-grafico-maiores {
     width: 60%;
     margin-top: 8%;
+}
+
+.desc-critico {
+    color: var(--vermelho);
+    font-weight: bold;
+}
+
+.desc-moderado {
+    color: var(--laranja);
+    font-weight: bold;
 }

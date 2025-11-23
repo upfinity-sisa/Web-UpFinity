@@ -46,8 +46,23 @@ function getMaioresUsos(idEmpresa) {
     return database.executar(instrucaoSql);
 }
 
+function getAlertasHoje(idAtm, idEmpresa) {
+    let instrucaoSql = `
+        SELECT COUNT(*) as qtdAlertas FROM Alerta a
+        JOIN Captura c ON a.fkCaptura = c.idCaptura
+        JOIN Atm atm on c.fkAtm = atm.idAtm
+        WHERE c.fkComponente = 1 
+        AND c.fkAtm = ${idAtm} 
+        AND atm.fkEmpresa = ${idEmpresa} 
+        AND DATE(c.horario) = CURDATE();
+    `;
+    console.log('Executando a instrução SQL: ' + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     getDados,
     getAlertas,
     getMaioresUsos,
+    getAlertasHoje,
 };

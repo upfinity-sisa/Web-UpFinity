@@ -113,6 +113,9 @@ function carregarDadosCPU(idAtm) {
                     }
                 });
             } else {
+                kpiUso.innerHTML = 'N/D';
+                kpiTemperatura.innerHTML = 'N/D';
+                kpiFrequencia.innerHTML = 'N/D';
                 console.error('carregarDadosCPU: nenhum dado encontrado ou erro na API');
             }
         })
@@ -129,15 +132,45 @@ function carregarDadosCPU(idAtm) {
                     if (resposta.length > 0) {
                         plotarGraficoMaioresUsos(resposta);
                     } else {
-                        console.error('carregarDadosCPU: nenhum dado de maiores usos encontrado.');
+                        console.error(
+                            'carregarDadosCPU (maioresUsos): nenhum dado de maiores usos encontrado.'
+                        );
                     }
                 });
             } else {
-                console.error('carregarDadosCPU: erro ao buscar maiores usos na API');
+                console.error('carregarDadosCPU (maioresUsos): erro ao buscar maiores usos na API');
             }
         })
         .catch(erro => {
-            console.error(`carregarDadosCpu: erro na obtenção de maiores usos: ${erro.message}`);
+            console.error(
+                `carregarDadosCpu (maioresUsos): erro na obtenção de maiores usos: ${erro.message}`
+            );
+        });
+
+    fetch(`/cpu/alertasHoje/${sessionStorage.getItem('FK_EMPRESA')}/${idAtm}`, {
+        cache: 'no-store',
+    })
+        .then(response => {
+            if (response.ok) {
+                response.json().then(resposta => {
+                    let kpiAlertasHoje = document.getElementById('qtdAlertas-data');
+                    if (resposta.length > 0) {
+                        kpiAlertasHoje.innerHTML = resposta[0].qtdAlertas;
+                    } else {
+                        kpiAlertasHoje.innerHTML = 'N/D';
+                        console.error(
+                            'carregarDadosCPU (alertasHoje): nenhum dado de alertas hoje encontrado.'
+                        );
+                    }
+                });
+            } else {
+                console.error('carregarDadosCPU (alertasHoje): erro ao buscar alertas hoje na API');
+            }
+        })
+        .catch(erro => {
+            console.error(
+                `carregarDadosCpu (alertasHoje): erro na obtenção de alertas hoje: ${erro.message}`
+            );
         });
 }
 
