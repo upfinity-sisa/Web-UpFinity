@@ -139,11 +139,11 @@ function selecionarSeguranca(idAtm, fkEmpresa) {
     var instrucaoSql = `
     SELECT CASE WHEN
         (select count(*) from ConexaoAberta where horario = (select max(horario) from ConexaoAberta) and 
-        fkAlertaSeguranca is not null  and fkSeguranca = (select idSeguranca from Seguranca join Atm on idAtm = fkAtm 
+        possuiAlerta = 1  and fkSeguranca = (select idSeguranca from Seguranca join Atm on idAtm = fkAtm 
         where categoria = "conexao" and idAtm = ${idAtm} and fkEmpresa = ${fkEmpresa})) >= 1
         OR
         (select count(*) from ArquivoCritico where horario = (select max(horario) from ArquivoCritico) and
-        fkAlertaSeguranca is not null and fkSeguranca = (select idSeguranca from Seguranca join Atm on idAtm = fkAtm 
+        possuiAlerta = 1 and fkSeguranca = (select idSeguranca from Seguranca join Atm on idAtm = fkAtm 
         where categoria = "arquivo" and idAtm = ${idAtm} and fkEmpresa = ${fkEmpresa})) >= 1 then 'INSEGURO'
         ELSE 'SEGURO'
         END as seguranca;

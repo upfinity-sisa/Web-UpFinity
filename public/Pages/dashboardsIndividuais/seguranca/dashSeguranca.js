@@ -32,6 +32,7 @@ var options = {
 	},
 	yaxis: {
 		min: 0,
+		max: 15,
 		labels: {
 			style: {
 				fontSize: `${vwParaPx(0.8)}px`,

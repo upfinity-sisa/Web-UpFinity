@@ -62,17 +62,6 @@
                                 </div>
                                 <div class="box-informativo"></div>
                             </div>
-                            <div class="kpi">
-                                <div class="box-titulo-kpi">
-                                    <h1 class="titulo-kpi">Tentativas de invasão da última semana</h1>
-                                </div>
-                                <div class="box-valor-kpi">
-                                    <h1 id="valor_kpi_invasao" class="valor-kpi"></h1>
-                                </div>
-                                <div class="box-informativo">
-                                    <img onclick="dialog_invasao.showModal()" class="informativo" src="../../../Assets/assets_dashboard/iconeInformativo.png">
-                                </div>
-                            </div>
                             <div class="kpi_dupla">
 
                                 <div class="caixa-kpi-dupla">
@@ -100,7 +89,21 @@
                             </div>
 
                             </div>
+
+                            <div class="kpi">
+                                <div class="box-titulo-kpi">
+                                    <h1 class="titulo-kpi">Logins malsucedidos da última semana</h1>
+                                </div>
+                                <div class="box-valor-kpi">
+                                    <h1 id="valor_kpi_invasao" class="valor-kpi"></h1>
+                                </div>
+                                <div class="box-informativo">
+                                    <img onclick="dialog_invasao.showModal()" class="informativo" src="../../../Assets/assets_dashboard/iconeInformativo.png">
+                                </div>
+                            </div>
                         </div>
+
+
                         <div id="conteudo">
                             <div id="arquivos">
                                 <div id="caixa_arquivos">
@@ -179,8 +182,8 @@
                 <div class="linha_caixas"></div>
             </div>
             <div id="baixo-dialog-arquivos">
-                <h1 id="pergunta-dialog-arquivos">O seu arquivo /bin/netstats foi alterado, a alteração é segura?</h1>
-                <button onclick="declararSeguro()" class="botoes_arquivos">Sim! Eu planejei a alteração</button>
+                <h1 id="pergunta-dialog-arquivos">O conteúdo do seu arquivo foi alterado, a alteração é segura?</h1>
+                <button onclick="declararSeguro()" class="botoes_arquivos">Sim! Eu reconheço a alteração</button>
                 <button onclick="fecharDialog()" class="botoes_arquivos">Fechar</button>
             </div>
         </dialog>
