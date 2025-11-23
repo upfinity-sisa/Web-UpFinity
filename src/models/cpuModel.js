@@ -30,7 +30,24 @@ function getAlertas(idAtm) {
     return database.executar(instrucaoSql);
 }
 
+function getMaioresUsos(idEmpresa) {
+    let instrucaoSql = `
+        SELECT a.numeracao AS Numero_ATM, e.idEmpresa AS ID_Empresa, TRUNCATE(AVG(cap.valor), 2) AS   Media_Uso_CPU
+        FROM Captura cap
+        JOIN Componente comp ON cap.fkComponente = comp.idComponente AND cap.fkAtm = comp.fkAtm
+        JOIN TipoComponente tc ON comp.fkTipoComponente = tc.idTipoComponente JOIN Atm a ON cap.fkAtm = a.idAtm
+        JOIN Empresa e ON a.fkEmpresa = e.idEmpresa
+        WHERE tc.nome = 'CPU' AND tc.unidadeMedida = '%' AND e.idEmpresa = ${idEmpresa}
+        GROUP BY a.idAtm, a.numeracao, e.idEmpresa
+        ORDER BY Media_Uso_CPU DESC
+        LIMIT 3;
+    `;
+    console.log('Executando a instrução SQL: ' + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     getDados,
     getAlertas,
+    getMaioresUsos,
 };

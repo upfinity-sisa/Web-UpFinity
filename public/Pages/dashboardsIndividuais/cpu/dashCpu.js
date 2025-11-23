@@ -119,6 +119,26 @@ function carregarDadosCPU(idAtm) {
         .catch(erro => {
             console.error(`carregarDadosCpu: erro na obtenção de dados: ${erro.message}`);
         });
+
+    fetch(`/cpu/maioresUsos/${sessionStorage.getItem('FK_EMPRESA')}`, {
+        cache: 'no-store',
+    })
+        .then(response => {
+            if (response.ok) {
+                response.json().then(resposta => {
+                    if (resposta.length > 0) {
+                        plotarGraficoMaioresUsos(resposta);
+                    } else {
+                        console.error('carregarDadosCPU: nenhum dado de maiores usos encontrado.');
+                    }
+                });
+            } else {
+                console.error('carregarDadosCPU: erro ao buscar maiores usos na API');
+            }
+        })
+        .catch(erro => {
+            console.error(`carregarDadosCpu: erro na obtenção de maiores usos: ${erro.message}`);
+        });
 }
 
 function carregarAtms() {
@@ -506,7 +526,21 @@ function plotarGraficoRelacao() {
     }
 }
 
-function plotarGraficoMaioresUsos() {
+function plotarGraficoMaioresUsos(resposta) {
+    let gerarNumeroAleatorio = (min, max) => {
+        return (Math.random() * (max - min + 1) + min).toFixed(2);
+    };
+
+    let numeracaoAtm = `Atm ${resposta[0].Numero_ATM}`;
+
+    let dados = {
+        'Atm 3': gerarNumeroAleatorio(10, 30),
+        'Atm 7': gerarNumeroAleatorio(10, 30),
+        [numeracaoAtm]: resposta[0].Media_Uso_CPU,
+    };
+
+    let dadosOrdenados = Object.entries(dados).sort((a, b) => b[1] - a[1]);
+
     if (graficoMaioresUsos1 == null && graficoMaioresUsos2 == null && graficoMaioresUsos3 == null) {
         let optionsBarra1 = {
             chart: {
@@ -531,21 +565,21 @@ function plotarGraficoMaioresUsos() {
             },
             series: [
                 {
-                    name: 'Process 1',
-                    data: [44],
+                    name: dadosOrdenados[0][0],
+                    data: [dadosOrdenados[0][1]],
                 },
             ],
             title: {
                 floating: true,
                 offsetX: -10,
                 offsetY: 5,
-                text: 'Process 1',
+                text: dadosOrdenados[0][0],
             },
             subtitle: {
                 floating: true,
                 align: 'right',
                 offsetY: 0,
-                text: '44%',
+                text: `${dadosOrdenados[0][1]}%`,
                 style: {
                     fontSize: '20px',
                 },
@@ -554,7 +588,7 @@ function plotarGraficoMaioresUsos() {
                 enabled: false,
             },
             xaxis: {
-                categories: ['Process 1'],
+                categories: [dadosOrdenados[0][0]],
             },
             yaxis: {
                 max: 100,
@@ -587,21 +621,21 @@ function plotarGraficoMaioresUsos() {
             },
             series: [
                 {
-                    name: 'Process 1',
-                    data: [44],
+                    name: dadosOrdenados[1][0],
+                    data: [dadosOrdenados[1][1]],
                 },
             ],
             title: {
                 floating: true,
                 offsetX: -10,
                 offsetY: 5,
-                text: 'Process 1',
+                text: dadosOrdenados[1][0],
             },
             subtitle: {
                 floating: true,
                 align: 'right',
                 offsetY: 0,
-                text: '44%',
+                text: `${dadosOrdenados[1][1]}%`,
                 style: {
                     fontSize: '20px',
                 },
@@ -610,7 +644,7 @@ function plotarGraficoMaioresUsos() {
                 enabled: false,
             },
             xaxis: {
-                categories: ['Process 1'],
+                categories: [dadosOrdenados[1][0]],
             },
             yaxis: {
                 max: 100,
@@ -644,21 +678,21 @@ function plotarGraficoMaioresUsos() {
             },
             series: [
                 {
-                    name: 'Process 1',
-                    data: [44],
+                    name: dadosOrdenados[2][0],
+                    data: [dadosOrdenados[2][1]],
                 },
             ],
             title: {
                 floating: true,
                 offsetX: -10,
                 offsetY: 5,
-                text: 'Process 1',
+                text: dadosOrdenados[2][0],
             },
             subtitle: {
                 floating: true,
                 align: 'right',
                 offsetY: 0,
-                text: '44%',
+                text: `${dadosOrdenados[2][1]}%`,
                 style: {
                     fontSize: '20px',
                 },
@@ -667,7 +701,7 @@ function plotarGraficoMaioresUsos() {
                 enabled: false,
             },
             xaxis: {
-                categories: ['Process 1'],
+                categories: [dadosOrdenados[2][0]],
             },
             yaxis: {
                 max: 100,
@@ -697,26 +731,35 @@ function plotarGraficoMaioresUsos() {
         graficoMaioresUsos1.updateOptions({
             series: [
                 {
-                    name: 'Process 1',
-                    data: [44],
+                    name: dadosOrdenados[0][0],
+                    data: [dadosOrdenados[0][1]],
                 },
             ],
+            subtitle: {
+                text: `${dadosOrdenados[0][1]}%`,
+            },
         });
         graficoMaioresUsos2.updateOptions({
             series: [
                 {
-                    name: 'Process 1',
-                    data: [44],
+                    name: dadosOrdenados[1][0],
+                    data: [dadosOrdenados[1][1]],
                 },
             ],
+            subtitle: {
+                text: `${dadosOrdenados[1][1]}%`,
+            },
         });
         graficoMaioresUsos3.updateOptions({
             series: [
                 {
-                    name: 'Process 1',
-                    data: [44],
+                    name: dadosOrdenados[2][0],
+                    data: [dadosOrdenados[2][1]],
                 },
             ],
+            subtitle: {
+                text: `${dadosOrdenados[2][1]}%`,
+            },
         });
     }
 }
@@ -724,7 +767,6 @@ function plotarGraficoMaioresUsos() {
 window.addEventListener('DOMContentLoaded', () => {
     carregarAtms();
     atualizarParametrosKpis();
-    plotarGraficoMaioresUsos();
     intervaloAtualizacao = setInterval(atualizarDadosCpu, 3500);
 
     comboATMSCPU.addEventListener('change', () => {

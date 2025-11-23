@@ -11,4 +11,8 @@ router.get('/alertas/:idAtm', (req, res) => {
     cpuController.getAlertas(req, res);
 });
 
+router.get('/maioresUsos/:idEmpresa', (req, res) => {
+    cpuController.getMaioresUsos(req, res);
+});
+
 module.exports = router;
