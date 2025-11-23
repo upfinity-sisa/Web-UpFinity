@@ -93,7 +93,7 @@ async function carregarGraficoLogins() {
   const horas = Array.from({ length: 24 }, (_, i) => `${String(i).padStart(2, '0')}h`);
   const dados = Array(24).fill(0);
 
-  console.log("JSON recebido:" , json);
+  console.log("JSON recebido:", json);
 
 
   json.forEach(linha => {
@@ -106,12 +106,21 @@ async function carregarGraficoLogins() {
       height: 350,
       toolbar: { show: false }
     },
+
+    title: {
+      text: "Logins por Hora",
+      align: "center",
+      style: {
+        fontSize: "20px",
+        fontWeight: "bold",
+        color: "#333"
+      }
+    },
     series: [{
       name: "Logins",
       data: dados
     }],
     xaxis: { categories: horas },
-    yaxis: { title: { text: "Quantidade de Logins" } },
     stroke: { curve: "smooth", width: 3 },
     colors: ["#2ED1D7"],
     markers: { size: 4, colors: ["#232023"] },
@@ -127,3 +136,65 @@ async function carregarGraficoLogins() {
 }
 
 carregarGraficoLogins();
+
+async function carregarGraficoNovosUsuarios() {
+
+  const resposta = await fetch("http://localhost:3333/gestaoAcesso/novosUsuariosPorSemana");
+  let json = await resposta.json();
+
+
+  json = Array.isArray(json) ? json : [json];
+
+
+  const categorias = json.map(linha => new Date(linha.dia).toLocaleDateString("pt-BR"));
+  const valores = json.map(linha => linha.novos_usuarios);
+
+  const optionsNovos = {
+    chart: {
+      type: "bar",
+      height: 350,
+      toolbar: { show: false }
+    },
+
+    title: {
+      text: "Novos Usuários por Dia (Últimos 7 dias)",
+      align: "center",
+      style: {
+        fontSize: "20px",
+        fontWeight: "bold",
+        color: "#333"
+      }
+    },
+
+    series: [{
+      name: "Novos Usuários",
+      data: valores
+    }],
+
+    xaxis: {
+      categories: categorias,
+      labels: { rotate: -20 }
+    },
+
+    plotOptions: {
+      bar: {
+        borderRadius: 6,
+        columnWidth: "45%"
+      }
+    },
+
+    colors: ["#268184"],
+
+    grid: { borderColor: "#e0e0e0" }
+  };
+
+  const chartNovos = new ApexCharts(
+    document.querySelector("#grafico-novos"),
+    optionsNovos
+  );
+
+  chartNovos.render();
+}
+
+carregarGraficoNovosUsuarios();
+

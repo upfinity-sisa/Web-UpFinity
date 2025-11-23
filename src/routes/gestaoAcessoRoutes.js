@@ -31,4 +31,8 @@ router.get("/empresasemplano", function (req, res) {
   gestaoAcessoController.empresaSemPlano(req,res);
 });
 
+router.get("/novosUsuariosPorSemana" , function (req, res) {
+  gestaoAcessoController.novosUsuariosPorSemana(req,res);
+});
+
 module.exports = router;

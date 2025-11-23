@@ -77,6 +77,19 @@ function empresaSemPlano(req, res) {
     });
 }
 
+function novosUsuariosPorSemana(req, res) {
+     gestaoAcessoModel.novosUsuariosPorSemana()
+    .then((resultado) => {
+
+        const linhas = resultado[0];
+        res.status(200).json(Array.isArray(linhas) ? linhas : [linhas]);
+    })
+    .catch((e) => {
+        console.log("Erro ao buscar novos usuarios por semana:", e);
+        res.status(500).json({e: "Erro ao buscar novos usuarios por semana"});
+    });
+}
+
 
 
 module.exports = {
@@ -87,4 +100,5 @@ module.exports = {
   carregarLoginFalho,
   loginsPorHora,
   empresaSemPlano,
+  novosUsuariosPorSemana,
 };
