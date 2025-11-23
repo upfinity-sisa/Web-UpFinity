@@ -138,7 +138,7 @@
     align-items: flex-start;
     justify-content: flex-start;
     flex-direction: column;
-    margin-left: 4.5%;
+    margin-left: 3.5%;
 }
 
 
@@ -189,7 +189,6 @@
 
 #container_kpi {
     height: 22%;
-    /* background: #3294bb; */
     display: flex;
     justify-content: space-between;
 }
@@ -265,15 +264,11 @@
 }
 
 .color_critico {
-    color: #ff3131;
+    color: #FB2B3A;
 }
 
 .color_moderado {
-    color: #e8922f;
-}
-
-.color_pendente {
-    color: #c453f9;
+    color: #e3bf0a;
 }
 
 
@@ -544,19 +539,19 @@
 }
 
 .status_critico {
-    background: #ff3131;
+    background: #FB2B3A;
 }
 
 .status_pendente {
-    background-color: #c453f9;
+    background-color: #9fa2d4;
 }
 
 .status_moderado {
-    background-color: #e8922f;
+    background-color: #ffd717;
 }
 
 .status_resolvido {
-    background-color: #01ba01;
+    background-color: #58f058;
 }
 
 .desc_atm {
@@ -588,15 +583,15 @@
     height: 85%;
     width: 12vw;
     font-size: 1vw;
-    border: 2.2px solid #01ba01;
-    color: #01ba01;
+    border: 2.2px solid #52cd52;
+    color: #52cd52;
     font-weight: 600;
     border-radius: 10px;
     transition: 0.18s ease;
 }
 
 .btn_resolvido:hover {
-    background: #01ba01;
+    background: #52cd52;
     color: #fff;
 }
 
@@ -605,12 +600,12 @@
 }
 
 .btn_emAberto {
-    border: 2.2px solid #c453f9;
-    color: #c453f9;
+    border: 2.2px solid #7b7da2;
+    color: #7b7da2;
 }
 
 .btn_emAberto:hover {
-    background: #c453f9;
+    background: #7b7da2;
     color: #fff;
 }
 

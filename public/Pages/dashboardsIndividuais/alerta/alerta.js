@@ -16,7 +16,7 @@ var options_grafico1 = {
         { name: 'Resolvidos', data: [5, 15, 40, 50] },
         { name: 'Total', data: [8, 20, 50, 70] }
     ],
-    colors: ['#c453f9', '#01ba01', '#00C6CC'],
+    colors: ['#8c91cd', '#58f058', '#5acfd3ff'],
     xaxis: {
         categories: ['Rede', 'Disco', 'RAM', 'CPU']
     },
@@ -95,7 +95,7 @@ var options_grafico2 = {
             ]
         }
     ],
-    colors: ['#00C6CC', '#f833b9ff'],
+    colors: ['#00C6CC', '#f775ceff'],
     xaxis: {
         type: 'category',
         tooltip: {
@@ -113,8 +113,8 @@ var options_grafico2 = {
 
         boxPlot: {
             colors: {
-                upper: '#00C6CC',
-                lower: '#008bccff'
+                upper: '#6cd8dcff',
+                lower: '#529ec2ff'
             }
         }
     },
@@ -138,17 +138,20 @@ var options_grafico3 = {
     series: [0, 0],
 
     labels: ['Moderado', 'Crítico'],
-    colors: ['#e8922f', '#ff3131'],
+    colors: ['#ffd717', '#FB2B3A'],
 
     dataLabels: {
         enabled: true,
+        dropShadow: {
+            enabled: false,
+        },
         formatter: function (val) {
             return val.toFixed(1) + "%";
         },
         style: {
             fontSize: `${vwParaPx(1)}`,
-            colors: ['#000000'],
-            fontWeight: 300
+            colors: ['#000000ff'],
+            fontWeight: 550
         }
     },
     legend: {
@@ -166,10 +169,12 @@ const btn_abrir_gerenciar = document.getElementById('btn_gerenciar')
 const container_pai_gerenciar = document.getElementById('container_sombra')
 
 img_fechar_gerenciar.addEventListener('click', function () {
+    CarregarDadosDashboard()
     container_pai_gerenciar.classList.add('d-none')
 })
 
 btn_abrir_gerenciar.addEventListener('click', function () {
+    ObterHistoricoATM();
     container_pai_gerenciar.classList.remove('d-none')
 })
 
@@ -183,10 +188,12 @@ function CarregarDadosDashboard() {
     ObterKPI_3();
 
     ObterGrafico_Bar();
+    ObterHistorico();
 }
 
 window.onload = function () {
     CarregarDadosDashboard()
+    ObterHistoricoATM();
 };
 
 setInterval(CarregarDadosDashboard, 3000);
@@ -544,4 +551,135 @@ function ObterGrafico_Bar() {
             console.error("Erro na resposta da API");
         }
     });
+}
+
+function ObterHistorico() {
+    const span_metricas_criticos = document.getElementById('span_metricas_criticos')
+    const span_metricas_moderados = document.getElementById('span_metricas_moderados')
+    const span_metricas_total = document.getElementById('span_metricas_total')
+
+    fetch(`/alertas/ObterHistorico/${idEmpresa}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).then(function (resposta) {
+        if (resposta.ok) {
+            resposta.json().then(jsonHistorico => {
+                span_metricas_criticos.innerText = jsonHistorico.QtdCriticos;
+                span_metricas_moderados.innerText = jsonHistorico.QtdModerados;
+                span_metricas_total.innerHTML = `<b>${jsonHistorico.TotalAlertas}</b>`;
+            });
+        } else {
+            console.error("Erro na resposta da API");
+        }
+    });
+}
+
+function ObterHistoricoATM() {
+
+    fetch(`/alertas/ObterHistoricoATM/${idEmpresa}`)
+        .then(function (resposta) {
+            if (resposta.ok) {
+                if (resposta.status == 204) {
+                    var container = document.getElementById("box_gerenciar_atms");
+                    container.innerHTML = "<p>Nenhum alerta encontrado.</p>";
+                } else {
+                    resposta.json().then(function (listaAlertas) {
+
+                        plotarCards(listaAlertas);
+                    });
+                }
+            } else {
+                console.error("Erro na resposta da API");
+            }
+        })
+        .catch(function (erro) {
+            console.error(erro);
+        });
+}
+
+function plotarCards(listaAlertas) {
+    var container = document.getElementById("box_gerenciar_atms");
+
+    container.innerHTML = "";
+
+    listaAlertas.forEach(alerta => {
+
+        var classeCriticidade = alerta.NivelCriticidade === "Crítico"
+            ? "status_critico"
+            : "status_moderado";
+
+        var classeStatus, classeBtn, textoBtn, strData;
+
+        if (alerta.StatusAlerta === "Pendente") {
+            classeStatus = "status_pendente";
+            classeBtn = "btn_resolvido";
+            textoBtn = "Marcar como resolvido";
+            strData = `<b>Data de emissão:</b> ${alerta.DataOcorrencia}`
+        } else {
+            classeStatus = "status_resolvido";
+            classeBtn = "btn_emAberto";
+            textoBtn = "Marcar como pendente";
+            strData = `<b>Data de resolução:</b> ${alerta.DataOcorrencia}`
+        }
+
+        var descricao = "";
+        var valorFormatado = Number(alerta.ValorCaptura).toFixed(1);
+
+        if (alerta.TipoComponente === "CPU") {
+            descricao = `Processamento elevado - ${valorFormatado}%`;
+        } else if (alerta.TipoComponente === "Memória RAM" || alerta.TipoComponente === "RAM") {
+            descricao = `Consumo elevado - ${valorFormatado}%`;
+        } else if (alerta.TipoComponente === "Disco") {
+            descricao = `Uso de disco elevado - ${valorFormatado}%`;
+        } else if (alerta.TipoComponente === "Rede" || alerta.TipoComponente === "Placa de rede") {
+            descricao = `Sem conexão de internet`;
+        } else {
+            descricao = `Alerta de ${alerta.TipoComponente} - ${valorFormatado}`;
+        }
+
+        var numAtm = "ATM" + String(alerta.NumeracaoATM).padStart(2, '0');
+        var cardHTML = `
+        <div class="box_atm">
+            <div class="container_titulo_atm">
+                <span class="nome_atm">${numAtm}</span>
+                <span class="nome_componente">${alerta.TipoComponente}</span>
+                <span class="${classeCriticidade}">${alerta.NivelCriticidade}</span>
+                <span class="${classeStatus}">${alerta.StatusAlerta}</span>
+            </div>
+            
+            <span class="desc_atm">${descricao}</span>
+            
+            <div class="container_acao_alerta">
+                <span class="dataHora_captura">${strData}</span>
+                
+                <button class="${classeBtn}" onclick="mudarStatus(${alerta.idAlerta})">${textoBtn}</button>
+            </div>
+        </div>
+        `;
+        container.innerHTML += cardHTML;
+    });
+}
+
+function mudarStatus(idAlerta) {
+    fetch(`/alertas/mudarStatus/${idAlerta}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).then(function (resposta) {
+        if (resposta.ok) {
+            console.log(resposta);
+            ObterHistoricoATM();
+        } else {
+            console.log("Houve um erro ao tentar mudar o status do alerta");
+            resposta.text().then(texto => {
+                console.error(texto);
+            });
+        }
+
+    }).catch(function (erro) {
+        console.log(erro);
+    })
 }

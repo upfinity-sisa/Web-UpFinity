@@ -41,4 +41,16 @@ router.get("/Grafico_Bar/:idEmpresa", function (req, res) {
   alertasController.Grafico_Bar(req, res);
 })
 
+router.get("/ObterHistorico/:idEmpresa", function (req, res) {
+  alertasController.ObterHistorico(req, res);
+})
+
+router.get("/ObterHistoricoATM/:idEmpresa", function (req, res) {
+  alertasController.ObterHistoricoATM(req, res);
+})
+
+router.put("/mudarStatus/:idAlerta", function (req, res) {
+  alertasController.mudarStatus(req, res);
+})
+
 module.exports = router;

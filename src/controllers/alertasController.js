@@ -232,6 +232,54 @@ function Grafico_Bar(req, res) {
     });
 }
 
+function ObterHistorico(req, res) {
+  let fkEmpresa = req.params.idEmpresa;
+
+  alertasModel.ObterHistorico(fkEmpresa)
+    .then((resultado) => {
+      console.log("resultado da controller:")
+      console.log(resultado)
+
+      res.json({
+        TotalAlertas: resultado[0].TotalAlertas,
+        QtdCriticos: resultado[0].QtdCriticos,
+        QtdModerados: resultado[0].QtdModerados
+      });
+
+    }).catch((erro) => {
+      console.log(erro)
+      console.log("Erro ao obter histórico:", erro.sqlMessage);
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+function ObterHistoricoATM(req, res) {
+  let fkEmpresa = req.params.idEmpresa;
+
+  alertasModel.ObterHistoricoATM(fkEmpresa)
+    .then((resultado) => {
+      console.log("resultado da controller:", resultado);
+      res.status(200).json(resultado);
+    }).catch((erro) => {
+      console.log(erro);
+      console.log("Erro ao obter histórico:", erro.sqlMessage);
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function mudarStatus(req, res) {
+  let idAlerta = req.params.idAlerta;
+
+  alertasModel.mudarStatus(idAlerta)
+    .then((resultado) => {
+      console.log("resultado da controller:", resultado);
+      res.status(200).json(resultado);
+    }).catch((erro) => {
+      console.log(erro);
+      console.log("Erro ao mudar status do alerta:", erro.sqlMessage);
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+
 module.exports = {
   ObterKPI_1,
   ObterKPI_1_qtdCritico,
@@ -242,5 +290,8 @@ module.exports = {
   ObterKPI_3,
   ObterKPI_3_qtdCritico,
   ObterKPI_3_qtdModerado,
-  Grafico_Bar
+  Grafico_Bar,
+  ObterHistorico,
+  ObterHistoricoATM,
+  mudarStatus
 }
