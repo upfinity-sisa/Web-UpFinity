@@ -24,6 +24,7 @@ var gestaoAcessoRouter = require("./src/routes/gestaoAcessoRoutes");
 var segurancaRouter = require("./src/routes/segurancaRoutes"); //Rota da Catarina ;)
 var cpuRouter = require("./src/routes/cpuRoutes"); //rota do brenokas :)
 var ramRouter = require("./src/routes/ramRoutes"); // rota do rei da RAM :)
+var visaoGeralRouter = require("./src/routes/visaoGeralRoutes.js");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -42,7 +43,7 @@ app.use("/gestaoAcesso", gestaoAcessoRouter);
 app.use("/seguranca", segurancaRouter);
 app.use("/cpu", cpuRouter);
 app.use("/ram", ramRouter);
-
+app.use("/visaoGeral", visaoGeralRouter);
 
 app.listen(PORTA_APP, function () {
   console.log(`

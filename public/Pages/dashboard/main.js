@@ -8,118 +8,6 @@ let dadosRam = [];
 let dadosDisco = [];
 let dadosRede = [];
 
-function carregarParametros() {
-    fetch(`/dashboard/pegar-parametros/${sessionStorage.getItem('FK_EMPRESA')}`, {
-        cache: 'no-store',
-    })
-        .then(response => {
-            if (response.ok) {
-                response.json().then(resposta => {
-                    if (resposta.length > 0) {
-                        for (let i = 0; i < resposta.length; i++) {
-                            console.log(resposta[i]);
-                            switch (resposta[i]['fkTipoComponente']) {
-                                case 1:
-                                    if (resposta[i]['fkTipoAlerta'] == 1) {
-                                        sessionStorage.setItem(
-                                            'PARAM_CRITICO_CPU',
-                                            resposta[i]['limiteMax']
-                                        );
-                                    } else {
-                                        sessionStorage.setItem(
-                                            'PARAM_IMPORTANTE_CPU',
-                                            resposta[i]['limiteMax']
-                                        );
-                                    }
-                                    break;
-                                case 2:
-                                    if (resposta[i]['fkTipoAlerta'] == 1) {
-                                        sessionStorage.setItem(
-                                            'PARAM_CRITICO_RAM',
-                                            resposta[i]['limiteMax']
-                                        );
-                                    } else {
-                                        sessionStorage.setItem(
-                                            'PARAM_IMPORTANTE_RAM',
-                                            resposta[i]['limiteMax']
-                                        );
-                                    }
-                                    break;
-                                case 3:
-                                    if (resposta[i]['fkTipoAlerta'] == 1) {
-                                        sessionStorage.setItem(
-                                            'PARAM_CRITICO_DISCO',
-                                            resposta[i]['limiteMax']
-                                        );
-                                    } else {
-                                        sessionStorage.setItem(
-                                            'PARAM_IMPORTANTE_DISCO',
-                                            resposta[i]['limiteMax']
-                                        );
-                                    }
-                                    break;
-                                case 5:
-                                    if (resposta[i]['fkTipoAlerta'] == 1) {
-                                        sessionStorage.setItem(
-                                            'PARAM_CRITICO_TEMPERATURA_CPU',
-                                            resposta[i]['limiteMax']
-                                        );
-                                    } else {
-                                        sessionStorage.setItem(
-                                            'PARAM_IMPORTANTE_TEMPERATURA_CPU',
-                                            resposta[i]['limiteMax']
-                                        );
-                                    }
-                                    break;
-                                default:
-                                    break;
-                            }
-                        }
-
-                        const paramCriticoCpuDiv = document.getElementById('paramCriticoCPU');
-
-                        const paramModeradoCpuDiv = document.getElementById('paramModeradoCPU');
-
-                        const paramCriticoRamDiv = document.getElementById('paramCriticoRAM');
-
-                        const paramModeradoRamDiv = document.getElementById('paramModeradoRAM');
-
-                        const paramCriticoDiscoDiv = document.getElementById('paramCriticoDisco');
-                        const paramModeradoDiscoDiv = document.getElementById('paramModeradoDisco');
-
-                        paramCriticoCpuDiv.innerHTML += parseFloat(
-                            sessionStorage.getItem('PARAM_CRITICO_CPU')
-                        ).toFixed(2);
-                        paramModeradoCpuDiv.innerHTML += parseFloat(
-                            sessionStorage.getItem('PARAM_IMPORTANTE_CPU')
-                        ).toFixed(2);
-
-                        paramCriticoRamDiv.innerHTML += parseFloat(
-                            sessionStorage.getItem('PARAM_CRITICO_RAM')
-                        ).toFixed(2);
-                        paramModeradoRamDiv.innerHTML += parseFloat(
-                            sessionStorage.getItem('PARAM_IMPORTANTE_RAM')
-                        ).toFixed(2);
-
-                        paramCriticoDiscoDiv.innerHTML += parseFloat(
-                            sessionStorage.getItem('PARAM_CRITICO_DISCO')
-                        ).toFixed(2);
-                        paramModeradoDiscoDiv.innerHTML += parseFloat(
-                            sessionStorage.getItem('PARAM_IMPORTANTE_DISCO')
-                        ).toFixed(2);
-                    } else {
-                        console.error('carregarParametros: nenhum parâmetro encontrado.');
-                    }
-                });
-            } else {
-                console.error('carregarParametros: nenhum dado encontrado ou erro na API');
-            }
-        })
-        .catch(erro => {
-            console.error(`carregarParametros: erro na obtenção dos dados: ${erro.message}`);
-        });
-}
-
 function carregarDadosRede(idAtm) {
     fetch(`/dashboard/ultimas-capturas-rede/${idAtm}`, {
         cache: 'no-store',
@@ -333,4 +221,34 @@ window.addEventListener('DOMContentLoaded', () => {
         atualizarDados();
         intervalId2 = setInterval(atualizarDados, 3500);
     });
+
+    const paramCriticoCpuDiv = document.getElementById('paramCriticoCPU');
+    const paramModeradoCpuDiv = document.getElementById('paramModeradoCPU');
+
+    const paramCriticoRamDiv = document.getElementById('paramCriticoRAM');
+    const paramModeradoRamDiv = document.getElementById('paramModeradoRAM');
+
+    const paramCriticoDiscoDiv = document.getElementById('paramCriticoDisco');
+    const paramModeradoDiscoDiv = document.getElementById('paramModeradoDisco');
+
+    paramCriticoCpuDiv.innerHTML += parseFloat(sessionStorage.getItem('PARAM_CRITICO_CPU')).toFixed(
+        2
+    );
+    paramModeradoCpuDiv.innerHTML += parseFloat(
+        sessionStorage.getItem('PARAM_IMPORTANTE_CPU')
+    ).toFixed(2);
+
+    paramCriticoRamDiv.innerHTML += parseFloat(sessionStorage.getItem('PARAM_CRITICO_RAM')).toFixed(
+        2
+    );
+    paramModeradoRamDiv.innerHTML += parseFloat(
+        sessionStorage.getItem('PARAM_IMPORTANTE_RAM')
+    ).toFixed(2);
+
+    paramCriticoDiscoDiv.innerHTML += parseFloat(
+        sessionStorage.getItem('PARAM_CRITICO_DISCO')
+    ).toFixed(2);
+    paramModeradoDiscoDiv.innerHTML += parseFloat(
+        sessionStorage.getItem('PARAM_IMPORTANTE_DISCO')
+    ).toFixed(2);
 });

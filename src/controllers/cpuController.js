@@ -33,7 +33,7 @@ function getAlertas(req, res) {
         })
         .catch(erro => {
             console.log(erro);
-            console.log('Houve um erro ao buscar os dados de cpu: ', erro.sqlMessage);
+            console.log('Houve um erro ao buscar os alertas de cpu: ', erro.sqlMessage);
             res.status(500).json(erro.sqlMessage);
         });
 }
@@ -52,7 +52,7 @@ function getMaioresUsos(req, res) {
         })
         .catch(erro => {
             console.log(erro);
-            console.log('Houve um erro ao buscar os dados de cpu: ', erro.sqlMessage);
+            console.log('Houve um erro ao buscar os maiores usos de cpu: ', erro.sqlMessage);
             res.status(500).json(erro.sqlMessage);
         });
 }
@@ -72,7 +72,7 @@ function getAlertasHoje(req, res) {
         })
         .catch(erro => {
             console.log(erro);
-            console.log('Houve um erro ao buscar os dados de cpu: ', erro.sqlMessage);
+            console.log('Houve um erro ao buscar os alertas de cpu hoje: ', erro.sqlMessage);
             res.status(500).json(erro.sqlMessage);
         });
 }
