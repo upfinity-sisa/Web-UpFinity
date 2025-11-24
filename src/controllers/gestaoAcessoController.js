@@ -81,8 +81,10 @@ function novosUsuariosPorSemana(req, res) {
      gestaoAcessoModel.novosUsuariosPorSemana()
     .then((resultado) => {
 
-        const linhas = resultado[0];
-        res.status(200).json(Array.isArray(linhas) ? linhas : [linhas]);
+        const linhas = resultado;
+        
+        res.status(200).json(linhas); 
+        
     })
     .catch((e) => {
         console.log("Erro ao buscar novos usuarios por semana:", e);
