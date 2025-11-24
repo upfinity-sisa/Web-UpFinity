@@ -280,6 +280,115 @@ function mudarStatus(req, res) {
     });
 }
 
+// BOXPLOT
+
+function calcularEstatisticasBoxPlot(dados) {
+
+  dados.sort((a, b) => a - b);
+
+  const q1 = obterQuartil(dados, 0.25);
+  const mediana = obterQuartil(dados, 0.50);
+  const q3 = obterQuartil(dados, 0.75);
+
+  const iqr = q3 - q1;
+
+  const limiteInferior = q1 - (1.5 * iqr);
+  const limiteSuperior = q3 + (1.5 * iqr);
+
+  const outliers = [];
+  const dadosNormais = [];
+
+  for (let valor of dados) {
+    if (valor < limiteInferior || valor > limiteSuperior) {
+      outliers.push(valor);
+    } else {
+      dadosNormais.push(valor);
+    }
+  }
+
+  const min = dadosNormais.length > 0 ? Math.min(...dadosNormais) : q1;
+  const max = dadosNormais.length > 0 ? Math.max(...dadosNormais) : q3;
+
+  return {
+    boxplot: [min, q1, mediana, q3, max],
+    outliers: outliers
+  };
+}
+
+function obterQuartil(arr, q) {
+  const pos = (arr.length - 1) * q;
+  const base = Math.floor(pos);
+  const rest = pos - base;
+  if (arr[base + 1] !== undefined) {
+    return arr[base] + rest * (arr[base + 1] - arr[base]);
+  } else {
+    return arr[base];
+  }
+}
+function obterDadosBoxplot(req, res) {
+  var idEmpresa = req.params.idEmpresa;
+
+  alertasModel.obterDadosBoxplot(idEmpresa).then(resultadoBanco => {
+  
+    let grupos = {};
+  
+    resultadoBanco.forEach(reg => {
+      if (!grupos[reg.Componente]) {
+        grupos[reg.Componente] = [];
+      }
+      grupos[reg.Componente].push(reg.TempoMinutos);
+    });
+
+    let seriesBoxplot = [];
+    let seriesOutliers = [];
+
+    const mapaComponentes = [
+      { nomeBanco: "CPU", label: "CPU" },
+      { nomeBanco: "Memória RAM", label: "RAM" },  
+      { nomeBanco: "Disco", label: "Disco" },
+      { nomeBanco: "Placa de rede", label: "Rede" }
+    ];
+
+    mapaComponentes.forEach(item => {
+
+      let tempos = grupos[item.nomeBanco] || [];
+
+      if (tempos.length > 0) {
+        let stats = calcularEstatisticasBoxPlot(tempos);
+
+        seriesBoxplot.push({
+          x: item.label, 
+          y: stats.boxplot
+        });
+
+        stats.outliers.forEach(outlier => {
+          seriesOutliers.push({
+            x: item.label,
+            y: outlier
+          });
+        });
+
+      } else {
+        seriesBoxplot.push({
+          x: item.label,
+          y: [0, 0, 0, 0, 0]
+        });
+      }
+    });
+
+    res.json({
+      series: [
+        { name: 'Boxplot', type: 'boxPlot', data: seriesBoxplot },
+        { name: 'Outliers', type: 'scatter', data: seriesOutliers }
+      ]
+    });
+
+  }).catch(erro => {
+    console.log(erro);
+    res.status(500).json(erro);
+  });
+}
+
 module.exports = {
   ObterKPI_1,
   ObterKPI_1_qtdCritico,
@@ -293,5 +402,6 @@ module.exports = {
   Grafico_Bar,
   ObterHistorico,
   ObterHistoricoATM,
-  mudarStatus
+  mudarStatus,
+  obterDadosBoxplot
 }

@@ -53,4 +53,8 @@ router.put("/mudarStatus/:idAlerta", function (req, res) {
   alertasController.mudarStatus(req, res);
 })
 
+router.get("/obterDadosBoxplot/:idEmpresa", function (req, res) {
+  alertasController.obterDadosBoxplot(req, res);
+})
+
 module.exports = router;

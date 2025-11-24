@@ -61,23 +61,19 @@ var options_grafico2 = {
                 {
                     x: 'CPU',
                     // [Min, Q1, Mediana, Q3, Max]
-                    y: [10, 15, 20, 25, 40]
-                    // O outlier deve ser > 40
+                    y: []
                 },
                 {
                     x: 'RAM',
-                    y: [20, 30, 45, 55, 70]
-                    // O outlier deve ser > 70
+                    y: []
                 },
                 {
                     x: 'Disco',
-                    y: [5, 10, 15, 20, 30]
-                    // O outlier deve ser > 30
+                    y: []
                 },
                 {
                     x: 'Rede',
-                    y: [40, 50, 60, 80, 100]
-                    // O outlier deve ser > 100
+                    y: []
                 }
             ]
         },
@@ -189,6 +185,7 @@ function CarregarDadosDashboard() {
 
     ObterGrafico_Bar();
     ObterHistorico();
+    obterDadosBoxplot();
 }
 
 window.onload = function () {
@@ -473,7 +470,6 @@ function ObterKPI_3() {
                         spn_kpi_3_moderado.innerText = jsonKPI_3_qtdModerado.TotalResolvidoModerado;
                     });
 
-
                 } else {
                     console.log("Houve um erro ao tentar obter a KPI 2");
                     resposta.text().then(texto => {
@@ -501,9 +497,19 @@ function ObterKPI_3() {
 }
 
 function ObterGrafico_Pizza() {
+    const box_grafico3_sem_dados = document.getElementById('box_grafico3_sem_dados')
+
     var moderados = Number(totalPendentesModerados);
     var criticos = Number(totalPendentesCriticos);
-    chart_grafico3.updateSeries([moderados, criticos]);
+
+    if (moderados === 0 && criticos === 0) {
+        box_grafico3_sem_dados.classList.remove('d-none')
+        grafico3.classList.add('d-none')
+    } else {
+        box_grafico3_sem_dados.classList.add('d-none')
+        grafico3.classList.remove('d-none')
+        chart_grafico3.updateSeries([moderados, criticos]);
+    }
 }
 
 function ObterGrafico_Bar() {
@@ -577,19 +583,24 @@ function ObterHistorico() {
 }
 
 function ObterHistoricoATM() {
-
+    var container = document.getElementById("box_gerenciar_atms");
     fetch(`/alertas/ObterHistoricoATM/${idEmpresa}`)
         .then(function (resposta) {
             if (resposta.ok) {
-                if (resposta.status == 204) {
-                    var container = document.getElementById("box_gerenciar_atms");
-                    container.innerHTML = "<p>Nenhum alerta encontrado.</p>";
-                } else {
-                    resposta.json().then(function (listaAlertas) {
+                resposta.json().then(function (listaAlertas) {
+                    if (listaAlertas.length === 0) {
+                        container.innerHTML = `<div id="box_sem_atm">
+                            <div id="box_img_sem_atm">
+                                <img src="../../../Assets/Elements/Icons/check_progresso.png" id="img_sem_atm">
+                                <span id="spn_sem_atm">Você não possui nenhum alerta!</span>
+                            </div>
+                        </div>`;
+                    }
+                    else {
 
                         plotarCards(listaAlertas);
-                    });
-                }
+                    }
+                });
             } else {
                 console.error("Erro na resposta da API");
             }
@@ -682,4 +693,16 @@ function mudarStatus(idAlerta) {
     }).catch(function (erro) {
         console.log(erro);
     })
+}
+
+function obterDadosBoxplot() {
+    fetch(`/alertas/obterDadosBoxplot/${idEmpresa}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).then(res => res.json())
+        .then(dados => {
+            chart_grafico2.updateSeries(dados.series);
+        });
 }

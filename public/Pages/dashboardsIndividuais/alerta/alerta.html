@@ -28,7 +28,7 @@
 
     <!-- JavaScript -->
     <script src="./alerta.js" defer></script>
-    <script src="../../js/sessao.js" defer></script>
+    <script src="../../../js/sessao.js" defer></script>
 
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
@@ -49,45 +49,6 @@
                             pendentes.</span>
                     </div>
                     <div id="box_gerenciar_atms">
-                        <div class="box_atm">
-                            <div class="container_titulo_atm">
-                                <span class="nome_atm">ATM01</span>
-                                <span class="nome_componente">CPU</span>
-                                <span class="status_critico">Crítico</span>
-                                <span class="status_pendente">Pendente</span>
-                            </div>
-                            <span class="desc_atm">Processamento elevado - (80%)</span>
-                            <div class="container_acao_alerta">
-                                <span class="dataHora_captura">17/11/2025, 12:20:59</span>
-                                <button class="btn_resolvido">Marcar como resolvido</button>
-                            </div>
-                        </div>
-                        <div class="box_atm">
-                            <div class="container_titulo_atm">
-                                <span class="nome_atm">ATM02</span>
-                                <span class="nome_componente">RAM</span>
-                                <span class="status_moderado">Moderado</span>
-                                <span class="status_pendente">Pendente</span>
-                            </div>
-                            <span class="desc_atm">Consumo elevado - (90%)</span>
-                            <div class="container_acao_alerta">
-                                <span class="dataHora_captura">17/11/2025, 12:20:59</span>
-                                <button class="btn_resolvido">Marcar como resolvido</button>
-                            </div>
-                        </div>
-                        <div class="box_atm">
-                            <div class="container_titulo_atm">
-                                <span class="nome_atm">ATM01</span>
-                                <span class="nome_componente">Rede</span>
-                                <span class="status_critico">Crítico</span>
-                                <span class="status_resolvido">Resolvido</span>
-                            </div>
-                            <span class="desc_atm">Sem conexão com a internet</span>
-                            <div class="container_acao_alerta">
-                                <span class="dataHora_captura">17/11/2025, 12:20:59</span>
-                                <button class="btn_emAberto">Marcar como pendente</button>
-                            </div>
-                        </div>
 
                     </div>
                 </div>
@@ -211,6 +172,11 @@
                     <div class="container_grafico_direita">
                         <h2 class="h2_grafico">Divisão de alertas pendentes</h2>
                         <div id="box_grafico_direita">
+                            <div id="box_grafico3_sem_dados" class="d-none">
+                                <img src="../../../Assets/Elements/Icons/dashAlerta_check_gerenciar.png"
+                                    id="img_grafico3_sem_dados">
+                                <span id="spn_grafico3_sem_dados">Você não possui alertas pedentes!</span>
+                            </div>
                             <div id="grafico3"></div>
                         </div>
                     </div>

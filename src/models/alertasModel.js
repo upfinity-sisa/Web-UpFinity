@@ -121,9 +121,9 @@ function ObterKPI_3_qtdCritico(fkEmpresa) {
   INNER JOIN Atm atm ON c.fkAtm = atm.idAtm
   WHERE a.statusAlerta = 0 
   AND atm.fkEmpresa = ${fkEmpresa}
-    AND a.dataResolucao >= DATE_SUB(NOW(), INTERVAL 1 MONTH)
-    AND a.fkTipoAlerta = 1;
-    `
+  AND a.dataResolucao >= DATE_SUB(NOW(), INTERVAL 1 MONTH)
+  AND a.fkTipoAlerta = 1;
+  `
 
   return database.executar(instrucaoSql);
 }
@@ -131,15 +131,15 @@ function ObterKPI_3_qtdCritico(fkEmpresa) {
 function ObterKPI_3_qtdModerado(fkEmpresa) {
 
   var instrucaoSql = `
-    SELECT count(*) AS TotalResolvidoModerado
-    FROM Alerta a 
-    INNER JOIN Captura c ON a.fkCaptura = c.idCaptura 
-    INNER JOIN Atm atm ON c.fkAtm = atm.idAtm
-    WHERE a.statusAlerta = 0 
-    AND atm.fkEmpresa = ${fkEmpresa}
-    AND a.dataResolucao >= DATE_SUB(NOW(), INTERVAL 1 MONTH)
-    AND a.fkTipoAlerta = 2;
-    `
+  SELECT count(*) AS TotalResolvidoModerado
+  FROM Alerta a 
+  INNER JOIN Captura c ON a.fkCaptura = c.idCaptura 
+  INNER JOIN Atm atm ON c.fkAtm = atm.idAtm
+  WHERE a.statusAlerta = 0 
+  AND atm.fkEmpresa = ${fkEmpresa}
+  AND a.dataResolucao >= DATE_SUB(NOW(), INTERVAL 1 MONTH)
+  AND a.fkTipoAlerta = 2;
+  `
 
   return database.executar(instrucaoSql);
 }
@@ -147,25 +147,25 @@ function ObterKPI_3_qtdModerado(fkEmpresa) {
 function Grafico_Bar(fkEmpresa) {
 
   var instrucaoSql = `
+  SELECT 
+  tc.nome AS NomeComponente,
+  COUNT(sub.idAlerta) AS TotalAlertas,
+  IFNULL(SUM(CASE WHEN sub.statusAlerta = 1 THEN 1 ELSE 0 END), 0) AS QtdPendentes,
+  IFNULL(SUM(CASE WHEN sub.statusAlerta = 0 THEN 1 ELSE 0 END), 0) AS QtdResolvidos
+  FROM TipoComponente tc
+  LEFT JOIN (
     SELECT 
-     tc.nome AS NomeComponente,
-     COUNT(sub.idAlerta) AS TotalAlertas,
-     IFNULL(SUM(CASE WHEN sub.statusAlerta = 1 THEN 1 ELSE 0 END), 0) AS QtdPendentes,
-     IFNULL(SUM(CASE WHEN sub.statusAlerta = 0 THEN 1 ELSE 0 END), 0) AS QtdResolvidos
-     FROM TipoComponente tc
-     LEFT JOIN (
-    SELECT 
-        a.idAlerta, 
-        a.statusAlerta, 
-        co.fkTipoComponente
-        FROM Alerta a
+    a.idAlerta, 
+    a.statusAlerta, 
+    co.fkTipoComponente
+    FROM Alerta a
     INNER JOIN Captura c ON a.fkCaptura = c.idCaptura
     INNER JOIN Atm atm ON c.fkAtm = atm.idAtm
     INNER JOIN Componente co ON c.fkComponente = co.idComponente AND c.fkAtm = co.fkAtm
     WHERE atm.fkEmpresa = ${fkEmpresa}
     AND a.dataEmissao >= DATE_SUB(NOW(), INTERVAL 1 MONTH)
-  ) AS sub ON tc.idTipoComponente = sub.fkTipoComponente
-  GROUP BY tc.idTipoComponente, tc.nome;
+    ) AS sub ON tc.idTipoComponente = sub.fkTipoComponente
+    GROUP BY tc.idTipoComponente, tc.nome;
   `
 
   return database.executar(instrucaoSql);
@@ -175,14 +175,14 @@ function ObterHistorico(fkEmpresa) {
 
   var instrucaoSql = `
   SELECT 
-      COUNT(a.idAlerta) AS TotalAlertas,
-      IFNULL(SUM(CASE WHEN a.fkTipoAlerta = 1 THEN 1 ELSE 0 END), 0) AS QtdCriticos,
-      IFNULL(SUM(CASE WHEN a.fkTipoAlerta = 2 THEN 1 ELSE 0 END), 0) AS QtdModerados
+  COUNT(a.idAlerta) AS TotalAlertas,
+  IFNULL(SUM(CASE WHEN a.fkTipoAlerta = 1 THEN 1 ELSE 0 END), 0) AS QtdCriticos,
+  IFNULL(SUM(CASE WHEN a.fkTipoAlerta = 2 THEN 1 ELSE 0 END), 0) AS QtdModerados
   FROM Alerta a
   INNER JOIN Captura c ON a.fkCaptura = c.idCaptura
   INNER JOIN Atm atm ON c.fkAtm = atm.idAtm
   WHERE atm.fkEmpresa = ${fkEmpresa}
-    AND a.fkTipoAlerta IN (1, 2);
+  AND a.fkTipoAlerta IN (1, 2);
   `
 
   return database.executar(instrucaoSql);
@@ -192,63 +192,81 @@ function ObterHistoricoATM(fkEmpresa) {
 
   var instrucaoSql = `
   SELECT
-    a.idAlerta,
-    atm.numeracao AS NumeracaoATM,
-     CASE 
-        WHEN tc.nome = 'Memória RAM' THEN 'RAM'
-        WHEN tc.nome = 'Placa de rede' THEN 'Rede'
-        ELSE tc.nome 
-    END AS TipoComponente,
-    CASE 
-        WHEN a.fkTipoAlerta = 1 THEN 'Crítico'
-        ELSE 'Moderado' 
-    END AS NivelCriticidade,
+  a.idAlerta,
+  atm.numeracao AS NumeracaoATM,
+  CASE 
+  WHEN tc.nome = 'Memória RAM' THEN 'RAM'
+  WHEN tc.nome = 'Placa de rede' THEN 'Rede'
+  ELSE tc.nome 
+  END AS TipoComponente,
+  CASE 
+  WHEN a.fkTipoAlerta = 1 THEN 'Crítico'
+  ELSE 'Moderado' 
+  END AS NivelCriticidade,
     CASE 
         WHEN a.statusAlerta = 1 THEN 'Pendente'
         ELSE 'Resolvido'
-    END AS StatusAlerta,
-    c.valor AS ValorCaptura,
+        END AS StatusAlerta,
+        c.valor AS ValorCaptura,
     DATE_FORMAT(
-        CASE 
-            WHEN a.statusAlerta = 0 THEN a.dataResolucao
-            ELSE a.dataEmissao
-        END, 
-        '%d/%m/%Y %H:%i:%s'
-    ) AS DataOcorrencia
-    FROM Alerta a
-    INNER JOIN Captura c ON a.fkCaptura = c.idCaptura
-    INNER JOIN Atm atm ON c.fkAtm = atm.idAtm
-    INNER JOIN Componente co ON c.fkComponente = co.idComponente AND c.fkAtm = co.fkAtm
-    INNER JOIN TipoComponente tc ON co.fkTipoComponente = tc.idTipoComponente
-    WHERE atm.fkEmpresa = ${fkEmpresa}
-    ORDER BY 
-        a.statusAlerta DESC,
-        a.fkTipoAlerta ASC,
-        DataOcorrencia DESC;
-  `
+      CASE 
+      WHEN a.statusAlerta = 0 THEN a.dataResolucao
+      ELSE a.dataEmissao
+      END, 
+      '%d/%m/%Y %H:%i:%s'
+      ) AS DataOcorrencia
+      FROM Alerta a
+      INNER JOIN Captura c ON a.fkCaptura = c.idCaptura
+      INNER JOIN Atm atm ON c.fkAtm = atm.idAtm
+      INNER JOIN Componente co ON c.fkComponente = co.idComponente AND c.fkAtm = co.fkAtm
+      INNER JOIN TipoComponente tc ON co.fkTipoComponente = tc.idTipoComponente
+      WHERE atm.fkEmpresa = ${fkEmpresa}
+      ORDER BY 
+      a.statusAlerta DESC,
+      a.fkTipoAlerta ASC,
+      DataOcorrencia DESC;
+      `
 
   return database.executar(instrucaoSql);
 }
 
 function mudarStatus(idAlerta) {
 
-const instrucaoSql = `
-        UPDATE Alerta 
-        SET 
-            dataResolucao = CASE 
-                WHEN statusAlerta = 1 THEN NOW()
-                ELSE NULL                       
-            END,
-            statusAlerta = CASE 
-                WHEN statusAlerta = 1 THEN 0    
-                ELSE 1                          
-            END
-        WHERE idAlerta = ${idAlerta};
+  const instrucaoSql = `
+  UPDATE Alerta 
+  SET 
+  dataResolucao = CASE 
+  WHEN statusAlerta = 1 THEN NOW()
+  ELSE NULL                       
+  END,
+  statusAlerta = CASE 
+  WHEN statusAlerta = 1 THEN 0    
+  ELSE 1                          
+      END
+      WHERE idAlerta = ${idAlerta};
     `;
 
   return database.executar(instrucaoSql);
 }
 
+function obterDadosBoxplot(fkEmpresa) {
+
+  var instrucaoSql = `
+  SELECT 
+  tc.nome AS Componente,
+  TIMESTAMPDIFF(MINUTE, a.dataEmissao, a.dataResolucao) AS TempoMinutos
+  FROM Alerta a
+  JOIN Captura c ON a.fkCaptura = c.idCaptura
+  JOIN Componente co ON c.fkComponente = co.idComponente AND c.fkAtm = co.fkAtm
+  JOIN TipoComponente tc ON co.fkTipoComponente = tc.idTipoComponente
+  JOIN Atm atm ON c.fkAtm = atm.idAtm
+  WHERE a.statusAlerta = 0
+    AND atm.fkEmpresa = ${fkEmpresa}
+  ORDER BY tc.nome, TempoMinutos ASC;
+    `
+
+  return database.executar(instrucaoSql);
+}
 
 module.exports = {
   ObterKPI_1,
@@ -263,5 +281,6 @@ module.exports = {
   Grafico_Bar,
   ObterHistorico,
   ObterHistoricoATM,
-  mudarStatus
+  mudarStatus,
+  obterDadosBoxplot
 }

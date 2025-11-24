@@ -335,6 +335,28 @@
 #box_grafico_direita {
     height: 80%;
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#box_grafico3_sem_dados {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#img_grafico3_sem_dados {
+    width: 3vw;
+}
+
+#spn_grafico3_sem_dados {
+    text-align: center;
+    margin-top: 3%;
+    font-size: 1vw;
 }
 
 #container_titulo_gerenciar {
@@ -613,4 +635,33 @@
     height: 0.5px;
     width: 100%;
     background: #929292;
+}
+
+#box_sem_atm {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#box_img_sem_atm {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30%;
+    width: 100%;
+    flex-direction: column;
+}
+
+#img_sem_atm {
+    width: 4vw;
+}
+
+#spn_sem_atm {
+    font-size: 1vw;
+    margin-top: 2%;
+    font-weight: bold;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
 }
