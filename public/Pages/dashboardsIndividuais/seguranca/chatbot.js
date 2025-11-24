@@ -1,10 +1,17 @@
 var reiniciar = 1;
+var request_em_andamento = 0;
 
 function conversar() {
 
     if (input_agente.value == "") {
         return
     }
+
+    if (request_em_andamento) {
+        return
+    }
+
+    request_em_andamento = 1;
 
     if (reiniciar) {
         conteudo_agente.innerHTML = `
@@ -44,7 +51,11 @@ function conversar() {
             behavior: "smooth"
         });
 
+        request_em_andamento = 0;
+
+
     }, 1000);
+
 
 }
 
