@@ -23,6 +23,7 @@ var alertasRouter = require("./src/routes/alertasRoutes");
 var gestaoAcessoRouter = require("./src/routes/gestaoAcessoRoutes");
 var segurancaRouter = require("./src/routes/segurancaRoutes"); //Rota da Catarina ;)
 var cpuRouter = require("./src/routes/cpuRoutes"); //rota do brenokas :)
+var medidasRouter = require("./src/routes/medidas");  // rota da gwenzita :s
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -40,6 +41,7 @@ app.use("/alertas", alertasRouter);
 app.use("/gestaoAcesso", gestaoAcessoRouter);
 app.use("/seguranca", segurancaRouter);
 app.use("/cpu", cpuRouter);
+app.use("/medidas", medidasRouter);
 
 
 app.listen(PORTA_APP, function () {
