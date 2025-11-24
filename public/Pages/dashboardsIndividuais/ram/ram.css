@@ -1,0 +1,382 @@
+@font-face {
+    font-family: poppins leve;
+    src: url("../../../Assets/assets_dashboard/poppins/Poppins-Light.ttf");
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat", sans-serif;
+}
+
+body {
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    background-color: #F7F7F7;
+    overflow: hidden;
+}
+
+#esquerda {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #232023;
+    height: 100%;
+    width: 15%;
+}
+
+#esquerda-cima {
+    width: 100%;
+    height: 39%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#logo-upfinity {
+    height: 8vw;
+}
+
+#esquerda-centro {
+    width: 100%;
+    height: 53%;
+    display: flex;
+    justify-content: center;
+}
+
+#navegacao {
+    width: 85%;
+    height: 40%;
+    color: white;
+    font-size: 10px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+#navegacao h1 {
+    margin: 0;
+    margin-left: 0.5vw;
+    font-size: 0.92vw;
+    transition: 0.2s ease;
+    line-height: normal;
+    font-weight: bold;
+    color: white;
+    padding: 8px 0;
+}
+
+#navegacao h1:hover {
+    cursor: pointer;
+    margin-left: 15px;
+}
+
+.linha {
+    background-color: #999999;
+    width: 100%;
+    height: 0.1vw;
+}
+
+#esquerda-baixo {
+    width: 100%;
+    height: 8%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#navegacaoSair {
+    width: 85%;
+    height: 65%;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    color: white;
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+#btSair {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#btSair h1 {
+    font-size: 1vw;
+    cursor: pointer;
+    transition: 0.2s ease;
+    margin: 0;
+    color: white;
+}
+
+#btSair h1:hover {
+    color: #ff0000;
+}
+
+#btSair img {
+    height: 1.25vw;
+}
+
+#direita {
+    width: 85%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#direita-cima {
+    height: 14%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+}
+
+#titulo-ram {
+    margin: 0;
+    font-size: 2.45vw;
+    font-weight: 500;
+    color: #268184;
+    white-space: nowrap;
+    margin-left: 5%;
+}
+
+.botao-menu-secundario {
+    margin-right: 5%;
+}
+
+#direita-baixo {
+    width: 100%;
+    height: 88%;
+    padding: 0 5%;
+}
+
+.conteudo-dashboard {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-bottom: 20px;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 0;
+}
+
+.titulo-dashboard {
+    display: none;
+}
+
+.botao-menu-secundario {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.0vw;
+    padding: 0.6vw 1.2vw;
+    border-radius: 0.4vw;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.botao-menu-secundario {
+    background-color: #E0E0E0;
+    color: #267f82;
+    border: none;
+}
+
+.botao-menu-secundario:hover {
+    background-color: #267f82;
+    color: #ffffff;
+}
+
+#KPIS {
+    width: 100%;
+    height: 27%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.kpi {
+    width: 24%;
+    height: 91%;
+    background-color: white;
+    border-radius: 0.6vw;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 6px 18px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.kpi-titulo {
+    text-align: center;
+    font-size: 1.2vw;
+    max-width: 95%;
+    font-family: "Montserrat", sans-serif;
+    color: #000000;
+    font-weight: 300;
+}
+
+.kpi-valor {
+    text-align: center;
+    font-size: 1.8vw;
+    font-family: "Montserrat", sans-serif;
+    color: #000000;
+    font-weight: bold;
+}
+
+.kpi-valor.azul {
+    color: #3B82F6;
+}
+
+.kpi-valor.roxo {
+    color: #8B5CF6;
+}
+
+.kpi-valor.verde {
+    color: #34D399;
+}
+
+.viewport {
+    width: 100%;
+    height: 73%;
+    display: flex;
+    gap: 20px;
+}
+
+.painel {
+    background-color: white;
+    border-radius: 0.6vw;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 6px 18px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.painel-grafico-grande {
+    flex: 2;
+    min-height: 200px;
+}
+
+.painel-progressao {
+    flex: 1;
+}
+
+.titulo-grafico {
+    font-size: 1.4vw;
+    font-family: "Montserrat", sans-serif;
+    color: #000000;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.grafico {
+    flex: 1;
+    position: relative;
+    padding: 0 10px;
+}
+
+.grafico canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.grafico-progressao-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.progress-bar-legend {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    font-size: 0.9rem;
+    color: #000000;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.legend-item i {
+    font-size: 0.7rem;
+}
+
+.legend-item .verde {
+    color: #34D399;
+}
+
+.legend-item .amarelo {
+    color: #FACC15;
+}
+
+.legend-item .vermelho {
+    color: #EF4444;
+}
+
+.progress-bar-wrapper {
+    width: 85%;
+    height: 30px;
+    background-color: #E0E0E0;
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    align-self: center;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    border-radius: 15px;
+    transition: width 0.5s ease-in-out, background-color 0.5s ease-in-out;
+    background-color: #34D399;
+}
+
+.progress-bar.verde {
+    background-color: #34D399;
+}
+
+.progress-bar.amarelo {
+    background-color: #FACC15;
+}
+
+.progress-bar.vermelho {
+    background-color: #EF4444;
+}
+
+.progress-value {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    color: #545454;
+    font-weight: 600;
+    font-size: 0.9rem;
+    pointer-events: none;
+}

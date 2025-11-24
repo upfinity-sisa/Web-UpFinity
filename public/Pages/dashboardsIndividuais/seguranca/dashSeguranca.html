@@ -62,17 +62,6 @@
                                 </div>
                                 <div class="box-informativo"></div>
                             </div>
-                            <div class="kpi">
-                                <div class="box-titulo-kpi">
-                                    <h1 class="titulo-kpi">Tentativas de invasão da última semana</h1>
-                                </div>
-                                <div class="box-valor-kpi">
-                                    <h1 id="valor_kpi_invasao" class="valor-kpi"></h1>
-                                </div>
-                                <div class="box-informativo">
-                                    <img onclick="dialog_invasao.showModal()" class="informativo" src="../../../Assets/assets_dashboard/iconeInformativo.png">
-                                </div>
-                            </div>
                             <div class="kpi_dupla">
 
                                 <div class="caixa-kpi-dupla">
@@ -100,7 +89,18 @@
                             </div>
 
                             </div>
+
+                            <div class="kpi">
+                                <div class="box-titulo-kpi">
+                                    <h1 class="titulo-kpi">Logins malsucedidos da última semana</h1>
+                                </div>
+                                <div class="box-valor-kpi">
+                                    <h1 id="valor_kpi_invasao" class="valor-kpi"></h1>
+                                </div>
+                            </div>
                         </div>
+
+
                         <div id="conteudo">
                             <div id="arquivos">
                                 <div id="caixa_arquivos">
@@ -114,7 +114,7 @@
                             <div id="grafico">
                                 <div id="caixa_grafico">
                                     <div id="titulo_grafico">
-                                        <h1 id="titulo-grafico-linha">Alertas por semana nos últimos 2 meses</h1>
+                                        <h1 id="titulo_grafico_linha">Alertas por semana nos últimos 2 meses</h1>
                                     </div>
                                     <div id="graficoLinha"></div>
                                 </div>
@@ -125,7 +125,7 @@
                         <div id="conexoes">
                             <div id="caixa_conexoes">
                                 <div id="titulo_conexoes">
-                                    <h1 id="titulo-conexoes-abertas">Conexões Abertas</h1>
+                                    <h1 id="titulo-conexoes-abertas">Tentativas de Login</h1>
                                     <div class="linha_caixas"></div>
                                 </div>
                                 <div id="lista_conexoes"></div>
@@ -145,20 +145,8 @@
             </div>
 
         </div>
-
-        <dialog id="dialog_invasao">
-            <div id="titulo_dialog_invasao">
-                <h1 id="titulo-tentativas-invasao">Tentativas de invasão da última semana:</h1>
-                <div class="linha_caixas"></div>
-            </div>
-            <div id="baixo-dialog-invasao">
-                <div id="caixa-tabela-scrolavel">
-                    <table id="tabela_invasoes"></table>
-                </div>
-                <button onclick="fecharDialog()" class="botao_fechar_dialog">Fechar</button>
-            </div>
-        </dialog>
-
+        <div onclick="abrirChatBot()" id="upstuart"></div>
+        <div id="exibir_bot"></div>
 
         <dialog id="dialog_conexao">
             <div id="titulo_dialog_conexao">
@@ -179,8 +167,8 @@
                 <div class="linha_caixas"></div>
             </div>
             <div id="baixo-dialog-arquivos">
-                <h1 id="pergunta-dialog-arquivos">O seu arquivo /bin/netstats foi alterado, a alteração é segura?</h1>
-                <button onclick="declararSeguro()" class="botoes_arquivos">Sim! Eu planejei a alteração</button>
+                <h1 id="pergunta-dialog-arquivos">O conteúdo do seu arquivo foi alterado, a alteração é segura?</h1>
+                <button onclick="declararSeguro()" class="botoes_arquivos">Sim! Eu reconheço a alteração</button>
                 <button onclick="fecharDialog()" class="botoes_arquivos">Fechar</button>
             </div>
         </dialog>
@@ -193,12 +181,10 @@
 <script>
     
     function fecharDialog() {
-        dialog_invasao.close()
         dialog_conexao.close()
         dialog_arquivos.close()
     }
     
-
     function validarRedirecionamento(endpoint) {
         if (sessionStorage.FK_TIPOUSUARIO == 3) {
             alerta_erros_desktop.classList.remove('d-none')
@@ -211,3 +197,4 @@
 </script>
 
 <script src="dashSeguranca.js"></script>
+<script src="chatbot.js"></script>

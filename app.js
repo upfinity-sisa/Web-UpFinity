@@ -23,7 +23,10 @@ var alertasRouter = require("./src/routes/alertasRoutes");
 var gestaoAcessoRouter = require("./src/routes/gestaoAcessoRoutes");
 var segurancaRouter = require("./src/routes/segurancaRoutes"); //Rota da Catarina ;)
 var cpuRouter = require("./src/routes/cpuRoutes"); //rota do brenokas :)
-var medidasRouter = require("./src/routes/medidas");  // rota da gwenzita :s
+
+var ramRouter = require("./src/routes/ramRoutes"); // rota do rei da RAM :)
+var visaoGeralRouter = require("./src/routes/visaoGeralRoutes.js");
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -41,8 +44,13 @@ app.use("/alertas", alertasRouter);
 app.use("/gestaoAcesso", gestaoAcessoRouter);
 app.use("/seguranca", segurancaRouter);
 app.use("/cpu", cpuRouter);
+<<<<<<< HEAD
 app.use("/medidas", medidasRouter);
 
+=======
+app.use("/ram", ramRouter);
+app.use("/visaoGeral", visaoGeralRouter);
+>>>>>>> 338626579342faebb418be71fec13bbd5c8d171b
 
 app.listen(PORTA_APP, function () {
   console.log(`

@@ -5,10 +5,18 @@ var cpuController = require('../controllers/cpuController');
 
 router.get('/dados/:idAtm', (req, res) => {
     cpuController.getDados(req, res);
-});  
+});
 
 router.get('/alertas/:idAtm', (req, res) => {
     cpuController.getAlertas(req, res);
+});
+
+router.get('/maioresUsos/:idEmpresa', (req, res) => {
+    cpuController.getMaioresUsos(req, res);
+});
+
+router.get('/alertasHoje/:idEmpresa/:idAtm', (req, res) => {
+    cpuController.getAlertasHoje(req, res);
 });
 
 module.exports = router;

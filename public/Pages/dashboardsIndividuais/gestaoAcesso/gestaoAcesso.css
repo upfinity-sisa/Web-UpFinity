@@ -252,32 +252,39 @@ html, body {
 }
 
 #centro-esquerda {
-    width: 70%;
+    width: 85%;
     height: auto;
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
     flex-direction: column;
     gap: 1.2rem;
-    margin-left: 15%;
+    margin-left: 0;
 }
 
 #box-kpis {
     height: auto;
     width: 100%;
     display: grid;
-    justify-content: space-between;
-    align-items: center;
-    grid-template-columns: repeat(3, 1fr);
+    justify-content: flex-start;
+    align-items: flex-start;
+    transform: none;
+    grid-template-columns: repeat(3 , minmax(200px, 1fr));
     gap: 35px;
+    margin-top: 30px;
 }
 
 .kpi {
     height: 7vw;
     width: 95%;
     background-color: #FAFAFA;
-    border-radius: 20px;
-    box-shadow: rgba(50, 50, 50, 0.1) 0px 10px 50px;
+    border-radius: 22px;
+    box-shadow: rgba(0,0,0,0.12) 0px 6px 28px;
+    padding: 25px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid #e6e6e6;
 }
 
 .kpi-cima {
@@ -288,6 +295,8 @@ html, body {
     align-items: flex-start;
     margin: 0;
     padding-top: 8px;
+    padding-bottom: 5px;
+    padding: 0;
 }
 
 .kpi-baixo {
@@ -302,23 +311,57 @@ html, body {
 
 .kpi-cima h1 {
     font-family: "Montserrat", sans-serif;
-    font-size: 1.2vw;
+    font-size: 1.15vw;
     color: #3c4041;
+    font-weight: 600;
+    margin: 0;
 }
 
 .kpi-baixo h1 {
     margin: 0;
     font-family: "Montserrat", sans-serif;
+    font-size: 2.4vw;
+    color: #268184;
+    font-weight: 700;
 }
 
-.kpi-baixo h1 {
-    font-size: 1.7vw;
-    color: #445257;
+#container-graficos {
+    width: 100%;
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    min-height: 300px;
 }
 
-#box-graficos {
+.box-graficos {
     width: 65%;
-    height: auto;
-    margin-left: -220px;
-    margin-top: 50px;
+    min-height: 300px;
+    margin-top: 40px;
+    margin-left: 0;
+    gap: 40px;
+}
+
+#grafico-login {
+    background: #fff;                   
+    padding: 20px;                        
+    border-radius: 15px;                  
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+    
+    width: 100%;
+    max-width: 900px;                   
+    margin: 20px auto; 
+    min-height: 300px;                   
+}
+
+#grafico-novos {
+    background: #fff;                   
+    padding: 20px;                        
+    border-radius: 15px;                  
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+    
+    width: 100%;
+    max-width: 900px;                   
+    margin: 20px auto;  
+    min-height: 300px;
 }

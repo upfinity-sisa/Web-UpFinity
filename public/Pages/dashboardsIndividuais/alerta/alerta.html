@@ -43,9 +43,10 @@
                 <img src="../../../Assets/Elements/Icons/fecharMenu.png" id="img_fechar_gerenciar">
                 <div id="box_gerenciar">
                     <div id="box_titulo_gerenciar">
-                        <h2 id="h2_titulo_gerenciar">Alertas - Organizados por Criticidade</h2>
-                        <span id="span_titulo_gerenciar">Lista completa de alertas do sistema, incluindo resolvidos e em
-                            aberto</span>
+                        <h2 id="h2_titulo_gerenciar">Alertas - Ordenados por criticidade</h2>
+                        <span id="span_titulo_gerenciar">Histórico completo de alertas do sistema, incluindo resolvidos
+                            e
+                            pendentes.</span>
                     </div>
                     <div id="box_gerenciar_atms">
                         <div class="box_atm">
@@ -53,7 +54,7 @@
                                 <span class="nome_atm">ATM01</span>
                                 <span class="nome_componente">CPU</span>
                                 <span class="status_critico">Crítico</span>
-                                <span class="status_emAberto">Em aberto</span>
+                                <span class="status_pendente">Pendente</span>
                             </div>
                             <span class="desc_atm">Processamento elevado - (80%)</span>
                             <div class="container_acao_alerta">
@@ -66,7 +67,7 @@
                                 <span class="nome_atm">ATM02</span>
                                 <span class="nome_componente">RAM</span>
                                 <span class="status_moderado">Moderado</span>
-                                <span class="status_emAberto">Em aberto</span>
+                                <span class="status_pendente">Pendente</span>
                             </div>
                             <span class="desc_atm">Consumo elevado - (90%)</span>
                             <div class="container_acao_alerta">
@@ -84,7 +85,7 @@
                             <span class="desc_atm">Sem conexão com a internet</span>
                             <div class="container_acao_alerta">
                                 <span class="dataHora_captura">17/11/2025, 12:20:59</span>
-                                <button class="btn_emAberto">Marcar como em aberto</button>
+                                <button class="btn_emAberto">Marcar como pendente</button>
                             </div>
                         </div>
 
@@ -134,52 +135,58 @@
                     <div id="container_kpi">
                         <div class="box_style_kpi">
                             <div class="container_titulo_kpi">
-                                <h2 class="h2_titulo_kpi">Alertas ativos</h2>
+                                <h2 class="h2_titulo_kpi">Alertas pendentes</h2>
                                 <img src="../../../Assets/Elements/Icons/dashAlerta_metricas_kpi1.png" class="img_kpi">
                             </div>
                             <div class="container_dado_kpi">
-                                <h2 class="h2_dado_kpi">X</h2>
+                                <h2 class="h2_dado_kpi" id="h2_kpi_1"></h2>
                             </div>
                             <div class="container_detalhamento_kpi">
                                 <div class="box_detalhamento">
-                                    <span class="spn_detalhamento color_critico">X</span> Críticos
+                                    <span id="spn_kpi_1_critico" class="spn_detalhamento color_critico"></span>
+                                    Críticos
                                 </div>
                                 <div class="box_detalhamento">
-                                    <span class="spn_detalhamento color_moderado">X</span> Moderados
+                                    <span id="spn_kpi_1_moderado" class="spn_detalhamento color_moderado"></span>
+                                    Moderados
                                 </div>
                             </div>
                         </div>
                         <div class="box_style_kpi">
                             <div class="container_titulo_kpi">
-                                <h2 class="h2_titulo_kpi">ATM com mais alertas ativos</h2>
+                                <h2 class="h2_titulo_kpi">ATM com mais alertas pendentes</h2>
                                 <img src="../../../Assets/Elements/Icons/dashAlerta_ativo_kpi2.png" class="img_kpi">
                             </div>
                             <div class="container_dado_kpi">
-                                <h2 class="h2_dado_kpi">X</h2>
+                                <h2 class="h2_dado_kpi" id="h2_kpi_2"></h2>
                             </div>
                             <div class="container_detalhamento_kpi">
                                 <div class="box_detalhamento">
-                                    <span class="spn_detalhamento color_critico">X</span> Críticos
+                                    <span id="spn_kpi_2_critico" class="spn_detalhamento color_critico"></span>
+                                    Críticos
                                 </div>
                                 <div class="box_detalhamento">
-                                    <span class="spn_detalhamento color_moderado">X</span> Moderados
+                                    <span id="spn_kpi_2_moderado" class="spn_detalhamento color_moderado"></span>
+                                    Moderados
                                 </div>
                             </div>
                         </div>
                         <div class="box_style_kpi">
                             <div class="container_titulo_kpi">
-                                <h2 class="h2_titulo_kpi">Alertas resolvidos (Últimos 7 dias)</h2>
+                                <h2 class="h2_titulo_kpi">Alertas resolvidos (Último mês)</h2>
                                 <img src="../../../Assets/Elements/Icons/dashAlerta_resolvido_kpi3.png" class="img_kpi">
                             </div>
                             <div class="container_dado_kpi">
-                                <h2 class="h2_dado_kpi">X</h2>
+                                <h2 class="h2_dado_kpi" id="h2_kpi_3"></h2>
                             </div>
                             <div class="container_detalhamento_kpi">
                                 <div class="box_detalhamento">
-                                    <span class="spn_detalhamento color_critico">X</span> Críticos
+                                    <span id="spn_kpi_3_critico" class="spn_detalhamento color_critico"></span>
+                                    Críticos
                                 </div>
                                 <div class="box_detalhamento">
-                                    <span class="spn_detalhamento color_moderado">X</span> Moderados
+                                    <span id="spn_kpi_3_moderado" class="spn_detalhamento color_moderado"></span>
+                                    Moderados
                                 </div>
                             </div>
                         </div>
@@ -187,13 +194,13 @@
                     </div>
                     <div id="container_left_graficos">
                         <div class="container_grafico_baixo">
-                            <h2 class="h2_grafico">Quantidade total de alertas por tipo<br>(Último mês)</h2>
+                            <h2 class="h2_grafico">Quantidade de alertas por tipo (Último mês)</h2>
                             <div class="box_grafico_baixo">
                                 <div id="grafico1"></div>
                             </div>
                         </div>
                         <div class="container_grafico_baixo">
-                            <h2 class="h2_grafico">Quantidade de alertas ativos por tipo</h2>
+                            <h2 class="h2_grafico">Tempo de resposta aos alertas (Em minutos)</h2>
                             <div class="box_grafico_baixo">
                                 <div id="grafico2"></div>
                             </div>
@@ -202,7 +209,7 @@
                 </div>
                 <div class="container_graficos">
                     <div class="container_grafico_direita">
-                        <h2 class="h2_grafico">Divisão de alertas em<br>tempo real</h2>
+                        <h2 class="h2_grafico">Divisão de alertas pendentes</h2>
                         <div id="box_grafico_direita">
                             <div id="grafico3"></div>
                         </div>
@@ -210,29 +217,25 @@
                     <div class="container_grafico_direita">
                         <div id="container_titulo_gerenciar">
                             <img src="../../../Assets/Elements/Icons/dashAlerta_lista.png" id="img_lista">
-                            <span id="spn_titulo_lista">Lista de alertas</span>
+                            <span id="spn_titulo_lista">Histórico de alertas</span>
                         </div>
                         <div id="container_lista_metricas">
-                            <div class="box_lista_metricas">
-                                <span class="span_title_metricas">Total</span>
-                                <span class="span_metricas"><b>14</b></span>
-                            </div>
-
+                            <div class="linha"></div>
                             <div class="box_lista_metricas">
                                 <span class="span_title_metricas color_critico">Críticos</span>
-                                <span class="span_metricas">2</span>
+                                <span class="span_metricas" id="span_metricas_criticos"></span>
                             </div>
 
                             <div class="box_lista_metricas">
-                                <span class="span_title_metricas color_moderado">Moderados:</span>
-                                <span class="span_metricas">12</span>
+                                <span class="span_title_metricas color_moderado">Moderados</span>
+                                <span class="span_metricas" id="span_metricas_moderados"></span>
                             </div>
 
+                            <div class="linha"></div>
                             <div class="box_lista_metricas">
-                                <span class="span_title_metricas">Ativos</span>
-                                <span class="span_metricas">3</span>
+                                <span class="span_title_metricas">Total</span>
+                                <span class="span_metricas" id="span_metricas_total"><b></b></span>
                             </div>
-
                         </div>
                         <div id="container_lista_gerenciar">
                             <button id="btn_gerenciar">Gerenciar alertas</button>

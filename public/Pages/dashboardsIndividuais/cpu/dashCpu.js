@@ -1,15 +1,28 @@
+let dados_uso = [];
+let horarios_uso = [];
+let dados_temperatura = [];
+let horarios_temperatura = [];
+let dados_frequencia = [];
+let graficoLinha = null;
+let graficoTemperatura = null;
+let graficoRelacao = null;
+let graficoMaioresUsos1 = null;
+let graficoMaioresUsos2 = null;
+let graficoMaioresUsos3 = null;
+let comboATMSCPU = document.getElementById('comboATMs');
+
 function vwParaPx(vwValue) {
     const larguraViewport = window.innerWidth;
     const valorEmPx = (larguraViewport / 100) * vwValue;
     return Math.round(valorEmPx);
 }
 
-let dados_uso = [];
-let horarios_uso = [];
-let dados_temperatura = [];
-let dados_frequencia = [];
-
 function carregarDadosCPU(idAtm) {
+    dados_uso = [];
+    horarios_uso = [];
+    dados_temperatura = [];
+    horarios_temperatura = [];
+    dados_frequencia = [];
     fetch(`/cpu/dados/${idAtm}`, { cache: 'no-store' })
         .then(response => {
             if (response.ok) {
@@ -47,6 +60,7 @@ function carregarDadosCPU(idAtm) {
                                     break;
                                 case 6:
                                     dados_temperatura.push(resposta[i].valor);
+                                    horarios_temperatura.push(formatarHorario(resposta[i].horario));
                                     break;
                                 default:
                                     break;
@@ -94,18 +108,72 @@ function carregarDadosCPU(idAtm) {
                         }
 
                         plotarGraficoLinha();
+                        plotarGraficoTemperatura();
+                        plotarGraficoRelacao();
                     }
                 });
             } else {
+                kpiUso.innerHTML = 'N/D';
+                kpiTemperatura.innerHTML = 'N/D';
+                kpiFrequencia.innerHTML = 'N/D';
                 console.error('carregarDadosCPU: nenhum dado encontrado ou erro na API');
             }
         })
         .catch(erro => {
             console.error(`carregarDadosCpu: erro na obtenção de dados: ${erro.message}`);
         });
+
+    fetch(`/cpu/maioresUsos/${sessionStorage.getItem('FK_EMPRESA')}`, {
+        cache: 'no-store',
+    })
+        .then(response => {
+            if (response.ok) {
+                response.json().then(resposta => {
+                    if (resposta.length > 0) {
+                        plotarGraficoMaioresUsos(resposta);
+                    } else {
+                        console.error(
+                            'carregarDadosCPU (maioresUsos): nenhum dado de maiores usos encontrado.'
+                        );
+                    }
+                });
+            } else {
+                console.error('carregarDadosCPU (maioresUsos): erro ao buscar maiores usos na API');
+            }
+        })
+        .catch(erro => {
+            console.error(
+                `carregarDadosCpu (maioresUsos): erro na obtenção de maiores usos: ${erro.message}`
+            );
+        });
+
+    fetch(`/cpu/alertasHoje/${sessionStorage.getItem('FK_EMPRESA')}/${idAtm}`, {
+        cache: 'no-store',
+    })
+        .then(response => {
+            if (response.ok) {
+                response.json().then(resposta => {
+                    let kpiAlertasHoje = document.getElementById('qtdAlertas-data');
+                    if (resposta.length > 0) {
+                        kpiAlertasHoje.innerHTML = resposta[0].qtdAlertas;
+                    } else {
+                        kpiAlertasHoje.innerHTML = 'N/D';
+                        console.error(
+                            'carregarDadosCPU (alertasHoje): nenhum dado de alertas hoje encontrado.'
+                        );
+                    }
+                });
+            } else {
+                console.error('carregarDadosCPU (alertasHoje): erro ao buscar alertas hoje na API');
+            }
+        })
+        .catch(erro => {
+            console.error(
+                `carregarDadosCpu (alertasHoje): erro na obtenção de alertas hoje: ${erro.message}`
+            );
+        });
 }
 
-let comboATMSCPU = document.getElementById('comboATMs');
 function carregarAtms() {
     fetch(`/dashboard/carregar-atms/${sessionStorage.getItem('FK_EMPRESA')}`, {
         cache: 'no-store',
@@ -162,107 +230,581 @@ function atualizarParametrosKpis() {
 }
 
 function plotarGraficoLinha() {
-    var options = {
-        series: [
-            {
-                name: 'Uso',
-                data: dados_uso,
-            },
-        ],
-        chart: {
-            height: 400,
-            type: 'line',
-            zoom: {
-                enabled: false,
-            },
-        },
-        dataLabels: {
-            enabled: false,
-        },
-        stroke: {
-            curve: 'straight',
-            width: `${vwParaPx(0.2)}`,
-        },
-        title: {
-            align: 'left',
-        },
-        xaxis: {
-            categories: horarios_uso,
-        },
-        legend: {
-            position: 'top',
-            fontSize: `${vwParaPx(1)}px`,
-            fontFamily: 'poppins leve',
-            markers: {
-                size: `${vwParaPx(0.4)}`,
-            },
-        },
-        toolbar: {
-            show: true,
-            tools: {
-                download: true,
-                selection: false,
-                zoom: false,
-                zoomin: false,
-                zoomout: false,
-                pan: false,
-                reset: false,
-            },
-            offsetX: 0,
-            offsetY: 0,
-        },
-        colors: ['#268184'],
-        yaxis: {
-            min: 0,
-            max: 100,
-            labels: {
-                style: {
-                    fontSize: `${vwParaPx(0.8)}px`,
-                    fontFamily: 'poppins leve',
-                },
-            },
-        },
-        annotations: {
-            yaxis: [
+    if (graficoLinha == null) {
+        var options = {
+            series: [
                 {
-                    y: parseFloat(sessionStorage.getItem('PARAM_CRITICO_CPU')),
-                    borderColor: '#FF4560',
-                    strokeDashArray: 0,
-                    label: {
-                        borderColor: '#FF4560',
-                        style: {
-                            color: '#fff',
-                            background: '#FF4560',
-                        },
-                        text: 'Crítico',
-                    },
-                },
-                {
-                    y: parseFloat(sessionStorage.getItem('PARAM_IMPORTANTE_CPU')),
-                    borderColor: '#f4a261',
-                    strokeDashArray: 0,
-                    label: {
-                        borderColor: '#f4a261',
-                        style: {
-                            color: '#fff',
-                            background: '#f4a261',
-                        },
-                        text: 'Importante',
-                    },
+                    name: 'Uso',
+                    data: dados_uso,
                 },
             ],
-        },
+            chart: {
+                height: 300,
+                type: 'line',
+                zoom: {
+                    enabled: false,
+                },
+            },
+            dataLabels: {
+                enabled: false,
+            },
+            stroke: {
+                curve: 'smooth',
+                width: `${vwParaPx(0.2)}`,
+            },
+            title: {
+                align: 'left',
+            },
+            xaxis: {
+                categories: horarios_uso,
+            },
+            legend: {
+                position: 'top',
+                fontSize: `${vwParaPx(1)}px`,
+                fontFamily: 'poppins leve',
+                markers: {
+                    size: `${vwParaPx(0.4)}`,
+                },
+            },
+            toolbar: {
+                show: true,
+                tools: {
+                    download: true,
+                    selection: false,
+                    zoom: false,
+                    zoomin: false,
+                    zoomout: false,
+                    pan: false,
+                    reset: false,
+                },
+                offsetX: 0,
+                offsetY: 0,
+            },
+            colors: ['#2ed1d7'],
+            yaxis: {
+                min: 0,
+                max: 100,
+                labels: {
+                    style: {
+                        fontSize: `${vwParaPx(0.8)}px`,
+                        fontFamily: 'poppins leve',
+                    },
+                },
+            },
+            annotations: {
+                yaxis: [
+                    {
+                        y: parseFloat(sessionStorage.getItem('PARAM_CRITICO_CPU')),
+                        borderColor: '#FF4560',
+                        strokeDashArray: 0,
+                        label: {
+                            borderColor: '#FF4560',
+                            style: {
+                                color: '#fff',
+                                background: '#FF4560',
+                            },
+                            text: 'Crítico',
+                        },
+                    },
+                    {
+                        y: parseFloat(sessionStorage.getItem('PARAM_IMPORTANTE_CPU')),
+                        borderColor: '#f4a261',
+                        strokeDashArray: 0,
+                        label: {
+                            borderColor: '#f4a261',
+                            style: {
+                                color: '#fff',
+                                background: '#f4a261',
+                            },
+                            text: 'Importante',
+                        },
+                    },
+                ],
+            },
+        };
+
+        graficoLinha = new ApexCharts(document.getElementById('grafico-linha'), options);
+        graficoLinha.render();
+    } else {
+        graficoLinha.updateOptions({
+            series: [
+                {
+                    name: 'Uso',
+                    data: dados_uso,
+                },
+            ],
+            xaxis: {
+                categories: horarios_uso,
+            },
+        });
+    }
+}
+
+function plotarGraficoTemperatura() {
+    if (graficoTemperatura == null) {
+        var options = {
+            series: [
+                {
+                    name: 'Temperatura',
+                    data: dados_temperatura,
+                },
+            ],
+            chart: {
+                height: 300,
+                type: 'bar',
+                zoom: {
+                    enabled: false,
+                },
+            },
+
+            dataLabels: {
+                enabled: false,
+            },
+            stroke: {
+                width: 0,
+            },
+            title: {
+                align: 'left',
+            },
+            xaxis: {
+                categories: horarios_temperatura,
+            },
+            legend: {
+                position: 'top',
+                fontSize: `${vwParaPx(1)}px`,
+                fontFamily: 'poppins leve',
+                markers: {
+                    size: `${vwParaPx(0.4)}`,
+                },
+            },
+            toolbar: {
+                show: true,
+                tools: {
+                    download: true,
+                    selection: false,
+                    zoom: false,
+                    zoomin: false,
+                    zoomout: false,
+                    pan: false,
+                    reset: false,
+                },
+                offsetX: 0,
+                offsetY: 0,
+            },
+            fill: {
+                type: 'gradient',
+                gradient: {
+                    shade: 'dark',
+                    type: 'vertical',
+                    shadeIntensity: 0.5,
+                    inverseColors: false,
+                    stops: [0, 100],
+                },
+            },
+            yaxis: {
+                min: 0,
+                max: 100,
+                labels: {
+                    style: {
+                        fontSize: `${vwParaPx(0.8)}px`,
+                        fontFamily: 'poppins leve',
+                    },
+                },
+            },
+            annotations: {
+                yaxis: [
+                    {
+                        y: parseFloat(sessionStorage.getItem('PARAM_CRITICO_TEMPERATURA_CPU')),
+                        borderColor: '#FF4560',
+                        strokeDashArray: 0,
+                        label: {
+                            borderColor: '#FF4560',
+                            style: {
+                                color: '#fff',
+                                background: '#FF4560',
+                            },
+                            text: 'Crítico',
+                        },
+                    },
+                    {
+                        y: parseFloat(sessionStorage.getItem('PARAM_IMPORTANTE_TEMPERATURA_CPU')),
+                        borderColor: '#f4a261',
+                        strokeDashArray: 0,
+                        label: {
+                            borderColor: '#f4a261',
+                            style: {
+                                color: '#fff',
+                                background: '#f4a261',
+                            },
+                            text: 'Importante',
+                        },
+                    },
+                ],
+            },
+        };
+
+        graficoTemperatura = new ApexCharts(
+            document.getElementById('grafico-linha-temperatura'),
+            options
+        );
+        graficoTemperatura.render();
+    } else {
+        graficoTemperatura.updateOptions({
+            series: [
+                {
+                    name: 'Temperatura',
+                    data: dados_temperatura,
+                },
+            ],
+            xaxis: {
+                categories: horarios_temperatura,
+            },
+        });
+    }
+}
+
+function plotarGraficoRelacao() {
+    if (graficoRelacao == null) {
+        var options = {
+            series: [
+                {
+                    name: 'Temperatura',
+                    data: dados_temperatura,
+                },
+                {
+                    name: 'Uso',
+                    data: dados_uso,
+                },
+            ],
+            chart: {
+                height: 300,
+                type: 'line',
+                animations: {
+                    enabled: true,
+                    easing: 'linear',
+                    dynamicAnimation: {
+                        speed: 1000,
+                    },
+                },
+                zoom: {
+                    enabled: false,
+                },
+            },
+            dataLabels: {
+                enabled: false,
+            },
+            stroke: {
+                curve: 'smooth',
+                width: `${vwParaPx(0.2)}`,
+            },
+            title: {
+                align: 'left',
+            },
+            xaxis: {
+                categories: horarios_uso,
+            },
+            legend: {
+                position: 'top',
+                fontSize: `${vwParaPx(1)}px`,
+                fontFamily: 'poppins leve',
+                markers: {
+                    size: `${vwParaPx(0.4)}`,
+                },
+            },
+            toolbar: {
+                show: true,
+                tools: {
+                    download: true,
+                    selection: false,
+                    zoom: false,
+                    zoomin: false,
+                    zoomout: false,
+                    pan: false,
+                    reset: false,
+                },
+                offsetX: 0,
+                offsetY: 0,
+            },
+            colors: ['#268184', '#2ed1d7'],
+            yaxis: {
+                min: 0,
+                max: 100,
+                labels: {
+                    style: {
+                        fontSize: `${vwParaPx(0.8)}px`,
+                        fontFamily: 'poppins leve',
+                    },
+                },
+            },
+        };
+
+        graficoRelacao = new ApexCharts(document.getElementById('grafico-relacao'), options);
+        graficoRelacao.render();
+    } else {
+        graficoRelacao.updateOptions({
+            series: [
+                {
+                    name: 'Temperatura',
+                    data: dados_temperatura,
+                },
+                {
+                    name: 'Uso',
+                    data: dados_uso,
+                },
+            ],
+            xaxis: {
+                categories: horarios_uso,
+            },
+        });
+    }
+}
+
+function plotarGraficoMaioresUsos(resposta) {
+    let gerarNumeroAleatorio = (min, max) => {
+        return (Math.random() * (max - min + 1) + min).toFixed(2);
     };
 
-    var chart = new ApexCharts(document.querySelector('#grafico-linha'), options);
-    chart.render();
+    let numeracaoAtm = `Atm ${resposta[0].Numero_ATM}`;
+
+    let dados = {
+        'Atm 3': gerarNumeroAleatorio(10, 30),
+        'Atm 7': gerarNumeroAleatorio(10, 30),
+        [numeracaoAtm]: resposta[0].Media_Uso_CPU,
+    };
+
+    let dadosOrdenados = Object.entries(dados).sort((a, b) => b[1] - a[1]);
+
+    if (graficoMaioresUsos1 == null && graficoMaioresUsos2 == null && graficoMaioresUsos3 == null) {
+        let optionsBarra1 = {
+            chart: {
+                height: 70,
+                type: 'bar',
+                stacked: true,
+                sparkline: {
+                    enabled: true,
+                },
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true,
+                    barHeight: '20%',
+                    colors: {
+                        backgroundBarColors: ['#40475D'],
+                    },
+                },
+            },
+            stroke: {
+                width: 0,
+            },
+            series: [
+                {
+                    name: dadosOrdenados[0][0],
+                    data: [dadosOrdenados[0][1]],
+                },
+            ],
+            title: {
+                floating: true,
+                offsetX: -10,
+                offsetY: 5,
+                text: dadosOrdenados[0][0],
+            },
+            subtitle: {
+                floating: true,
+                align: 'right',
+                offsetY: 0,
+                text: `${dadosOrdenados[0][1]}%`,
+                style: {
+                    fontSize: '20px',
+                },
+            },
+            tooltip: {
+                enabled: false,
+            },
+            xaxis: {
+                categories: [dadosOrdenados[0][0]],
+            },
+            yaxis: {
+                max: 100,
+            },
+            fill: {
+                opacity: 1,
+            },
+        };
+
+        let optionsBarra2 = {
+            chart: {
+                height: 70,
+                type: 'bar',
+                stacked: true,
+                sparkline: {
+                    enabled: true,
+                },
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true,
+                    barHeight: '20%',
+                    colors: {
+                        backgroundBarColors: ['#40475D'],
+                    },
+                },
+            },
+            stroke: {
+                width: 0,
+            },
+            series: [
+                {
+                    name: dadosOrdenados[1][0],
+                    data: [dadosOrdenados[1][1]],
+                },
+            ],
+            title: {
+                floating: true,
+                offsetX: -10,
+                offsetY: 5,
+                text: dadosOrdenados[1][0],
+            },
+            subtitle: {
+                floating: true,
+                align: 'right',
+                offsetY: 0,
+                text: `${dadosOrdenados[1][1]}%`,
+                style: {
+                    fontSize: '20px',
+                },
+            },
+            tooltip: {
+                enabled: false,
+            },
+            xaxis: {
+                categories: [dadosOrdenados[1][0]],
+            },
+            yaxis: {
+                max: 100,
+            },
+            fill: {
+                opacity: 1,
+            },
+            colors: ['#6078ea'],
+        };
+
+        let optionsBarra3 = {
+            chart: {
+                height: 70,
+                type: 'bar',
+                stacked: true,
+                sparkline: {
+                    enabled: true,
+                },
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true,
+                    barHeight: '20%',
+                    colors: {
+                        backgroundBarColors: ['#40475D'],
+                    },
+                },
+            },
+            stroke: {
+                width: 0,
+            },
+            series: [
+                {
+                    name: dadosOrdenados[2][0],
+                    data: [dadosOrdenados[2][1]],
+                },
+            ],
+            title: {
+                floating: true,
+                offsetX: -10,
+                offsetY: 5,
+                text: dadosOrdenados[2][0],
+            },
+            subtitle: {
+                floating: true,
+                align: 'right',
+                offsetY: 0,
+                text: `${dadosOrdenados[2][1]}%`,
+                style: {
+                    fontSize: '20px',
+                },
+            },
+            tooltip: {
+                enabled: false,
+            },
+            xaxis: {
+                categories: [dadosOrdenados[2][0]],
+            },
+            yaxis: {
+                max: 100,
+            },
+            fill: {
+                opacity: 1,
+            },
+            colors: ['#e94560'],
+        };
+
+        graficoMaioresUsos1 = new ApexCharts(
+            document.getElementById('linha-grafico-1'),
+            optionsBarra1
+        );
+        graficoMaioresUsos1.render();
+        graficoMaioresUsos2 = new ApexCharts(
+            document.getElementById('linha-grafico-2'),
+            optionsBarra2
+        );
+        graficoMaioresUsos2.render();
+        graficoMaioresUsos3 = new ApexCharts(
+            document.getElementById('linha-grafico-3'),
+            optionsBarra3
+        );
+        graficoMaioresUsos3.render();
+    } else {
+        graficoMaioresUsos1.updateOptions({
+            series: [
+                {
+                    name: dadosOrdenados[0][0],
+                    data: [dadosOrdenados[0][1]],
+                },
+            ],
+            subtitle: {
+                text: `${dadosOrdenados[0][1]}%`,
+            },
+        });
+        graficoMaioresUsos2.updateOptions({
+            series: [
+                {
+                    name: dadosOrdenados[1][0],
+                    data: [dadosOrdenados[1][1]],
+                },
+            ],
+            subtitle: {
+                text: `${dadosOrdenados[1][1]}%`,
+            },
+        });
+        graficoMaioresUsos3.updateOptions({
+            series: [
+                {
+                    name: dadosOrdenados[2][0],
+                    data: [dadosOrdenados[2][1]],
+                },
+            ],
+            subtitle: {
+                text: `${dadosOrdenados[2][1]}%`,
+            },
+        });
+    }
 }
 
 window.addEventListener('DOMContentLoaded', () => {
     carregarAtms();
     atualizarParametrosKpis();
+    intervaloAtualizacao = setInterval(atualizarDadosCpu, 3500);
 
     comboATMSCPU.addEventListener('change', () => {
+        clearInterval(intervaloAtualizacao);
         atualizarDadosCpu();
+        intervaloAtualizacao = setInterval(atualizarDadosCpu, 3500);
     });
 });

@@ -32,6 +32,7 @@ var options = {
 	},
 	yaxis: {
 		min: 0,
+		max: 15,
 		labels: {
 			style: {
 				fontSize: `${vwParaPx(0.8)}px`,
@@ -53,6 +54,7 @@ function buscar_dados_KPIinvasoes() {
         .then(function (resposta) {
             resposta.json().then(resposta2 => {
 				exibirKPIinvasoes(resposta2)
+				exibirListaInvasoes(resposta2)
             })
         })
         .catch(function (resposta) {
@@ -89,7 +91,6 @@ function buscar_dados_portas_abertas() {
         .then(function (resposta) {
             resposta.json().then(resposta2 => {
 				exibirKPIconexoesSUS(resposta2)
-				exibirListaConexoesAbertas(resposta2)
             })
         })
         .catch(function (resposta) {
@@ -132,38 +133,6 @@ function buscar_dados_arquivos_criticos() {
 
 function exibirKPIinvasoes(resposta2) {
 	valor_kpi_invasao.innerHTML = resposta2.length
-
-	tabela_invasoes.innerHTML = ""
-	tabela_invasoes.innerHTML += `
-	<tr>
-		<th style="color: #268184;">IP do invasor</th>
-		<th style="color: #268184;">Horário da tentativa</th>
-	</tr>
-	`
-	for (let i = 0; i < resposta2.length; i++) {
-
-		const dataFeia = resposta2[i].horarioInvasao;
-
-		const data = new Date(dataFeia);
-
-		const ano = data.getFullYear();
-		const mes = String(data.getMonth() + 1).padStart(2, '0');
-		const dia = String(data.getDate()).padStart(2, '0');
-
-		const horas = String(data.getHours()).padStart(2, '0');
-		const minutos = String(data.getMinutes()).padStart(2, '0');
-		const segundos = String(data.getSeconds()).padStart(2, '0');
-
-		const dataBonita = `${ano}-${mes}-${dia}, ${horas}:${minutos}:${segundos}`;
-
-		tabela_invasoes.innerHTML += `
-		<tr>
-			<td>${resposta2[i].IP}</td>
-			<td>${dataBonita}</td>
-		</tr>
-		`
-	}
-
 }
 
 function exibirKPIconexoesSUS(resposta2) {
@@ -229,31 +198,31 @@ function exibirKPIconexoesSUS(resposta2) {
 }
 
 
-function exibirListaConexoesAbertas(resposta2) {
+function exibirListaInvasoes(resposta2) {
 
-	if (resposta2.length == 0) {
-		lista_conexoes.innerHTML = ""
-		return
-	}
-
-	var vt_nomes_iguais = [resposta2[0].portaLocal]
-	var resposta3 = [resposta2[0]]
-
-	for (let i = 0; i < resposta2.length; i++) {
-		if (!vt_nomes_iguais.includes(resposta2[i].portaLocal)) {
-			resposta3.push(resposta2[i])
-			vt_nomes_iguais.push(resposta2[i].portaLocal)
-		}
-	}
-	
 	lista_conexoes.innerHTML = ""
-	for (let i = 0; i < resposta3.length; i++) {
+	for (let i = 0; i < resposta2.length; i++) {
+
+		const dataFeia = resposta2[i].horarioInvasao;
+
+		const data = new Date(dataFeia);
+
+		const ano = data.getFullYear();
+		const mes = String(data.getMonth() + 1).padStart(2, '0');
+		const dia = String(data.getDate()).padStart(2, '0');
+
+		const horas = String(data.getHours()).padStart(2, '0');
+		const minutos = String(data.getMinutes()).padStart(2, '0');
+		const segundos = String(data.getSeconds()).padStart(2, '0');
+
+		const dataBonita = `${ano}-${mes}-${dia}, ${horas}:${minutos}:${segundos}`;
+
 		lista_conexoes.innerHTML += `
 		<div class="box_conexao">
-			<h1 class="porta_conexao"> <b class="porta_local_lista">Porta Local:</b> ${resposta3[i].portaLocal}</h1>
-			<h1 class="ip_conexao">${resposta3[i].IPremoto}</h1>
+			<h1 class="porta_conexao"> <b class="porta_local_lista">IP origem:</b> ${resposta2[i].IP}</h1>
+			<h1 class="ip_conexao"> <b class="porta_local_lista">data:</b> ${dataBonita}</h1>
 		</div>
- 		`
+		`
 	}
 
 }
@@ -465,3 +434,23 @@ function mudarATM() {
 	carregarInformacoes()
 
 }
+
+
+function formatarBR(data) {
+  const dia = String(data.getDate()).padStart(2, '0');
+  const mes = String(data.getMonth() + 1).padStart(2, '0'); // mês começa em 0
+  return `${dia}/${mes}`;
+}
+
+function exibirTituloGrafico() {
+
+	const hoje = new Date();
+	const doisMesesAtras = new Date();
+	doisMesesAtras.setMonth(doisMesesAtras.getMonth() - 2);
+
+	titulo_grafico_linha.innerHTML = `
+	Alertas por semana  (${formatarBR(doisMesesAtras)} até ${formatarBR(hoje)})
+	`
+
+}
+exibirTituloGrafico()

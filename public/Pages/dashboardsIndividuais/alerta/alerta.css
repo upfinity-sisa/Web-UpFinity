@@ -138,7 +138,7 @@
     align-items: flex-start;
     justify-content: flex-start;
     flex-direction: column;
-    margin-left: 4.5%;
+    margin-left: 3.5%;
 }
 
 
@@ -165,6 +165,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
     gap: 1vw;
 }
 
@@ -188,7 +189,6 @@
 
 #container_kpi {
     height: 22%;
-    /* background: #3294bb; */
     display: flex;
     justify-content: space-between;
 }
@@ -264,11 +264,11 @@
 }
 
 .color_critico {
-    color: #ff3131;
+    color: #FB2B3A;
 }
 
 .color_moderado {
-    color: #f7f302;
+    color: #e3bf0a;
 }
 
 
@@ -375,6 +375,12 @@
 
 #spn_titulo_lista {
     font-size: 1.2vw;
+}
+
+.span_title_metricas, .span_metricas {
+    display: flex;
+    align-content: center;
+    justify-content: center;
 }
 
 .span_title_metricas {
@@ -520,7 +526,7 @@
     border-radius: 12px;
 }
 
-.status_critico, .status_moderado, .status_emAberto, .status_resolvido {
+.status_critico, .status_moderado, .status_pendente, .status_resolvido {
     width: 7vw;
     height: 70%;
     display: flex;
@@ -528,21 +534,24 @@
     justify-content: center;
     border: 2.2px solid #000000;
     border-radius: 10px;
-    background: #ff3131;
     font-weight: 600;
     font-size: 1vw;
 }
 
-.status_emAberto {
-    background-color: #c453f9;
+.status_critico {
+    background: #FB2B3A;
+}
+
+.status_pendente {
+    background-color: #9fa2d4;
 }
 
 .status_moderado {
-    background-color: #f7f302;
+    background-color: #ffd717;
 }
 
 .status_resolvido {
-    background-color: #01ba01;
+    background-color: #58f058;
 }
 
 .desc_atm {
@@ -574,15 +583,15 @@
     height: 85%;
     width: 12vw;
     font-size: 1vw;
-    border: 2.2px solid #01ba01;
-    color: #01ba01;
+    border: 2.2px solid #52cd52;
+    color: #52cd52;
     font-weight: 600;
     border-radius: 10px;
     transition: 0.18s ease;
 }
 
 .btn_resolvido:hover {
-    background: #01ba01;
+    background: #52cd52;
     color: #fff;
 }
 
@@ -591,11 +600,17 @@
 }
 
 .btn_emAberto {
-    border: 2.2px solid #c453f9;
-    color: #c453f9;
+    border: 2.2px solid #7b7da2;
+    color: #7b7da2;
 }
 
 .btn_emAberto:hover {
-    background: #c453f9;
+    background: #7b7da2;
     color: #fff;
+}
+
+.linha {
+    height: 0.5px;
+    width: 100%;
+    background: #929292;
 }

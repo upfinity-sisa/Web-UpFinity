@@ -13,6 +13,8 @@
     --preto: #232023;
     --cinza-linha: #999999;
     --azul-claro: #2ed1d7;
+    --laranja: #f4a261;
+    --vermelho: #e63946;
 }
 
 body {
@@ -103,7 +105,7 @@ body {
 
 #navegacaoSair {
     width: 85%;
-    height: 65%;
+    height: 100%;
     text-align: center;
     font-family: 'Montserrat', sans-serif;
     color: white;
@@ -112,10 +114,6 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    flex-direction: column;
 }
 
 #btSair {
@@ -123,6 +121,7 @@ body {
     justify-content: center;
     align-items: center;
     gap: 10px;
+    margin-top: 2%;
 }
 
 #btSair h1 {
@@ -187,26 +186,32 @@ body {
 }
 
 .container-kpis {
-    width: 100vw;
-    height: 25vh;
+    width: 40vw;
+    height: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: center;
     gap: 20px;
-    align-items: center;
+}
+
+.centro-baixo {
+    width: 100%;
+    height: 80%;
+    display: flex;
 }
 
 .kpi {
-    background-color: var(--azul-claro);
+    background-color: #fff;
     width: 16vw;
     height: 17vh;
     border-radius: 10px;
     color: var(--branco);
-    font-weight: bold;
     position: relative;
     overflow: hidden;
     cursor: pointer;
     transition: transform 0.3s ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-left: 20%;
 }
 
 .kpi-content {
@@ -227,7 +232,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: var(--azul-claro);
     backdrop-filter: blur(3px);
     padding: 20px;
     box-sizing: border-box;
@@ -235,8 +240,6 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    font-size: 1rem;
-    font-weight: normal;
     opacity: 0;
     visibility: hidden;
     transform: translateX(-100%);
@@ -255,22 +258,23 @@ body {
 }
 
 .title-kpi {
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: var(--ciano);
+    text-align: center;
 }
 
 .data-kpi {
     font-size: 2rem;
+    font-weight: bold;
+    color: var(--ciano);
+    margin-top: 2%;
 }
 
 .status-kpi {
-    margin-top: 4%;
+    margin-top: 2%;
     font-size: 1.2rem;
     color: var(--ciano);
-}
-
-#kpi1 {
-    margin-left: 5%;
+    font-weight: bold;
 }
 
 .kpi-title-row {
@@ -281,18 +285,27 @@ body {
 }
 
 .container-graficos {
-    width: 100vw;
-    height: 63vh;
+    width: 100%;
+    height: 100%;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     gap: 20px;
+    padding: 10px;
+}
+
+.graficos-cima,
+.graficos-baixo {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .caixa-grafico {
-    background-color: var(--azul-claro);
-    width: 50vw;
-    height: 60vh;
-    margin-left: 5%;
+    background-color: #fff;
+    width: 26vw;
+    height: 100%;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -300,7 +313,7 @@ body {
 }
 
 .caixa-alertas {
-    background-color: var(--azul-claro);
+    background-color: #fff;
     width: 20vw;
     height: 60vh;
     border-radius: 10px;
@@ -312,22 +325,22 @@ body {
 
 .caixa-alertas-title {
     font-size: 2rem;
-    font-weight: bold;
     margin-top: 3%;
-    color: var(--branco);
+    color: var(--ciano);
     margin-bottom: 5%;
 }
 
 .caixa-grafico-title {
     font-size: 2rem;
-    font-weight: bold;
-    color: var(--branco);
+    color: var(--ciano);
     text-align: center;
     margin-top: 2%;
 }
 
 #grafico-linha {
     margin-top: 2%;
+    height: 100%;
+    width: 100%;
 }
 
 .container-alertas {
@@ -389,11 +402,40 @@ body {
     transform: scale(1.02);
 }
 
-#kpi4 {
-    width: 20vw;
+#botao_gira {
+    font-size: 0.9vw;
+    margin-bottom: 2%;
 }
 
-#kpi4 .title-kpi {
-    text-align: center;
-    font-size: 1.9rem;
+#botao_gira:hover {
+    color: #2db2b7;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+#esquerda-centro {
+    all: unset;
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+#caixa-grafico-maiores-usos {
+    align-items: center;
+}
+
+.linhas-grafico-maiores {
+    width: 60%;
+    margin-top: 8%;
+}
+
+.desc-critico {
+    color: var(--vermelho);
+    font-weight: bold;
+}
+
+.desc-moderado {
+    color: var(--laranja);
+    font-weight: bold;
 }
