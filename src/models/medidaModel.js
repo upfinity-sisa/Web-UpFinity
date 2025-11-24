@@ -5,7 +5,7 @@ function buscarMedidasEmTempoReal(idAtm) {
         SELECT 
             nomeRede, 
             MBRecebidos, 
-            MBEnviados,  -- ADICIONADO AQUI
+            MBEnviados,  
             pacotesRecebidos, 
             pacotesEnviados, 
             DATE_FORMAT(horario,'%H:%i:%s') as momento_grafico 

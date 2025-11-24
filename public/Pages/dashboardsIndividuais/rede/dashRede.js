@@ -205,7 +205,7 @@ window.onload = function () {
 }
 
 function atualizarKpisRede() {
-    var idAtm = sessionStorage.ID_ATM; // Ou sessionStorage.ID_ATM
+    var idAtm = sessionStorage.idAtm
 
     fetch(`/medidas/tempo-real/${idAtm}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
