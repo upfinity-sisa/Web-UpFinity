@@ -6,14 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../../../Assets/assets_dashboard/logoUPFINITY.png" />
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="../../../js/navbar.js" defer></script>
     <link rel="stylesheet" href="dashRede.css">
+    <link rel="stylesheet" href="../../../css/style_navbar.css">
     <script src="dashRede.js"></script>
     <title>Rede Upfinity</title>
 </head>
 
 <body>
     <section id="dashRede">
-
         <div id="esquerda">
             <div id="esquerda-cima">
                 <img src="../../../Assets/assets_dashboard/logoUPFINITY.png" id="logo-upfinity" alt="logo-upfinity">
@@ -22,17 +23,36 @@
                 <div id="navegacao">
                     <h1 onclick="window.location = '../../visaoGeral/visaoGeral.html'">VISÃO GERAL</h1>
                     <div class="linha"></div>
-                    <h1 onclick="window.location = '../../dashboard/dashboard.html'">DASHBOARDS</h1>
+                    <span class="botao-dashborads" onclick="abrirDashboards()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-chevron-right botao-seta-direita" viewBox="0 0 16 16" id="seta-dashboards">
+                            <path fill-rule="evenodd"
+                                d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" />
+                        </svg>
+                        <h1>DASHBOARDS</h1>
+                    </span>
+                    <span class="botoes-individuais-inativo" id="botoes-ind">
+                        <h1 onclick="window.location = '../../dashboard/dashboard.html'">GERAL</h1>
+                        <h1 onclick="window.location = '../cpu/dashCpu.html'">CPU</h1>
+                        <h1 onclick="window.location = '../ram/ram.html'">RAM</h1>
+                        <h1 onclick="window.location = '../rede/dashRede.html'">REDE</h1>
+                        <h1 onclick="window.location = '../alerta/alerta.html'">ALERTAS</h1>
+                        <h1 onclick="window.location = '../seguranca/dashSeguranca.html'">
+                            SEGURANÇA</h1>
+                        <h1 onclick="window.location = '../gestaoAcesso/gestaoAcesso.html'">GESTÃO
+                            DE ACESSOS</h1>
+                    </span>
                     <div class="linha"></div>
-                    <h1 onclick="validarRedirecionamento('../../gestaoUsuarios/gestaoUsuarios.html')">GESTÃO DE USUÁRIOS
+                    <h1 onclick="validarRedirecionamento('../gestaoUsuarios/gestaoUsuarios.html')">GESTÃO DE USUÁRIOS
                     </h1>
                     <div class="linha"></div>
-                    <h1 onclick="validarRedirecionamento('../../gestaoATM/gestaoATM.html')">GESTÃO DE ATMS</h1>
+                    <h1 onclick="validarRedirecionamento('../gestaoATM/gestaoATM.html')">GESTÃO DE ATMS</h1>
                     <div class="linha"></div>
                 </div>
             </div>
             <div id="esquerda-baixo">
                 <div id="navegacaoSair">
+                    <h1 id="botao-chamado">ABRIR CHAMADO</h1>
                     <div class="linha"></div>
                     <div id="btSair">
                         <h1>SAIR</h1>
@@ -55,59 +75,59 @@
                 <div id="centro-seguranca">
                     <div id="informacoes">
                         <div id="KPIS">
-    <div class="kpi">
-        <div class="box-titulo-kpi">
-            <h1 class="titulo-kpi">Nome da Rede</h1>
-        </div>
-        <div class="box-valor-kpi">
-            <h1 class="valor-kpi" id="kpiNomeRede">eth01</h1>
-        </div>
-    </div>
+                            <div class="kpi">
+                                <div class="box-titulo-kpi">
+                                    <h1 class="titulo-kpi">Nome da Rede</h1>
+                                </div>
+                                <div class="box-valor-kpi">
+                                    <h1 class="valor-kpi" id="kpiNomeRede">eth01</h1>
+                                </div>
+                            </div>
 
-    <div class="kpi">
-        <div class="box-titulo-kpi">
-            <h1 class="titulo-kpi" >Megabytes Enviados</h1>
-        </div>
-        <div class="box-valor-kpi">
-            <h1 class="valor-kpi" id="kpiMbEnviados" >250MB</h1>
-        </div>
-    </div>
+                            <div class="kpi">
+                                <div class="box-titulo-kpi">
+                                    <h1 class="titulo-kpi">Megabytes Enviados</h1>
+                                </div>
+                                <div class="box-valor-kpi">
+                                    <h1 class="valor-kpi" id="kpiMbEnviados">250MB</h1>
+                                </div>
+                            </div>
 
-    <div class="kpi">
-        <div class="box-titulo-kpi">
-            <h1 class="titulo-kpi">Megabytes Recebidos</h1>
-        </div>
-        <div class="box-valor-kpi">
-            <h1 class="valor-kpi" id="kpiMbRecebidos">250MB</h1>
-        </div>
-    </div>
+                            <div class="kpi">
+                                <div class="box-titulo-kpi">
+                                    <h1 class="titulo-kpi">Megabytes Recebidos</h1>
+                                </div>
+                                <div class="box-valor-kpi">
+                                    <h1 class="valor-kpi" id="kpiMbRecebidos">250MB</h1>
+                                </div>
+                            </div>
 
-    <div class="kpi">
-        <div class="box-titulo-kpi">
-            <h1 class="titulo-kpi">Pacotes Recebidos</h1>
-        </div>
-        <div class="box-valor-kpi">
-            <h1 class="valor-kpi" id="kpiPacotesRecebidos">230000</h1>
-        </div>
-    </div>
+                            <div class="kpi">
+                                <div class="box-titulo-kpi">
+                                    <h1 class="titulo-kpi">Pacotes Recebidos</h1>
+                                </div>
+                                <div class="box-valor-kpi">
+                                    <h1 class="valor-kpi" id="kpiPacotesRecebidos">230000</h1>
+                                </div>
+                            </div>
 
-    <div class="kpi">
-        <div class="box-titulo-kpi">
-            <h1 class="titulo-kpi">Pacotes Enviados</h1>
-        </div>
-        <div class="box-valor-kpi">
-            <h1 class="valor-kpi" id="kpiPacotesEnviados">170000</h1>
-        </div>
-    </div>
+                            <div class="kpi">
+                                <div class="box-titulo-kpi">
+                                    <h1 class="titulo-kpi">Pacotes Enviados</h1>
+                                </div>
+                                <div class="box-valor-kpi">
+                                    <h1 class="valor-kpi" id="kpiPacotesEnviados">170000</h1>
+                                </div>
+                            </div>
 
-</div>
-<div id="grafico-container">
-    <div class="toolbar">
-        <button id="one_month">1M</button>
-        <button id="six_months">6M</button>
-        <button id="one_year">1Y</button>
-        <button id="ytd">YTD</button>
-        <button id="all" class="active">ALL</button>
-    </div>
-    <div id="chart-timeline"></div>
-</div>
+                        </div>
+                        <div id="grafico-container">
+                            <div class="toolbar">
+                                <button id="one_month">1M</button>
+                                <button id="six_months">6M</button>
+                                <button id="one_year">1Y</button>
+                                <button id="ytd">YTD</button>
+                                <button id="all" class="active">ALL</button>
+                            </div>
+                            <div id="chart-timeline"></div>
+                        </div>
