@@ -31,8 +31,8 @@ function cadastrarATM() {
 
     var empresaVar = sessionStorage.FK_EMPRESA
     var ipVar = ip_atm.value
-    console.log(empresaVar)
-    console.log(ipVar)
+    console.log("EmpresaVar: "  + empresaVar)
+    console.log("ipVar: " + ipVar)
 
     if (ipVar == "") {
         alert("Favor informar o IP da sua máquina antes de cadastrá-la")

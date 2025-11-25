@@ -1,5 +1,7 @@
+let idEmpresa = sessionStorage.getItem('FK_EMPRESA')
+
 function carregarParametros() {
-    fetch(`/dashboard/pegar-parametros/${sessionStorage.getItem('FK_EMPRESA')}`, {
+    fetch(`/dashboard/pegar-parametros/${idEmpresa}`, {
         cache: 'no-store',
     })
         .then(response => {
@@ -70,9 +72,11 @@ function carregarParametros() {
             console.error(`carregarParametros: erro na obtenção dos dados: ${erro.message}`);
         });
 }
+
 let atmsCarregados = [];
+
 function carregarAtms() {
-    fetch(`/visaoGeral/getAtms/${sessionStorage.getItem('FK_EMPRESA')}`, {
+    fetch(`/visaoGeral/getAtms/${idEmpresa}`, {
         cache: 'no-store',
     })
         .then(response => {
@@ -95,9 +99,11 @@ function carregarAtms() {
                                         <td class="celula-tabela" id="uso-cpu-atm-${resposta[i].numeracao}">${resposta[i].uso_cpu}%</td>
                                         <td class="celula-tabela" id="uso-ram-atm-${resposta[i].numeracao}">${resposta[i].uso_ram}%</td>
                                         <td class="celula-tabela" id="uso-disco-atm-${resposta[i].numeracao}">${resposta[i].uso_disco}%</td>
-                                        <td class="celula-tabela">Conectado</td>
+                                        
+                                        <td class="celula-tabela" id="conexao-atm-${resposta[i].numeracao}">Conectado</td>
+                                        
                                         <td class="celula-tabela celula-normal" id="status-monitoramento-atm-${resposta[i].numeracao}">${statusMonitoramentoAtm}</td>
-                                    </tr>
+                                </tr>
                                 `;
                                 atmsCarregados.push(resposta[i].numeracao);
                             } else {
@@ -239,5 +245,182 @@ function carregarAtms() {
 window.addEventListener('DOMContentLoaded', () => {
     carregarParametros();
     carregarAtms();
-    let intervaloAtualizacao = setInterval(carregarAtms, 3000);
 });
+
+
+
+const buscaFiltros = document.getElementById('busca-filtros')
+const buttonFiltrar = document.getElementById('button-filtrar')
+
+buttonFiltrar.addEventListener('click', function () {
+    let numeracaoATM = Number(buscaFiltros.value);
+    fetch(`/visaoGeral/BuscarATM/${idEmpresa}/${numeracaoATM}`)
+        .then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(resposta => {
+
+                    console.log(resposta)
+
+                    if (resposta.length > 0) {
+                        console.log(resposta);
+                        let tabelaBody = document.getElementById('corpo-tabela-visao-geral');
+
+                        tabelaBody.innerHTML = '';
+                        atmsCarregados = [];
+                        
+                        let statusMonitoramentoAtm = 'Normal';
+                        for (let i = 0; i < resposta.length; i++) {
+                            if (resposta[i].statusMonitoramento == 1) {
+                                statusMonitoramentoAtm = 'Crítico';
+                            } else if (resposta[i].statusMonitoramento == 2) {
+                                statusMonitoramentoAtm = 'Importante';
+                            }
+                            if (!atmsCarregados.includes(resposta[i].numeracao)) {
+                                tabelaBody.innerHTML += `
+                                <tr class="linha-tabela-visao-geral" id="linha-atm${resposta[i].numeracao}">
+                                        <th class="celula-tabela" scope="row">${resposta[i].numeracao}</th>
+                                        <td class="celula-tabela" id="uso-cpu-atm-${resposta[i].numeracao}">${resposta[i].uso_cpu}%</td>
+                                        <td class="celula-tabela" id="uso-ram-atm-${resposta[i].numeracao}">${resposta[i].uso_ram}%</td>
+                                        <td class="celula-tabela" id="uso-disco-atm-${resposta[i].numeracao}">${resposta[i].uso_disco}%</td>
+                                        
+                                        <td class="celula-tabela" id="conexao-atm-${resposta[i].numeracao}">Conectado</td>
+                                        
+                                        <td class="celula-tabela celula-normal" id="status-monitoramento-atm-${resposta[i].numeracao}">${statusMonitoramentoAtm}</td>
+                                </tr>
+                                `;
+                                atmsCarregados.push(resposta[i].numeracao);
+                            } else {
+                                document.getElementById(`linha-atm${resposta[i].numeracao}`).innerHTML = `
+                                <th class="celula-tabela" scope="row">${resposta[i].numeracao}</th>
+                                        <td class="celula-tabela" id="uso-cpu-atm-${resposta[i].numeracao}">${resposta[i].uso_cpu}%</td>
+                                        <td class="celula-tabela" id="uso-ram-atm-${resposta[i].numeracao}">${resposta[i].uso_ram}%</td>
+                                        <td class="celula-tabela" id="uso-disco-atm-${resposta[i].numeracao}">${resposta[i].uso_disco}%</td>
+                                        <td class="celula-tabela" id="conexao-atm-${resposta[i].numeracao}"></td>
+                                        <td class="celula-tabela celula-normal" id="status-monitoramento-atm-${resposta[i].numeracao}">${statusMonitoramentoAtm}</td>
+                                `;
+                            }
+
+                            if (resposta[i].uso_cpu >= sessionStorage.getItem('PARAM_CRITICO_CPU')) {
+                                document.getElementById(`uso-cpu-atm-${resposta[i].numeracao}`).style.color =
+                                    '#e63946';
+                                document.getElementById(
+                                    `uso-cpu-atm-${resposta[i].numeracao}`
+                                ).style.fontWeight = 'bold';
+                                document.getElementById(
+                                    `status-monitoramento-atm-${resposta[i].numeracao}`
+                                ).innerText = 'Crítico';
+                                document
+                                    .getElementById(`status-monitoramento-atm-${resposta[i].numeracao}`)
+                                    .classList.remove('celula-normal');
+                                document
+                                    .getElementById(`status-monitoramento-atm-${resposta[i].numeracao}`)
+                                    .classList.add('celula-critico');
+                            } else if (
+                                resposta[i].uso_cpu >= sessionStorage.getItem('PARAM_IMPORTANTE_CPU')
+                            ) {
+                                document.getElementById(`uso-cpu-atm-${resposta[i].numeracao}`).style.color =
+                                    '#f4a261';
+                                document.getElementById(
+                                    `uso-cpu-atm-${resposta[i].numeracao}`
+                                ).style.fontWeight = 'bold';
+                                document.getElementById(
+                                    `status-monitoramento-atm-${resposta[i].numeracao}`
+                                ).innerText = 'Importante';
+                                document
+                                    .getElementById(`status-monitoramento-atm-${resposta[i].numeracao}`)
+                                    .classList.remove('celula-normal');
+                                document
+                                    .getElementById(`status-monitoramento-atm-${resposta[i].numeracao}`)
+                                    .classList.add('celula-importante');
+                            }
+
+                            if (resposta[i].uso_ram >= sessionStorage.getItem('PARAM_CRITICO_RAM')) {
+                                document.getElementById(`uso-ram-atm-${resposta[i].numeracao}`).style.color =
+                                    '#e63946';
+                                document.getElementById(
+                                    `uso-ram-atm-${resposta[i].numeracao}`
+                                ).style.fontWeight = 'bold';
+                                document.getElementById(
+                                    `status-monitoramento-atm-${resposta[i].numeracao}`
+                                ).innerText = 'Crítico';
+                                document
+                                    .getElementById(`status-monitoramento-atm-${resposta[i].numeracao}`)
+                                    .classList.remove('celula-normal');
+                                document
+                                    .getElementById(`status-monitoramento-atm-${resposta[i].numeracao}`)
+                                    .classList.add('celula-critico');
+                            } else if (
+                                resposta[i].uso_ram >= sessionStorage.getItem('PARAM_IMPORTANTE_RAM')
+                            ) {
+                                document.getElementById(`uso-ram-atm-${resposta[i].numeracao}`).style.color =
+                                    '#f4a261';
+                                document.getElementById(
+                                    `uso-ram-atm-${resposta[i].numeracao}`
+                                ).style.fontWeight = 'bold';
+                                document.getElementById(
+                                    `status-monitoramento-atm-${resposta[i].numeracao}`
+                                ).innerText = 'Importante';
+                                document
+                                    .getElementById(`status-monitoramento-atm-${resposta[i].numeracao}`)
+                                    .classList.remove('celula-normal');
+                                document
+                                    .getElementById(`status-monitoramento-atm-${resposta[i].numeracao}`)
+                                    .classList.add('celula-importante');
+                            }
+
+                            if (resposta[i].uso_disco >= sessionStorage.getItem('PARAM_CRITICO_DISCO')) {
+                                document.getElementById(
+                                    `uso-disco-atm-${resposta[i].numeracao}`
+                                ).style.color = '#e63946';
+                                document.getElementById(
+                                    `uso-disco-atm-${resposta[i].numeracao}`
+                                ).style.fontWeight = 'bold';
+                                document.getElementById(
+                                    `status-monitoramento-atm-${resposta[i].numeracao}`
+                                ).innerText = 'Crítico';
+                                document
+                                    .getElementById(`status-monitoramento-atm-${resposta[i].numeracao}`)
+                                    .classList.remove('celula-normal');
+                                document
+                                    .getElementById(`status-monitoramento-atm-${resposta[i].numeracao}`)
+                                    .classList.add('celula-critico');
+                            } else if (
+                                resposta[i].uso_disco >= sessionStorage.getItem('PARAM_IMPORTANTE_DISCO')
+                            ) {
+                                document.getElementById(
+                                    `uso-disco-atm-${resposta[i].numeracao}`
+                                ).style.color = '#f4a261';
+                                document.getElementById(
+                                    `uso-disco-atm-${resposta[i].numeracao}`
+                                ).style.fontWeight = 'bold';
+                                document.getElementById(
+                                    `status-monitoramento-atm-${resposta[i].numeracao}`
+                                ).innerText = 'Importante';
+                                document
+                                    .getElementById(`status-monitoramento-atm-${resposta[i].numeracao}`)
+                                    .classList.remove('celula-normal');
+                                document
+                                    .getElementById(`status-monitoramento-atm-${resposta[i].numeracao}`)
+                                    .classList.add('celula-importante');
+                            }
+
+                            if (resposta[i].conexao > 0) {
+                                document.getElementById(`conexao-atm-${resposta[i].numeracao}`).innerText =
+                                    'Conectado';
+                            } else {
+                                document.getElementById(`conexao-atm-${resposta[i].numeracao}`).innerText =
+                                    'Desconectado';
+                            }
+                        }
+                    } else {
+                        console.error('carregarAtms: nenhum parâmetro encontrado.');
+                    }
+                });
+            } else {
+                console.error("Erro na resposta da API");
+            }
+        })
+        .catch(function (erro) {
+            console.error(erro);
+        });
+})

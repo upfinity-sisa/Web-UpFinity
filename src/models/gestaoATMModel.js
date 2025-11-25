@@ -2,8 +2,7 @@ var database = require("../database/config");
 
 function cadastrarATM(empresa, ip) {
     var instrucaoSql = `
-    insert into Atm (fkEmpresa, numeracao, IP, statusEstado, statusMonitoramento) values
-        (${empresa}, (select ifnull(max(numeracao + 1), 1) from Atm as atm where fkEmpresa = ${empresa}), "${ip}", 1, 1);
+    INSERT INTO Atm (fkEmpresa, numeracao, IP, statusEstado, statusMonitoramento) SELECT ${empresa}, IFNULL(MAX(numeracao) + 1, 1), "${ip}", 1, 0 FROM Atm  WHERE fkEmpresa = ${empresa};
     `
 
     return database.executar(instrucaoSql);
