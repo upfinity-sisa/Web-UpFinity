@@ -22,6 +22,7 @@
     <script src="../../js/sessao.js" defer></script>
     <script src="js/visaoGeral_desktop.js" defer></script>
     <script src="js/visaoGeral.js" defer></script>
+    <script src="../../js/navbar.js" defer></script>
 
     <!--Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,12 +53,12 @@
                     </span>
                     <span class="botoes-individuais-inativo" id="botoes-ind">
                         <h1 onclick="window.location = '../dashboard/dashboard.html'">GERAL</h1>
-                        <h1>CPU</h1>
-                        <h1>RAM</h1>
-                        <h1>DISCO</h1>
-                        <h1>REDE</h1>
-                        <h1>ALERTAS</h1>
-                        <h1>SEGURANÇA</h1>
+                        <h1 onclick="window.location = '../dashboardsIndividuais/cpu/dashCpu.html'">CPU</h1>
+                        <h1 onclick="window.location = '../dashboardsIndividuais/ram/ram.html'">RAM</h1>
+                        <h1 onclick="window.location = '../dashboardsIndividuais/rede/dashRede.html'">REDE</h1>
+                        <h1 onclick="window.location = '../dashboardsIndividuais/alerta/alerta.html'">ALERTAS</h1>
+                        <h1 onclick="window.location = '../dashboardsIndividuais/seguranca/dashSeguranca.html'">
+                            SEGURANÇA</h1>
                     </span>
                     <div class="linha"></div>
                     <h1 onclick="validarRedirecionamento('../gestaoUsuarios/gestaoUsuarios.html')">GESTÃO DE USUÁRIOS

@@ -8,6 +8,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
   <script src="dashCpu.js" defer></script>
+  <script src="../../../js/navbar.js"></script>
 
   <link rel="stylesheet" href="dashCpu.css" />
   <link rel="icon" href="../../../Assets/assets_dashboard/logoUPFINITY.png" />
@@ -15,6 +16,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
     rel="stylesheet">
+  <link rel="stylesheet" href="../../../css/style_navbar.css">
 </head>
 
 <body>
@@ -27,7 +29,23 @@
         <div id="navegacao">
           <h1 onclick="window.location = '../visaoGeral/visaoGeral.html'">VISÃO GERAL</h1>
           <div class="linha"></div>
-          <h1 onclick="window.location = '../dashboard/dashboard.html'">DASHBOARDS</h1>
+          <span class="botao-dashborads" onclick="abrirDashboards()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="bi bi-chevron-right botao-seta-direita" viewBox="0 0 16 16" id="seta-dashboards">
+              <path fill-rule="evenodd"
+                d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" />
+            </svg>
+            <h1>DASHBOARDS</h1>
+          </span>
+          <span class="botoes-individuais-inativo" id="botoes-ind">
+            <h1 onclick="window.location = '../dashboard/dashboard.html'">GERAL</h1>
+            <h1 onclick="window.location = '../dashboardsIndividuais/cpu/dashCpu.html'">CPU</h1>
+            <h1 onclick="window.location = '../dashboardsIndividuais/ram/ram.html'">RAM</h1>
+            <h1 onclick="window.location = '../dashboardsIndividuais/rede/dashRede.html'">REDE</h1>
+            <h1 onclick="window.location = '../dashboardsIndividuais/alerta/alerta.html'">ALERTAS</h1>
+            <h1 onclick="window.location = '../dashboardsIndividuais/seguranca/dashSeguranca.html'">
+              SEGURANÇA</h1>
+          </span>
           <div class="linha"></div>
           <h1 onclick="validarRedirecionamento('../gestaoUsuarios/gestaoUsuarios.html')">GESTÃO DE USUÁRIOS
           </h1>
@@ -38,8 +56,7 @@
       </div>
       <div id="esquerda-baixo">
         <div id="navegacaoSair">
-          <h1 onclick="window.open('https://sptech-team-qo8lyo3z.atlassian.net/servicedesk/customer/portal/2')"
-            id="botao_gira">ABRIR CHAMADO</h1>
+          <h1 id="botao-chamado">ABRIR CHAMADO</h1>
           <div class="linha"></div>
           <div id="btSair">
             <h1>SAIR</h1>
@@ -48,6 +65,7 @@
         </div>
       </div>
     </div>
+
     <div id="centro">
       <div id="centro-cima">
         <div id="lado-titulo">
