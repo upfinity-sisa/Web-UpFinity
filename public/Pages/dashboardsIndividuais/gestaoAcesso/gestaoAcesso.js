@@ -1,32 +1,5 @@
-// function carregarAlertasHoje() {
-//   fetch("http://localhost:3333/gestaoAcesso/alertas-hoje").then(function (resposta) {
-//     return resposta.json();
-//   }).then(function (json) {
-//     document.getElementById("kpi-alertas").innerHTML = json.totalAlertasHoje;
-//   });
-// }
-// carregarAlertasHoje();
-
-// function carregarATMsOff() {
-//   fetch("http://localhost:3333/gestaoAcesso/atmsoff").then(function (resposta) {
-//     return resposta.json();
-//   }).then(function (json) {
-//     document.getElementById("kpi-offline").innerHTML = json.atmsOff;
-//   });
-// }
-// carregarATMsOff();
-
-// function carregarATMsCriticos() {
-//   fetch("http://localhost:3333/gestaoAcesso/atmscriticos").then(function (resposta) {
-//     return resposta.json();
-//   }).then(function (json) {
-//     document.getElementById("kpi-criticos").innerHTML = json.atmsCriticos;
-//   });
-// }
-// carregarATMsCriticos();
-
 function empresaSemPlano() {
-  fetch("http://localhost:3333/gestaoAcesso/empresasemplano").then(function (resposta) {
+  fetch(`http://localhost:3333/gestaoAcesso/empresasemplano`).then(function (resposta) {
     return resposta.json();
   }).then(function (json) {
     document.getElementById("kpi-plano").innerHTML = json.empresaSemPlano;
@@ -35,7 +8,7 @@ function empresaSemPlano() {
 empresaSemPlano();
 
 function carregarLoginSucesso() {
-  fetch("http://localhost:3333/gestaoAcesso/loginsucesso").then(function (resposta) {
+  fetch(`http://localhost:3333/gestaoAcesso/loginsucesso?dia=${dia}`).then(function (resposta) {
     return resposta.json();
   }).then(function (json) {
     document.getElementById("kpi-logins").innerHTML = json.LoginsSucesso;
@@ -44,7 +17,7 @@ function carregarLoginSucesso() {
 carregarLoginSucesso();
 
 function carregarLoginFalho() {
-  fetch("http://localhost:3333/gestaoAcesso/loginfalho").then(function (resposta) {
+  fetch(`http://localhost:3333/gestaoAcesso/loginfalho?dia=${dia}`).then(function (resposta) {
     return resposta.json();
   }).then(function (json) {
     document.getElementById("kpi-falhos").innerHTML = json.LoginsFalhos;
@@ -86,7 +59,7 @@ function carregarDias() {
 document.addEventListener("DOMContentLoaded", carregarDias);
 
 async function carregarGraficoLogins() {
-  const resposta = await fetch("http://localhost:3333/gestaoAcesso/loginsPorHora");
+  const resposta = await fetch(`http://localhost:3333/gestaoAcesso/loginsPorHora?dia=${dia}`);
   const json = await resposta.json();
 
 
@@ -147,7 +120,7 @@ function empresaSemPlano() {
 empresaSemPlano();
 
 function carregarLoginSucesso() {
-  fetch("http://localhost:3333/gestaoAcesso/loginsucesso").then(function (resposta) {
+  fetch(`http://localhost:3333/gestaoAcesso/loginsucesso?dia=${dia}`).then(function (resposta) {
     return resposta.json();
   }).then(function (json) {
     document.getElementById("kpi-logins").innerHTML = json.LoginsSucesso;
@@ -156,7 +129,7 @@ function carregarLoginSucesso() {
 carregarLoginSucesso();
 
 function carregarLoginFalho() {
-  fetch("http://localhost:3333/gestaoAcesso/loginfalho").then(function (resposta) {
+  fetch(`http://localhost:3333/gestaoAcesso/loginfalho?dia=${dia}`).then(function (resposta) {
     return resposta.json();
   }).then(function (json) {
     document.getElementById("kpi-falhos").innerHTML = json.LoginsFalhos;

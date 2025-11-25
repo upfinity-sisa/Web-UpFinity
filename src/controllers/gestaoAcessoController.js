@@ -1,40 +1,9 @@
 var gestaoAcessoModel = require("../models/gestaoAcessoModel")
 
-// function buscarAlertasHoje(req, res) {
-//     gestaoAcessoModel.buscarAlertasHoje()
-//     .then((resultado) => {
-//         res.status(200).json(resultado[0]);
-//     })
-//     .catch((e) => {
-//         console.log("Erro ao buscar alertas de hoje:", e);
-//         res.status(500).json({e: "Erro ao buscar alertas gerados hoje"});
-//     });
-// }
-
-// function buscarATMSoff(req, res) {
-//     gestaoAcessoModel.buscarATMSoff()
-//     .then((resultado) => {
-//         res.status(200).json(resultado[0]);
-//     })
-//     .catch((e) => {
-//         console.log("Erro ao buscar alertas de hoje:", e);
-//         res.status(500).json({e: "Erro ao buscar alertas gerados hoje"});
-//     });
-// }
-
-// function buscarATMScriticos(req, res) {
-//     gestaoAcessoModel.buscarATMScriticos()
-//     .then((resultado) => {
-//         res.status(200).json(resultado[0]);
-//     })
-//     .catch((e) => {
-//         console.log("Erro ao buscar alertas de hoje:", e);
-//         res.status(500).json({e: "Erro ao buscar alertas gerados hoje"});
-//     });
-// }
-
 function carregarLoginSucesso(req, res) {
-    gestaoAcessoModel.carregarLoginSucesso()
+    const dia = req.query.dia;
+
+    gestaoAcessoModel.carregarLoginSucesso(dia)
     .then((resultado) => {
         res.status(200).json(resultado[0]);
     })
@@ -45,7 +14,9 @@ function carregarLoginSucesso(req, res) {
 }
 
 function carregarLoginFalho(req, res) {
-    gestaoAcessoModel.carregarLoginFalho()
+    const dia = req.query.dia;
+
+    gestaoAcessoModel.carregarLoginFalho(dia)
     .then((resultado) => {
         res.status(200).json(resultado[0]);
     })
@@ -56,7 +27,9 @@ function carregarLoginFalho(req, res) {
 }
 
 function loginsPorHora(req, res) {
-     gestaoAcessoModel.loginsPorHora()
+    const dia = req.query.dia;
+
+     gestaoAcessoModel.loginsPorHora(dia)
     .then((resultado) => {
         res.status(200).json(resultado);
     })
@@ -95,9 +68,6 @@ function novosUsuariosPorSemana(req, res) {
 
 
 module.exports = {
-//   buscarAlertasHoje,
-//   buscarATMSoff,
-//   buscarATMScriticos,
   carregarLoginSucesso,
   carregarLoginFalho,
   loginsPorHora,
