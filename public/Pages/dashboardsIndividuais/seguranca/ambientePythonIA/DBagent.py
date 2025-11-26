@@ -9,7 +9,7 @@ from typing import TypedDict, Optional
 
 #CONFIGURANDO O AMBIENTE
 
-os.environ["GOOGLE_API_KEY"] = "AIzaSyBsOYQOJliyEp-qa8JXoLZ4Zb_84WZn0OA"
+os.environ["GOOGLE_API_KEY"] = "AIzaSyD9o1oKEAx0wx9wKYB2LoIgnnKWw4LKKno"
 
 DB_CONFIG = {
     "host": "localhost",

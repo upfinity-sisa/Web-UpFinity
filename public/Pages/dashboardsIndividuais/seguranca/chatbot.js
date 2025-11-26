@@ -96,10 +96,6 @@ async function enviarMensagemParaAgente(texto) {
 
         <div class="mensagem_bot">
 
-            <h1 style="color: rgb(255, 255, 255);" class="mensagem_txt">
-                Claro! Arqui estão as informações que você pediu:
-            </h1>
-
             <div class="balao_mensagem_bot">
 
                 <table style="background-color: white;">

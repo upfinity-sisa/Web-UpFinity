@@ -59,46 +59,54 @@ function exibirArquivosCriticos(idAtm, fkEmpresa) {
 
 function exibirGrafico(idAtm, fkEmpresa) {
     var instrucaoSql = `
-    SELECT 
-    COUNT(*) AS total_alertas
+    SELECT
+        WEEK(horario) AS semana,
+        COUNT(*) AS total_alertas
     FROM (
         SELECT AlertaSeguranca.horario
         FROM AlertaSeguranca
         JOIN ConexaoAberta ON idAlertaSeguranca = fkAlertaSeguranca
         JOIN Seguranca ON idSeguranca = fkSeguranca
-        WHERE idSeguranca = (
-            SELECT idSeguranca 
-            FROM Seguranca 
-            JOIN Atm ON idAtm = fkAtm 
-            WHERE categoria = 'conexao' AND idAtm = ${idAtm} AND fkEmpresa = ${fkEmpresa}
-        )
+        WHERE 
+            idSeguranca = (
+                SELECT idSeguranca FROM Seguranca JOIN Atm ON idAtm = fkAtm 
+                WHERE categoria = 'conexao' AND idAtm = ${idAtm} AND fkEmpresa = ${fkEmpresa}
+            )
+            -- *** ALTERAÇÃO AQUI: De 8 para 7 WEEK ***
+            AND AlertaSeguranca.horario >= DATE_SUB(CURDATE(), INTERVAL 7 WEEK) 
+        
         UNION ALL
+        
         SELECT AlertaSeguranca.horario
         FROM AlertaSeguranca
         JOIN ArquivoCritico ON idAlertaSeguranca = fkAlertaSeguranca
         JOIN Seguranca ON idSeguranca = fkSeguranca
-        WHERE idSeguranca = (
-            SELECT idSeguranca 
-            FROM Seguranca 
-            JOIN Atm ON idAtm = fkAtm 
-            WHERE categoria = 'arquivo' AND idAtm = ${idAtm} AND fkEmpresa = ${fkEmpresa}
-        )
+        WHERE 
+            idSeguranca = (
+                SELECT idSeguranca FROM Seguranca JOIN Atm ON idAtm = fkAtm 
+                WHERE categoria = 'arquivo' AND idAtm = ${idAtm} AND fkEmpresa = ${fkEmpresa}
+            )
+            -- *** ALTERAÇÃO AQUI: De 8 para 7 WEEK ***
+            AND AlertaSeguranca.horario >= DATE_SUB(CURDATE(), INTERVAL 7 WEEK)
+
         UNION ALL
+        
         SELECT AlertaSeguranca.horario
         FROM AlertaSeguranca
         JOIN Invasao ON idAlertaSeguranca = fkAlertaSeguranca
         JOIN Seguranca ON idSeguranca = fkSeguranca
-        WHERE idSeguranca = (
-            SELECT idSeguranca 
-            FROM Seguranca 
-            JOIN Atm ON idAtm = fkAtm 
-            WHERE categoria = 'invasao' AND idAtm = ${idAtm} AND fkEmpresa = ${fkEmpresa}
-        )
-    ) AS alertas
+        WHERE 
+            idSeguranca = (
+                SELECT idSeguranca FROM Seguranca JOIN Atm ON idAtm = fkAtm 
+                WHERE categoria = 'invasao' AND idAtm = ${idAtm} AND fkEmpresa = ${fkEmpresa}
+            )
+            -- *** ALTERAÇÃO AQUI: De 8 para 7 WEEK ***
+            AND AlertaSeguranca.horario >= DATE_SUB(CURDATE(), INTERVAL 7 WEEK)
 
-    WHERE YEARWEEK(horario, 0) >= YEARWEEK(CURDATE() - INTERVAL 8 WEEK, 0)
-    GROUP BY YEARWEEK(horario, 0)
-    ORDER BY YEARWEEK(horario, 0);
+    ) AS alertas
+    GROUP BY semana
+    ORDER BY semana ASC
+    LIMIT 8;
     `
 
     return database.executar(instrucaoSql);
