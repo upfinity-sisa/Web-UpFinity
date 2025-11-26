@@ -6,6 +6,8 @@ let dados_disco = [];
 let dados_rede = [];
 let horarios_captura = [];
 let graficoDowntime = null;
+let intervalId = null;
+let comboATMs = document.getElementById('comboATMs');
 
 function vwParaPx(vwValue) {
     const larguraViewport = window.innerWidth;
@@ -246,9 +248,7 @@ function pegarUltimosHorariosCaptura(idAtm) {
             }
         })
         .catch(erro => {
-            console.error(
-                `pegarUltimosHorariosCaptura: erro na obtenção dos dados: ${erro.message}`
-            );
+            console.error(`pegarUltimosHorariosCaptura: erro na obtenção dos dados: ${erro.message}`);
             return Promise.reject(erro);
         });
 }
@@ -369,10 +369,7 @@ function carregarDowntime(idAtm) {
                             colors: ['#6ce5e8', '#41b8d5'],
                         };
 
-                        graficoDowntime = new ApexCharts(
-                            document.querySelector('#torta_baixo'),
-                            options
-                        );
+                        graficoDowntime = new ApexCharts(document.querySelector('#torta_baixo'), options);
                         graficoDowntime.render();
                     } else {
                         graficoDowntime.updateSeries(downtime);
@@ -480,6 +477,33 @@ window.addEventListener('resize', function () {
     window.location.reload(true);
 });
 
+function carregarAtms() {
+    return fetch(`/dashboard/carregar-atms/${sessionStorage.getItem('FK_EMPRESA')}`, {
+        cache: 'no-store',
+    })
+        .then(response => {
+            if (response.ok) {
+                response.json().then(resposta => {
+                    if (resposta.length > 0) {
+                        for (let i = 0; i < resposta.length; i++) {
+                            comboATMS.innerHTML += `
+                        <option value="${resposta[i].numeracao}">ATM ${resposta[i].numeracao}</option>
+                        `;
+                        }
+                        atualizarDados();
+                    } else {
+                        console.error('carregarAtms: nenhum parâmetro encontrado.');
+                    }
+                });
+            } else {
+                console.error('carregarAtms: nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(erro => {
+            console.error(`carregarAtms: erro na obtenção dos dados: ${erro.message}`);
+        });
+}
+
 function atualizarGrafico(idAtm) {
     dados_cpu = [];
     dados_ram = [];
@@ -495,9 +519,6 @@ function atualizarGrafico(idAtm) {
         });
 }
 
-let intervalId = null;
-let comboATMs = document.getElementById('comboATMs');
-
 function atualizarDashboard() {
     let idAtm = comboATMs.value;
     atualizarGrafico(idAtm);
@@ -505,7 +526,7 @@ function atualizarDashboard() {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    atualizarDashboard();
+    carregarAtms();
     intervalId = setInterval(atualizarDashboard, 3500);
 
     comboATMs.addEventListener('change', () => {

@@ -176,31 +176,6 @@ function carregarAlertas(idAtm) {
 }
 
 let comboATMS = document.getElementById('comboATMs');
-function carregarAtms() {
-    fetch(`/dashboard/carregar-atms/${sessionStorage.getItem('FK_EMPRESA')}`, {
-        cache: 'no-store',
-    })
-        .then(response => {
-            if (response.ok) {
-                response.json().then(resposta => {
-                    if (resposta.length > 0) {
-                        for (let i = 0; i < resposta.length; i++) {
-                            comboATMS.innerHTML += `
-                        <option value="${resposta[i].numeracao}">ATM ${resposta[i].numeracao}</option>
-                        `;
-                        }
-                    } else {
-                        console.error('carregarAtms: nenhum parâmetro encontrado.');
-                    }
-                });
-            } else {
-                console.error('carregarAtms: nenhum dado encontrado ou erro na API');
-            }
-        })
-        .catch(erro => {
-            console.error(`carregarAtms: erro na obtenção dos dados: ${erro.message}`);
-        });
-}
 
 let intervalId2 = null;
 
@@ -230,24 +205,14 @@ window.addEventListener('DOMContentLoaded', () => {
     const paramCriticoDiscoDiv = document.getElementById('paramCriticoDisco');
     const paramModeradoDiscoDiv = document.getElementById('paramModeradoDisco');
 
-    paramCriticoCpuDiv.innerHTML += parseFloat(sessionStorage.getItem('PARAM_CRITICO_CPU')).toFixed(
+    paramCriticoCpuDiv.innerHTML += parseFloat(sessionStorage.getItem('PARAM_CRITICO_CPU')).toFixed(2);
+    paramModeradoCpuDiv.innerHTML += parseFloat(sessionStorage.getItem('PARAM_IMPORTANTE_CPU')).toFixed(2);
+
+    paramCriticoRamDiv.innerHTML += parseFloat(sessionStorage.getItem('PARAM_CRITICO_RAM')).toFixed(2);
+    paramModeradoRamDiv.innerHTML += parseFloat(sessionStorage.getItem('PARAM_IMPORTANTE_RAM')).toFixed(2);
+
+    paramCriticoDiscoDiv.innerHTML += parseFloat(sessionStorage.getItem('PARAM_CRITICO_DISCO')).toFixed(2);
+    paramModeradoDiscoDiv.innerHTML += parseFloat(sessionStorage.getItem('PARAM_IMPORTANTE_DISCO')).toFixed(
         2
     );
-    paramModeradoCpuDiv.innerHTML += parseFloat(
-        sessionStorage.getItem('PARAM_IMPORTANTE_CPU')
-    ).toFixed(2);
-
-    paramCriticoRamDiv.innerHTML += parseFloat(sessionStorage.getItem('PARAM_CRITICO_RAM')).toFixed(
-        2
-    );
-    paramModeradoRamDiv.innerHTML += parseFloat(
-        sessionStorage.getItem('PARAM_IMPORTANTE_RAM')
-    ).toFixed(2);
-
-    paramCriticoDiscoDiv.innerHTML += parseFloat(
-        sessionStorage.getItem('PARAM_CRITICO_DISCO')
-    ).toFixed(2);
-    paramModeradoDiscoDiv.innerHTML += parseFloat(
-        sessionStorage.getItem('PARAM_IMPORTANTE_DISCO')
-    ).toFixed(2);
 });
