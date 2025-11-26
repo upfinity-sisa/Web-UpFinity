@@ -1,3 +1,4 @@
+const spn_dataHora_ultimaAtualizacao = document.getElementById('spn_dataHora_ultimaAtualizacao')
 
 function vwParaPx(vwValue) {
     const larguraViewport = window.innerWidth;
@@ -12,9 +13,9 @@ var options_grafico1 = {
         stacked: false,
     },
     series: [
-        { name: 'Pendentes', data: [3, 5, 10, 20] },
-        { name: 'Resolvidos', data: [5, 15, 40, 50] },
-        { name: 'Total', data: [8, 20, 50, 70] }
+        { name: 'Pendentes', data: [] },
+        { name: 'Resolvidos', data: [] },
+        { name: 'Total', data: [] }
     ],
     colors: ['#8c91cd', '#58f058', '#5acfd3ff'],
     xaxis: {
@@ -60,7 +61,6 @@ var options_grafico2 = {
             data: [
                 {
                     x: 'CPU',
-                    // [Min, Q1, Mediana, Q3, Max]
                     y: []
                 },
                 {
@@ -186,6 +186,17 @@ function CarregarDadosDashboard() {
     ObterGrafico_Bar();
     ObterHistorico();
     obterDadosBoxplot();
+    let dataAtual = new Date();
+
+    const dia = String(dataAtual.getDate()).padStart(2, '0');
+    const mes = String(dataAtual.getMonth() + 1).padStart(2, '0');
+    const ano = dataAtual.getFullYear();
+    const horas = String(dataAtual.getHours()).padStart(2, '0');
+    const minutos = String(dataAtual.getMinutes()).padStart(2, '0');
+    const segundos = String(dataAtual.getSeconds()).padStart(2, '0');
+
+
+    spn_dataHora_ultimaAtualizacao.innerText = `${dia}/${mes}/${ano} - ${horas}:${minutos}:${segundos}`
 }
 
 window.onload = function () {
@@ -706,3 +717,5 @@ function obterDadosBoxplot() {
             chart_grafico2.updateSeries(dados.series);
         });
 }
+
+
