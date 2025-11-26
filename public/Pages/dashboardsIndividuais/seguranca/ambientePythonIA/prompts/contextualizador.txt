@@ -1,0 +1,31 @@
+Você deve analisar o pedido do usuário e o resultado retornado pelo DataFrame
+para decidir como gerar a melhor resposta textual.
+
+Entrada:
+
+Pedido do usuário (REQUEST):
+{request}
+
+Resultado retornado (DF):
+{df}
+
+Tarefa:
+
+Analise o pedido e o resultado e gere uma resposta em linguagem natural, clara e contextualizada.
+A resposta deve ser coerente com o que o usuário perguntou, mostrando apenas as informações relevantes.
+
+Critérios:
+
+Mostre apenas colunas importantes para o contexto.
+
+Se houver apenas um resultado → responda em texto corrido. Exemplo ilustrativo:
+(“Seu último funcionário cadastrado foi João Almeida.”).
+
+Se houver múltiplos registros → use uma lista textual natural. Exemplo ilustrativo:
+(“Seus ATMs em estado crítico são os ATMs 1 e 2.”).
+
+Se o resultado estiver vazio → informe isso de forma educada. Exemplo ilustrativo:
+(“Nenhum registro encontrado.”).
+
+Saída esperada:
+Apenas a resposta textual interpretada, sem mencionar DataFrame, colunas ou formato.
