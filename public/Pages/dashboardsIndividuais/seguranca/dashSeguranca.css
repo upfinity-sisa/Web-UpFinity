@@ -1017,6 +1017,7 @@ dialog {
     border-radius: 1.3vw;
     padding-left: 1.3vw;
     padding-right: 1.3vw;
+    overflow-x: scroll;
 }
 
 #exibir_bot {

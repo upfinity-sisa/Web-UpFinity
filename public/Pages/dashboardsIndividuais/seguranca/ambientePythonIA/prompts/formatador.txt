@@ -1,0 +1,35 @@
+Você deve analisar o pedido do usuário e o resultado retornado pelo DataFrame 
+para decidir qual o melhor formato de resposta a ser entregue.
+
+Entrada:
+
+Pedido do usuário (REQUEST):
+{request}
+
+Resultado retornado (DF):
+{df}
+
+Tarefa:
+
+Avalie o conteúdo e determine qual tipo de resposta é mais apropriado:
+
+Texto corrido: Quando o resultado é simples, contém poucos dados (por exemplo, um único
+registro ou valor), ou quando a resposta pode ser naturalmente expressa em uma frase.
+
+Tabela: Quando há múltiplas linhas, colunas ou informações comparativas, como listas
+de registros, valores, métricas, etc.
+
+Critérios adicionais:
+    Caso o dataframe esteja vazio, retorne imediatamente o número 2
+    Se houver apenas uma linha no DataFrame ou o  → prefira "texto".
+    Se o conteúdo tiver caráter narrativo ou descritivo → "texto".
+    Se houver mais de uma linha ou múltiplas colunas relevantes → prefira "tabela".
+    Se for analítico, numérico ou de listagem → "tabela".
+
+
+REGRA:
+    Caso o modelo definido seja "tabela" retorne APENAS o número 1
+    Caso o modelo definido seja "texto corrido" retorne APENAS o número 2
+
+Saída esperada:
+Apenas o número 1 ou 2, sem texto adicional ou formatação.

@@ -1,6 +1,8 @@
 var reiniciar = 1;
 var request_em_andamento = 0;
 
+
+
 function conversar() {
 
     if (input_agente.value == "") {
@@ -28,6 +30,8 @@ function conversar() {
         </div>
     `
 
+    enviarMensagemParaAgente(input_agente.value)
+
     input_agente.value = ""
 
     const tela = document.getElementById("mensagens");
@@ -36,28 +40,100 @@ function conversar() {
         behavior: "smooth"
     });
 
-    setTimeout(() => {
-        
-        mensagens.innerHTML += `
-        <div class="mensagem_bot">
-            <div class="balao_mensagem_bot">
-                <h1 style="color: rgb(255, 255, 255);" class="mensagem_txt">Olá usuário querido, nenhum dos seus ATMs está funcionando</h1>
-            </div>
-        </div>
-        `
-        
-        tela.scrollTo({
-            top: tela.scrollHeight,
-            behavior: "smooth"
-        });
-
-        request_em_andamento = 0;
-
-
-    }, 1000);
+    tela.scrollTo({
+        top: tela.scrollHeight,
+        behavior: "smooth"
+    });
 
 
 }
+
+async function enviarMensagemParaAgente(texto) {
+    const resp = await fetch("http://localhost:8000/agente", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ texto: texto , 
+                                idUsuario: sessionStorage.ID_USUARIO, 
+                                nome: sessionStorage.NOME_USUARIO,
+                                email: sessionStorage.EMAIL_USUARIO,
+                                cpf: sessionStorage.CPF_USUARIO,
+                                fkEmpresa: sessionStorage.FK_EMPRESA,
+                                fkTipoUsuario: sessionStorage.FK_TIPOUSUARIO
+                            })
+    });
+
+    const data = await resp.json();
+    console.log("Resposta do agente:", data.resposta);
+
+    if (data.tipo == "df") {
+        valoresTabela = Object.keys(data.resposta[0])
+        console.log(valoresTabela[0])
+
+        let tr_agente = ""
+        for (let i = 0; i < valoresTabela.length; i++) {
+            tr_agente += `
+            <th>${valoresTabela[i]}</th>
+            `
+        }
+
+
+        let tabela_agente = ""
+        for (let i = 0; i < (data.resposta).length; i++) {
+            var linha = ``
+            for (let x = 0; x < valoresTabela.length; x++) {
+                linha += `<td>${data.resposta[i][valoresTabela[x]]}</td>`
+            }
+            tabela_agente += `
+            <tr>
+            ${linha}
+            </tr>
+            `
+        }
+
+        mensagens.innerHTML += `
+
+        <div class="mensagem_bot">
+
+            <h1 style="color: rgb(255, 255, 255);" class="mensagem_txt">
+                Claro! Arqui estão as informações que você pediu:
+            </h1>
+
+            <div class="balao_mensagem_bot">
+
+                <table style="background-color: white;">
+                <tr>
+                    ${tr_agente}
+                </tr>
+                ${tabela_agente}
+                </table>
+
+            </div>
+        </div>
+        `
+
+    } else {
+        mensagens.innerHTML += `
+        <div class="mensagem_bot">
+            <div class="balao_mensagem_bot">
+                <h1 style="color: rgb(255, 255, 255);" class="mensagem_txt">${data.resposta}</h1>
+            </div>
+        </div>
+        `
+    }
+
+    request_em_andamento = 0;
+
+    /*
+    tela.scrollTo({
+        top: tela.scrollHeight,
+        behavior: "smooth"
+    });
+    */
+
+}
+
 
 function abrirChatBot() {
     exibir_bot.innerHTML = `

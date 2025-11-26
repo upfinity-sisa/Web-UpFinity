@@ -18,6 +18,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="./alerta.css">
+    <link rel="stylesheet" href="../../../css/style_navbar.css">
     <!-- <link rel="stylesheet" href="../../dashboard/css/dashboard.css"> -->
 
     <!--Fonts-->
@@ -29,6 +30,7 @@
     <!-- JavaScript -->
     <script src="./alerta.js" defer></script>
     <script src="../../../js/sessao.js" defer></script>
+    <script src="../../../js/navbar.js" defer></script>
 
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
@@ -43,7 +45,7 @@
                 <img src="../../../Assets/Elements/Icons/fecharMenu.png" id="img_fechar_gerenciar">
                 <div id="box_gerenciar">
                     <div id="box_titulo_gerenciar">
-                        <h2 id="h2_titulo_gerenciar">Alertas - Ordenados por criticidade</h2>
+                        <h2 id="h2_titulo_gerenciar">Alertas - Ordenados por criticidade e status</h2>
                         <span id="span_titulo_gerenciar">Histórico completo de alertas do sistema, incluindo resolvidos
                             e
                             pendentes.</span>
@@ -62,17 +64,36 @@
                 <div id="navegacao">
                     <h1 onclick="window.location = '../../visaoGeral/visaoGeral.html'">VISÃO GERAL</h1>
                     <div class="linha"></div>
-                    <h1 onclick="window.location = '../../dashboard/dashboard.html'">DASHBOARDS</h1>
+                    <span class="botao-dashborads" onclick="abrirDashboards()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-chevron-right botao-seta-direita" viewBox="0 0 16 16" id="seta-dashboards">
+                            <path fill-rule="evenodd"
+                                d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" />
+                        </svg>
+                        <h1>DASHBOARDS</h1>
+                    </span>
+                    <span class="botoes-individuais-inativo" id="botoes-ind">
+                        <h1 onclick="window.location = '../../dashboard/dashboard.html'">GERAL</h1>
+                        <h1 onclick="window.location = '../cpu/dashCpu.html'">CPU</h1>
+                        <h1 onclick="window.location = '../ram/ram.html'">RAM</h1>
+                        <h1 onclick="window.location = '../rede/dashRede.html'">REDE</h1>
+                        <h1 onclick="window.location = '../alerta/alerta.html'">ALERTAS</h1>
+                        <h1 onclick="window.location = '../seguranca/dashSeguranca.html'">
+                            SEGURANÇA</h1>
+                        <h1 onclick="window.location = '../gestaoAcesso/gestaoAcesso.html'">GESTÃO
+                            DE ACESSOS</h1>
+                    </span>
                     <div class="linha"></div>
-                    <h1 onclick="validarRedirecionamento('../../gestaoUsuarios/gestaoUsuarios.html')">GESTÃO DE USUÁRIOS
+                    <h1 onclick="validarRedirecionamento('../gestaoUsuarios/gestaoUsuarios.html')">GESTÃO DE USUÁRIOS
                     </h1>
                     <div class="linha"></div>
-                    <h1 onclick="validarRedirecionamento('../../gestaoATM/gestaoATM.html')">GESTÃO DE ATMS</h1>
+                    <h1 onclick="validarRedirecionamento('../gestaoATM/gestaoATM.html')">GESTÃO DE ATMS</h1>
                     <div class="linha"></div>
                 </div>
             </div>
             <div id="esquerda-baixo">
                 <div id="navegacaoSair">
+                    <h1 id="botao-chamado">ABRIR CHAMADO</h1>
                     <div class="linha"></div>
                     <div id="btSair">
                         <h1>SAIR</h1>
@@ -88,7 +109,10 @@
                     <h1 id="titulo">ALERTAS</h1>
                     <span id="spn_subtitulo">Monitore os alertas de seus ATMs em tempo real</span>
                 </div>
-
+                <div id="containerHoraAtualizacao">
+                    <span id="spn_txt_ultimaAtualizacao"><b>Última atualização:</b></span>
+                    <span id="spn_dataHora_ultimaAtualizacao"></span>
+                </div>
             </div>
 
             <div id="centro-baixo">

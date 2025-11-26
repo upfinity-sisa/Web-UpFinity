@@ -1,0 +1,158 @@
+Tabelas:
+
+Tabela: TipoUsuario
+Colunas:
+- idTipoUsuario (INT) -> Chave primária
+- descricao (VARCHAR)
+Observação: 
+  1 = suporte UpFinity (não utilizado; Upfinity é a minha empresa),
+  2 = administradores (Gerenciam usuários e ATMs),
+  3 = analistas (usuários comuns).
+
+Tabela: TipoComponente
+Colunas:
+- idTipoComponente (INT) -> Chave primária
+- nome (VARCHAR)
+- unidadeMedida (VARCHAR)
+- processos (VARCHAR)
+Observação:
+  Armazena **os tipos de componentes monitorados**, não os componentes em si.
+  Exemplo ilustrativo (valores podem variar):
+    1 = CPU
+    2 = RAM
+    3 = Disco
+
+Tabela: Endereco
+Colunas:
+- idEndereco (INT) -> Chave primária
+- logradouro (VARCHAR)
+- num (CHAR)
+- bairro (VARCHAR)
+- cidade (VARCHAR)
+- UF (CHAR)
+- CEP (CHAR)
+- complemento (VARCHAR)
+
+Tabela: TipoAlerta
+Colunas:
+- idTipoAlerta (INT) -> Chave primária
+- descricao (VARCHAR)
+- nivel (INT)
+Observação:
+  Armazena **os tipos de alertas que podem ser exibidos**, não os alertas em si.
+  Exemplo ilustrativo (valores podem variar):
+    1 = critico
+    2 = moderado
+
+Tabela: Plano
+Colunas:
+- idPlano (INT) -> Chave primária
+- nome (VARCHAR)
+- descricao (VARCHAR)
+- maxATMs (INT)
+- valorPlano (DOUBLE)
+Observação: 
+  A coluna 'maxATMs' contém a quantidade máxima de ATMs que a empresa
+  pode monitorar de acordo com o plano dela.
+
+Tabela: Empresa
+Colunas:
+- idEmpresa (INT) -> Chave primária
+- fkEndereco (INT) -> FK para Endereco.idEndereco
+- fkPlano (INT) -> FK para Plano.idPlano
+- razaoSocial (VARCHAR)
+- CNPJ (CHAR)
+- statusAprovacao (INT)
+- statusPagamento (BOOLEAN)
+- nomeFantasia (VARCHAR)
+Observação: 
+  Ambos os valores de 'statusAprovacao' e 'statusPagamento' devem ser TRUE (1)
+  para que a empresa tenha acesso ao produto.
+
+    statusAprovacao ->
+      0 = Pendente  
+      1 = Aprovado  
+
+    statusPagamento ->
+      0 = Aguardando pagamento  
+      1 = Pago
+
+
+Tabela: Usuario
+Colunas:
+- idUsuario (INT) -> Chave primária
+- fkTipoUsuario (INT) -> FK para TipoUsuario.idTipoUsuario
+- fkEmpresa (INT) -> FK para Empresa.idEmpresa
+- nome (VARCHAR)
+- CPF (CHAR)
+- email (VARCHAR)
+- senha (VARCHAR)
+
+Tabela: Atm
+Colunas:
+- idAtm (INT) -> Chave primária
+- fkEmpresa (INT) -> FK para Empresa.idEmpresa
+- numeracao (INT)
+- IP (CHAR)
+- statusEstado (INT)
+- statusMonitoramento (INT)
+Observação: 
+  A coluna 'numeracao' representa o "nome" do ATM que será exibido ao usuário.
+  Os campos 'statusEstado' e 'statusMonitoramento' utilizam valores numéricos
+  para indicar o estado atual e o nível de criticidade do ATM:
+
+    statusEstado → 
+      0 = Desligado  
+      1 = Ligado  
+      2 = Em Manutenção  
+
+    statusMonitoramento → 
+      0 = Normal  
+      1 = Moderado  
+      2 = Crítico
+
+Tabela: Componente
+Colunas:
+- idComponente (INT) -> Chave primária
+- fkAtm (INT) -> FK para Atm.idAtm, Chave primária
+- fkTipoComponente (INT) -> FK para TipoComponente.idTipoComponente
+Observação: 
+  Essa tabela armazena os componentes individuais que estão sendo monitorados,
+  relacionando cada um ao seu respectivo tipo (por exemplo (ilustrativo): CPU, RAM, Disco).
+
+Tabela: Captura
+Colunas:
+- idCaptura (INT) -> Chave primária
+- fkComponente (INT) -> FK para Componente.idComponente
+- fkAtm (INT) -> FK para Componente.fkAtm
+- valor (DOUBLE)
+- horario (DATETIME)
+Observação:
+  Cada registro representa uma leitura de um componente em um horário específico.
+  As FKs 'fkComponente' e 'fkAtm' indicam qual componente foi medido e a qual ATM ele pertence.
+  O par ('fkComponente', 'fkAtm') mantém a integridade com a chave composta da tabela 'Componente'.
+
+
+Tabela: Alerta
+Colunas:
+- idAlerta (INT) -> Chave primária
+- fkTipoAlerta (INT) -> FK para TipoAlerta.idTipoAlerta
+- fkCaptura (INT) -> FK para Captura.idCaptura
+Observação:
+  Essa tabela armazena alertas gerados automaticamente quando os valores registrados
+  em 'Captura' ultrapassam os limites definidos na tabela 'Parametro'.
+  O estado "normal" do ATM não é considerado alerta.
+  Capturas com estado normal não salvam nenhuma informação na tabela 'Alerta'.
+
+Tabela: Parametro
+Colunas:
+- idParametro (INT) -> Chave primária
+- fkTipoComponente (INT) -> FK para TipoComponente.idTipoComponente
+- fkEmpresa (INT) -> FK para Empresa.idEmpresa
+- fkTipoAlerta (INT) -> FK para TipoAlerta.idTipoAlerta
+- limiteMin (INT)
+Observação:
+  A combinação (fkEmpresa, fkTipoComponente, fkTipoAlerta) é UNIQUE.
+  Essa tabela define os limites mínimos para cada tipo de alerta e componente,
+  por empresa. Quando um valor em 'Captura' ultrapassa esse limite, um alerta
+  pode ser gerado na tabela 'Alerta'.

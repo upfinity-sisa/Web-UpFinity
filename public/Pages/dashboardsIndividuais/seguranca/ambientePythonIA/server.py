@@ -1,0 +1,50 @@
+from fastapi import FastAPI
+from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
+import json
+import ast
+
+from DBagent import executar
+
+app = FastAPI()
+
+origins = [
+    "http://localhost",
+    "http://localhost:3333",
+    "*"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+class Mensagem(BaseModel):
+    texto: str
+    idUsuario: str
+    nome: str
+    email: str
+    cpf: str
+    fkEmpresa: int
+    fkTipoUsuario: int
+
+@app.post("/agente")
+def executar_agente(msg: Mensagem):
+
+    resposta = f"{executar(msg.texto, msg.idUsuario, msg.nome, msg.email, msg.cpf, msg.fkEmpresa, msg.fkTipoUsuario)}"
+    
+    print("RESPOSTA")
+
+    dados = ast.literal_eval(resposta)
+
+    if dados['tipo'] == 'df':
+        return {"resposta": dados['res'], "tipo": "df"}    
+    return {"resposta": dados['res'], "tipo": "text"}
+    
+    
+    
+    # return dados
+    # return {"resposta": dados['res'], "tipo": dados['tipo']}

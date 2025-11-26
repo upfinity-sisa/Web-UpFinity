@@ -17,10 +17,13 @@
     <!-- CSS -->
     <link rel="stylesheet" href="../dashboard/css/dashboard.css">
     <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/style_navbar.css">
 
     <!-- JavaScript -->
     <script src="../../js/sessao.js" defer></script>
     <script src="./gestaoATM.js" defer></script>
+    <script src="../../js/navbar.js" defer></script>
+    <script src="../dashboardsIndividuais/gestaoAcesso/js/gestaoAcesso_desktop.js" defer></script>
 
     <!--Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,18 +45,36 @@
                 <div id="navegacao">
                     <h1 onclick="window.location = '../visaoGeral/visaoGeral.html'">VISÃO GERAL</h1>
                     <div class="linha"></div>
-                    <h1 onclick="window.location = '../dashboard/dashboard.html'">DASHBOARDS</h1>
+                    <span class="botao-dashborads" onclick="abrirDashboards()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-chevron-right botao-seta-direita" viewBox="0 0 16 16" id="seta-dashboards">
+                            <path fill-rule="evenodd"
+                                d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" />
+                        </svg>
+                        <h1>DASHBOARDS</h1>
+                    </span>
+                    <span class="botoes-individuais-inativo" id="botoes-ind">
+                        <h1 onclick="window.location = '../dashboard/dashboard.html'">GERAL</h1>
+                        <h1 onclick="window.location = '../dashboardsIndividuais/cpu/dashCpu.html'">CPU</h1>
+                        <h1 onclick="window.location = '../dashboardsIndividuais/ram/ram.html'">RAM</h1>
+                        <h1 onclick="window.location = '../dashboardsIndividuais/rede/dashRede.html'">REDE</h1>
+                        <h1 onclick="window.location = '../dashboardsIndividuais/alerta/alerta.html'">ALERTAS</h1>
+                        <h1 onclick="window.location = '../dashboardsIndividuais/seguranca/dashSeguranca.html'">
+                            SEGURANÇA</h1>
+                        <h1 onclick="window.location = '../dashboardsIndividuais/gestaoAcesso/gestaoAcesso.html'">GESTÃO
+                            DE ACESSOS</h1>
+                    </span>
                     <div class="linha"></div>
-                    <h1 onclick="window.location = '../gestaoUsuarios/gestaoUsuarios.html'">GESTÃO DE USUÁRIOS
+                    <h1 onclick="validarRedirecionamento('../gestaoUsuarios/gestaoUsuarios.html')">GESTÃO DE USUÁRIOS
                     </h1>
                     <div class="linha"></div>
-                    <h1 onclick="window.location = '../gestaoATM/gestaoATM.html'">GESTÃO DE ATMS</h1>
+                    <h1 onclick="validarRedirecionamento('../gestaoATM/gestaoATM.html')">GESTÃO DE ATMS</h1>
                     <div class="linha"></div>
                 </div>
             </div>
             <div id="esquerda-baixo">
                 <div id="navegacaoSair">
-                    <h1 onclick="window.open('https://sptech-team-qo8lyo3z.atlassian.net/servicedesk/customer/portal/2')" id="botao_gira">ABRIR CHAMADO</h1>
+                    <h1 id="botao-chamado">ABRIR CHAMADO</h1>
                     <div class="linha"></div>
                     <div id="btSair">
                         <h1>SAIR</h1>
@@ -173,7 +194,7 @@
 </html>
 
 <script>
-    
+
     function abrirModalAtualizar() {
         dialogAtualizar.showModal()
         dialogAtualizar.style.display = "flex";

@@ -2,8 +2,7 @@ var database = require("../database/config");
 
 function cadastrarATM(empresa, ip) {
     var instrucaoSql = `
-    insert into Atm (fkEmpresa, numeracao, IP, statusEstado, statusMonitoramento) values
-        (${empresa}, (select ifnull(max(numeracao + 1), 1) from Atm as atm where fkEmpresa = ${empresa}), "${ip}", 1, 1);
+    INSERT INTO Atm (fkEmpresa, numeracao, IP, statusEstado, statusMonitoramento) SELECT ${empresa}, IFNULL(MAX(numeracao) + 1, 1), "${ip}", 1, 0 FROM Atm  WHERE fkEmpresa = ${empresa};
     `
 
     return database.executar(instrucaoSql);
@@ -45,19 +44,37 @@ function exibirATMs(empresa) {
     return database.executar(instrucaoSql);
 }
 
+function removerAlertas(empresa, numeracao) {
+    var instrucaoSql = `
+        DELETE FROM Alerta 
+        WHERE fkCaptura IN (
+            SELECT idCaptura FROM Captura 
+            WHERE fkAtm = (SELECT idAtm FROM Atm WHERE fkEmpresa = ${empresa} AND numeracao = ${numeracao})
+        );
+    `;
+    return database.executar(instrucaoSql);
+}
+function removerCapturas(empresa, numeracao) {
+    var instrucaoSql = `
+        DELETE FROM Captura 
+        WHERE fkAtm = (SELECT idAtm FROM Atm WHERE fkEmpresa = ${empresa} AND numeracao = ${numeracao});
+    `;
+    return database.executar(instrucaoSql);
+}
+
 function removerComponentes(empresa, numeracao) {
     var instrucaoSql = `
-    delete from Componente where fkAtm = (select idAtm from Atm where fkEmpresa = ${empresa} and numeracao = ${numeracao});
-    `
-
+        DELETE FROM Componente 
+        WHERE fkAtm = (SELECT idAtm FROM Atm WHERE fkEmpresa = ${empresa} AND numeracao = ${numeracao});
+    `;
     return database.executar(instrucaoSql);
 }
 
 function removerATM(empresa, numeracao) {
     var instrucaoSql = `
-    delete from Atm where fkEmpresa = ${empresa} and numeracao = ${numeracao};
-    `
-
+        DELETE FROM Atm 
+        WHERE fkEmpresa = ${empresa} AND numeracao = ${numeracao};
+    `;
     return database.executar(instrucaoSql);
 }
 
@@ -82,6 +99,8 @@ module.exports = {
     validarCadastroATM,
     atualizarParametro,
     exibirATMs,
+    removerAlertas,
+    removerCapturas,
     removerComponentes,
     removerATM,
     atualizarEstado,

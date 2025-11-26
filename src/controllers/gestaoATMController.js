@@ -35,16 +35,28 @@ function exibirATMs(req, res) {
     });
 }
 
-function removerComponentes(req, res) {
+function removerATM(req, res) {
     var fkEmpresa = req.body.fkEmpresa;
     var numeracao = req.body.numeracao;
 
-    gestaoATMModel.removerComponentes(fkEmpresa, numeracao).then((resultado) => {
-        gestaoATMModel.removerATM(fkEmpresa, numeracao).then((resultado2) => {
-            res.status(201).json(resultado2);
+    gestaoATMModel.removerAlertas(fkEmpresa, numeracao)
+        .then((resultadoAlertas) => {
+            return gestaoATMModel.removerCapturas(fkEmpresa, numeracao);
+        })
+        .then((resultadoCapturas) => {
+            return gestaoATMModel.removerComponentes(fkEmpresa, numeracao);
+        })
+        .then((resultadoComponentes) => {
+            return gestaoATMModel.removerATM(fkEmpresa, numeracao);
+        })
+        .then((resultadoFinal) => {
+            res.status(201).json(resultadoFinal);
+        })
+        .catch((erro) => {
+            console.log(erro);
+            console.log("\nHouve um erro ao realizar a exclusão! Erro: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
         });
-	});
-
 }
 
 function atualizarEstado(req, res) {
@@ -73,7 +85,7 @@ module.exports = {
   validarCadastroATM,
   atualizarParametro,
   exibirATMs,
-  removerComponentes,
+  removerATM,
   atualizarEstado,
   atualizarATM,
 };
