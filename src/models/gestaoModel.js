@@ -41,6 +41,14 @@ function exibirFuncionariosPorBusca(fkEmpresa, nome) {
     return database.executar(instrucaoSql);
 }
 
+function removerLogFuncionario(idUsuario) {
+    var instrucaoSql = `
+    delete from LogAcesso where fkUsuario = ${idUsuario};
+    `
+
+    return database.executar(instrucaoSql);
+}
+
 function promoverFuncionario(id) {
     var instrucaoSql = `
     update Usuario set fkTipoUsuario = 2 where idUsuario = ${id};
@@ -58,10 +66,11 @@ function removerFuncionario(id) {
 }
 
 module.exports = {
-  cadastrarFuncionario,
-  validarFuncionario,
-  exibirFuncionarios,
-  exibirFuncionariosPorBusca,
-  promoverFuncionario,
-  removerFuncionario,
+    cadastrarFuncionario,
+    validarFuncionario,
+    exibirFuncionarios,
+    exibirFuncionariosPorBusca,
+    promoverFuncionario,
+    removerFuncionario,
+    removerLogFuncionario
 };

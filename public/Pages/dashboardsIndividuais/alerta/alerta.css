@@ -675,3 +675,11 @@
     position: absolute;
     right: 7.2%;
 }
+
+#spn_txt_ultimaAtualizacao {
+    font-size: 0.9vw;
+}
+
+#spn_dataHora_ultimaAtualizacao {
+    font-size: 0.95vw;
+}
