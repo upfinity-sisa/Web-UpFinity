@@ -44,19 +44,37 @@ function exibirATMs(empresa) {
     return database.executar(instrucaoSql);
 }
 
+function removerAlertas(empresa, numeracao) {
+    var instrucaoSql = `
+        DELETE FROM Alerta 
+        WHERE fkCaptura IN (
+            SELECT idCaptura FROM Captura 
+            WHERE fkAtm = (SELECT idAtm FROM Atm WHERE fkEmpresa = ${empresa} AND numeracao = ${numeracao})
+        );
+    `;
+    return database.executar(instrucaoSql);
+}
+function removerCapturas(empresa, numeracao) {
+    var instrucaoSql = `
+        DELETE FROM Captura 
+        WHERE fkAtm = (SELECT idAtm FROM Atm WHERE fkEmpresa = ${empresa} AND numeracao = ${numeracao});
+    `;
+    return database.executar(instrucaoSql);
+}
+
 function removerComponentes(empresa, numeracao) {
     var instrucaoSql = `
-    delete from Componente where fkAtm = (select idAtm from Atm where fkEmpresa = ${empresa} and numeracao = ${numeracao});
-    `
-
+        DELETE FROM Componente 
+        WHERE fkAtm = (SELECT idAtm FROM Atm WHERE fkEmpresa = ${empresa} AND numeracao = ${numeracao});
+    `;
     return database.executar(instrucaoSql);
 }
 
 function removerATM(empresa, numeracao) {
     var instrucaoSql = `
-    delete from Atm where fkEmpresa = ${empresa} and numeracao = ${numeracao};
-    `
-
+        DELETE FROM Atm 
+        WHERE fkEmpresa = ${empresa} AND numeracao = ${numeracao};
+    `;
     return database.executar(instrucaoSql);
 }
 
@@ -81,6 +99,8 @@ module.exports = {
     validarCadastroATM,
     atualizarParametro,
     exibirATMs,
+    removerAlertas,
+    removerCapturas,
     removerComponentes,
     removerATM,
     atualizarEstado,

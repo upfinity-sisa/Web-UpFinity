@@ -190,7 +190,7 @@ function removerATM(numeracao) {
     
     var empresaVar = sessionStorage.FK_EMPRESA
 
-    fetch("/gestaoATM/removerComponentes", {
+    fetch("/gestaoATM/removerATM", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

@@ -90,30 +90,29 @@
                 <div class="containeres" id="container-filtro">
                     <div id="titulo-container-filtros">
                         <h1>Filtros</h1>
-                        <p>Busque por ATMs ou status</p>
+                        <p>Busque por ATMs e/ou status</p>
                     </div>
                     <div id="busca-container-filtros">
                         <input type="number" id="busca-filtros" placeholder="Digite aqui">
                         <div id="button-filtrar">Filtrar</div>
                     </div>
                     <div id="filtros-container-filtros">
-                        <select name="" class="select-filtros select-baixo">
-                            <option value="todos-status" selected>Todos os status</option>
+                        <select name="" class="select-filtros select-baixo" id="select_status">
+                            <option value="todos_status" selected>Todos os status</option>
                             <option value="critico">Crítico</option>
                             <option value="moderado">Moderado</option>
                             <option value="normal">Normal</option>
                         </select>
-                        <select name="" class="select-filtros select-baixo" id="select-componente">
+                        <select name="" class="select-filtros select-baixo" id="select_componente">
                             <option value="todos-componentes" selected>Todos os componentes</option>
                             <option value="cpu">CPU</option>
                             <option value="ram">RAM</option>
                             <option value="disco">Disco</option>
                             <option value="rede">Rede</option>
                         </select>
-                        <select name="" class="select-filtros select-baixo" id="select-ordenacao">
-                            <option value="padrao" selected>Padrão</option>
-                            <option value="descrescente">Descrescente</option>
-                            <option value="ascendente">Ascendente</option>
+                        <select name="" class="select-filtros select-baixo" id="select_ordenacao">
+                            <option value="ascendente" selected>Ascendente</option>
+                            <option value="decrescente">Descrescente</option>
                         </select>
                     </div>
                 </div>
