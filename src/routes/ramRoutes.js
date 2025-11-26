@@ -2,10 +2,17 @@ var express = require("express");
 var router = express.Router();
 var ramController = require("../controllers/ramController");
 
-// Rota para buscar todos os dados (KPIs e Gráfico) de uma vez
-router.get("/dados-ram/:idAtm", ramController.buscarDadosRam);
 
-// Rota para buscar o total de RAM
-router.get("/ram-total/:idAtm", ramController.buscarRamTotal);
+router.get("/buscarDadosRam/:idEmpresa", function (req, res) {
+  ramController.buscarDadosRam(req, res);
+})
+
+router.get("/buscarRamTotal/:idEmpresa", function (req, res) {
+  ramController.buscarRamTotal(req, res);
+})
+
+router.get("/CarregarDadosGraficoUsoAtual/:idEmpresa", function (req, res) {
+  ramController.CarregarDadosGraficoUsoAtual(req, res);
+})
 
 module.exports = router;

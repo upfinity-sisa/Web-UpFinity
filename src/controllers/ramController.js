@@ -8,15 +8,15 @@ function buscarDadosRam(req, res) {
         return;
     }
 
-    // Função para buscar dados do gráfico em tempo real (ultimas 15 capturas)
+    
     const promessaGrafico = ramModel.buscarDadosRamTempoReal(idAtm)
         .then(resultado => {
-             // Inverte a ordem para que o Chart.js exiba do mais antigo para o mais novo
+             
             resultado.reverse();
 
             const dadosFormatados = resultado.map(item => ({
-                valor: item.valor, // Valor em %
-                momento: item.momento_grafico // Hora (hh:mm:ss)
+                valor: item.valor, 
+                momento: item.momento_grafico 
             }));
             
             return { dadosGrafico: dadosFormatados };
@@ -26,7 +26,7 @@ function buscarDadosRam(req, res) {
             return { dadosGrafico: [] };
         });
 
-    // Função para buscar o KPI de Uso Médio (em GB)
+    
     const promessaUsoMedio = ramModel.buscarKpiUsoMedio(idAtm)
         .then(resultado => {
             const usoMedioGB = resultado.length > 0 ? parseFloat(resultado[0].usoMedio).toFixed(1) : '--';
@@ -37,7 +37,7 @@ function buscarDadosRam(req, res) {
             return { usoMedioGB: '--' };
         });
 
-    // Função para buscar o KPI da Aplicação de Maior Uso
+    
     const promessaAppMaiorUso = ramModel.buscarKpiAppMaiorUso(idAtm)
         .then(resultado => {
             let nomeApp = '--';
@@ -88,7 +88,20 @@ function buscarRamTotal(req, res) {
         });
 }
 
+function CarregarDadosGraficoUsoAtual(req, res) {
+    const idEmpresa = req.params.idEmpresa;
+    ramModel.CarregarDadosGraficoUsoAtual(idEmpresa)
+        .then(resultado => {
+            res.status(200).json(resultado);
+        })
+        .catch(erro => {
+            console.error("Erro ao carregar dados do gráfico de uso atual:", erro);
+            res.status(500).json({ erro: "Erro interno do servidor ao carregar dados do gráfico de uso atual." });
+        });
+}
+
 module.exports = {
     buscarDadosRam,
-    buscarRamTotal
+    buscarRamTotal,
+    CarregarDadosGraficoUsoAtual
 };

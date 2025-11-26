@@ -1,12 +1,43 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    let TOTAL_RAM = 0; 
+    var optionsGraficoUsoAtual = {
+        chart: {
+            type: 'line'
+        },
+        series: [{
+            name: 'sales',
+            data: [30, 40, 35, 50, 49, 60, 70, 91, 125]
+        }],
+        xaxis: {
+            categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
+        }
+    }
+    const graficoUsoAtual = document.getElementById('grafico-uso-atual')
+    var chartUsoAtual = new ApexCharts(graficoUsoAtual, optionsGraficoUsoAtual);
+
+    chartUsoAtual.render();
+
+    function CarregarDadosGraficoUsoAtual() {
+    fetch(`/ram/CarregarDadosGraficoUsoAtual/${idEmpresa}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).then(res => res.json())
+        .then(dados => {
+            chartUsoAtual.updateSeries(dados.series);
+        });
+}
+
+
+
+    let TOTAL_RAM = 0;
     let maquinaAtual = 1;
     const maxPontos = 15;
     let labels = Array(maxPontos).fill('');
     let dataRam = Array(maxPontos).fill(0);
 
-    const URL_BASE_API = "http://localhost:3333/ram"; 
+    const URL_BASE_API = "http://localhost:3333/ram";
 
     function updateKPIsTempoReal(currentUsagePercent) {
         const kpiRamDisponivel = document.getElementById('kpi-ram-disponivel');
@@ -20,39 +51,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function buscarDadosRamTempoReal() {
         if (maquinaAtual == 0) return;
-        
+
         try {
             const response = await fetch(`${URL_BASE_API}/dados-ram/${maquinaAtual}`);
-            
+
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
             const dados = await response.json();
-            
+
             labels = dados.dadosGrafico.map(d => d.momento);
             dataRam = dados.dadosGrafico.map(d => d.valor);
             graficoRam.data.labels = labels;
             graficoRam.data.datasets[0].data = dataRam;
             graficoRam.update();
 
-            const valorAtual = dataRam[dataRam.length - 1] || 0; 
+            const valorAtual = dataRam[dataRam.length - 1] || 0;
 
             updateProgressBar(valorAtual);
             updateKPIsTempoReal(valorAtual);
 
             document.getElementById('kpi-uso-medio').textContent = `${dados.usoMedioGB} GB`;
             document.getElementById('kpi-app-maior-uso').textContent = `${dados.nomeApp} (${dados.usoAppGB} GB)`;
-            
+
         } catch (error) {
             console.error("Falha ao obter dados de RAM em tempo real:", error);
         }
     }
-    
+
     async function buscarRamTotal() {
-         try {
+        try {
             const response = await fetch(`${URL_BASE_API}/ram-total/${maquinaAtual}`);
-            
+
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -75,8 +106,8 @@ document.addEventListener('DOMContentLoaded', () => {
         dataRam.fill(0);
         labels.fill('');
         graficoRam.update();
-        buscarRamTotal(); 
-        buscarDadosRamTempoReal(); 
+        buscarRamTotal();
+        buscarDadosRamTempoReal();
     }
 
     carregarTodosDados();

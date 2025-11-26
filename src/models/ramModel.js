@@ -69,9 +69,17 @@ function buscarRamTotal(idAtm) {
     });
 }
 
+function CarregarDadosGraficoUsoAtual(idEmpresa) {
+    console.log("Acessando o model: CarregarDadosGraficoUsoAtual para a Empresa:", idEmpresa);
+    const instrucaoSql = `
+    
+    `;
+    return database.executar(instrucaoSql);
+}
 module.exports = {
     buscarDadosRamTempoReal,
     buscarKpiUsoMedio,
     buscarKpiAppMaiorUso,
-    buscarRamTotal
+    buscarRamTotal,
+    CarregarDadosGraficoUsoAtual
 };

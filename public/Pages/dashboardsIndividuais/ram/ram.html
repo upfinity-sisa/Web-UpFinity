@@ -11,6 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <link rel="stylesheet" href="ram.css">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
     <script>
         function validarRedirecionamento(url) {
@@ -52,7 +53,6 @@
 
         <div id="direita-cima">
             <h1 id="titulo-ram">MONITORAMENTO DE MEMÓRIA RAM</h1>
-            <button class="botao-menu-secundario"><i class="fa-solid fa-download"></i> Gerar relatório</button>
         </div>
 
         <div id="direita-baixo">
@@ -68,13 +68,13 @@
                         <div class="kpi-valor roxo" id="kpi-app-maior-uso">--</div>
                     </div>
                     <div class="kpi">
-                        <div class="kpi-titulo">RAM Disponível</div>
-                        <div class="kpi-valor verde" id="kpi-ram-disponivel">-- GB</div>
-                    </div>
-                    <div class="kpi">
                         <div class="kpi-titulo">Quantidade de
 alertas (Hoje)</div>
-                        <div class="kpi-valor">...</div>
+                        <div class="kpi-valor verde" id="kpi-ram-disponivel">--</div>
+                    </div>
+                    <div class="kpi">
+                        <div class="kpi-titulo">RAM Disponível</div>
+                        <div class="kpi-valor">--GB</div>
                     </div>
                 </div>
 
@@ -82,7 +82,7 @@ alertas (Hoje)</div>
                     <div class="painel painel-grafico-grande">
                         <div class="titulo-grafico">Gráfico de Uso Atual (%)</div>
                         <div class="grafico">
-                            <canvas id="grafico-uso-atual"></canvas>
+                            <div id="grafico-uso-atual"></div>
                         </div>
                     </div>
 
