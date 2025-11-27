@@ -70,6 +70,13 @@ async function enviarMensagemParaAgente(texto) {
         console.log("Resposta do agente:", data.resposta);
     } catch (err) {
         console.log("encontrei um erro: ", err)
+        mensagens.innerHTML += `
+        <div class="mensagem_bot">
+            <div class="balao_mensagem_bot">
+                <h1 style="color: rgb(255, 255, 255);" class="mensagem_txt">Ops, houve um erro ao estabelecer conexão com o UpStuart, volte novamente mais tarde</h1>
+            </div>
+        </div>
+        `
         return
     }
 
