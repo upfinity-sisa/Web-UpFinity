@@ -10,6 +10,7 @@ const selOrdenacao = document.getElementById('select_ordenacao');
 window.addEventListener('DOMContentLoaded', () => {
     carregarParametros();
     carregarAtms();
+    let intervaloAtms = setInterval(carregarAtms, 3500)
 });
 
 selStatus.addEventListener('change', aplicarFiltros);
@@ -82,11 +83,6 @@ function carregarAtms() {
             if (response.ok) {
                 response.json().then(resposta => {
                     if (resposta.length > 0) {
-
-
-                        
-
-
                         listaAtmsGlobal = resposta;
                         aplicarFiltros();
                     }
