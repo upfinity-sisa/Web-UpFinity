@@ -56,11 +56,11 @@ function carregarDadosCPU(idAtm) {
                                     horarios_uso.push(formatarHorario(resposta[i].horario));
                                     break;
                                 case 5:
-                                    dados_frequencia.push(resposta[i].valor);
-                                    break;
-                                case 6:
                                     dados_temperatura.push(resposta[i].valor);
                                     horarios_temperatura.push(formatarHorario(resposta[i].horario));
+                                    break;
+                                case 6:
+                                    dados_frequencia.push(resposta[i].valor);
                                     break;
                                 default:
                                     break;
