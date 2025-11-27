@@ -14,5 +14,12 @@ router.get("/ObterKPI_3/:idEmpresa", function (req, res) {
   ramController.ObterKPI_3(req, res);
 })
 
+router.get("/CarregarDadosGraficoUsoAtual/:idEmpresa", function (req, res) {
+  ramController.CarregarDadosGraficoUsoAtual(req, res);
+})
+
+router.get("/ CarregarDadosGraficoDeUso/:idEmpresa", function (req, res) {
+  ramController. CarregarDadosGraficoDeUso(req, res);
+})
 
 module.exports = router;

@@ -24,7 +24,7 @@ var alertasRouter = require("./src/routes/alertasRoutes"); //Rota do gigi :D
 var segurancaRouter = require("./src/routes/segurancaRoutes"); //Rota da Catarina ;)
 var cpuRouter = require("./src/routes/cpuRoutes"); //rota do brenokas :)
 var medidasRouter = require("./src/routes/medidas")
-var ramRouter = require("./src/routes/ramRoutes"); // rota do rei da RAM :)
+var ramRouter = require("./src/routes/ram"); // rota do rei da RAM :)
 var medidasRouter = require("./src/routes/medidas");  // rota da gwenzita :s
 var visaoGeralRouter = require("./src/routes/visaoGeralRoutes.js");
 
