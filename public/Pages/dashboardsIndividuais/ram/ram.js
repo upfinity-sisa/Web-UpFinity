@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ObterKPI_2();
         ObterKPI_3();
         CarregarDadosGraficoUsoAtual();
-        CarregarDadosGraficoDeUso();
+        // CarregarDadosGraficoDeUso();
     }
 
     window.onload = function () {
@@ -135,9 +135,9 @@ function CarregarDadosGraficoUsoAtual() {
     .then(dados => {
         console.log("Dados recebidos UsoAtual:", dados);
 
-        // Extrair valores e horários
-        const valores = dados.grafUsoAtual.map(item => item.usoAtualRam);
-        const horarios = dados.grafUsoAtual.map(item => item.horario);
+        // Extrair valores e horários e inverter a ordem
+        const valores = dados.grafUsoAtual.map(item => item.usoAtualRam).reverse();
+        const horarios = dados.grafUsoAtual.map(item => item.horario).reverse();
 
         // Atualizar o gráfico com valores e categorias
         chartUsoAtual.updateOptions({
@@ -152,8 +152,16 @@ function CarregarDadosGraficoUsoAtual() {
                 data: valores
             }
         ]);
+
+        // Atualizar a barra de progresso com o último valor (agora o mais recente está no final)
+        if (valores.length > 0) {
+            const ultimoValor = valores[valores.length - 1]; 
+            updateProgressBar(ultimoValor);
+        }
     });
 }
+
+
 
 
 
@@ -200,3 +208,25 @@ function CarregarDadosGraficoUsoAtual() {
 });
 
 const URL_BASE_API = "http://localhost:3333/ram";
+
+  function updateProgressBar(percentage) {
+        const progressBar = document.getElementById('progressBar');
+        const progressValue = document.getElementById('progressValue');
+
+        if (!progressBar || !progressValue) return;
+
+        const limitedPercentage = Math.min(100, Math.max(0, percentage));
+
+        progressBar.style.width = `${limitedPercentage}%`;
+        progressValue.textContent = `${limitedPercentage.toFixed(1)}%`;
+
+        progressBar.classList.remove('verde', 'amarelo', 'vermelho');
+
+        if (limitedPercentage <= 69) {
+            progressBar.classList.add('verde');
+        } else if (limitedPercentage <= 85) {
+            progressBar.classList.add('amarelo');
+        } else {
+            progressBar.classList.add('vermelho');
+        }
+    }

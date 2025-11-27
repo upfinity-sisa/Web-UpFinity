@@ -62,25 +62,7 @@ LIMIT 10;
   return database.executar(instrucaoSql);
 }
 
-function CarregarDadosGraficoUsoAtualTempoReal(idEmpresa) {
-  console.log("Acessando o model: CarregarDadosGraficoUsoAtual para a Empresa:", idEmpresa);
 
-  const instrucaoSql = `
-  SELECT 
-    c.valor as usoAtualRam , 
-    DATE_FORMAT(c.horario, '%H:%i:%s') AS horario
-FROM Captura c
-JOIN Componente co 
-    ON c.fkComponente = co.idComponente
-JOIN Atm a 
-    ON co.fkAtm = a.idAtm
-WHERE a.fkEmpresa = 2 
-  AND co.fkTipoComponente = 2
-ORDER BY c.horario DESC
-LIMIT 1;
-  `;
-  return database.executar(instrucaoSql);
-}
 
 function CarregarDadosGraficoDeUso (idEmpresa) {
   console.log("Acessando o model: CarregarDadosGraficoUsoAtual para a Empresa:", idEmpresa);
