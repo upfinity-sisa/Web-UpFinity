@@ -40,4 +40,4 @@ EXPOSE 3333
 
 # Neste caso, ele executa "npm start" para iniciar a aplicação Node.js
 
-CMD ["npm" ,"start"]
+CMD ["npm" ,"run", "start-all"]
