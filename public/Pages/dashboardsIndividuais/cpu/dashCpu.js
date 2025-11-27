@@ -213,8 +213,8 @@ function atualizarParametrosKpis() {
     parametroCriticoUsoDiv.innerHTML = parseFloat(sessionStorage.getItem('PARAM_CRITICO_CPU')).toFixed(2);
     parametroModeradoUsoDiv.innerHTML = parseFloat(sessionStorage.getItem('PARAM_IMPORTANTE_CPU')).toFixed(2);
 
-    parametroCriticoTemperaturaDiv.innerHTML = parseFloat(sessionStorage.getItem('PARAM_CRITICO_TEMPERATURA_CPU')).toFixed(2);
-    parametroModeradoTemperaturaDiv.innerHTML = parseFloat(sessionStorage.getItem('PARAM_IMPORTANTE_TEMPERATURA_CPU')).toFixed(2);
+    parametroCriticoTemperaturaDiv.innerHTML = parseFloat(sessionStorage.getItem('PARAM_CRITICO_TEMP_CPU')).toFixed(2);
+    parametroModeradoTemperaturaDiv.innerHTML = parseFloat(sessionStorage.getItem('PARAM_IMPORTANTE_TEMP_CPU')).toFixed(2);
 }
 
 function plotarGraficoLinha() {
