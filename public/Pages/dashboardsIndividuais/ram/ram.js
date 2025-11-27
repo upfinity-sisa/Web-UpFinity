@@ -98,6 +98,8 @@ document.addEventListener('DOMContentLoaded', () => {
         ObterKPI_1();
         ObterKPI_2();
         ObterKPI_3();
+        CarregarDadosGraficoUsoAtual();
+        CarregarDadosGraficoDeUso();
     }
 
     window.onload = function () {
@@ -112,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         series: [{
             name: 'sales',
-            data: [30, 40, 35, 50, 49, 60, 70, 91, 125]
+            data: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
         }],
         xaxis: {
             categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
@@ -122,48 +124,67 @@ document.addEventListener('DOMContentLoaded', () => {
     var chartUsoAtual = new ApexCharts(graficoUsoAtual, optionsGraficoUsoAtual);
 
     chartUsoAtual.render();
+function CarregarDadosGraficoUsoAtual() {
+    fetch(`/ram/CarregarDadosGraficoUsoAtual/${idEmpresa}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    .then(res => res.json())
+    .then(dados => {
+        console.log("Dados recebidos UsoAtual:", dados);
 
-    function CarregarDadosGraficoUsoAtual() {
-        fetch(`/ram/CarregarDadosGraficoUsoAtual/${idEmpresa}`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
+        // Extrair valores e horários
+        const valores = dados.grafUsoAtual.map(item => item.usoAtualRam);
+        const horarios = dados.grafUsoAtual.map(item => item.horario);
+
+        // Atualizar o gráfico com valores e categorias
+        chartUsoAtual.updateOptions({
+            xaxis: {
+                categories: horarios
             }
-        }).then(res => res.json())
-            .then(dados => {
-                grafUsoAtual.updateSeries(dados.series);
-            });
-    }
+        });
 
-var optionsGraficoProgresao = {
-          series: [{
-          data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380]
+        chartUsoAtual.updateSeries([
+            {
+                name: 'Uso Atual RAM',
+                data: valores
+            }
+        ]);
+    });
+}
+
+
+
+    var optionsGraficoProgresao = {
+        series: [{
+            data: [400, 430, 448]
         }],
-          chart: {
-          type: 'bar',
-          height: 350
+        chart: {
+            type: 'bar',
+            height: 350
         },
         plotOptions: {
-          bar: {
-            borderRadius: 4,
-            borderRadiusApplication: 'end',
-            horizontal: true,
-          }
+            bar: {
+                borderRadius: 4,
+                borderRadiusApplication: 'end',
+                horizontal: true,
+            }
         },
         dataLabels: {
-          enabled: false
+            enabled: false
         },
         xaxis: {
-          categories: ['South Korea', 'Canada', 'United Kingdom', 'Netherlands', 'Italy', 'France', 'Japan',
-            'United States', 'China', 'Germany'
-          ],
+            categories: ['Normal', 'Moderado', 'Critico'
+            ],
         }
-        };
-        
-        var chart = new ApexCharts(document.querySelector("#chart"), optionsGraficoProgresao);
-        chart.render();
+    };
 
-         function CarregarDadosGraficoDeUso() {
+    var chart = new ApexCharts(document.querySelector("#chart"), optionsGraficoProgresao);
+    chart.render();
+
+    function CarregarDadosGraficoDeUso() {
         fetch(`/ram/CarregarDadosGraficoDeUso/${idEmpresa}`, {
             method: "GET",
             headers: {
@@ -171,18 +192,11 @@ var optionsGraficoProgresao = {
             }
         }).then(res => res.json())
             .then(dados => {
-                grafMaiorHr.updateSeries(dados.series);
+                  console.log("Dados recebidos GraficoDeUso:", dados);
+                // grafMaiorHr.updateSeries(dados.series);
+                chart.updateSeries(dados.series);
             });
     }
-
-    function carregarTodosDados() {
-        buscarDadosRamTempoReal();
-        CarregarDadosGraficoUsoAtual();
-        CarregarDadosGraficoDeUso();
-    }
-
-    carregarTodosDados();
-    setInterval(buscarDadosRamTempoReal, 2000);
 });
 
-   const URL_BASE_API = "http://localhost:3333/ram";
+const URL_BASE_API = "http://localhost:3333/ram";
