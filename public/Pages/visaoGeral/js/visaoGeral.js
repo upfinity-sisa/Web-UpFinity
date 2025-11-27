@@ -48,7 +48,6 @@ function carregarParametros() {
         .then(response => {
             if (response.ok) {
                 response.json().then(resposta => {
-                    console.log(resposta)
                     if (resposta.length > 0) {
                         resposta.forEach(param => {
                             let tipo = param.fkTipoComponente;

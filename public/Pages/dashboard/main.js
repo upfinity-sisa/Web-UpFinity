@@ -186,7 +186,6 @@ function atualizarDados() {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    carregarAtms();
     atualizarDados();
     intervalId2 = setInterval(atualizarDados, 3500);
 
