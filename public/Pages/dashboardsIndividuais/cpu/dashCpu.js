@@ -56,11 +56,11 @@ function carregarDadosCPU(idAtm) {
                                     horarios_uso.push(formatarHorario(resposta[i].horario));
                                     break;
                                 case 5:
-                                    dados_frequencia.push(resposta[i].valor);
-                                    break;
-                                case 6:
                                     dados_temperatura.push(resposta[i].valor);
                                     horarios_temperatura.push(formatarHorario(resposta[i].horario));
+                                    break;
+                                case 6:
+                                    dados_frequencia.push(resposta[i].valor);
                                     break;
                                 default:
                                     break;
@@ -90,15 +90,11 @@ function carregarDadosCPU(idAtm) {
                             statusUso.style.color = corOk;
                         }
 
-                        if (
-                            valorTemperatura >
-                            sessionStorage.getItem('PARAM_CRITICO_TEMPERATURA_CPU')
-                        ) {
+                        if (valorTemperatura > sessionStorage.getItem('PARAM_CRITICO_TEMPERATURA_CPU')) {
                             statusTemperatura.innerHTML = 'Crítico';
                             statusTemperatura.style.color = corCritico;
                         } else if (
-                            valorTemperatura >
-                            sessionStorage.getItem('PARAM_IMPORTANTE_TEMPERATURA_CPU')
+                            valorTemperatura > sessionStorage.getItem('PARAM_IMPORTANTE_TEMPERATURA_CPU')
                         ) {
                             statusTemperatura.innerHTML = 'Importante';
                             statusTemperatura.style.color = corModerado;
@@ -214,19 +210,11 @@ function atualizarParametrosKpis() {
     let parametroCriticoTemperaturaDiv = document.getElementById('critico-temperatura');
     let parametroModeradoTemperaturaDiv = document.getElementById('moderado-temperatura');
 
-    parametroCriticoUsoDiv.innerHTML = parseFloat(
-        sessionStorage.getItem('PARAM_CRITICO_CPU')
-    ).toFixed(2);
-    parametroModeradoUsoDiv.innerHTML = parseFloat(
-        sessionStorage.getItem('PARAM_IMPORTANTE_CPU')
-    ).toFixed(2);
+    parametroCriticoUsoDiv.innerHTML = parseFloat(sessionStorage.getItem('PARAM_CRITICO_CPU')).toFixed(2);
+    parametroModeradoUsoDiv.innerHTML = parseFloat(sessionStorage.getItem('PARAM_IMPORTANTE_CPU')).toFixed(2);
 
-    parametroCriticoTemperaturaDiv.innerHTML = parseFloat(
-        sessionStorage.getItem('PARAM_CRITICO_TEMPERATURA_CPU')
-    ).toFixed(2);
-    parametroModeradoTemperaturaDiv.innerHTML = parseFloat(
-        sessionStorage.getItem('PARAM_IMPORTANTE_TEMPERATURA_CPU')
-    ).toFixed(2);
+    parametroCriticoTemperaturaDiv.innerHTML = parseFloat(sessionStorage.getItem('PARAM_CRITICO_TEMP_CPU')).toFixed(2);
+    parametroModeradoTemperaturaDiv.innerHTML = parseFloat(sessionStorage.getItem('PARAM_IMPORTANTE_TEMP_CPU')).toFixed(2);
 }
 
 function plotarGraficoLinha() {
@@ -443,10 +431,7 @@ function plotarGraficoTemperatura() {
             },
         };
 
-        graficoTemperatura = new ApexCharts(
-            document.getElementById('grafico-linha-temperatura'),
-            options
-        );
+        graficoTemperatura = new ApexCharts(document.getElementById('grafico-linha-temperatura'), options);
         graficoTemperatura.render();
     } else {
         graficoTemperatura.updateOptions({
@@ -560,16 +545,15 @@ function plotarGraficoRelacao() {
 }
 
 function plotarGraficoMaioresUsos(resposta) {
-    let gerarNumeroAleatorio = (min, max) => {
-        return (Math.random() * (max - min + 1) + min).toFixed(2);
-    };
-
-    let numeracaoAtm = `Atm ${resposta[0].Numero_ATM}`;
-
+    let numeracoesAtms = [
+        `ATM ${resposta[0].NumeroATM}`,
+        `ATM ${resposta[1].NumeroATM}`,
+        `ATM ${resposta[2].NumeroATM}`,
+    ];
     let dados = {
-        'Atm 3': gerarNumeroAleatorio(10, 30),
-        'Atm 7': gerarNumeroAleatorio(10, 30),
-        [numeracaoAtm]: resposta[0].Media_Uso_CPU,
+        [numeracoesAtms[0]]: resposta[0].UsoCPU_Atual,
+        [numeracoesAtms[1]]: resposta[1].UsoCPU_Atual,
+        [numeracoesAtms[2]]: resposta[2].UsoCPU_Atual,
     };
 
     let dadosOrdenados = Object.entries(dados).sort((a, b) => b[1] - a[1]);
@@ -745,20 +729,11 @@ function plotarGraficoMaioresUsos(resposta) {
             colors: ['#e94560'],
         };
 
-        graficoMaioresUsos1 = new ApexCharts(
-            document.getElementById('linha-grafico-1'),
-            optionsBarra1
-        );
+        graficoMaioresUsos1 = new ApexCharts(document.getElementById('linha-grafico-1'), optionsBarra1);
         graficoMaioresUsos1.render();
-        graficoMaioresUsos2 = new ApexCharts(
-            document.getElementById('linha-grafico-2'),
-            optionsBarra2
-        );
+        graficoMaioresUsos2 = new ApexCharts(document.getElementById('linha-grafico-2'), optionsBarra2);
         graficoMaioresUsos2.render();
-        graficoMaioresUsos3 = new ApexCharts(
-            document.getElementById('linha-grafico-3'),
-            optionsBarra3
-        );
+        graficoMaioresUsos3 = new ApexCharts(document.getElementById('linha-grafico-3'), optionsBarra3);
         graficoMaioresUsos3.render();
     } else {
         graficoMaioresUsos1.updateOptions({

@@ -108,8 +108,8 @@ Observação:
 
     statusMonitoramento → 
       0 = Normal  
-      1 = Moderado  
-      2 = Crítico
+      1 = Crítico
+      2 = Moderado
 
 Tabela: Componente
 Colunas:

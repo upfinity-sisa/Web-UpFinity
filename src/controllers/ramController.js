@@ -48,8 +48,42 @@ function ObterKPI_3(req, res) {
         });
 }
 
+function CarregarDadosGraficoUsoAtual(req, res) {
+    let idEmpresa = req.params.idEmpresa;
+
+    ramModel.CarregarDadosGraficoUsoAtual(idEmpresa)
+        .then((resultado) => {
+            console.log("resultado da controller:", resultado);
+            res.json({
+                grafUsoAtual: resultado[0].grafUsoAtual
+            })
+        }).catch((erro) => {
+            console.log(erro);
+            console.log("Erro ao mudar status do alerta:", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
+function  CarregarDadosGraficoDeUso(req, res) {
+    let idEmpresa = req.params.idEmpresa;
+
+    ramModel.CarregarDadosGraficoDeUso(idEmpresa)
+        .then((resultado) => {
+            console.log("resultado da controller:", resultado);
+            res.json({
+                grafMaiorHr: resultado[0].grafMaiorHr
+            })
+        }).catch((erro) => {
+            console.log(erro);
+            console.log("Erro ao mudar status do alerta:", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
 module.exports = {
     ObterKPI_1,
     ObterKPI_2,
-    ObterKPI_3
+    ObterKPI_3,
+    CarregarDadosGraficoUsoAtual,
+    CarregarDadosGraficoDeUso
 };
