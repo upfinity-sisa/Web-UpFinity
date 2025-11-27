@@ -104,12 +104,24 @@
                     <div class="painel painel-progressao">
                         <div class="titulo-grafico">Progressão de Uso (%)</div>
                         <div class="grafico-progressao-container">
-                            <div id="grafico-maior-horario"></div>
-                            <div id="chart"></div>
+                            <div class="progress-bar-legend">
+                                <span class="legend-item"><i class="fa-solid fa-circle verde"></i> Normal (0-69%)</span>
+                                <span class="legend-item"><i class="fa-solid fa-circle amarelo"></i> Moderado
+                                    (70-85%)</span>
+                                <span class="legend-item"><i class="fa-solid fa-circle vermelho"></i> Crítico
+                                    (>85%)</span>
+                            </div>
+                            <div class="progress-bar-wrapper">
+                                <div class="progress-bar" id="progressBar"></div>
+                                <span class="progress-value" id="progressValue">--%</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+
+
         </div>
     </div>
     </div>
