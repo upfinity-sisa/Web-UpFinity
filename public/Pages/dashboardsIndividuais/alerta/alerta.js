@@ -106,9 +106,6 @@ var options_grafico2 = {
         min: 0,
         title: {
             text: 'Minutos'
-        },
-        max: function (max) {
-            return max < 2000 ? 2000 : max * 1.1;
         }
     },
     plotOptions: {

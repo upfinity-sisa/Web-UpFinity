@@ -265,6 +265,7 @@ function obterDadosBoxplot(fkEmpresa) {
   ORDER BY tc.nome, TempoMinutos ASC;
     `
 
+  console.log(instrucaoSql)
   return database.executar(instrucaoSql);
 }
 

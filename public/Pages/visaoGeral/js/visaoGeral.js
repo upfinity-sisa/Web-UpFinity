@@ -79,6 +79,11 @@ function carregarAtms() {
             if (response.ok) {
                 response.json().then(resposta => {
                     if (resposta.length > 0) {
+
+
+                        
+
+
                         listaAtmsGlobal = resposta;
                         aplicarFiltros();
                     }
@@ -139,10 +144,11 @@ function aplicarFiltros() {
     plotarTabela(listaFiltrada);
 }
 
+
 function plotarTabela(lista) {
     let tabelaBody = document.getElementById('corpo-tabela-visao-geral');
     tabelaBody.innerHTML = '';
-
+    console.table(listaAtmsGlobal)
     lista.forEach(atm => {
 
         let textoStatusGeral = 'Normal';
@@ -160,7 +166,7 @@ function plotarTabela(lista) {
         const estiloRAM = obterEstiloComponente(atm.uso_ram, 'RAM');
         const estiloDisco = obterEstiloComponente(atm.uso_disco, 'DISCO');
 
-
+            
         let textoConexao = atm.conexao > 0 ? 'Conectado' : 'Desconectado';
 
         tabelaBody.innerHTML += `

@@ -91,16 +91,21 @@ function ObterKPI_2_qtdCritico(req, res) {
 
   alertasModel.ObterKPI_2_qtdCritico(fkEmpresa)
     .then((resultado) => {
-      console.log("resultado da controller:")
-      console.log(resultado)
+      console.log("resultado da controller:", resultado);
+
+      let totalCritico = 0;
+
+      console.log("resultado.length = ", resultado.length);
+      if (resultado.length > 0) {
+        totalCritico = resultado[0].TotalAlertaCritico || 0;
+      }
 
       res.json({
-        TotalAlertaCritico: resultado[0].TotalAlertaCritico
+        TotalAlertaCritico: totalCritico
       });
 
-      console.log(resultado[0])
     }).catch((erro) => {
-      console.log(erro)
+      console.log(erro);
       console.log("Erro ao obter KPI 2 critico:", erro.sqlMessage);
       res.status(500).json(erro.sqlMessage);
     });
@@ -329,9 +334,9 @@ function obterDadosBoxplot(req, res) {
   var idEmpresa = req.params.idEmpresa;
 
   alertasModel.obterDadosBoxplot(idEmpresa).then(resultadoBanco => {
-  
+
     let grupos = {};
-  
+
     resultadoBanco.forEach(reg => {
       if (!grupos[reg.Componente]) {
         grupos[reg.Componente] = [];
@@ -344,7 +349,7 @@ function obterDadosBoxplot(req, res) {
 
     const mapaComponentes = [
       { nomeBanco: "CPU", label: "CPU" },
-      { nomeBanco: "Memória RAM", label: "RAM" },  
+      { nomeBanco: "Memória RAM", label: "RAM" },
       { nomeBanco: "Disco", label: "Disco" },
       { nomeBanco: "Placa de rede", label: "Rede" }
     ];
@@ -357,7 +362,7 @@ function obterDadosBoxplot(req, res) {
         let stats = calcularEstatisticasBoxPlot(tempos);
 
         seriesBoxplot.push({
-          x: item.label, 
+          x: item.label,
           y: stats.boxplot
         });
 
