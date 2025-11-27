@@ -343,7 +343,7 @@ function atualizar_dados() {
 		carregarInformacoes()
 	}, 20000);
 }
-//atualizar_dados()
+atualizar_dados()
 
 
 function declararSeguro() {
