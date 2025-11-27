@@ -204,41 +204,127 @@ window.onload = function () {
 
 }
 
-function atualizarKpisRede() {
-    var idAtm = sessionStorage.idAtm
+let intervaloAtualizacao = null;
+let comboATMsRede = document.getElementById('listaAtms');
 
-    fetch(`/medidas/tempo-real/${idAtm}`, { cache: 'no-store' }).then(function (response) {
-        if (response.ok) {
-            response.json().then(function (resposta) {
-                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                
-                var dados = resposta[0];
+// Função para buscar e preencher o Dropdown de ATMs
+function carregarAtms() {
+    // Usando a rota que criamos anteriormente: /atms/listar
+    fetch("/atms/listar", { cache: 'no-store' })
+        .then(response => {
+            if (response.ok) {
+                response.json().then(resposta => {
+                    if (resposta.length > 0) {
+                        comboATMsRede.innerHTML = '';
+                        
+                        // Preenche o select com os ATMs vindos do banco
+                        for (let i = 0; i < resposta.length; i++) {
+                            // Cria a opção. Value = idAtm, Texto = ATM + Numeração ou ID
+                            // Ajuste 'resposta[i].idAtm' ou 'resposta[i].numeracao' conforme seu banco
+                            let atm = resposta[i];
+                            comboATMsRede.innerHTML += `<option value="${atm.idAtm}">ATM ${atm.idAtm} (IP: ${atm.IP})</option>`;
+                        }
 
-                // --- ATUALIZAÇÃO DOS KPIS ---
+                        // Se houver um ID salvo na sessão, tenta selecioná-lo
+                        if (sessionStorage.ID_ATM) {
+                            comboATMsRede.value = sessionStorage.ID_ATM;
+                        }
 
-                // 1. Nome da Rede
-                document.getElementById("kpiNomeRede").innerHTML = dados.nomeRede;
-
-                // 2. MB Recebidos
-                document.getElementById("kpiMbRecebidos").innerHTML = parseFloat(dados.MBRecebidos).toFixed(2) + " MB";
-
-                // 3. MB Enviados (NOVO)
-                var divMbEnviados = document.getElementById("kpiMbEnviados");
-                if (divMbEnviados) {
-                    divMbEnviados.innerHTML = parseFloat(dados.MBEnviados).toFixed(2) + " MB";
-                }
-
-                // 4. Pacotes
-                document.getElementById("kpiPacotesRecebidos").innerHTML = dados.pacotesRecebidos;
-                document.getElementById("kpiPacotesEnviados").innerHTML = dados.pacotesEnviados;
-            });
-        } else {
-            console.error('Nenhum dado encontrado');
-        }
-    })
-    .catch(function (error) {
-        console.error(`Erro na API: ${error.message}`);
-    });
+                        // Após carregar a lista, chama a atualização dos dados imediatamente
+                        atualizarKpisRede();
+                    } else {
+                        console.error('carregarAtms: nenhum ATM encontrado.');
+                        comboATMsRede.innerHTML = '<option value="" disabled>Nenhum ATM encontrado</option>';
+                    }
+                });
+            } else {
+                console.error('carregarAtms: erro na API.');
+            }
+        })
+        .catch(erro => {
+            console.error(`carregarAtms: erro na obtenção dos dados: ${erro.message}`);
+        });
 }
 
-setInterval(atualizarKpisRede, 3000);
+// Função principal que busca os dados de rede para o ATM selecionado
+function atualizarKpisRede() {
+    let idAtm = comboATMsRede.value;
+
+    // Proteção contra ID vazio ou undefined
+    if (!idAtm || idAtm === "undefined") {
+        console.warn("ID indefinido. Tentando usar fallback ou parando.");
+        if(comboATMsRede.options.length > 0) {
+             idAtm = comboATMsRede.options[0].value;
+             comboATMsRede.value = idAtm;
+        } else {
+             return; // Não faz nada se não tiver opções
+        }
+    }
+
+    console.log("Buscando dados de REDE para ATM ID: " + idAtm);
+
+    fetch(`/medidas/tempo-real/${idAtm}`, { cache: 'no-store' })
+        .then(response => {
+            if (response.ok) {
+                response.json().then(resposta => {
+                    if (resposta.length > 0) {
+                        let dados = resposta[0];
+
+                        // --- ATUALIZAÇÃO DOS KPIS ---
+                        
+                        // Valida elementos antes de atualizar para evitar erros
+                        let kpiNome = document.getElementById("kpiNomeRede");
+                        if (kpiNome) kpiNome.innerHTML = dados.nomeRede;
+
+                        let kpiMbRec = document.getElementById("kpiMbRecebidos");
+                        if (kpiMbRec) kpiMbRec.innerHTML = parseFloat(dados.MBRecebidos).toFixed(2) + " MB";
+
+                        let kpiMbEnv = document.getElementById("kpiMbEnviados");
+                        if (kpiMbEnv) kpiMbEnv.innerHTML = parseFloat(dados.MBEnviados).toFixed(2) + " MB";
+
+                        let kpiPacRec = document.getElementById("kpiPacotesRecebidos");
+                        if (kpiPacRec) kpiPacRec.innerHTML = dados.pacotesRecebidos;
+
+                        let kpiPacEnv = document.getElementById("kpiPacotesEnviados");
+                        if (kpiPacEnv) kpiPacEnv.innerHTML = dados.pacotesEnviados;
+
+                    } else {
+                        console.log("Nenhum dado de rede encontrado para este ATM.");
+                        // Opcional: Limpar os KPIs ou mostrar "N/D"
+                    }
+                });
+            } else {
+                console.error('atualizarKpisRede: Erro na API de medidas.');
+            }
+        })
+        .catch(erro => {
+            console.error(`atualizarKpisRede: Erro na requisição: ${erro.message}`);
+        });
+}
+
+// --- EVENTOS E INICIALIZAÇÃO (Igual ao seu exemplo de CPU) ---
+
+window.addEventListener('DOMContentLoaded', () => {
+    // 1. Carrega a lista de ATMs ao iniciar
+    carregarAtms();
+
+    // 2. Define o intervalo de atualização (ex: 3000ms = 3s)
+    intervaloAtualizacao = setInterval(atualizarKpisRede, 3000);
+
+    // 3. Adiciona o evento de troca no Dropdown
+    if (comboATMsRede) {
+        comboATMsRede.addEventListener('change', () => {
+            // Ao mudar o ATM, limpamos o intervalo atual para não acumular requisições
+            clearInterval(intervaloAtualizacao);
+            
+            // Atualizamos os dados imediatamente para o novo ATM selecionado
+            atualizarKpisRede();
+            
+            // Reiniciamos o intervalo
+            intervaloAtualizacao = setInterval(atualizarKpisRede, 3000);
+            
+            // Opcional: Salvar a escolha na sessão para persistir ao recarregar
+            sessionStorage.ID_ATM = comboATMsRede.value;
+        });
+    }
+});
