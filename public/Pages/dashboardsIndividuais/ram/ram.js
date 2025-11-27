@@ -133,7 +133,7 @@ function CarregarDadosGraficoUsoAtual() {
     })
     .then(res => res.json())
     .then(dados => {
-        console.log("Dados recebidos UsoAtual:", dados);
+        console.log(dados);
 
         // Extrair valores e horários e inverter a ordem
         const valores = dados.grafUsoAtual.map(item => item.usoAtualRam).reverse();

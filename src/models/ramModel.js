@@ -54,7 +54,7 @@ JOIN Componente co
     ON c.fkComponente = co.idComponente
 JOIN Atm a 
     ON co.fkAtm = a.idAtm
-WHERE a.fkEmpresa = 2 
+WHERE a.fkEmpresa = ${idEmpresa} 
   AND co.fkTipoComponente = 2
 ORDER BY c.horario DESC
 LIMIT 10;
