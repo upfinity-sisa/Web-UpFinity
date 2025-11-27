@@ -1,20 +1,38 @@
 let dia;
+let chartNovos;
 
 document.addEventListener("DOMContentLoaded", () => {
   carregarDias();
 
   const select = document.getElementById("comboDias");
-  dia = select.value; 
+  dia = select.value;
 
   select.addEventListener("change", () => {
     dia = select.value;
     carregarDashboard();
   });
 
+  const div = document.querySelector("#grafico-novos");
+  if (div) {
+    const optionsNovos = {
+      chart: { type: "bar", height: 350, toolbar: { show: false } },
+      title: {
+        text: "Novos Usuários por Dia (Últimos 7 dias)",
+        align: "center",
+        style: { fontSize: "20px", fontWeight: "bold", color: "#333" }
+      },
+      series: [{ name: "Novos Usuários", data: [] }],
+      xaxis: { type: "category", categories: [], labels: { rotate: -20 } },
+      plotOptions: { bar: { borderRadius: 6, columnWidth: "45%" } },
+      colors: ["#268184"],
+      grid: { borderColor: "#e0e0e0" }
+    };
+    chartNovos = new ApexCharts(div, optionsNovos);
+    chartNovos.render();
+  }
+
   carregarDashboard();
 });
-
-
 
 function carregarDashboard() {
   empresaSemPlano();
@@ -23,33 +41,6 @@ function carregarDashboard() {
   carregarGraficoLogins();
   carregarGraficoNovosUsuarios();
 }
-
-
-function empresaSemPlano() {
-  fetch(`3.212.222.224:3333/gestaoAcesso/empresasemplano`)
-    .then(res => res.json())
-    .then(json => {
-      document.getElementById("kpi-plano").innerHTML = json.empresaSemPlano;
-    });
-}
-
-function carregarLoginSucesso() {
-  fetch(`3.212.222.224:3333/gestaoAcesso/loginsucesso?dia=${dia}`)
-    .then(res => res.json())
-    .then(json => {
-      document.getElementById("kpi-logins").innerHTML = json.LoginsSucesso;
-    });
-}
-
-
-function carregarLoginFalho() {
-  fetch(`3.212.222.224:3333/gestaoAcesso/loginfalho?dia=${dia}`)
-    .then(res => res.json())
-    .then(json => {
-      document.getElementById("kpi-falhos").innerHTML = json.LoginsFalhos;
-    });
-}
-
 
 function carregarDias() {
   const select = document.getElementById("comboDias");
@@ -78,81 +69,85 @@ function carregarDias() {
   }
 }
 
-
-async function carregarGraficoLogins() {
-  const resposta = await fetch(
-    `3.212.222.224:3333/gestaoAcesso/loginsPorHora?dia=${dia}`
-  );
-  const json = await resposta.json();
-
-  const horas = Array.from({ length: 24 }, (_, i) => `${String(i).padStart(2, "0")}h`);
-  const dados = Array(24).fill(0);
-
-  json.forEach(linha => {
-    dados[linha.hora] = linha.total;
-  });
-
-  const optionsLogins = {
-    chart: { type: "line", height: 350, toolbar: { show: false } },
-    title: {
-      text: "Logins por Hora",
-      align: "center",
-      style: { fontSize: "20px", fontWeight: "bold", color: "#333" }
-    },
-    series: [{ name: "Logins", data: dados }],
-    xaxis: { categories: horas },
-    stroke: { curve: "smooth", width: 3 },
-    colors: ["#2ED1D7"],
-    markers: { size: 4, colors: ["#232023"] },
-    grid: { borderColor: "#e0e0e0" }
-  };
-
-  document.querySelector("#grafico-login").innerHTML = "";
-  const chartLogins = new ApexCharts(
-    document.querySelector("#grafico-login"),
-    optionsLogins
-  );
-  chartLogins.render();
+function empresaSemPlano() {
+  fetch(`/gestaoAcesso/empresasemplano`)
+    .then(res => {
+      if (res.ok) return res.json();
+      throw new Error("Erro ao buscar empresas sem plano");
+    })
+    .then(json => {
+      document.getElementById("kpi-plano").innerHTML = json.empresaSemPlano;
+    })
+    .catch(err => console.error(err));
 }
 
+function carregarLoginSucesso() {
+  fetch(`/gestaoAcesso/loginsucesso?dia=${dia}`)
+    .then(res => {
+      if (res.ok) return res.json();
+      throw new Error("Erro ao buscar logins sucesso");
+    })
+    .then(json => {
+      document.getElementById("kpi-logins").innerHTML = json.LoginsSucesso;
+    })
+    .catch(err => console.error(err));
+}
 
-const optionsNovos = {
-  chart: { type: "bar", height: 350, toolbar: { show: false } },
-  title: {
-    text: "Novos Usuários por Dia (Últimos 7 dias)",
-    align: "center",
-    style: { fontSize: "20px", fontWeight: "bold", color: "#333" }
-  },
-  series: [{ name: "Novos Usuários", data: [] }],
-  xaxis: { type: "category", categories: [], labels: { rotate: -20 } },
-  plotOptions: { bar: { borderRadius: 6, columnWidth: "45%" } },
-  colors: ["#268184"],
-  grid: { borderColor: "#e0e0e0" }
-};
+function carregarLoginFalho() {
+  fetch(`/gestaoAcesso/loginfalho?dia=${dia}`)
+    .then(res => {
+      if (res.ok) return res.json();
+      throw new Error("Erro ao buscar logins falhos");
+    })
+    .then(json => {
+      document.getElementById("kpi-falhos").innerHTML = json.LoginsFalhos;
+    })
+    .catch(err => console.error(err));
+}
 
-let chartNovos;
+async function carregarGraficoLogins() {
+  try {
+    const resposta = await fetch(`/gestaoAcesso/loginsPorHora?dia=${dia}`);
+    if (!resposta.ok) throw new Error("Erro ao buscar logins por hora");
+    const json = await resposta.json();
 
-document.addEventListener("DOMContentLoaded", async () => {
-  const div = document.querySelector("#grafico-novos");
+    const horas = Array.from({ length: 24 }, (_, i) => `${String(i).padStart(2, "0")}h`);
+    const dados = Array(24).fill(0);
 
-  if (div) {
-    chartNovos = new ApexCharts(div, optionsNovos);
-    await chartNovos.render();
+    json.forEach(linha => {
+      dados[linha.hora] = linha.total;
+    });
+
+    const optionsLogins = {
+      chart: { type: "line", height: 350, toolbar: { show: false } },
+      title: { text: "Logins por Hora", align: "center", style: { fontSize: "20px", fontWeight: "bold", color: "#333" } },
+      series: [{ name: "Logins", data: dados }],
+      xaxis: { categories: horas },
+      stroke: { curve: "smooth", width: 3 },
+      colors: ["#2ED1D7"],
+      markers: { size: 4, colors: ["#232023"] },
+      grid: { borderColor: "#e0e0e0" }
+    };
+
+    document.querySelector("#grafico-login").innerHTML = "";
+    const chartLogins = new ApexCharts(document.querySelector("#grafico-login"), optionsLogins);
+    chartLogins.render();
+  } catch (err) {
+    console.error(err);
   }
-});
+}
 
 async function carregarGraficoNovosUsuarios() {
   try {
-    const resposta = await fetch(
-      "3.212.222.224:3333/gestaoAcesso/novosUsuariosPorSemana"
-    );
+    const resposta = await fetch(`/gestaoAcesso/novosUsuariosPorSemana`);
+    if (!resposta.ok) throw new Error("Erro ao buscar novos usuários");
     let json = await resposta.json();
 
     json = Array.isArray(json) ? json : [json];
     if (!json || json.length === 0) return;
 
     const categorias = json.map(linha =>
-      linha.dia ? new Date(linha.dia).toLocaleDateString("pt-BR", {timeZone: "UTC"}) : "N/A"
+      linha.dia ? new Date(linha.dia).toLocaleDateString("pt-BR", { timeZone: "UTC" }) : "N/A"
     );
 
     const valores = json.map(linha => linha.novos_usuarios || 0);
@@ -164,6 +159,10 @@ async function carregarGraficoNovosUsuarios() {
 }
 
 function atualizarGrafico(categorias, valores) {
-  chartNovos.updateOptions({ xaxis: {type: "category", categories: categorias, labels: {rotate: -20 } } });
-  chartNovos.updateSeries([{ name: "Novos Usuários", data: valores }]);
+  if (chartNovos) {
+    chartNovos.updateOptions({
+      xaxis: { type: "category", categories: categorias, labels: { rotate: -20 } }
+    });
+    chartNovos.updateSeries([{ name: "Novos Usuários", data: valores }]);
+  }
 }
