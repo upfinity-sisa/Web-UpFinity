@@ -402,7 +402,7 @@ function plotarGraficoTemperatura() {
             annotations: {
                 yaxis: [
                     {
-                        y: parseFloat(sessionStorage.getItem('PARAM_CRITICO_TEMPERATURA_CPU')),
+                        y: parseFloat(sessionStorage.getItem('PARAM_CRITICO_TEMP_CPU')),
                         borderColor: '#FF4560',
                         strokeDashArray: 0,
                         label: {
@@ -415,7 +415,7 @@ function plotarGraficoTemperatura() {
                         },
                     },
                     {
-                        y: parseFloat(sessionStorage.getItem('PARAM_IMPORTANTE_TEMPERATURA_CPU')),
+                        y: parseFloat(sessionStorage.getItem('PARAM_IMPORTANTE_TEMP_CPU')),
                         borderColor: '#f4a261',
                         strokeDashArray: 0,
                         label: {

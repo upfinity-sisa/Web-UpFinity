@@ -124,11 +124,26 @@ document.addEventListener('DOMContentLoaded', () => {
     var chartUsoAtual = new ApexCharts(graficoUsoAtual, optionsGraficoUsoAtual);
 
     chartUsoAtual.render();
-    function CarregarDadosGraficoUsoAtual() {
-        fetch(`/ram/CarregarDadosGraficoUsoAtual/${idEmpresa}`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
+
+function CarregarDadosGraficoUsoAtual() {
+    fetch(`/ram/CarregarDadosGraficoUsoAtual/${idEmpresa}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    .then(res => res.json())
+    .then(dados => {
+        console.log(dados);
+
+        // Extrair valores e horários e inverter a ordem
+        const valores = dados.grafUsoAtual.map(item => item.usoAtualRam).reverse();
+        const horarios = dados.grafUsoAtual.map(item => item.horario).reverse();
+
+        // Atualizar o gráfico com valores e categorias
+        chartUsoAtual.updateOptions({
+            xaxis: {
+                categories: horarios
             }
         })
             .then(res => res.json())
