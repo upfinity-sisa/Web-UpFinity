@@ -125,25 +125,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     chartUsoAtual.render();
 
-function CarregarDadosGraficoUsoAtual() {
-    fetch(`/ram/CarregarDadosGraficoUsoAtual/${idEmpresa}`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
-    .then(res => res.json())
-    .then(dados => {
-        console.log(dados);
-
-        // Extrair valores e horários e inverter a ordem
-        const valores = dados.grafUsoAtual.map(item => item.usoAtualRam).reverse();
-        const horarios = dados.grafUsoAtual.map(item => item.horario).reverse();
-
-        // Atualizar o gráfico com valores e categorias
-        chartUsoAtual.updateOptions({
-            xaxis: {
-                categories: horarios
+    function CarregarDadosGraficoUsoAtual() {
+        fetch(`/ram/CarregarDadosGraficoUsoAtual/${idEmpresa}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
             }
         })
             .then(res => res.json())
@@ -156,30 +142,30 @@ function CarregarDadosGraficoUsoAtual() {
 
                 // Atualizar o gráfico com valores e categorias
                 chartUsoAtual.updateOptions({
-    xaxis: {
-        categories: horarios,
-        title: {
-            text: 'horario',
-            offsetY: -10,
-            offsetX: 0,     
-            style: {
-                fontSize: '14px',
-                fontWeight: 'bold',
-                color: '#000000ff'
-            }
-        }
-    },
-    yaxis: {
-        title: {
-            text: 'Uso da RAM (%)',
-            style: {
-                fontSize: '14px',
-                fontWeight: 'bold',
-                color: '#333'
-            }
-        }
-    }
-});
+                    xaxis: {
+                        categories: horarios,
+                        title: {
+                            text: 'horario',
+                            offsetY: -10,
+                            offsetX: 0,
+                            style: {
+                                fontSize: '14px',
+                                fontWeight: 'bold',
+                                color: '#000000ff'
+                            }
+                        }
+                    },
+                    yaxis: {
+                        title: {
+                            text: 'Uso da RAM (%)',
+                            style: {
+                                fontSize: '14px',
+                                fontWeight: 'bold',
+                                color: '#333'
+                            }
+                        }
+                    }
+                });
 
                 chartUsoAtual.updateSeries([
                     {
@@ -193,6 +179,8 @@ function CarregarDadosGraficoUsoAtual() {
                     const ultimoValor = valores[valores.length - 1];
                     updateProgressBar(ultimoValor);
                 }
+            }).catch(function (erro) {
+                console.log(erro);
             });
     }
 
@@ -234,6 +222,8 @@ function CarregarDadosGraficoUsoAtual() {
                 console.log("Dados recebidos GraficoDeUso:", dados);
                 // grafMaiorHr.updateSeries(dados.series);
                 chart.updateSeries(dados.series);
+            }).catch(function (erro) {
+                console.log(erro);
             });
     }
 });
@@ -260,4 +250,4 @@ function updateProgressBar(percentage) {
     } else {
         progressBar.classList.add('vermelho');
     }
-}
+};
