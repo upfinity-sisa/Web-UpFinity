@@ -91,8 +91,8 @@ form {
   padding-top: 12px;
 }
 
-#container-possui-conta-mobile .login {
-  color: #173279;
+.login {
+  color: #000000;
   font-size: 0.9rem;
 }
 
@@ -104,10 +104,6 @@ form {
   padding-top: 12px;
 }
 
-#container-possui-conta-mobile .login {
-  color: #173279;
-  font-size: 0.9rem;
-}
 
 #container-voltar-form-mobile {
   display: flex;
@@ -194,7 +190,6 @@ form {
 
 #container_valida_mobile {
   width: 85%;
-  height: 60vh;
   background: #0a0a0a;
   border: 1px solid #00c4cc;
   border-radius: 15px;

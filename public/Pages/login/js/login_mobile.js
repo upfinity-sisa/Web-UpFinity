@@ -1,18 +1,23 @@
-const alerta_erros_mobile = document.getElementById('alerta_erros_mobile')
-const span_erro_mobile = document.getElementById('span-erro-mobile')
-const h2_erro_mobile = document.getElementById('h2-erro-mobile')
-const btnFecharErro_mobile = document.getElementById('btnFecharErro-mobile')
+// const alerta_erros_mobile = document.getElementById('alerta_erros_mobile')
+// const span_erro_mobile = document.getElementById('span-erro-mobile')
+// const h2_erro_mobile = document.getElementById('h2-erro-mobile')
+// const btnFecharErro_mobile = document.getElementById('btnFecharErro-mobile')
 
-btnFecharErro_mobile.addEventListener('click', function () {
-    alerta_erros_mobile.classList.add('d-none')
-})
+// btnFecharErro_mobile.addEventListener('click', function () {
+//     alerta_erros_mobile.classList.add('d-none')
+// })
 
 const ipt_email_mobile = document.getElementById('ipt_email_mobile')
 const ipt_senha_mobile = document.getElementById('ipt_senha_mobile')
 
-function Entrar() {
+const btnContinuar_mobile = document.getElementById('btnContinuar_mobile')
+
+btnContinuar_mobile.addEventListener('click', function (e) {
+    e.preventDefault()
     var emailVar = ipt_email_mobile.value;
     var senhaVar = ipt_senha_mobile.value;
+    alert(emailVar)
+    alert(senhaVar)
 
     if (emailVar.trim() == "" || senhaVar.trim() == "") {
         alerta_erros_mobile.classList.remove('d-none')
@@ -112,4 +117,4 @@ function Entrar() {
     })
 
     return false;
-}
+})
