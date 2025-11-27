@@ -26,7 +26,7 @@ function carregarDashboard() {
 
 
 function empresaSemPlano() {
-  fetch(`http://localhost:3333/gestaoAcesso/empresasemplano`)
+  fetch(`http://3.212.22.224:3333/gestaoAcesso/empresasemplano`)
     .then(res => res.json())
     .then(json => {
       document.getElementById("kpi-plano").innerHTML = json.empresaSemPlano;
@@ -34,7 +34,7 @@ function empresaSemPlano() {
 }
 
 function carregarLoginSucesso() {
-  fetch(`http://localhost:3333/gestaoAcesso/loginsucesso?dia=${dia}`)
+  fetch(`http://3.212.22.224:3333/gestaoAcesso/loginsucesso?dia=${dia}`)
     .then(res => res.json())
     .then(json => {
       document.getElementById("kpi-logins").innerHTML = json.LoginsSucesso;
@@ -43,7 +43,7 @@ function carregarLoginSucesso() {
 
 
 function carregarLoginFalho() {
-  fetch(`http://localhost:3333/gestaoAcesso/loginfalho?dia=${dia}`)
+  fetch(`http://3.212.22.224:3333/gestaoAcesso/loginfalho?dia=${dia}`)
     .then(res => res.json())
     .then(json => {
       document.getElementById("kpi-falhos").innerHTML = json.LoginsFalhos;
@@ -81,7 +81,7 @@ function carregarDias() {
 
 async function carregarGraficoLogins() {
   const resposta = await fetch(
-    `http://localhost:3333/gestaoAcesso/loginsPorHora?dia=${dia}`
+    `http://3.212.22.224:3333/gestaoAcesso/loginsPorHora?dia=${dia}`
   );
   const json = await resposta.json();
 
@@ -144,7 +144,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 async function carregarGraficoNovosUsuarios() {
   try {
     const resposta = await fetch(
-      "http://localhost:3333/gestaoAcesso/novosUsuariosPorSemana"
+      "http://3.212.22.224:3333/gestaoAcesso/novosUsuariosPorSemana"
     );
     let json = await resposta.json();
 
