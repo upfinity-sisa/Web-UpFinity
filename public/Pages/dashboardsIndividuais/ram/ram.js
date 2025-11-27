@@ -1,5 +1,129 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    const kpiUsoMedio = document.getElementById("kpi-uso-medio")
+    const kpiQtdAlerta = document.getElementById("kpi-qtd-alertas")
+    const kpiHorarioMaior = document.getElementById("kpi-horario-maior")
+    let idEmpresa = sessionStorage.getItem("FK_EMPRESA");
+
+    function ObterKPI_1() {
+        fetch(`/ram/ObterKPI_1/${idEmpresa}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(jsonKPI1 => {
+                    console.log(jsonKPI1);
+                    kpiUsoMedio.innerText = `${jsonKPI1.usoMedio.toFixed(2)} %`;
+                });
+
+
+            } else {
+                console.log("Houve um erro ao tentar obter a KPI 1");
+                resposta.text().then(texto => {
+                    console.error(texto);
+
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+    }
+
+    function ObterKPI_2() {
+        fetch(`/ram/ObterKPI_2/${idEmpresa}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(jsonKPI2 => {
+                    console.log(jsonKPI2);
+                    kpiQtdAlerta.innerText = jsonKPI2.qtdAlerta;
+                });
+
+
+            } else {
+                console.log("Houve um erro ao tentar obter a KPI 2");
+                resposta.text().then(texto => {
+                    console.error(texto);
+
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+    }
+
+    function ObterKPI_3() {
+        fetch(`/ram/ObterKPI_3/${idEmpresa}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(jsonKPI3 => {
+                    console.log(jsonKPI3);
+                    kpiHorarioMaior.innerText = jsonKPI3.qtdHorario;
+                });
+
+
+            } else {
+                console.log("Houve um erro ao tentar obter a KPI 3");
+                resposta.text().then(texto => {
+                    console.error(texto);
+
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+    }
+
+
+
+
+
+
+    function carregarDados() {
+        ObterKPI_1();
+        ObterKPI_2();
+        ObterKPI_3();
+    }
+
+    window.onload = function () {
+        carregarDados();
+    }
+
+    setInterval(carregarDados, 3000);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     var optionsGraficoUsoAtual = {
         chart: {
             type: 'line'
@@ -18,16 +142,16 @@ document.addEventListener('DOMContentLoaded', () => {
     chartUsoAtual.render();
 
     function CarregarDadosGraficoUsoAtual() {
-    fetch(`/ram/CarregarDadosGraficoUsoAtual/${idEmpresa}`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json"
-        }
-    }).then(res => res.json())
-        .then(dados => {
-            chartUsoAtual.updateSeries(dados.series);
-        });
-}
+        fetch(`/ram/CarregarDadosGraficoUsoAtual/${idEmpresa}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(res => res.json())
+            .then(dados => {
+                chartUsoAtual.updateSeries(dados.series);
+            });
+    }
 
 
 
