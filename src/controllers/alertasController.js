@@ -378,7 +378,7 @@ function obterDadosBoxplot(req, res) {
 
     res.json({
       series: [
-        { name: 'Boxplot', type: 'boxPlot', data: seriesBoxplot },
+        { name: 'Estatística', type: 'boxPlot', data: seriesBoxplot },
         { name: 'Outliers', type: 'scatter', data: seriesOutliers }
       ]
     });

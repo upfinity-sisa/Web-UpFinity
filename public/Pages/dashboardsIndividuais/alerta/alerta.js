@@ -12,9 +12,9 @@ var options_grafico1 = {
         stacked: false,
     },
     series: [
-        { name: 'Pendentes', data: [3, 5, 10, 20] },
-        { name: 'Resolvidos', data: [5, 15, 40, 50] },
-        { name: 'Total', data: [8, 20, 50, 70] }
+        { name: 'Pendentes', data: [] },
+        { name: 'Resolvidos', data: [] },
+        { name: 'Total', data: [] }
     ],
     colors: ['#8c91cd', '#58f058', '#5acfd3ff'],
     xaxis: {
@@ -51,43 +51,45 @@ const grafico2 = document.getElementById('grafico2')
 var options_grafico2 = {
     chart: {
         type: 'boxPlot',
-        height: 380
+        height: 380,
+        animations: {
+            enabled: false
+        }
     },
     series: [
         {
-            name: 'Estatística (Padrão)',
+            name: 'Estatística',
             type: 'boxPlot',
             data: [
                 {
                     x: 'CPU',
-                    // [Min, Q1, Mediana, Q3, Max]
-                    y: []
+                    y: [0, 0, 0, 0, 0]
                 },
                 {
                     x: 'RAM',
-                    y: []
+                    y: [0, 0, 0, 0, 0]
                 },
                 {
                     x: 'Disco',
-                    y: []
+                    y: [0, 0, 0, 0, 0]
                 },
                 {
                     x: 'Rede',
-                    y: []
+                    y: [0, 0, 0, 0, 0]
                 }
             ]
         },
         {
-            name: 'Outliers (Anomalias)',
+            name: 'Outlier',
             type: 'scatter',
             data: [
-                { x: 'CPU', y: 65 },
+                { x: 'CPU', y: 0 },
 
-                { x: 'RAM', y: 120 },
+                { x: 'RAM', y: 0 },
 
-                { x: 'Disco', y: 80 },
+                { x: 'Disco', y: 0 },
 
-                { x: 'Rede', y: 130 }
+                { x: 'Rede', y: 0 }
             ]
         }
     ],
@@ -101,8 +103,12 @@ var options_grafico2 = {
         }
     },
     yaxis: {
+        min: 0,
         title: {
             text: 'Minutos'
+        },
+        max: function (max) {
+            return max < 2000 ? 2000 : max * 1.1;
         }
     },
     plotOptions: {
