@@ -50,6 +50,7 @@ def perguntar(pergunta, idUsuario, nome, email, cpf, fkEmpresa, fkTipoUsuario):
     - Clima, política, receitas, tecnologia pessoal, etc.
 
     Contexto:  
+    Nossa empresa é a UpFinity!
     O sistema monitora hardware de ATMs.  
     O banco de dados contém informações sobre empresas, ATMs, funcionários e alertas.  
     A documentação contém regras e informações gerais.
