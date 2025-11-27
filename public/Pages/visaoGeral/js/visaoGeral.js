@@ -48,6 +48,7 @@ function carregarParametros() {
         .then(response => {
             if (response.ok) {
                 response.json().then(resposta => {
+                    console.log(resposta)
                     if (resposta.length > 0) {
                         resposta.forEach(param => {
                             let tipo = param.fkTipoComponente;
@@ -63,6 +64,9 @@ function carregarParametros() {
                                     break;
                                 case 3:
                                     sessionStorage.setItem(alerta == 1 ? 'PARAM_CRITICO_DISCO' : 'PARAM_IMPORTANTE_DISCO', limite);
+                                    break;
+                                case 5:
+                                    sessionStorage.setItem(alerta == 1 ? 'PARAM_CRITICO_TEMP_CPU' : 'PARAM_IMPORTANTE_TEMP_CPU', limite)
                                     break;
                             }
                         });
