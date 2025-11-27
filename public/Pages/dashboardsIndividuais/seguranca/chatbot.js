@@ -51,7 +51,7 @@ function conversar() {
 async function enviarMensagemParaAgente(texto) {
     let data = null
     try {
-        const resp = await fetch("3.212.222.224:8000/agente", {
+        const resp = await fetch("/3.212.222.224:8000/agente", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
