@@ -11,8 +11,8 @@ from MultiAgent import perguntar
 app = FastAPI()
 
 origins = [
-    "http://3.212.222.224",
-    "http://3.212.222.224:3333",
+    "3.212.222.224",
+    "3.212.222.224:3333",
     "*"
 ]
 
