@@ -49,23 +49,29 @@ function conversar() {
 }
 
 async function enviarMensagemParaAgente(texto) {
-    const resp = await fetch("http://localhost:8000/agente", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ texto: texto , 
-                                idUsuario: sessionStorage.ID_USUARIO, 
-                                nome: sessionStorage.NOME_USUARIO,
-                                email: sessionStorage.EMAIL_USUARIO,
-                                cpf: sessionStorage.CPF_USUARIO,
-                                fkEmpresa: sessionStorage.FK_EMPRESA,
-                                fkTipoUsuario: sessionStorage.FK_TIPOUSUARIO
-                            })
-    });
-
-    const data = await resp.json();
-    console.log("Resposta do agente:", data.resposta);
+    let data = null
+    try {
+        const resp = await fetch("http://localhost:8000/agente", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                texto: texto,
+                idUsuario: sessionStorage.ID_USUARIO,
+                nome: sessionStorage.NOME_USUARIO,
+                email: sessionStorage.EMAIL_USUARIO,
+                cpf: sessionStorage.CPF_USUARIO,
+                fkEmpresa: sessionStorage.FK_EMPRESA,
+                fkTipoUsuario: sessionStorage.FK_TIPOUSUARIO
+            })
+        });
+        data = await resp.json();
+        console.log("Resposta do agente:", data.resposta);
+    } catch (err) {
+        console.log("encontrei um erro: ", err)
+        return
+    }
 
     if (data.tipo == "df") {
         valoresTabela = Object.keys(data.resposta[0])
@@ -77,7 +83,6 @@ async function enviarMensagemParaAgente(texto) {
             <th>${valoresTabela[i]}</th>
             `
         }
-
 
         let tabela_agente = ""
         for (let i = 0; i < (data.resposta).length; i++) {
@@ -93,7 +98,6 @@ async function enviarMensagemParaAgente(texto) {
         }
 
         mensagens.innerHTML += `
-
         <div class="mensagem_bot">
 
             <div class="balao_mensagem_bot">
@@ -108,12 +112,18 @@ async function enviarMensagemParaAgente(texto) {
             </div>
         </div>
         `
-
     } else {
+        let splittedResposta = data.resposta.split("\n")
+        let respHtml = ""
+        for (let i = 0; i < splittedResposta.length; i++) {
+            if (splittedResposta[i].trim() !== "") {
+                respHtml += `<p>${splittedResposta[i]}</p>`
+            }
+        }
         mensagens.innerHTML += `
         <div class="mensagem_bot">
             <div class="balao_mensagem_bot">
-                <h1 style="color: rgb(255, 255, 255);" class="mensagem_txt">${data.resposta}</h1>
+                <h1 style="color: rgb(255, 255, 255);" class="mensagem_txt">${respHtml}</h1>
             </div>
         </div>
         `
@@ -156,10 +166,10 @@ function abrirChatBot() {
     const modal = document.getElementById("modal_upstuart");
 
     fundo.addEventListener("click", (e) => {
-    if (!modal.contains(e.target)) {
-        exibir_bot.innerHTML = ""
-        reiniciar = 1
-    }
+        if (!modal.contains(e.target)) {
+            exibir_bot.innerHTML = ""
+            reiniciar = 1
+        }
 
     });
 

@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import json
 import ast
 
-from DBagent import executar
+from MultiAgent import perguntar
 
 app = FastAPI()
 
@@ -34,7 +34,9 @@ class Mensagem(BaseModel):
 @app.post("/agente")
 def executar_agente(msg: Mensagem):
 
-    resposta = f"{executar(msg.texto, msg.idUsuario, msg.nome, msg.email, msg.cpf, msg.fkEmpresa, msg.fkTipoUsuario)}"
+    print("TESTE")
+
+    resposta = f"{perguntar(msg.texto, msg.idUsuario, msg.nome, msg.email, msg.cpf, msg.fkEmpresa, msg.fkTipoUsuario)}"
     
     print("RESPOSTA")
 

@@ -13,7 +13,7 @@ Catarina Pires
 Gabriel Pereira
 Giovanne Pagano
 Gwen Raldes
- Omar Nidal
+Omar Nidal
 ```
 ##### SÃO PAULO
 
@@ -54,9 +54,7 @@ comprometer tanto a integridade dos equipamentos quanto a proteção dos dados
 financeiros dos clientes. Por isso, torna-se imprescindível adotar soluções de
 monitoramento e análise de dados que integrem inspeção de hardware, software
 e rede, assegurando a continuidade operacional, a conformidade com
-regulamentações, como PCI-DSS (Padrão de Segurança de Dados do Setor de
-Cartões de Pagamento) e normas do BACEN (Regulamentos, diretrizes e regras
-estabelecidas pelo Banco Central do Brasil), e fortalecendo a governança de TI
+regulamentações, e fortalecendo a governança de TI
 da instituição. A implementação de estratégias proativas de monitoramento e
 manutenção preditiva garante não apenas a redução de falhas e downtime, mas
 também contribui para a melhoria contínua da experiência do cliente, reputação
