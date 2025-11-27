@@ -18,8 +18,8 @@ router.get("/CarregarDadosGraficoUsoAtual/:idEmpresa", function (req, res) {
   ramController.CarregarDadosGraficoUsoAtual(req, res);
 })
 
-router.get("/ CarregarDadosGraficoDeUso/:idEmpresa", function (req, res) {
-  ramController. CarregarDadosGraficoDeUso(req, res);
+router.get("/CarregarDadosGraficoDeUso/:idEmpresa", function (req, res) {
+  ramController.CarregarDadosGraficoDeUso(req, res);
 })
 
 module.exports = router;
