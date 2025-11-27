@@ -52,6 +52,13 @@ def perguntar(pergunta, idUsuario, nome, email, cpf, fkEmpresa, fkTipoUsuario):
     Perguntas que não têm relação com o sistema de monitoramento de ATMs, por exemplo:  
     - Clima, política, receitas, tecnologia pessoal, etc.
 
+    4. **Cumprimentos**  
+    Use esta categoria para mensagens que não são perguntas e representam apenas interação social, como:  
+    - "Oi", "E aí?", "Boa tarde", "Você poderia me ajudar, por favor?"
+    - "Valeu!", "Obrigado", "Obrigada"  
+    - "Tchau", "Até mais", "Bom dia"  
+    - Qualquer cumprimento, despedida ou cordialidade que não peça informação
+
     Contexto:  
     Nossa empresa é a UpFinity!
     O sistema monitora hardware de ATMs.  
@@ -73,6 +80,7 @@ def perguntar(pergunta, idUsuario, nome, email, cpf, fkEmpresa, fkTipoUsuario):
     Pergunta: "Quanto custa o plano mais básico da empresa?" ou "Como esse serviço ajuda meu negócio?" -> **2**  
     Pergunta: "Como diminuir a temperatura do ATM?" ou "Como resolver X problema da minha CPU?" ou algo mais aleatório como "Me passe uma receita de bolo" -> **3**  
     **Pergunta: "Que tipos de alertas o sistema possui?" -> 1 (alertas sempre vêm do banco de dados)**
+    Mensagem: "Oi", "Obrigado", "Valeu", "Tchau", "Bom dia" -> **4**
 
     ---
 
@@ -101,4 +109,33 @@ def redirecionar(resultado, pergunta, idUsuario, nome, email, cpf, fkEmpresa, fk
         return {
             'tipo': 'text',
             'res': "Sinto muito, eu sou um agente especializado nos serviços da UpFinity, portanto, não sou capaz de responder este tipo de pergunta"
-        }   
+        }
+    elif resultado == "4":
+        return cumprimentar(pergunta)
+    
+
+
+def cumprimentar(pergunta):
+    prompt_template = PromptTemplate(
+        input_variables=["request"],
+        template="""
+    Você é um agente responsável por responder cumprimentos. Sempre que receber uma saudação ou 
+    um agradecimento, responda de maneira simples, natural e educada, como uma pessoa comum 
+    responderia. Não ofereça ajuda, não pergunte nada e não tente prolongar a conversa. 
+    Apenas devolva um cumprimento adequado ou uma resposta breve a agradecimentos.
+    Pode usar um emoji de vez em quando.
+
+    Responda à seguinte mensagem: "{request}"
+    """
+    )
+
+
+    chain = prompt_template | llm | StrOutputParser()
+
+    print("Pensando...")
+    resposta = chain.invoke({"request": pergunta})
+    print("Resultado:", resposta)
+    return {
+            'tipo': 'text',
+            'res': resposta
+        }
