@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
         carregarDados();
     }
 
-    setInterval(carregarDados, 3000);
+    setInterval(carregarDados, 2000);
 
     var optionsGraficoUsoAtual = {
         chart: {
@@ -124,46 +124,62 @@ document.addEventListener('DOMContentLoaded', () => {
     var chartUsoAtual = new ApexCharts(graficoUsoAtual, optionsGraficoUsoAtual);
 
     chartUsoAtual.render();
-function CarregarDadosGraficoUsoAtual() {
-    fetch(`/ram/CarregarDadosGraficoUsoAtual/${idEmpresa}`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
-    .then(res => res.json())
-    .then(dados => {
-        console.log("Dados recebidos UsoAtual:", dados);
-
-        // Extrair valores e horários e inverter a ordem
-        const valores = dados.grafUsoAtual.map(item => item.usoAtualRam).reverse();
-        const horarios = dados.grafUsoAtual.map(item => item.horario).reverse();
-
-        // Atualizar o gráfico com valores e categorias
-        chartUsoAtual.updateOptions({
-            xaxis: {
-                categories: horarios
+    function CarregarDadosGraficoUsoAtual() {
+        fetch(`/ram/CarregarDadosGraficoUsoAtual/${idEmpresa}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
             }
-        });
+        })
+            .then(res => res.json())
+            .then(dados => {
+                console.log("Dados recebidos UsoAtual:", dados);
 
-        chartUsoAtual.updateSeries([
-            {
-                name: 'Uso Atual RAM',
-                data: valores
+                // Extrair valores e horários e inverter a ordem
+                const valores = dados.grafUsoAtual.map(item => item.usoAtualRam).reverse();
+                const horarios = dados.grafUsoAtual.map(item => item.horario).reverse();
+
+                // Atualizar o gráfico com valores e categorias
+                chartUsoAtual.updateOptions({
+    xaxis: {
+        categories: horarios,
+        title: {
+            text: 'horario',
+            offsetY: -10,
+            offsetX: 0,     
+            style: {
+                fontSize: '14px',
+                fontWeight: 'bold',
+                color: '#000000ff'
             }
-        ]);
-
-        // Atualizar a barra de progresso com o último valor (agora o mais recente está no final)
-        if (valores.length > 0) {
-            const ultimoValor = valores[valores.length - 1]; 
-            updateProgressBar(ultimoValor);
         }
-    });
-}
+    },
+    yaxis: {
+        title: {
+            text: 'Uso da RAM (%)',
+            style: {
+                fontSize: '14px',
+                fontWeight: 'bold',
+                color: '#333'
+            }
+        }
+    }
+});
 
+                chartUsoAtual.updateSeries([
+                    {
+                        name: 'Uso Atual RAM',
+                        data: valores
+                    }
+                ]);
 
-
-
+                // Atualizar a barra de progresso com o último valor (agora o mais recente está no final)
+                if (valores.length > 0) {
+                    const ultimoValor = valores[valores.length - 1];
+                    updateProgressBar(ultimoValor);
+                }
+            });
+    }
 
     var optionsGraficoProgresao = {
         series: [{
@@ -200,7 +216,7 @@ function CarregarDadosGraficoUsoAtual() {
             }
         }).then(res => res.json())
             .then(dados => {
-                  console.log("Dados recebidos GraficoDeUso:", dados);
+                console.log("Dados recebidos GraficoDeUso:", dados);
                 // grafMaiorHr.updateSeries(dados.series);
                 chart.updateSeries(dados.series);
             });
@@ -209,24 +225,24 @@ function CarregarDadosGraficoUsoAtual() {
 
 const URL_BASE_API = "http://localhost:3333/ram";
 
-  function updateProgressBar(percentage) {
-        const progressBar = document.getElementById('progressBar');
-        const progressValue = document.getElementById('progressValue');
+function updateProgressBar(percentage) {
+    const progressBar = document.getElementById('progressBar');
+    const progressValue = document.getElementById('progressValue');
 
-        if (!progressBar || !progressValue) return;
+    if (!progressBar || !progressValue) return;
 
-        const limitedPercentage = Math.min(100, Math.max(0, percentage));
+    const limitedPercentage = Math.min(100, Math.max(0, percentage));
 
-        progressBar.style.width = `${limitedPercentage}%`;
-        progressValue.textContent = `${limitedPercentage.toFixed(1)}%`;
+    progressBar.style.width = `${limitedPercentage}%`;
+    progressValue.textContent = `${limitedPercentage.toFixed(1)}%`;
 
-        progressBar.classList.remove('verde', 'amarelo', 'vermelho');
+    progressBar.classList.remove('verde', 'amarelo', 'vermelho');
 
-        if (limitedPercentage <= 69) {
-            progressBar.classList.add('verde');
-        } else if (limitedPercentage <= 85) {
-            progressBar.classList.add('amarelo');
-        } else {
-            progressBar.classList.add('vermelho');
-        }
+    if (limitedPercentage <= 69) {
+        progressBar.classList.add('verde');
+    } else if (limitedPercentage <= 85) {
+        progressBar.classList.add('amarelo');
+    } else {
+        progressBar.classList.add('vermelho');
     }
+}
