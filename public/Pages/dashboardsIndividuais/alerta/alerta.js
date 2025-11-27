@@ -186,6 +186,17 @@ function CarregarDadosDashboard() {
     ObterGrafico_Bar();
     ObterHistorico();
     obterDadosBoxplot();
+    let dataAtual = new Date();
+
+    const dia = String(dataAtual.getDate()).padStart(2, '0');
+    const mes = String(dataAtual.getMonth() + 1).padStart(2, '0');
+    const ano = dataAtual.getFullYear();
+    const horas = String(dataAtual.getHours()).padStart(2, '0');
+    const minutos = String(dataAtual.getMinutes()).padStart(2, '0');
+    const segundos = String(dataAtual.getSeconds()).padStart(2, '0');
+
+
+    spn_dataHora_ultimaAtualizacao.innerText = `${dia}/${mes}/${ano} - ${horas}:${minutos}:${segundos}`
 }
 
 window.onload = function () {
@@ -196,7 +207,7 @@ window.onload = function () {
 setInterval(CarregarDadosDashboard, 3000);
 
 let idEmpresa = sessionStorage.getItem('FK_EMPRESA');
-console.log("id da empresa: " + fkEmpresa)
+console.log("id da empresa: " + idEmpresa)
 
 function ObterKPI_1() {
 
