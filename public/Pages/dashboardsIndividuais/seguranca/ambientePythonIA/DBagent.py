@@ -6,10 +6,12 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.output_parsers import StrOutputParser
 from langgraph.graph import StateGraph, START, END 
 from typing import TypedDict, Optional
+from dotenv import load_dotenv
+
+load_dotenv("../../../../../.env.dev")
+API_KEY = os.getenv("GOOGLE_API_KEY")
 
 #CONFIGURANDO O AMBIENTE
-
-os.environ["GOOGLE_API_KEY"] = "AIzaSyASzqnsYiwW-QbrTzFovIi2pSyyyZSAL0M"
 
 DB_CONFIG = {
     "host": "localhost",
@@ -20,7 +22,7 @@ DB_CONFIG = {
 
 llm = ChatGoogleGenerativeAI(
     model="gemini-2.5-flash",
-    api_key=os.environ["GOOGLE_API_KEY"],
+    api_key= API_KEY,
     temperature=0.2,
 )
 

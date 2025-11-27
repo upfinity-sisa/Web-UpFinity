@@ -2,15 +2,17 @@ import os
 from langchain_core.prompts import PromptTemplate
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.output_parsers import StrOutputParser
+from dotenv import load_dotenv
 
-os.environ["GOOGLE_API_KEY"] = "AIzaSyASzqnsYiwW-QbrTzFovIi2pSyyyZSAL0M"
+load_dotenv("../../../../../.env.dev")
+API_KEY = os.getenv("GOOGLE_API_KEY")
 
 with open("prompts/docUpfinity.md", "r", encoding="utf-8") as f:
     documentacao = f.read()
 
 llm = ChatGoogleGenerativeAI(
     model="gemini-2.5-flash",
-    api_key=os.environ["GOOGLE_API_KEY"],
+    api_key= API_KEY,
     temperature=0.,
 )
 

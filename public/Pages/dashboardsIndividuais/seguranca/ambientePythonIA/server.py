@@ -1,8 +1,10 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
-import json
 import ast
+from dotenv import load_dotenv
+
+load_dotenv("../../../../../.env.dev")
 
 from MultiAgent import perguntar
 
@@ -33,8 +35,6 @@ class Mensagem(BaseModel):
 
 @app.post("/agente")
 def executar_agente(msg: Mensagem):
-
-    print("TESTE")
 
     resposta = f"{perguntar(msg.texto, msg.idUsuario, msg.nome, msg.email, msg.cpf, msg.fkEmpresa, msg.fkTipoUsuario)}"
     
