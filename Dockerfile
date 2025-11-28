@@ -22,5 +22,7 @@ RUN npm install
 EXPOSE 3333
 EXPOSE 8000
 
+RUN apt install python3.11-venv
+
 # Step 7/7 — comando inicial
 CMD ["npm", "run", "start-all"]
