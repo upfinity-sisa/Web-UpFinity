@@ -26,7 +26,7 @@ class Mensagem(BaseModel):
     cpf: str
     fkEmpresa: int
     fkTipoUsuario: int
-
+ 
 @app.post("/agente")
 def executar_agente(msg: Mensagem):
 
