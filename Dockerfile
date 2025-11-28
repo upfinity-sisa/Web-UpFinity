@@ -1,26 +1,33 @@
-# Step 1/7 — Node.js como base
+# Base Node.js
 FROM node:latest
 
-# Instalar Python 3 e pip
+# Instalar Python3, pip e venv
 RUN apt-get update && \
-    apt-get install -y python3 python3-pip && \
+    apt-get install -y python3 python3-pip python3-venv git && \
     apt-get clean
 
-# Step 2/7 — diretório de trabalho
+# Diretório de trabalho
 WORKDIR /usr/src/app
 
-# Step 3/7 — clonar repositório
+# Clonar repositório
 RUN git clone https://github.com/upfinity-sisa/Web-UpFinity.git
 
-# Step 4/7 — mudar diretório
+# Entrar no diretório do projeto
 WORKDIR /usr/src/app/Web-UpFinity
 
-# Step 5/7 — instalar dependências Node.js
+# Instalar dependências Node.js
 RUN npm install
 
-# Step 6/7 — expor portas
+# Criar venv para Python
+RUN python3 -m venv venv
+
+# Ativar venv e instalar requirements
+RUN ./venv/bin/pip install --upgrade pip
+RUN ./venv/bin/pip install -r public/Pages/dashboardsIndividuais/seguranca/ambientePythonIA/requirements.txt
+
+# Expor portas
 EXPOSE 3333
 EXPOSE 8000
 
-# Step 7/7 — comando inicial
-CMD ["npm", "run", "start-all"]
+# Comando inicial
+CMD ["concurrently", "\"npm run dev\"", "\"./venv/bin/python -m uvicorn public/Pages/dashboardsIndividuais/seguranca/ambientePythonIA.server:app --reload\""]
