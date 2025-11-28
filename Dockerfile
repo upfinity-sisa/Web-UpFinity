@@ -30,4 +30,4 @@ EXPOSE 3333
 EXPOSE 8000
 
 # Comando inicial
-CMD ["concurrently", "\"npm run dev\"", "\"./venv/bin/python -m uvicorn public/Pages/dashboardsIndividuais/seguranca/ambientePythonIA.server:app --reload\""]
+CMD ["npm", "run", "start-prod"]
