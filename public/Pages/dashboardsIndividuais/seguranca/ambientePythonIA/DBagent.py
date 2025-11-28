@@ -18,7 +18,7 @@ API_KEY = os.getenv("GOOGLE_API_KEY")
 DB_CONFIG = {
     "host": "localhost",
     "user": "root",
-    "password": "Urubu100#",
+    "password": "urubu100",
     "database": "upfinity"
 }
 
