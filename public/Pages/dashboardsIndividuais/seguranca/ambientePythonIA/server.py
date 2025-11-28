@@ -10,16 +10,10 @@ from MultiAgent import perguntar
 
 app = FastAPI()
 
-origins = [
-    "3.212.222.224",
-    "3.212.222.224:3333",
-    "*"
-]
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
