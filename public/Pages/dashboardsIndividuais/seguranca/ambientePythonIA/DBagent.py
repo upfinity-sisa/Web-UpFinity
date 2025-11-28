@@ -50,19 +50,19 @@ class GraphState(TypedDict):
 with open(os.path.join(BASE_DIR, "prompts", "upfinity_schema.txt"), "r", encoding="utf-8") as f:
     schema = f.read()
 
-with open(os.path.join(BASE_DIR, "prompts", "prompts/categorizador.txt"), "r", encoding="utf-8") as f:
+with open(os.path.join(BASE_DIR, "prompts", "categorizador.txt"), "r", encoding="utf-8") as f:
     categorizador = f.read()
 
-with open(os.path.join(BASE_DIR, "prompts", "prompts/promptATM.txt"), "r", encoding="utf-8") as f:
+with open(os.path.join(BASE_DIR, "prompts", "promptATM.txt"), "r", encoding="utf-8") as f:
     promptATM = f.read()
 
-with open(os.path.join(BASE_DIR, "prompts", "prompts/promptUSUARIO.txt"), "r", encoding="utf-8") as f:
+with open(os.path.join(BASE_DIR, "prompts", "promptUSUARIO.txt"), "r", encoding="utf-8") as f:
     promptUSUARIO = f.read()
 
-with open(os.path.join(BASE_DIR, "prompts", "prompts/formatador.txt"), "r", encoding="utf-8") as f:
+with open(os.path.join(BASE_DIR, "prompts", "formatador.txt"), "r", encoding="utf-8") as f:
     formatador = f.read()
 
-with open(os.path.join(BASE_DIR, "prompts", "prompts/contextualizador.txt"), "r", encoding="utf-8") as f:
+with open(os.path.join(BASE_DIR, "prompts", "contextualizador.txt"), "r", encoding="utf-8") as f:
     contextualizador = f.read()
 
 #INICIANDO AS LISTAS QUE SERÃO ENVIADAS PARA A IA ANALISAR
