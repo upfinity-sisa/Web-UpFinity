@@ -10,7 +10,7 @@ function buscarMedidasEmTempoReal(idAtm) {
             pacotesEnviados, 
             DATE_FORMAT(horario,'%H:%i:%s') as momento_grafico 
         FROM CapturaRede 
-        WHERE fkAtm = ${idAtm} 
+        WHERE fkAtm = 1
         ORDER BY idCapturaRede DESC 
         LIMIT 1;
     `;
@@ -26,7 +26,7 @@ function buscarDadosGrafico(idAtm) {
             MBEnviados,  
             DATE_FORMAT(horario,'%H:%i:%s') as momento_grafico 
         FROM CapturaRede 
-        WHERE fkAtm = ${idAtm} 
+        WHERE fkAtm = 1
         ORDER BY idCapturaRede DESC 
         LIMIT 15; -- Retorna as últimas 15 medições para o gráfico
     `;
