@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon --exec node app.js",
-    "python-agents": "cd public/Pages/dashboardsIndividuais/seguranca/ambientePythonIA && python3 -m venv venv && . venv/bin/activate && pip3 install -r requirements.txt && uvicorn server:app --reload",
+    "python-agents": "cd public/Pages/dashboardsIndividuais/seguranca/ambientePythonIA && pip3 install -r requirements.txt && uvicorn server:app --reload",
     "start-all": "concurrently \"npm run dev\" \"npm run python-agents\""
   },
   "author": "Feito pelos desenvolvedores @ São Paulo Tech School / Bandtec Digital School",
