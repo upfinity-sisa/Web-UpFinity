@@ -267,7 +267,7 @@ function atualizarKpisRede() {
     console.log("Buscando dados para ATM ID: " + idAtm);
 
     // Endpoint para tempo real (KPIs)
-    fetch(`/medidas/tempo-real/${idAtm}`, { cache: 'no-store' })
+    fetch(`/medidas/tempo-real/1`, { cache: 'no-store' })
         .then(response => {
             if (response.ok) {
                 response.json().then(resposta => {
@@ -320,7 +320,7 @@ function atualizarGraficoRede() {
         }
     }
 
-    fetch(`/medidas/historico/${idAtm}`, { cache: 'no-store' })
+    fetch(`/medidas/historico/1`, { cache: 'no-store' })
         .then(response => {
             if (response.ok) {
                 response.json().then(resposta => {
