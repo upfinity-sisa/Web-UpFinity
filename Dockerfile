@@ -33,6 +33,7 @@ RUN npm install
 # Expõe a porta desenvolvimento:3333 ou produção:8080 ou 80 do contêiner, que será usada para acessar a aplicação pela web
 
 EXPOSE 3333
+EXPOSE 8000
 
 # Step 7/7
 
