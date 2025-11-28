@@ -8,7 +8,7 @@
     "dev": "nodemon --exec node app.js",
     "python-agents": "cd public/Pages/dashboardsIndividuais/seguranca/ambientePythonIA && . venv/bin/activate && pip3 install -r requirements.txt && uvicorn server:app --reload",
     "start-all": "concurrently \"npm run dev\" \"npm run python-agents\"",
-    "start-prod": "concurrently \"npm run dev\" \"./venv/bin/python -m uvicorn public/Pages/dashboardsIndividuais/seguranca/ambientePythonIA.server:app --reload\""
+    "start-prod": "concurrently \"npm run dev\" \"./venv/bin/uvicorn server:app --reload --app-dir public/Pages/dashboardsIndividuais/seguranca/ambientePythonIA\""
   },
   "author": "Feito pelos desenvolvedores @ São Paulo Tech School / Bandtec Digital School",
   "license": "MIT",
