@@ -38,6 +38,13 @@
     <title>UpFinity</title>
 </head>
 
+
+     <script>
+        function validarRedirecionamento(url) {
+            window.location = url;
+        }
+    </script>
+
 <body onload="validarSessao()">
     <section class="corpo">
         <div id="container_sombra" class="d-none">
@@ -84,10 +91,10 @@
                             DE ACESSOS</h1>
                     </span>
                     <div class="linha"></div>
-                    <h1 onclick="validarRedirecionamento('../gestaoUsuarios/gestaoUsuarios.html')">GESTÃO DE USUÁRIOS
+                    <h1 onclick="validarRedirecionamento('../../gestaoUsuarios/gestaoUsuarios.html')">GESTÃO DE USUÁRIOS
                     </h1>
                     <div class="linha"></div>
-                    <h1 onclick="validarRedirecionamento('../gestaoATM/gestaoATM.html')">GESTÃO DE ATMS</h1>
+                    <h1 onclick="validarRedirecionamento('../../gestaoATM/gestaoATM.html')">GESTÃO DE ATMS</h1>
                     <div class="linha"></div>
                 </div>
             </div>
