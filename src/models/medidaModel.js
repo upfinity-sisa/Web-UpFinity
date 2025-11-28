@@ -19,6 +19,23 @@ function buscarMedidasEmTempoReal(idAtm) {
     return database.executar(instrucaoSql);
 }
 
+function buscarDadosGrafico(idAtm) {
+    var instrucaoSql = `
+        SELECT 
+            MBRecebidos, 
+            MBEnviados,  
+            DATE_FORMAT(horario,'%H:%i:%s') as momento_grafico 
+        FROM CapturaRede 
+        WHERE fkAtm = ${idAtm} 
+        ORDER BY idCapturaRede DESC 
+        LIMIT 15; -- Retorna as últimas 15 medições para o gráfico
+    `;
+
+    console.log("Executando a instrução SQL para o gráfico: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
-    buscarMedidasEmTempoReal
+    buscarMedidasEmTempoReal,
+    buscarDadosGrafico 
 }

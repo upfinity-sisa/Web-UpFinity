@@ -8,4 +8,8 @@ router.get("/tempo-real/:idAtm", function (req, res) {
     medidaController.buscarMedidasEmTempoReal(req, res);
 });
 
+router.get("/historico/:idAtm", function (req, res) {
+    medidaController.buscarDadosGrafico(req, res);
+});
+
 module.exports = router;
